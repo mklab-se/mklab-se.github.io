@@ -21,7 +21,7 @@ title                    : "MKLab"
 title_separator          : "-"
 subtitle                 : Personality matters, expertise delivers # site tagline that appears below site title in masthead
 name                     : "Kristofer Liljeblad"
-description              : "You personal consultancy firm."
+description              : "Personality matters, espertise delivers"
 url                      : "https://mklab.se" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
