@@ -19,15 +19,15 @@ locale                   : "en-US"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "MKLab"
 title_separator          : "-"
-subtitle                 : # site tagline that appears below site title in masthead
+subtitle                 : Personality matters, expertise delivers # site tagline that appears below site title in masthead
 name                     : "Kristofer Liljeblad"
-description              : "An amazing website."
+description              : "You personal consultancy firm."
 url                      : "https://mklab.se" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : "/assets/images/logo.png" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
+masthead_title           : "MKLab" # overrides the website title displayed in the masthead, use " " for no title
 breadcrumbs              : # true, false (default)
 words_per_minute         : 200
 enable_copy_code_button  : # true, false (default)
@@ -115,13 +115,16 @@ analytics:
 author:
   name             : "Kristofer Liljeblad"
   avatar           : "/assets/images/kristofer.jpg"
-  bio              : "Principal Consultant and Founder"
+  bio              : "Founder of MKLab"
   location         : "Stockholm, Sweden"
-  email            : "kristofer@mklab.se"
+  # email            : "kristofer@mklab.se"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:kristofer@mklab.se"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/kristofer-liljeblad/"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
@@ -136,7 +139,7 @@ author:
       # url: "https://github.com/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: "https://instagram.com/krist00fer"
 
 # Site Footer
 footer:
@@ -205,7 +208,6 @@ highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
-
 
 # Markdown Processing
 kramdown:
@@ -331,3 +333,4 @@ defaults:
       comments: # true
       share: true
       related: true
+      show_date: true

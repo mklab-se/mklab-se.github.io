@@ -3,28 +3,16 @@ title: "About MKLab AB"
 permalink: /about/
 ---
 
-## Your Partner in IT Consulting & Digital Solutions
-
-At **MKLab AB**, we specialize in **IT consulting, software development, and digital solutions** that help businesses streamline their operations and enhance their digital presence. With a background in **technology, automation, and media**, we bring a unique blend of expertise to every project—whether it’s optimizing workflows, developing web solutions, or providing high-quality photography for businesses.
-
 ## Who We Are
 
-Founded by **Martin Kristofer Liljeblad**, MKLab AB is built on a passion for **problem-solving, innovation, and efficiency**. With years of experience in **IT, software development, and media production**, we understand how technology can drive business success—and we’re here to help you make the most of it.
+In March 2025, Martin Kristofer Liljeblad founded the consulting firm MKLab after spending more than 30 years in the IT industry. The last 17 of those years were spent at Microsoft, where he both used and played a role in the emergence of groundbreaking technologies such as Cloud Computing and AI. Technologies come and go, but the importance of understanding "why we do something" has always been Kristofer’s guiding principle. After all, if you don’t know **why**, how can you be sure you're doing the right thing?
+  
+Another fundamental belief at MKLab is that technology ultimately serves people. This is something that can be easy to forget in today’s AI-driven world. Strong leadership isn’t just about technical expertise, it requires clear communication, collaboration, and the ability to empower others. These are qualities often overlooked in IT but remain at the heart of how MKLab operates. Working as a team and enabling people to succeed is not an afterthought, it’s how we do business.
 
 ## What We Do
 
-- **IT Consulting & Software Development** – Helping businesses implement **custom solutions, automation, and digital strategies** to work smarter, not harder.
-- **Web & Cloud Solutions** – Creating **modern, scalable, and efficient** web-based systems tailored to your needs.
-- **Photography & Media** – Providing **professional photography services** for corporate branding, portraits, and media projects.
+- **Leadership & Coaching** – Providing interim management services or short-term coaching engagements to support leaders and teams in need of guidance, structure, and strategic direction.
 
-## Why Work With Us?
+- **Technical Program & Agile Project Management** – Taking on roles such as Technical Program Manager, Project Manager, or Agile Coach within software engineering projects and programs. Experienced in agile frameworks like Scrum and SAFe, ensuring efficient collaboration, continuous delivery, and measurable progress.
 
-✔ **Tailored Solutions** – Every business is unique, and we customize our approach to fit your needs.  
-✔ **Technical Expertise** – Years of hands-on experience in **IT, automation, and digital transformation**.  
-✔ **Reliable & Professional** – We focus on delivering **quality, efficiency, and results** for our clients.
-
-## Let’s Talk!
-
-Looking for **IT consulting, web solutions, or professional media services**? We’d love to hear from you!  
-
-📩 **[Get in touch](/contact/)** to discuss how we can help your business grow.
+- **Software Engineering & IT Architecture** – Engaging in hands-on software development and architectural design. This includes participating in development teams, contributing code, or designing solutions based on client specifications to create scalable and maintainable software systems.
