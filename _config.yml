@@ -312,6 +312,11 @@ compress_html:
   ignore:
     envs: development
 
+# Collections
+collections:
+  servicez:
+    output: true
+    permalink: /:collection/:path/
 
 # Defaults
 defaults:
@@ -334,3 +339,12 @@ defaults:
       share: true
       related: true
       show_date: true
+  # _servicez
+  - scope:
+      path: ""
+      type: servicez
+    values:
+      layout: single
+      author_profile: false
+      share: false
+
