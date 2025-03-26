@@ -1,6 +1,9 @@
 ---
 title: "Contact"
 permalink: /contact/
+header:
+    image: /assets/images/hometown.jpg
+    teaser: /assets/images/hometown.jpg
 ---
 
 Let's get in touch!

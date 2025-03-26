@@ -314,7 +314,7 @@ compress_html:
 
 # Collections
 collections:
-  servicez:
+  services:
     output: true
     permalink: /:collection/:path/
 
@@ -339,10 +339,10 @@ defaults:
       share: true
       related: true
       show_date: true
-  # _servicez
+  # _services
   - scope:
       path: ""
-      type: servicez
+      type: services
     values:
       layout: single
       author_profile: false
