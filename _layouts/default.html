@@ -1,0 +1,54 @@
+---
+---
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}" />
+  {% if page.meta_image or site.meta_image %}
+  {% assign og_image = page.meta_image | default: site.meta_image %}
+  <meta property="og:image" content="{{ og_image | absolute_url }}" />
+  <meta name="twitter:image" content="{{ og_image | absolute_url }}" />
+  {% endif %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" />
+  {% if page.head_extra %}{{ page.head_extra }}{% endif %}
+</head>
+<body class="{{ page.body_class | default: '' }}">
+  {% unless page.hide_header %}
+    {% include site-header.html %}
+  {% endunless %}
+
+  {{ content }}
+
+  {% unless page.hide_footer %}
+    {% include site-footer.html %}
+  {% endunless %}
+
+  <script>
+    const yearTargets = document.querySelectorAll('[data-current-year]');
+    const currentYear = new Date().getFullYear();
+    yearTargets.forEach(el => { el.textContent = currentYear; });
+
+    const revealElements = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealElements.forEach(el => observer.observe(el));
+    } else {
+      revealElements.forEach(el => el.classList.add('is-visible'));
+    }
+  </script>
+</body>
+</html>

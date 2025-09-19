@@ -1,0 +1,18 @@
+{% assign anchor_base = '/' | relative_url %}
+{% if page.homepage %}
+  {% assign anchor_base = '' %}
+{% endif %}
+<header class="site-header">
+  <div class="site-shell site-nav">
+    <a class="site-brand" href="{{ '/' | relative_url }}">
+      <img src="{{ '/assets/images/logos/MKLab-0064-white.png' | relative_url }}" alt="MKLab" />
+      <span>MKLab</span>
+    </a>
+    <nav class="site-nav__links" aria-label="Primary">
+      <a href="{{ anchor_base }}#services">Services</a>
+      <a href="{{ anchor_base }}#work">Work</a>
+      <a href="{{ anchor_base }}#about">About</a>
+      <a href="{{ anchor_base }}#contact" class="btn btn--outline">Contact</a>
+    </nav>
+  </div>
+</header>
