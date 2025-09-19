@@ -246,7 +246,7 @@ header.site-header {
 }
 
 .section {
-  padding-block: 5.5rem;
+  padding-block: clamp(2.75rem, 7vh, 5rem);
 }
 
 .section__heading {
