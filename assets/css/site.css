@@ -270,7 +270,7 @@ header.site-header {
 }
 
 .grid--work {
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
 }
 
 .glass-card {
@@ -311,6 +311,15 @@ header.site-header {
 .card-list li {
   margin-bottom: 0.35rem;
   color: var(--color-muted);
+}
+
+.customers {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Monaco, monospace;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  text-transform: uppercase;
 }
 
 .section--about .glass-card {
