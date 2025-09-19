@@ -128,18 +128,19 @@ header.site-header {
 }
 
 .hero {
-  min-height: calc(100vh - 3.5rem);
+  min-height: min(calc(85vh - 3.5rem), 680px);
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  align-items: center;
+  align-items: start;
   gap: 3rem;
-  padding-block: 6rem 4rem;
+  padding-block: clamp(2.5rem, 6vh, 4rem) clamp(2.25rem, 5vh, 3.5rem);
   position: relative;
 }
 
 @media (min-width: 900px) {
   .hero {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
   }
 }
 
@@ -379,11 +380,11 @@ footer.site-footer {
 }
 
 main.page-main {
-  padding-top: 3.5rem;
+  padding-top: 2.25rem;
 }
 
 .page-header {
-  padding-block: 6rem 4rem;
+  padding-block: clamp(2.75rem, 6vh, 4rem) clamp(2rem, 5vh, 3.5rem);
 }
 
 .page-header .page-title {
