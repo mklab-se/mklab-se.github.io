@@ -30,6 +30,7 @@ exclude:
   - Gemfile.lock
   - README.md
   - AGENTS.md
+  - CLAUDE.md
 
 defaults:
   - scope:
