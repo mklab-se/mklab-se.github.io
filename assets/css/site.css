@@ -145,7 +145,6 @@ header.site-header {
   align-items: start;
   gap: 3rem;
   min-height: inherit;
-  width: 100%;
 }
 
 @media (min-width: 900px) {
