@@ -1,15 +1,15 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
-Gemfile.lock
 
-# macOS system files
+_site
+._*
 .DS_Store
 .DS_Store?
-._*
+.jekyll-cache
+.jekyll-metadata
+.playwright-mcp
+.sass-cache
 .Spotlight-V100
 .Trashes
 ehthumbs.db
+Gemfile.lock
 Thumbs.db
+vendor
