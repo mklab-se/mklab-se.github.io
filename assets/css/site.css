@@ -136,16 +136,18 @@ header.site-header {
 
 .hero {
   min-height: min(calc(85vh - 3.5rem), 680px);
+  position: relative;
+}
+
+.hero > .site-shell {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   align-items: start;
   gap: 3rem;
-  padding-block: clamp(2.5rem, 6vh, 4rem) clamp(2.25rem, 5vh, 3.5rem);
-  position: relative;
 }
 
 @media (min-width: 900px) {
-  .hero {
+  .hero > .site-shell {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: center;
   }
@@ -418,7 +420,6 @@ footer.site-footer {
 }
 
 main.page-main {
-  padding-top: 2.25rem;
 }
 
 .page-header {
