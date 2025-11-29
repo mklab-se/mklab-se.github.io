@@ -18,16 +18,23 @@ homepage: true
           <a class="btn btn--cyan" href="#contact">Get in touch</a>
         </div>
         <div class="hero__terminal">
-          <div class="prompt">$ whoami</div>
-          <div class="cursor">Kristofer Liljeblad, IT-consultant, leader, coach</div>
+          <div class="hero__terminal-header">
+            <span class="hero__terminal-dot hero__terminal-dot--red"></span>
+            <span class="hero__terminal-dot hero__terminal-dot--yellow"></span>
+            <span class="hero__terminal-dot hero__terminal-dot--green"></span>
+          </div>
+          <div class="hero__terminal-body">
+            <div class="prompt">$ <span class="command">whoami</span></div>
+            <div class="output cursor">Kristofer Liljeblad, IT-consultant, leader, coach</div>
+          </div>
         </div>
       </div>
       <div class="hero__visual reveal">
         <div class="hero__card hero__card--pitch">
           <h2>Move faster with clarity, confidence, and modern engineering practices.</h2>
-          <p class="text-muted">MKLab helps companies turn ambition into delivered outcomes. With three decades of experience across software engineering, cloud architecture, program leadership, and AI integration, I support organisations that want to scale their capabilities without losing momentum.</p>
-          <p class="text-muted">I work hands-on with teams to sharpen strategy, align roadmaps, modernise platforms, and build delivery systems that actually work in practice. Whether you need interim leadership, a trusted technical advisor, or support to accelerate a critical initiative, I bring the combination of senior guidance and deep technical skill that helps teams ship, learn, and grow.</p>
-          <p class="text-muted">If you're ready to strengthen your engineering organisation, adopt AI in a pragmatic way, or deliver complex cross-team programs with less friction, MKLab is your partner.</p>
+          <p class="text-muted streaming-text" data-stream data-stream-delay="0">MKLab helps companies turn ambition into delivered outcomes. With three decades of experience across software engineering, cloud architecture, program leadership, and AI integration, I support organisations that want to scale their capabilities without losing momentum.</p>
+          <p class="text-muted streaming-text" data-stream data-stream-delay="1">I work hands-on with teams to sharpen strategy, align roadmaps, modernise platforms, and build delivery systems that actually work in practice. Whether you need interim leadership, a trusted technical advisor, or support to accelerate a critical initiative, I bring the combination of senior guidance and deep technical skill that helps teams ship, learn, and grow.</p>
+          <p class="text-muted streaming-text" data-stream data-stream-delay="2">If you're ready to strengthen your engineering organisation, adopt AI in a pragmatic way, or deliver complex cross-team programs with less friction, MKLab is your partner.</p>
         </div>
       </div>
     </div>
@@ -57,7 +64,7 @@ homepage: true
             </article>
             <article class="glass-card reveal">
                 <h3>Cloud computing</h3>
-                <p class="text-muted">Leverage deep expertise in Azure and other cloud platforms to design, implement, and optimize cloud solutions.</p>
+                <p class="text-muted">Deep expertise in Azure and other cloud platforms to design, implement, and optimize cloud solutions that scale.</p>
                 <ul class="card-list">
                     <li>• Azure, AWS, GCP</li>
                     <li>• Hybrid and on-prem clouds</li>
@@ -83,7 +90,7 @@ homepage: true
                 </ul>
             </article>
             <article class="glass-card reveal">
-                <h3>AI Speaking & Workshops</h3>
+                <h3>AI speaking & workshops</h3>
                 <p class="text-muted">Inspire your organization to think differently about AI. Engaging sessions that leave teams eager to explore and experiment.</p>
                 <ul class="card-list">
                     <li>• Inspirational keynotes</li>
@@ -102,7 +109,7 @@ homepage: true
 
       <article class="glass-card reveal">
         <div class="card-meta">Consulting; DevOps</div>
-        <h3>DevOps Transformation</h3>
+        <h3>DevOps transformation</h3>
         <p class="text-muted">Led efforts to foster a strong DevOps culture, bridging IT and development teams to ensure seamless collaboration. Combined leadership and technical expertise to implement solutions that enhance developer experience, streamline workflows, and support organizational goals.</p>
       </article>
 
@@ -114,7 +121,7 @@ homepage: true
 
       <article class="glass-card reveal">
         <div class="card-meta">Technical Program Management</div>
-        <h3>Cross team delivery at scale</h3>
+        <h3>Cross-team delivery at scale</h3>
         <p class="text-muted">Collaborated with some of Microsoft's largest customers to drive program and project management initiatives. Led requirements gathering, scope clarification, and risk management efforts while emphasizing Agile project management practices whenever possible. Focused on ensuring alignment across multiple development teams, while delivering complex initiatives with precision, predictability, and minimized risks.</p>
         <p class="customers">Microsoft, Siemens, Procter & Gamble, Equinor, Vestas, etc.</p>
       </article>
@@ -128,14 +135,14 @@ homepage: true
 
       <article class="glass-card reveal">
         <div class="card-meta">Azure</div>
-        <h3>Enterprise Cloud Architecture</h3>
+        <h3>Enterprise cloud architecture</h3>
         <p class="text-muted">Engaged with Azure from its 2010 launch, first evangelising the platform for early adopters and later architecting complex enterprise workloads. Led global advisory programmes that delivered secure, scalable solutions while adhering to Microsoft engineering best practices across architecture, code quality, and agile delivery.</p>
         <p class="customers">Microsoft, IO Interactive, Kiloo, E.ON, Shell, BP, etc.</p>
       </article>
 
       <article class="glass-card reveal">
         <div class="card-meta">Software engineering</div>
-        <h3>Engineering Culture Change</h3>
+        <h3>Engineering culture change</h3>
         <p class="text-muted">Provided coaching and management for software engineers and TPMs to adopt contemporary delivery patterns and tooling. Encouraged teams to explore new practices even when the change curve felt steep.</p>
         <p class="text-muted">Facilitated cross-team collaboration and group dynamics work, resolving technical and cultural blockers so modern workflows could take root and deliver measurable productivity gains.</p>
                 <p class="customers">Microsoft</p>
@@ -160,9 +167,9 @@ homepage: true
         <p class="text-muted">Whether you need interim leadership, a seasoned program lead, or a partner to modernize your platform, MKLab helps you move from vision to shipped value, with both technical depth and a people-first approach.</p>
       </article>
       <aside class="glass-card reveal" aria-label="Kristofer Liljeblad portrait">
-        <img src="{{ '/assets/images/headshots/kristofer-square.jpg' | relative_url }}" alt="Kristofer Liljeblad" style="border-radius: 1.2rem; margin-bottom: 1.5rem;" />
+        <img src="{{ '/assets/images/headshots/kristofer-square.jpg' | relative_url }}" alt="Kristofer Liljeblad" style="border-radius: 8px; margin-bottom: 24px;" />
         <p class="mono text-muted">Kristofer Liljeblad, Founder</p>
-        <p class="text-muted" style="margin-top: 0.5rem;">Stockholm based, collaborating with teams across Europe.</p>
+        <p class="text-muted" style="margin-top: 8px;">Stockholm based, collaborating with teams across Europe.</p>
       </aside>
     </div>
   </section>

@@ -12,9 +12,6 @@
   <meta property="og:image" content="{{ og_image | absolute_url }}" />
   <meta name="twitter:image" content="{{ og_image | absolute_url }}" />
   {% endif %}
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" />
   {% if page.head_extra %}{{ page.head_extra }}{% endif %}
@@ -49,6 +46,34 @@
     } else {
       revealElements.forEach(el => el.classList.add('is-visible'));
     }
+
+    // Streaming text animation
+    const streamingElements = document.querySelectorAll('[data-stream]');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let globalWordIndex = 0;
+    streamingElements.forEach((el, elIndex) => {
+      const text = el.textContent.trim();
+      const words = text.split(/\s+/);
+      const baseDelay = parseInt(el.dataset.streamDelay || '0', 10);
+      el.innerHTML = '';
+
+      words.forEach((word, i) => {
+        const span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = word;
+        if (!prefersReducedMotion) {
+          // Stagger based on global word count for sequential animation
+          span.style.animationDelay = `${(globalWordIndex + i) * 0.04}s`;
+        }
+        el.appendChild(span);
+        // Add space after each word except the last
+        if (i < words.length - 1) {
+          el.appendChild(document.createTextNode(' '));
+        }
+      });
+      globalWordIndex += words.length;
+    });
   </script>
 </body>
 </html>
