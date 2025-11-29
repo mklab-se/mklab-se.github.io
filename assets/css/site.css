@@ -144,6 +144,8 @@ header.site-header {
   grid-template-columns: repeat(1, minmax(0, 1fr));
   align-items: start;
   gap: 3rem;
+  min-height: inherit;
+  width: 100%;
 }
 
 @media (min-width: 900px) {
