@@ -1,36 +1,42 @@
 /* MKLab Brand-Aligned Stylesheet */
 /* Typography: SF Pro (system) + Menlo (monospace) */
-/* Colors: Dracula-inspired terminal palette */
+/* Colors: Gruvbox-inspired terminal palette */
 /* Style: Glassmorphism with Apple-inspired rounded corners */
 
 :root {
   /* Primary Colors */
-  --color-bg: #282a36;           /* Terminal Dark */
-  --color-bg-alt: #21222c;       /* Terminal Shadow */
-  --color-text: #f8f8f2;         /* Terminal Light */
-  --color-muted: #a0a4b8;        /* Muted Gray - Dracula palette */
-  --color-selection: #44475a;    /* Selection */
+  --color-bg: #0f0f0f;           /* Near Black */
+  --color-bg-alt: #1a1a1a;       /* Dark Gray */
+  --color-text: #fbf1c7;         /* Gruvbox Cream */
+  --color-muted: #a0a0a0;        /* Light Gray */
+  --color-selection: #2a2a2a;    /* Charcoal */
 
-  /* Accent Colors */
-  --color-purple: #bd93f9;       /* Electric Purple */
-  --color-cyan: #8be9fd;         /* Cyber Cyan */
-  --color-pink: #ff79c6;         /* Neon Pink */
-  --color-green: #50fa7b;        /* Matrix Green */
-  --color-yellow: #f1fa8c;       /* Sunshine Yellow */
-  --color-red: #ff5555;          /* Alert Red */
-  --color-code-gray: #6272a4;    /* Code Gray - syntax comments */
+  /* Accent Colors (Gruvbox-inspired) */
+  --color-orange: #d65d0e;       /* Burnt Orange - Primary */
+  --color-aqua: #689d6a;         /* Gruvbox Aqua - Secondary */
+  --color-purple: #b16286;       /* Dusty Purple - Experimental */
+  --color-yellow: #d79921;       /* Golden Yellow - Warning */
+  --color-red: #cc241d;          /* Deep Red - Alert */
+  --color-code-gray: #665c54;    /* Gruvbox bg3 - Comments */
 
-  /* macOS Window Controls */
-  --macos-red: #ff5f56;
-  --macos-yellow: #ffbd2e;
-  --macos-green: #27c93f;
+  /* Semantic Aliases */
+  --color-primary: var(--color-orange);
+  --color-secondary: var(--color-aqua);
+  --color-warning: var(--color-yellow);
+  --color-experimental: var(--color-purple);
+  --color-danger: var(--color-red);
+
+  /* Legacy aliases for compatibility */
+  --color-cyan: var(--color-aqua);
+  --color-green: var(--color-aqua);
+  --color-pink: var(--color-purple);
 
   /* Glassmorphism Effects */
   --glass-bg: rgba(255, 255, 255, 0.04);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-hover-border: rgba(189, 147, 249, 0.4);
-  --shadow-neon: 0 0 0 1px rgba(189, 147, 249, 0.25), 0 12px 40px rgba(189, 147, 249, 0.2);
-  --shadow-glow: 0 8px 32px rgba(189, 147, 249, 0.15);
+  --glass-hover-border: rgba(214, 93, 14, 0.4);
+  --shadow-neon: 0 0 0 1px rgba(214, 93, 14, 0.25), 0 12px 40px rgba(214, 93, 14, 0.2);
+  --shadow-glow: 0 8px 32px rgba(214, 93, 14, 0.15);
 
   /* Layout */
   --max-width: 72rem;
@@ -87,7 +93,7 @@ a:focus {
 }
 
 a:visited {
-  color: rgba(139, 233, 253, 0.7);
+  color: rgba(104, 157, 106, 0.7);
 }
 
 img {
@@ -115,7 +121,7 @@ header.site-header {
   top: 0;
   z-index: 100;
   backdrop-filter: blur(12px);
-  background: rgba(40, 42, 54, 0.82);
+  background: rgba(15, 15, 15, 0.82);
   border-bottom: 1px solid var(--glass-border);
 }
 
@@ -171,8 +177,8 @@ header.site-header {
   padding: 0.6rem 1.4rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--glass-border);
-  background: rgba(189, 147, 249, 0.16);
-  color: var(--color-purple);
+  background: rgba(214, 93, 14, 0.16);
+  color: var(--color-orange);
   font-family: var(--font-sans);
   font-size: 0.95rem;
   font-weight: 500;
@@ -184,25 +190,25 @@ header.site-header {
   color: var(--color-text);
   transform: translateY(-1px);
   border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 0 20px 2px rgba(189, 147, 249, 0.3);
+  box-shadow: 0 0 20px 2px rgba(214, 93, 14, 0.3);
 }
 
 .btn--cyan {
-  background: rgba(139, 233, 253, 0.16);
+  background: rgba(104, 157, 106, 0.16);
   color: var(--color-cyan);
 }
 
 .btn--cyan:hover {
-  box-shadow: 0 0 20px 2px rgba(139, 233, 253, 0.3);
+  box-shadow: 0 0 20px 2px rgba(104, 157, 106, 0.3);
 }
 
 .btn--green {
-  background: rgba(80, 250, 123, 0.18);
+  background: rgba(104, 157, 106, 0.18);
   color: var(--color-green);
 }
 
 .btn--green:hover {
-  box-shadow: 0 0 20px 2px rgba(80, 250, 123, 0.3);
+  box-shadow: 0 0 20px 2px rgba(104, 157, 106, 0.3);
 }
 
 .btn--outline {
@@ -236,7 +242,7 @@ header.site-header {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(189, 147, 249, 0.05), transparent 40%, rgba(40, 42, 54, 0.6) 90%);
+  background: linear-gradient(180deg, rgba(214, 93, 14, 0.05), transparent 40%, rgba(15, 15, 15, 0.6) 90%);
 }
 
 .hero__content {
@@ -288,7 +294,7 @@ header.site-header {
   align-items: center;
   gap: var(--space-sm);
   padding: var(--space-md);
-  background: rgba(68, 71, 90, 0.5);
+  background: rgba(42, 42, 42, 0.5);
   border-bottom: 1px solid var(--glass-border);
 }
 
@@ -345,7 +351,7 @@ header.site-header {
   content: '';
   position: absolute;
   inset: -12%;
-  background: radial-gradient(circle at center, rgba(189, 147, 249, 0.32), transparent 60%);
+  background: radial-gradient(circle at center, rgba(214, 93, 14, 0.32), transparent 60%);
   filter: blur(12px);
   opacity: 0.7;
 }
@@ -354,7 +360,7 @@ header.site-header {
 .hero__card {
   position: relative;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(189, 147, 249, 0.3);
+  border: 1px solid rgba(214, 93, 14, 0.3);
   border-radius: var(--radius-xl);
   padding: 2.5rem;
   box-shadow: var(--shadow-neon);
@@ -547,7 +553,7 @@ footer.site-footer {
   align-items: center;
   padding: 0.25rem 0.6rem;
   border-radius: 999px;
-  background: rgba(139, 233, 253, 0.16);
+  background: rgba(104, 157, 106, 0.16);
   font-size: 0.75rem;
   font-family: var(--font-mono);
   letter-spacing: 0.08em;
@@ -558,7 +564,7 @@ footer.site-footer {
   margin-block: 4rem;
   border: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(189, 147, 249, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(214, 93, 14, 0.5), transparent);
 }
 
 /* Page Layout */
