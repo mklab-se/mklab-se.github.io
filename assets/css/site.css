@@ -500,6 +500,27 @@ header.site-header {
   max-width: 52rem;
 }
 
+.about-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+}
+
+.about-highlights li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.about-highlights li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--color-orange);
+  font-weight: 600;
+}
+
 /* Contact Section */
 .section--contact {
   text-align: center;
