@@ -25,6 +25,7 @@ collections:
 
 exclude:
   - tmp
+  - design-system
   - vendor
   - Gemfile
   - Gemfile.lock
