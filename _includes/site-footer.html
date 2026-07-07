@@ -1,5 +1,29 @@
-<footer class="site-footer">
-  <p class="text-muted" style="margin-top: 3rem;" aria-label="Copyright">
-    © <span data-current-year></span> MKLab AB
-  </p>
+{% assign lang = page.lang | default: 'sv' %}
+{% assign t = site.data.i18n[lang] %}
+<footer class="mk-footer">
+  <div class="mk-shell">
+    <div class="mk-footer__inner">
+      <div class="mk-footer__brand">
+        <img class="mk-footer__logo" src="{{ '/assets/images/logos/mklab-white.svg' | relative_url }}" alt="MKLab" />
+        <p>{{ t.footer_tagline }}</p>
+      </div>
+      <div class="mk-footer__cols">
+        <div>
+          <div class="mk-footer__heading">{{ t.footer_nav_heading }}</div>
+          {% for item in t.nav %}
+          <a href="{{ item.href | relative_url }}">{{ item.label }}</a>
+          {% endfor %}
+        </div>
+        <div>
+          <div class="mk-footer__heading">{{ t.footer_contact_heading }}</div>
+          <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+          <a href="https://www.linkedin.com/in/kristofer-liljeblad/">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="mk-footer__base">
+      <img class="mk-footer__skyline" src="{{ '/assets/images/brand/stockholm-skyline.svg' | relative_url }}" alt="" />
+      <span class="mk-footer__fineprint">© <span data-current-year></span> {{ t.footer_fineprint }}</span>
+    </div>
+  </div>
 </footer>

@@ -1,18 +1,26 @@
-{% assign anchor_base = '/' | relative_url %}
-{% if page.homepage %}
-  {% assign anchor_base = '' %}
-{% endif %}
-<header class="site-header">
-  <div class="site-shell site-nav">
-    <a class="site-brand" href="{{ '/' | relative_url }}">
-      <img src="{{ '/assets/images/logos/MKLab-0064-white.png' | relative_url }}" alt="MKLab" />
-      <span>MKLab</span>
+{% assign lang = page.lang | default: 'sv' %}
+{% assign t = site.data.i18n[lang] %}
+<header class="mk-nav">
+  <div class="mk-nav__inner">
+    <a class="mk-nav__brand" href="{{ t.home | relative_url }}" aria-label="MKLab">
+      <img src="{{ '/assets/images/logos/mklab-white.svg' | relative_url }}" alt="MKLab" />
     </a>
-    <nav class="site-nav__links" aria-label="Primary">
-      <a href="{{ anchor_base }}#services">Services</a>
-      <a href="{{ anchor_base }}#work">Work</a>
-      <a href="{{ anchor_base }}#about">About</a>
-      <a href="{{ anchor_base }}#contact" class="btn btn--outline">Contact</a>
+    <nav class="mk-nav__links" aria-label="Primary">
+      {% for item in t.nav %}
+      <a href="{{ item.href | relative_url }}">{{ item.label }}</a>
+      {% endfor %}
     </nav>
+    <div class="mk-nav__meta">
+      {% if page.alt_lang_path %}
+      <span class="mk-nav__lang">
+        {% if lang == 'sv' %}
+        <span aria-current="true">SV</span><span>|</span><a href="{{ page.alt_lang_path | relative_url }}">EN</a>
+        {% else %}
+        <a href="{{ page.alt_lang_path | relative_url }}">SV</a><span>|</span><span aria-current="true">EN</span>
+        {% endif %}
+      </span>
+      {% endif %}
+      <a class="mk-btn mk-btn--primary mk-btn--sm" href="mailto:{{ site.email }}">{{ t.header_cta }}</a>
+    </div>
   </div>
 </header>
