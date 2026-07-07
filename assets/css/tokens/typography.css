@@ -1,5 +1,5 @@
 /* ============================================================
-   MKLab — Typography
+   MKLab - Typography
    Editorial luxury: a refined serif for display gravitas,
    a precise grotesque for UI + body, mono for the fine print.
    Fonts load from Google Fonts (see fonts.css).
@@ -18,7 +18,7 @@
   --weight-semibold: 600;
   --weight-bold: 700;
 
-  /* Type scale — fluid-ready px values (1.250 major-third-ish) */
+  /* Type scale - fluid-ready px values (1.250 major-third-ish) */
   --text-3xs: 10px;
   --text-2xs: 11px;
   --text-xs: 12px;
@@ -39,7 +39,7 @@
   --leading-normal: 1.5;
   --leading-relaxed: 1.65;
 
-  /* Letter spacing — luxury lives in the tracking */
+  /* Letter spacing - luxury lives in the tracking */
   --tracking-tighter: -0.03em;
   --tracking-tight: -0.015em;
   --tracking-normal: 0;
@@ -56,7 +56,7 @@
   --type-label: var(--weight-medium) var(--text-xs)/1 var(--font-mono);
 }
 
-/* Eyebrow / kicker utility — the tracked, uppercase mono label
+/* Eyebrow / kicker utility - the tracked, uppercase mono label
    that signals precision throughout the brand. */
 .mk-eyebrow {
   font-family: var(--font-mono);

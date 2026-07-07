@@ -23,7 +23,7 @@
     </div>
     <div class="mk-footer__base">
       <img class="mk-footer__skyline" src="{{ '/assets/images/brand/stockholm-skyline.svg' | relative_url }}" alt="" />
-      <span class="mk-footer__fineprint">© <span data-current-year></span> {{ t.footer_fineprint }}</span>
+      <span class="mk-footer__fineprint">© <span data-current-year>{{ site.time | date: "%Y" }}</span> {{ t.footer_fineprint }}</span>
     </div>
   </div>
 </footer>

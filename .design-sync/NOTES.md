@@ -21,3 +21,8 @@
 - The remote project's `uploads/` directory holds the original source assets
   (logos, skyline, reference photos) that also exist curated under
   `design-system/assets/`.
+- 2026-07-08: token CSS comment banners in design-system/tokens/ (and the site
+  copies in assets/css/tokens/) had em-dashes replaced with hyphens to satisfy
+  the site-wide no-em-dash rule. This is the ONLY divergence from the remote
+  claude.ai project; a future re-sync will re-introduce em-dashes unless the
+  remote tokens are updated the same way.

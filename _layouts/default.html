@@ -28,8 +28,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
   <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
-  <link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}" sizes="any" />
-  <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}" />
+  {% include head/custom.html %}
   {% if page.head_extra %}{{ page.head_extra }}{% endif %}
 </head>
 <body class="{{ page.body_class | default: '' }}">

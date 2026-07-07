@@ -491,3 +491,17 @@ a:hover { color: var(--ember-300); }
   .mk-footer__inner { flex-direction: column; }
   .mk-footer__base { flex-direction: column; align-items: flex-start; }
 }
+
+/* --- Accessibility overrides (site-level, tokens untouched) ------
+   Small tracked mono labels carry real content (rosters, stats,
+   meta). --text-tertiary lands under WCAG AA at these sizes on the
+   ink surfaces, so labels read from --text-secondary instead. */
+.mk-eyebrow,
+.mk-meta,
+.mk-stat__label,
+.mk-card .mk-roster,
+.mk-roster,
+.mk-footnote,
+.mk-footer__heading,
+.mk-footer__fineprint,
+.mk-nav__lang { color: var(--text-secondary); }

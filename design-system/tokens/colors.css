@@ -1,5 +1,5 @@
 /* ============================================================
-   MKLab — Colors
+   MKLab - Colors
    Monochrome luxury. Shades of graphite on near-black.
    One signature accent (Ember) carries all the heat.
    Extended "cocktail" palette used sparingly for data only.
@@ -37,7 +37,7 @@
 
   /* --- Candle: warm amber secondary ---
      The tabletop candlelight. Softer heat for subtle warmth,
-     rarely a fill — mostly hairlines, hovers, and glints. */
+     rarely a fill - mostly hairlines, hovers, and glints. */
   --candle-300: #ffcf8a;
   --candle-500: #f5a623;
   --candle-700: #b9781a;
@@ -53,14 +53,14 @@
   --drink-gold: #d9b46a;     /* champagne */
 
   /* --- Semantic status ---
-     Kept muted and adult — no candy greens/reds. */
+     Kept muted and adult - no candy greens/reds. */
   --status-positive: #4fb477;
   --status-warning: #f5a623;
   --status-critical: #e8341c;
   --status-info: #6b6b74;
 
   /* ============================================================
-     SEMANTIC ALIASES — reference THESE in components, not raw scale
+     SEMANTIC ALIASES - reference THESE in components, not raw scale
      ============================================================ */
 
   /* Surfaces (dark theme is the default & only theme) */
