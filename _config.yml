@@ -1,10 +1,10 @@
-title: MKLab
+title: MKLab AB
 name: Kristofer Liljeblad
-description: Technical leadership, program management, architecture, and DevOps for modern product teams.
+description: MKLab leder AI- och molntransformation med senior erfarenhet. Strategi med ledningen, leverans med teamen.
 meta_image: /assets/images/logos/MKLab-1024.png
 url: https://mklab.se
 baseurl: ""
-lang: en
+lang: sv
 email: kristofer@mklab.se
 timezone: Europe/Stockholm
 permalink: /:title/
