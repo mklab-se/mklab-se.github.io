@@ -1,192 +1,175 @@
 ---
 layout: default
-title: MKLab AB,  Technical leadership for AI-ready teams
-description: MKLab AB partners with technology organisations on technical leadership, program management, architecture, and DevOps to move vision into delivered value.
+title: MKLab AB · AI- och molntransformation
+description: MKLab leder AI- och molntransformation med senior erfarenhet. Strategi med ledningen, leverans med teamen. Tre decennier i teknikbranschen, sjutton år på Microsoft.
 homepage: true
+lang: sv
+alt_lang_path: /en/
 ---
-<main id="top" class="page-main">
-  <section class="hero section scanlines">
-    <div class="site-shell">
-      <div class="hero__content reveal">
-        <div class="hero__kicker">&gt; hello, world</div>
-        <h1 class="hero__title">Technical leadership for <span>AI-ready</span> teams</h1>
-        <p class="hero__lead">
-          MKLab AB helps you plan, build, and ship modern products, from strategy to shipped software, with hands-on leadership across program management, architecture, software development, and DevOps.
-        </p>
-        <div class="hero__actions">
-          <a class="btn btn--green" href="#services">What I do</a>
-          <a class="btn btn--cyan" href="#contact">Get in touch</a>
-        </div>
-        <div class="hero__terminal">
-          <div class="hero__terminal-header">
-            <span class="hero__terminal-dot hero__terminal-dot--red"></span>
-            <span class="hero__terminal-dot hero__terminal-dot--yellow"></span>
-            <span class="hero__terminal-dot hero__terminal-dot--green"></span>
-          </div>
-          <div class="hero__terminal-body">
-            <div class="prompt">$ <span class="command">whoami</span></div>
-            <div class="output cursor">Kristofer Liljeblad, IT-consultant, leader, coach</div>
-          </div>
-        </div>
-      </div>
-      <div class="hero__visual reveal">
-        <div class="hero__card hero__card--pitch">
-          <h2>Move faster with clarity, confidence, and modern engineering practices.</h2>
-          <p class="text-muted streaming-text" data-stream data-stream-delay="0">MKLab helps companies turn ambition into delivered outcomes. With three decades of experience across software engineering, cloud architecture, program leadership, and AI integration, I support organisations that want to scale their capabilities without losing momentum.</p>
-          <p class="text-muted streaming-text" data-stream data-stream-delay="1">I work hands-on with teams to sharpen strategy, align roadmaps, modernise platforms, and build delivery systems that actually work in practice. Whether you need interim leadership, a trusted technical advisor, or support to accelerate a critical initiative, I bring the combination of senior guidance and deep technical skill that helps teams ship, learn, and grow.</p>
-          <p class="text-muted streaming-text" data-stream data-stream-delay="2">If you're ready to strengthen your engineering organisation, adopt AI in a pragmatic way, or deliver complex cross-team programs with less friction, MKLab is your partner.</p>
+{% assign hero_photo = site.static_files | where: "path", "/assets/images/brand/bar-mood.png" | first %}
+<main id="main">
+  <section class="mk-hero{% unless hero_photo %} mk-hero--flat{% endunless %}">
+    {% if hero_photo %}
+    <img class="mk-hero__bg" src="{{ hero_photo.path | relative_url }}" alt="" />
+    <div class="mk-hero__scrim"></div>
+    {% endif %}
+    <div class="mk-shell">
+      <div class="mk-hero__content reveal">
+        <span class="mk-eyebrow">MKLab AB · Stockholm</span>
+        <h1 class="mk-hero__title">AI- och molntransformation, ledd av någon som har gjort det förut.</h1>
+        <p class="mk-hero__lead">MKLab leder AI- och molntransformation för organisationer som inte har råd att misslyckas. Vi sätter strategin med er ledning, bygger med era utvecklare och driver programmet från beslut till leverans. Tre decennier i teknikbranschen. Sjutton år på Microsoft.</p>
+        <div class="mk-hero__actions">
+          <a class="mk-btn mk-btn--primary mk-btn--lg" href="mailto:{{ site.email }}">Berätta vad ni står inför</a>
+          <a class="mk-btn mk-btn--ghost mk-btn--lg" href="#work">Se utvalda uppdrag</a>
         </div>
       </div>
     </div>
   </section>
 
-<section id="services" class="section">
-    <div class="site-shell">
-        <h2 class="section__heading reveal">Services</h2>
-        <div class="grid grid--services">
-            <article class="glass-card reveal">
-                <h3>Technical leadership</h3>
-                <p class="text-muted">Align ambition, roadmaps, and teams. Create momentum, remove blockers, and deliver with confidence.</p>
-                <ul class="card-list">
-                    <li>• Operating models & rituals</li>
-                    <li>• Coaching, hiring, leveling</li>
-                    <li>• KPI, outcomes, OKR</li>
-                </ul>
-            </article>
-            <article class="glass-card reveal">
-                <h3>Program management</h3>
-                <p class="text-muted">Plan and deliver complex initiatives with clear scope, predictable cadence, and well-managed risk.</p>
-                <ul class="card-list">
-                    <li>• Roadmaps, scope, governance</li>
-                    <li>• Stakeholders, comms, risk</li>
-                    <li>• Cross-team dependencies</li>
-                </ul>
-            </article>
-            <article class="glass-card reveal">
-                <h3>Cloud computing</h3>
-                <p class="text-muted">Deep expertise in Azure and other cloud platforms to design, implement, and optimize cloud solutions that scale.</p>
-                <ul class="card-list">
-                    <li>• Azure, AWS, GCP</li>
-                    <li>• Hybrid and on-prem clouds</li>
-                    <li>• Scalability, security, cost-efficiency</li>
-                </ul>
-            </article>
-            <article class="glass-card reveal">
-                <h3>Architecture & dev</h3>
-                <p class="text-muted">Modernise legacy systems and design new capabilities that scale. Hands-on engineering for APIs and platforms.</p>
-                <ul class="card-list">
-                    <li>• Systems, APIs, data</li>
-                    <li>• Swift, Python, TypeScript</li>
-                    <li>• Cloud, containers</li>
-                </ul>
-            </article>
-            <article class="glass-card reveal">
-                <h3>DevOps</h3>
-                <p class="text-muted">Bootstrap and evolve delivery pipelines, environments, and observability so teams ship safely.</p>
-                <ul class="card-list">
-                    <li>• CI/CD, IaC, automation</li>
-                    <li>• Azure, Terraform, Ansible</li>
-                    <li>• SRE, security basics</li>
-                </ul>
-            </article>
-            <article class="glass-card reveal">
-                <h3>AI speaking & workshops</h3>
-                <p class="text-muted">Inspire your organization to think differently about AI. Engaging sessions that leave teams eager to explore and experiment.</p>
-                <ul class="card-list">
-                    <li>• Inspirational keynotes</li>
-                    <li>• AI trends & strategy</li>
-                    <li>• Practical application</li>
-                </ul>
-            </article>
-        </div>
-    </div>
-</section>
-
-<section id="work" class="section">
-  <div class="site-shell">
-    <h2 class="section__heading reveal">Recent work</h2>
-    <div class="grid grid--work">
-
-      <article class="glass-card reveal">
-        <div class="card-meta">Consulting; DevOps</div>
-        <h3>DevOps transformation</h3>
-        <p class="text-muted">Led efforts to foster a strong DevOps culture, bridging IT and development teams to ensure seamless collaboration. Combined leadership and technical expertise to implement solutions that enhance developer experience, streamline workflows, and support organizational goals.</p>
-      </article>
-
-      <article class="glass-card reveal">
-        <div class="card-meta">Consulting; AI</div>
-        <h3>Accelerating R&D with AI</h3>
-        <p class="text-muted">Spearheaded the integration of AI within the R&D team to enhance and accelerate the development of both hardware and software solutions. Focused on leveraging AI to improve quality, streamline workflows, and drive innovation. Partnered with the Senior leadership team (C-suite) to ensure alignment with strategic objectives and maximize the impact of AI-driven initiatives.</p>
-      </article>
-
-      <article class="glass-card reveal">
-        <div class="card-meta">Technical Program Management</div>
-        <h3>Cross-team delivery at scale</h3>
-        <p class="text-muted">Collaborated with some of Microsoft's largest customers to drive program and project management initiatives. Led requirements gathering, scope clarification, and risk management efforts while emphasizing Agile project management practices whenever possible. Focused on ensuring alignment across multiple development teams, while delivering complex initiatives with precision, predictability, and minimized risks.</p>
-        <p class="customers">Microsoft, Siemens, Procter & Gamble, Equinor, Vestas, etc.</p>
-      </article>
-
-      <article class="glass-card reveal">
-        <div class="card-meta">People & Leadership</div>
-        <h3>Build teams that ship</h3>
-        <p class="text-muted">Applied the model–coach–care approach to grow high-performing software engineering and technical program management organisations. Shaped career frameworks, mentoring programmes, and collaboration rituals that raised delivery quality. Guided final-loop hiring for 100+ technical roles at Microsoft to ensure a consistent raise-the-bar standard.</p>
-        <p class="customers">Microsoft</p>
-      </article>
-
-      <article class="glass-card reveal">
-        <div class="card-meta">Azure</div>
-        <h3>Enterprise cloud architecture</h3>
-        <p class="text-muted">Engaged with Azure from its 2010 launch, first evangelising the platform for early adopters and later architecting complex enterprise workloads. Led global advisory programmes that delivered secure, scalable solutions while adhering to Microsoft engineering best practices across architecture, code quality, and agile delivery.</p>
-        <p class="customers">Microsoft, IO Interactive, Kiloo, E.ON, Shell, BP, etc.</p>
-      </article>
-
-      <article class="glass-card reveal">
-        <div class="card-meta">Software engineering</div>
-        <h3>Engineering culture change</h3>
-        <p class="text-muted">Provided coaching and management for software engineers and TPMs to adopt contemporary delivery patterns and tooling. Encouraged teams to explore new practices even when the change curve felt steep.</p>
-        <p class="text-muted">Facilitated cross-team collaboration and group dynamics work, resolving technical and cultural blockers so modern workflows could take root and deliver measurable productivity gains.</p>
-                <p class="customers">Microsoft</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-  <section id="about" class="section section--about">
-    <div class="site-shell section--split">
-      <article class="glass-card reveal">
-        <h2>About me and MKLab</h2>
-        <p class="text-muted">At MKLab I bring three decades of experience in technology, including 17 years at Microsoft, but also something more personal: a genuine love for staying on the forefront of tech. For me, keeping up with new tools, methods, and trends isn’t a burden, it’s fun. It’s what keeps me curious and motivated, and it’s the spark I bring to every engagement.</p>
-        
-        <p class="text-muted">I’ve always loved to lead and coach, but in a way that makes people want to follow, not because they’re told to, but because they feel it’s right. I strive to be clear, supportive, and pedagogic, and few things are more rewarding than seeing the lightbulb switch on for someone else. I believe leadership is about building trust and energy, not just managing tasks.</p>
-
-        <p class="text-muted">I also keep close to the work. I enjoy digging into architecture, improving platforms, and working side by side with engineers. At the same time, I never forget that technology is about people. We’re humans first, and that human touch is often what makes the difference between a good solution and a great one.</p>
-
-        <p class="text-muted">For me, teamwork is at the core. Sure, I could sometimes get something done faster alone, but the real value comes from moving forward together, learning as a group, and building lasting capabilities. That’s what creates momentum for companies and customers alike.</p>
-
-        <p class="text-muted">Whether you need interim leadership, a seasoned program lead, or a partner to modernize your platform, MKLab helps you move from vision to shipped value, with both technical depth and a people-first approach.</p>
-      </article>
-      <aside class="glass-card reveal" aria-label="Kristofer Liljeblad portrait">
-        <img src="{{ '/assets/images/headshots/kristofer-square.jpg' | relative_url }}" alt="Kristofer Liljeblad" style="border-radius: 8px; margin-bottom: 24px;" />
-        <p class="mono text-muted">Kristofer Liljeblad, Founder</p>
-        <ul class="about-highlights text-muted">
-          <li>30 years shipping software</li>
-          <li>17 years at Microsoft</li>
-          <li>European hours, global clients</li>
-          <li>Swedish & English</li>
-          <li>Photographer · assignments welcome</li>
-        </ul>
-      </aside>
+  <section id="services" class="mk-section">
+    <div class="mk-shell">
+      <span class="mk-eyebrow reveal">Vad vi gör</span>
+      <h2 class="mk-h2 reveal">Vi gör tre saker.</h2>
+      <div class="mk-grid mk-grid--services">
+        <article class="mk-card reveal">
+          <span class="mk-meta">01</span>
+          <h3>AI-transformation</h3>
+          <p>Från pilot till produktion. Vi hjälper er att välja de problem som är värda att lösa, sätta rätt skyddsräcken och ta AI från demo till daglig drift.</p>
+          <ul class="mk-list">
+            <li>AI-strategi och styrning</li>
+            <li>Från pilot till produktion</li>
+            <li>Införande och utbildning</li>
+          </ul>
+        </article>
+        <article class="mk-card reveal">
+          <span class="mk-meta">02</span>
+          <h3>Molntransformation</h3>
+          <p>Enterprise-moln sedan Azures första dag 2010. Arkitektur, migrering och modernisering som håller för säkerhetsgranskning och kostnadskontroll.</p>
+          <ul class="mk-list">
+            <li>Azure-arkitektur och migrering</li>
+            <li>Plattformsmodernisering och DevOps</li>
+            <li>Säkerhet, skala, kostnad</li>
+          </ul>
+        </article>
+        <article class="mk-card reveal">
+          <span class="mk-meta">03</span>
+          <h3>Programledning</h3>
+          <p>Komplexa program över många team, levererade i förutsägbar takt. Interimt tekniskt ledarskap när initiativet är för viktigt för att tappa fart.</p>
+          <ul class="mk-list">
+            <li>Teknisk programledning</li>
+            <li>Interimt ledarskap</li>
+            <li>Styrning, risk, intressenter</li>
+          </ul>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section id="contact" class="section section--contact">
-    <div class="site-shell">
-      <h2 class="section__heading reveal">Let's talk</h2>
-      <p class="reveal">Ready to accelerate your next initiative? Let's find 30 minutes.</p>
-      <div class="contact-actions reveal">
-        <a class="btn" href="mailto:kristofer@mklab.se">kristofer@mklab.se</a>
-        <a class="btn btn--cyan" href="https://www.linkedin.com/in/kristofer-liljeblad/">LinkedIn</a>
+  <section id="how" class="mk-section mk-section--band">
+    <div class="mk-shell">
+      <p class="mk-statement reveal">Vi arbetar på alla nivåer i er organisation. Strategi med ledningen, detaljer med utvecklarna, och <em>samma person i båda rummen</em>.</p>
+      <div class="mk-principles">
+        <div class="mk-principle reveal">
+          <span class="mk-principle__num">01</span>
+          <h3>Börja med varför</h3>
+          <p>Inget program överlever ett otydligt varför. Vi ser till att alla inblandade kan säga vad vi gör och varför det spelar roll, innan vi använder era pengar.</p>
+        </div>
+        <div class="mk-principle reveal">
+          <span class="mk-principle__num">02</span>
+          <h3>Teknik ska tjäna människor</h3>
+          <p>Vi bygger för människorna som ska använda, driva och leva med det vi levererar. Det är inte mjukt. Det är det som gör att förändringen fastnar.</p>
+        </div>
+        <div class="mk-principle reveal">
+          <span class="mk-principle__num">03</span>
+          <h3>Mätbara resultat</h3>
+          <p>I tid, inom budget och synligt i de siffror som betyder något för er verksamhet.</p>
+        </div>
+      </div>
+      <div class="mk-stats reveal">
+        <div class="mk-stat"><div class="mk-stat__num">30+</div><div class="mk-stat__label">år i teknikbranschen</div></div>
+        <div class="mk-stat"><div class="mk-stat__num">17</div><div class="mk-stat__label">år på Microsoft</div></div>
+        <div class="mk-stat"><div class="mk-stat__num">2010</div><div class="mk-stat__label">byggt på Azure sedan</div></div>
+        <div class="mk-stat"><div class="mk-stat__num">STHLM</div><div class="mk-stat__label">grundat 2025</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="mk-section">
+    <div class="mk-shell">
+      <span class="mk-eyebrow reveal">Utvalda uppdrag</span>
+      <h2 class="mk-h2 reveal">Resultatet, inte teatern.</h2>
+      <div class="mk-grid mk-grid--work">
+        <article class="mk-card mk-card--interactive reveal">
+          <span class="mk-meta">AI · R&amp;D · 2024 till 2025</span>
+          <h3>AI som accelerator i R&amp;D</h3>
+          <p>Ledde införandet av AI i ett R&amp;D-team som utvecklar både hårdvara och mjukvara. Fokus på kvalitet, snabbare arbetsflöden och innovation, i nära samarbete med ledningsgruppen för att koppla varje initiativ till strategin.</p>
+          <p class="mk-roster">Konfidentiell kund · hårdvara och mjukvara</p>
+        </article>
+        <article class="mk-card mk-card--interactive reveal">
+          <span class="mk-meta">Programledning · 2018 till 2022</span>
+          <h3>Leverans över team, i global skala</h3>
+          <p>Drev program- och projektledning tillsammans med några av Microsofts största kunder. Kravarbete, tydligt scope och riskhantering över många utvecklingsteam, med leverans i förutsägbar takt.</p>
+          <p class="mk-roster">Microsoft, Siemens, Procter &amp; Gamble, Equinor, Vestas</p>
+        </article>
+        <article class="mk-card mk-card--interactive reveal">
+          <span class="mk-meta">Azure · 2010 till idag</span>
+          <h3>Enterprise-moln på Azure, sedan dag ett</h3>
+          <p>Med Azure sedan lanseringen 2010: först som evangelist för tidiga användare, senare som arkitekt för komplexa enterprise-laster. Ledde globala rådgivningsprogram med säkra, skalbara lösningar enligt Microsofts egna ingenjörsstandarder.</p>
+          <p class="mk-roster">Microsoft, IO Interactive, Kiloo, E.ON, Shell, BP</p>
+        </article>
+        <article class="mk-card mk-card--interactive reveal">
+          <span class="mk-meta">DevOps · Kultur · 2023 till 2024</span>
+          <h3>DevOps-transformation där IT och utveckling möts</h3>
+          <p>Byggde en gemensam DevOps-kultur mellan IT och utveckling. Kombinerade ledarskap och tekniskt djup för att förbättra utvecklarupplevelsen, förenkla arbetsflöden och stötta verksamhetens mål.</p>
+          <p class="mk-roster">Konfidentiell kund · industri</p>
+        </article>
+      </div>
+      <p class="mk-footnote reveal">Uppdragen spänner över Kristofers karriär, 2010 till idag.</p>
+    </div>
+  </section>
+
+  <section id="speaking" class="mk-section mk-section--band mk-speaking">
+    <div class="mk-shell">
+      <span class="mk-eyebrow reveal">Föredrag och workshoppar</span>
+      <h2 class="mk-h2 reveal">Vi föreläser också.</h2>
+      <p class="reveal">Keynotes och praktiska AI-workshoppar som får team att vilja bygga. Från inspiration för hela organisationen till hands-on-pass för utvecklingsteam, en halvdag eller en heldag.</p>
+      <a class="mk-btn mk-btn--outline reveal" href="mailto:{{ site.email }}?subject=F%C3%B6redrag">Boka ett föredrag</a>
+    </div>
+  </section>
+
+  <section id="about" class="mk-section">
+    <div class="mk-shell">
+      <span class="mk-eyebrow reveal">Om MKLab</span>
+      <h2 class="mk-h2 reveal">Jag heter Kristofer.</h2>
+      <div class="mk-about">
+        <div class="mk-about__body reveal">
+          <p>Jag har arbetat i teknikbranschen i tre decennier, varav sjutton år på Microsoft, där jag ledde storskaliga AI- och molnprogram för några av världens största organisationer. Att hålla mig längst fram i teknikutvecklingen är inte ett jobbkrav för mig. Det är det roligaste jag vet.</p>
+          <p>Jag har alltid velat leda så att människor vill följa, inte för att de måste utan för att det känns rätt. Jag är tydlig, stöttande och pedagogisk, och få saker slår ögonblicket när polletten trillar ner hos någon annan.</p>
+          <p>Samtidigt håller jag mig nära själva arbetet. Jag trivs i arkitekturdiskussioner, i plattformsarbete och sida vid sida med utvecklare. Men teknik handlar om människor. Vi är människor först, och det är oftast den insikten som skiljer en bra lösning från en riktigt bra.</p>
+        </div>
+        <aside class="mk-card mk-portrait reveal" aria-label="Kristofer Liljeblad">
+          <img src="{{ ‘/assets/images/headshots/kristofer-square.jpg’ | relative_url }}" alt="Kristofer Liljeblad" />
+          <span class="mk-meta">Kristofer Liljeblad · Grundare</span>
+          <ul class="mk-highlights">
+            <li>30 år av levererad mjukvara</li>
+            <li>17 år på Microsoft</li>
+            <li>Från styrelserum till kodbas</li>
+            <li>Svenska och engelska</li>
+            <li>Stockholm, kunder globalt</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="mk-section mk-contact">
+    <div class="mk-shell">
+      <span class="mk-eyebrow reveal">Vi kan hjälpa</span>
+      <h2 class="mk-h2 reveal">Berätta vad ni står inför.</h2>
+      <p class="reveal">Varje förfrågan läses av en senior person: samma person som sedan gör jobbet. Vi svarar inom två arbetsdagar.</p>
+      <div class="mk-hero__actions reveal">
+        <a class="mk-btn mk-btn--primary mk-btn--lg" href="mailto:{{ site.email }}">{{ site.email }}</a>
+        <a class="mk-btn mk-btn--ghost mk-btn--lg" href="https://www.linkedin.com/in/kristofer-liljeblad/">LinkedIn</a>
       </div>
     </div>
   </section>
