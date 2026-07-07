@@ -1,22 +1,39 @@
 ---
 ---
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+{% assign lang = page.lang | default: 'sv' %}
+<html lang="{{ lang }}">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <title>{% if page.homepage %}{{ page.title }}{% elsif page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: site.description }}" />
+  <link rel="canonical" href="{{ page.url | absolute_url }}" />
+  {% if page.alt_lang_path %}
+  {% if lang == 'sv' %}{% assign other_lang = 'en' %}{% else %}{% assign other_lang = 'sv' %}{% endif %}
+  <link rel="alternate" hreflang="{{ lang }}" href="{{ page.url | absolute_url }}" />
+  <link rel="alternate" hreflang="{{ other_lang }}" href="{{ page.alt_lang_path | absolute_url }}" />
+  {% if lang == 'sv' %}
+  <link rel="alternate" hreflang="x-default" href="{{ page.url | absolute_url }}" />
+  {% else %}
+  <link rel="alternate" hreflang="x-default" href="{{ page.alt_lang_path | absolute_url }}" />
+  {% endif %}
+  {% endif %}
   {% if page.meta_image or site.meta_image %}
   {% assign og_image = page.meta_image | default: site.meta_image %}
   <meta property="og:image" content="{{ og_image | absolute_url }}" />
   <meta name="twitter:image" content="{{ og_image | absolute_url }}" />
   {% endif %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
-  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" />
+  <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+  {% include head/custom.html %}
   {% if page.head_extra %}{{ page.head_extra }}{% endif %}
 </head>
 <body class="{{ page.body_class | default: '' }}">
+  {% assign t = site.data.i18n[lang] %}
+  <a class="mk-skip" href="#main">{{ t.skip_link }}</a>
   {% unless page.hide_header %}
     {% include site-header.html %}
   {% endunless %}
@@ -28,52 +45,24 @@
   {% endunless %}
 
   <script>
-    const yearTargets = document.querySelectorAll('[data-current-year]');
-    const currentYear = new Date().getFullYear();
-    yearTargets.forEach(el => { el.textContent = currentYear; });
+    document.querySelectorAll('[data-current-year]').forEach(function (el) {
+      el.textContent = new Date().getFullYear();
+    });
 
-    const revealElements = document.querySelectorAll('.reveal');
+    var revealElements = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
             observer.unobserve(entry.target);
           }
         });
       }, { threshold: 0.15 });
-      revealElements.forEach(el => observer.observe(el));
+      revealElements.forEach(function (el) { observer.observe(el); });
     } else {
-      revealElements.forEach(el => el.classList.add('is-visible'));
+      revealElements.forEach(function (el) { el.classList.add('is-visible'); });
     }
-
-    // Streaming text animation
-    const streamingElements = document.querySelectorAll('[data-stream]');
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    let globalWordIndex = 0;
-    streamingElements.forEach((el, elIndex) => {
-      const text = el.textContent.trim();
-      const words = text.split(/\s+/);
-      const baseDelay = parseInt(el.dataset.streamDelay || '0', 10);
-      el.innerHTML = '';
-
-      words.forEach((word, i) => {
-        const span = document.createElement('span');
-        span.className = 'word';
-        span.textContent = word;
-        if (!prefersReducedMotion) {
-          // Stagger based on global word count for sequential animation
-          span.style.animationDelay = `${(globalWordIndex + i) * 0.08}s`;
-        }
-        el.appendChild(span);
-        // Add space after each word except the last
-        if (i < words.length - 1) {
-          el.appendChild(document.createTextNode(' '));
-        }
-      });
-      globalWordIndex += words.length;
-    });
   </script>
 </body>
 </html>

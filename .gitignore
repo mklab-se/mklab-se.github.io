@@ -6,6 +6,7 @@ _site
 .jekyll-cache
 .jekyll-metadata
 .playwright-mcp
+.superpowers
 .sass-cache
 .Spotlight-V100
 .Trashes
