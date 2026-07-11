@@ -1,0 +1,863 @@
+<style>
+  .lc-stage {
+    position: relative; overflow: hidden; border-radius: 10px;
+    background: #050505; border: 1px solid rgba(255,255,255,0.10);
+    height: 62vh; min-height: 420px;
+  }
+  .lc-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .lc-copy {
+    position: absolute; left: 6%; top: 50%; transform: translateY(-50%);
+    max-width: 60%; z-index: 3; pointer-events: none;
+  }
+  .lc-eyebrow {
+    font-family: ui-monospace, Menlo, monospace; font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: #ff8a66;
+    transition: opacity 0.6s;
+  }
+  .lc-title {
+    font-family: Georgia, 'Times New Roman', serif; font-weight: 300;
+    color: #ececef; font-size: clamp(22px, 3.2vw, 40px); line-height: 1.15;
+    letter-spacing: -0.01em; margin-top: 10px; transition: opacity 0.6s;
+  }
+  .lc-controls { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .lc-btn {
+    font-family: ui-monospace, Menlo, monospace; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    background: transparent; color: #8f8f98; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.14); border-radius: 5px;
+    padding: 8px 14px; transition: all 0.2s;
+  }
+  .lc-btn:hover { color: #ececef; border-color: rgba(255,255,255,0.3); }
+  .lc-btn.on {
+    color: #fff; border-color: rgba(255,77,28,0.6); background: rgba(255,77,28,0.12);
+    box-shadow: 0 0 0 1px rgba(255,77,28,0.25), 0 0 14px -2px rgba(255,77,28,0.5);
+  }
+</style>
+
+<h2>Prototype v6: eight scenes</h2>
+<p class="subtitle">Moln: migrations are now literal. Most or all of a server's particles decide they fit better elsewhere, stream out of the middle of their unit as a flock, follow the route, and settle: occupancy really shifts, and the dance continues. New scene: Uppdrag, the route already walked: an ascending path from 2010 to today with glowing engagement waypoints, each orbited by its team, breathing awake one at a time.</p>
+
+<div class="lc-stage">
+  <canvas id="lc"></canvas>
+  <div class="lc-copy">
+    <div class="lc-eyebrow" id="lcEyebrow" style="opacity:0;">MKLab AB · Stockholm</div>
+    <div class="lc-title" id="lcTitle" style="opacity:0;">När ni behöver erfarenhet,<br>inte bara hjälp.</div>
+  </div>
+</div>
+<div class="lc-controls">
+  <button class="lc-btn on" data-scene="0">01 · Ankomst</button>
+  <button class="lc-btn" data-scene="1">02 · AI</button>
+  <button class="lc-btn" data-scene="2">03 · Moln</button>
+  <button class="lc-btn" data-scene="3">04 · Program</button>
+  <button class="lc-btn" data-scene="7">05 · Uppdrag</button>
+  <button class="lc-btn" data-scene="4">06 · Föredrag</button>
+  <button class="lc-btn" data-scene="5">07 · Kontakt</button>
+  <button class="lc-btn" data-scene="6">08 · Foto</button>
+</div>
+<p class="subtitle" style="margin-top:16px;">Judge: do the Moln migrations now feel like the particles' own decision? Does Uppdrag carry "vi har gjort det förut"? Terminal for feedback.</p>
+
+<script>
+(function () {
+  const canvas = document.getElementById('lc');
+  const ctx = canvas.getContext('2d');
+  const COPY = [
+    ['MKLab AB · Stockholm', 'När ni behöver erfarenhet,<br>inte bara hjälp.'],
+    ['Kapitel 01 · AI-transformation', 'Från pilot till produktion.'],
+    ['Kapitel 02 · Molntransformation', 'Enterprise-moln sedan<br>Azures första dag.'],
+    ['Kapitel 03 · Programledning', 'Komplexa program,<br>förutsägbar takt.'],
+    ['Kapitel 04 · Föredrag och utbildning', 'Kunskap som sprider sig.'],
+    ['Kontakt', 'Berätta vad ni står inför.'],
+    ['MKLab Foto', 'Hantverk,<br>även bakom kameran.'],
+    ['Utvalda uppdrag', 'Resultatet,<br>inte teatern.']
+  ];
+  const SEQ = [0, 1, 2, 3, 7, 4, 5, 6];
+
+  let W = 0, H = 0;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const easeInOut = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  // inverse of easeInOut: when does eased progress reach s?
+  const easeInOutInv = s => s < 0.5 ? Math.cbrt(s / 4) : 1 - Math.cbrt((1 - s) / 4);
+
+  function sprite(color) {
+    const s = document.createElement('canvas'); s.width = s.height = 64;
+    const c = s.getContext('2d');
+    const g = c.createRadialGradient(32, 32, 0, 32, 32, 32);
+    g.addColorStop(0, color); g.addColorStop(0.3, color.replace('1)', '0.5)'));
+    g.addColorStop(1, color.replace('1)', '0)'));
+    c.fillStyle = g; c.fillRect(0, 0, 64, 64);
+    return s;
+  }
+  const emberS = sprite('rgba(255,77,28,1)');
+  const flameS = sprite('rgba(255,138,102,1)');
+  const whiteS = sprite('rgba(215,215,225,1)');
+  const candleS = sprite('rgba(245,166,35,1)');
+
+  const N = 520;
+  const P = [];
+  for (let i = 0; i < N; i++) {
+    const r = Math.random();
+    P.push({
+      x: 0, y: 0, tx: 0, ty: 0,
+      k: rand(0.03, 0.08),
+      size: rand(0.9, 2.4),
+      phase: rand(0, Math.PI * 2),
+      speed: rand(0.4, 1.0),
+      sprite: r < 0.40 ? emberS : (r < 0.52 ? flameS : (r < 0.94 ? whiteS : candleS)),
+      ember: r < 0.52,
+      seed: Math.random(),
+      alpha: 0, baseAlpha: 1, sizeMul: 1
+    });
+  }
+
+  let scene = 0, sceneFade = 1;
+  let links = [], ganttBars = [], racks = [], slots = [], traces = [];
+  let logoPts = null, logoPhase = 'wait', logoT0 = 0;
+  let nextFlight = 0;
+  let stage = null, waveT0 = 0;
+  let flameC = null;
+  let photo = null;
+  let route = null, routeActive = 0, routeT0 = 0;
+
+  // ---------- Logo sampling ----------
+  const logoImg = new Image();
+  logoImg.src = '/files/logo.png';
+  logoImg.onload = () => {
+    const S = 220, off = document.createElement('canvas');
+    off.width = off.height = S;
+    const oc = off.getContext('2d');
+    oc.drawImage(logoImg, 0, 0, S, S);
+    const data = oc.getImageData(0, 0, S, S).data;
+    const pts = [];
+    for (let y = 0; y < S; y += 2) {
+      for (let x = 0; x < S; x += 2) {
+        if (data[(y * S + x) * 4 + 3] > 120) pts.push([x / S, y / S]);
+      }
+    }
+    logoPts = pts;
+    if (scene === 0) startLogo();
+  };
+
+  function startLogo() {
+    if (!logoPts) return;
+    logoPhase = 'assemble'; logoT0 = performance.now();
+    hideCopy();
+    const box = Math.min(W, H) * 0.52;
+    const ox = W / 2 - box / 2, oy = H / 2 - box / 2;
+    P.forEach(p => {
+      const q = logoPts[Math.floor(p.seed * (logoPts.length - 1))];
+      p.lx = ox + q[0] * box + rand(-1.5, 1.5);
+      p.ly = oy + q[1] * box + rand(-1.5, 1.5);
+      p.baseAlpha = rand(0.6, 1);
+      p.sizeMul = rand(0.38, 0.62);
+    });
+  }
+
+  // ---------- Layouts ----------
+  function layoutConstellation() {
+    links = [];
+    const CC = [];
+    const nc = 7;
+    for (let c = 0; c < nc; c++) {
+      CC.push({
+        x: W * rand(0.42, 0.92), y: H * rand(0.12, 0.88),
+        r: Math.min(W, H) * rand(0.06, 0.13),
+        bright: c === 0
+      });
+    }
+    const members = CC.map(() => []);
+    P.forEach((p, i) => {
+      if (p.seed < 0.55) {
+        const c = Math.floor(p.seed / 0.55 * nc) % nc;
+        const a = rand(0, Math.PI * 2), d = Math.pow(Math.random(), 0.6) * CC[c].r;
+        p.hx = CC[c].x + Math.cos(a) * d;
+        p.hy = CC[c].y + Math.sin(a) * d;
+        p.baseAlpha = CC[c].bright ? rand(0.7, 1) : rand(0.4, 0.9);
+        p.sizeMul = rand(0.8, 1.3);
+        members[c].push(i);
+      } else if (p.seed < 0.9) {
+        p.hx = W * rand(0.05, 0.98); p.hy = H * rand(0.04, 0.96);
+        p.baseAlpha = rand(0.08, 0.3); p.sizeMul = rand(0.4, 0.8);
+      } else {
+        p.hx = W * rand(0.3, 0.98); p.hy = H * rand(0.05, 0.95);
+        p.baseAlpha = rand(0.06, 0.16); p.sizeMul = rand(2.6, 4.2);
+      }
+    });
+    members.forEach(m => {
+      m.forEach(i => {
+        const dists = m.filter(j => j !== i).map(j => ({
+          j, d: (P[i].hx - P[j].hx) ** 2 + (P[i].hy - P[j].hy) ** 2
+        })).sort((a, b) => a.d - b.d).slice(0, 2);
+        dists.forEach(({ j }) => { if (i < j) links.push([i, j]); });
+      });
+    });
+  }
+
+  function layoutAI() {
+    const cols = Math.max(16, Math.floor(W / 52));
+    P.forEach((p, i) => {
+      const col = i % cols;
+      p.hx = (col + 0.5) * (W / cols) + rand(-2, 2);
+      p.hy = rand(-H * 0.2, H * 1.2);
+      p.speed = rand(0.4, 1.6);
+      p.baseAlpha = p.ember ? rand(0.4, 0.95) : rand(0.15, 0.55);
+      p.sizeMul = rand(0.35, 0.7);
+    });
+  }
+
+  function layoutCloud() {
+    racks = []; slots = []; traces = [];
+    const rackXs = [0.52, 0.665, 0.81, 0.955];
+    const y0 = H * 0.13, y1 = H * 0.87, units = 11;
+    rackXs.forEach(fx => {
+      const rk = { x: W * fx, w: Math.min(64, W * 0.052), y0, y1, units };
+      racks.push(rk);
+      for (let u = 0; u < units; u++) {
+        slots.push({
+          rack: rk,
+          x: rk.x,
+          y: y0 + (u + 0.5) * (y1 - y0) / units
+        });
+      }
+    });
+    P.forEach((p, i) => {
+      if (p.seed < 0.85) {
+        p.mode = 'srv';
+        p.slot = Math.floor(p.seed / 0.85 * slots.length) % slots.length;
+        homeInSlot(p);
+        p.flying = false;
+        p.baseAlpha = p.ember ? rand(0.3, 0.85) : rand(0.18, 0.6);
+        p.sizeMul = rand(0.32, 0.6);
+        p.speed = rand(0.5, 1.4);
+      } else {
+        p.mode = 'dust';
+        p.hx = W * rand(0.03, 0.98); p.hy = H * rand(0.05, 0.95);
+        p.baseAlpha = rand(0.04, 0.14); p.sizeMul = rand(0.5, 1.6);
+      }
+    });
+    nextFlight = performance.now() + 1200;
+  }
+  function homeInSlot(p) {
+    const s = slots[p.slot];
+    p.hx = s.x + rand(-s.rack.w * 0.32, s.rack.w * 0.32);
+    p.hy = s.y + rand(-3.5, 3.5);
+  }
+  // from the middle of one server straight toward the middle of another
+  function makePath(a, b) {
+    const x0 = a.x, y0 = a.y, x1 = b.x, y1 = b.y;
+    const dx = x1 - x0, dy = y1 - y0;
+    const dist = Math.hypot(dx, dy) || 1;
+    const px = -dy / dist, py = dx / dist;
+    const bend = dist * rand(0.05, 0.12) * (Math.random() < 0.5 ? -1 : 1);
+    return {
+      p0: [x0, y0], p1: [x1, y1],
+      c0: [x0 + dx * 0.3 + px * bend * 0.5, y0 + dy * 0.3 + py * bend * 0.5],
+      c1: [x0 + dx * 0.72 + px * bend, y0 + dy * 0.72 + py * bend]
+    };
+  }
+  function bezier(w, t) {
+    const u = 1 - t;
+    const x = u*u*u*w.p0[0] + 3*u*u*t*w.c0[0] + 3*u*t*t*w.c1[0] + t*t*t*w.p1[0];
+    const y = u*u*u*w.p0[1] + 3*u*u*t*w.c0[1] + 3*u*t*t*w.c1[1] + t*t*t*w.p1[1];
+    return [x, y];
+  }
+
+  function layoutGantt() {
+    const rows = 8, m = H * 0.14, rh = (H - 2 * m) / rows;
+    ganttBars = [];
+    for (let r = 0; r < rows; r++) {
+      const start = 0.08 + (r / rows) * 0.48 + rand(-0.02, 0.02);
+      const len = rand(0.16, 0.30);
+      ganttBars.push({
+        x0: W * start, x1: W * Math.min(0.94, start + len),
+        y: m + (r + 0.5) * rh,
+        ember: r === 2 || r === 5
+      });
+    }
+    P.forEach((p, i) => {
+      const b = ganttBars[i % ganttBars.length];
+      p.hx = b.x0 + p.seed * (b.x1 - b.x0);
+      p.hy = b.y + rand(-0.8, 0.8);
+      p.milestone = p.seed > 0.985;
+      if (p.milestone) p.hx = b.x1;
+      p.baseAlpha = (b.ember ? rand(0.5, 1) : rand(0.2, 0.6));
+      p.sizeMul = p.milestone ? 1.4 : rand(0.4, 0.75);
+    });
+  }
+
+  function layoutSpeaking() {
+    stage = { x: W * 0.72, y: H * 0.24 };
+    waveT0 = performance.now() + 800;
+    const rowN = 7;
+    P.forEach((p, i) => {
+      if (p.seed < 0.08) {
+        p.mode = 'stage';
+        p.hx = stage.x + rand(-8, 8);
+        p.hy = stage.y + rand(-6, 6);
+        p.baseAlpha = rand(0.5, 1);
+        p.sizeMul = rand(0.5, 1.1);
+      } else if (p.seed < 0.86) {
+        p.mode = 'aud';
+        const row = Math.floor((p.seed - 0.08) / 0.78 * rowN);
+        const rr = (0.16 + row * 0.075) * Math.min(W * 0.5, H * 1.1);
+        const a = rand(Math.PI * 0.42, Math.PI * 0.97);
+        p.r = rr;
+        p.hx = stage.x + Math.cos(a) * rr * 1.25;
+        p.hy = stage.y + Math.sin(a) * rr;
+        p.baseAlpha = rand(0.10, 0.30);
+        p.sizeMul = rand(0.4, 0.75);
+      } else {
+        p.mode = 'spark';
+        p.hx = stage.x + rand(-30, 30);
+        p.hy = stage.y - rand(0, H * 0.16);
+        p.speed = rand(0.008, 0.02);
+        p.baseAlpha = rand(0.1, 0.4);
+        p.sizeMul = rand(0.3, 0.6);
+      }
+    });
+  }
+
+  function layoutContact() {
+    flameC = { x: W * 0.70, y: H * 0.52, r: Math.min(W, H) * 0.085 };
+    P.forEach((p, i) => {
+      if (p.seed < 0.55) {
+        p.mode = 'flame';
+        const a = rand(0, Math.PI * 2), d = Math.pow(Math.random(), 1.6);
+        p.fa = a; p.fd = d;
+        p.baseAlpha = (1 - d) * rand(0.5, 1);
+        p.sizeMul = rand(0.4, 0.9);
+        if (p.seed < 0.30) p.sprite = candleS;
+      } else if (p.seed < 0.85) {
+        p.mode = 'halo';
+        p.r = flameC.r * rand(2.4, 3.4);
+        p.baseAlpha = rand(0.05, 0.18);
+        p.sizeMul = rand(0.4, 0.8);
+        p.speed = rand(0.5, 1) * (p.seed < 0.7 ? 1 : -1);
+      } else {
+        p.mode = 'spark';
+        p.hx = flameC.x + rand(-flameC.r, flameC.r);
+        p.hy = flameC.y - rand(0, H * 0.3);
+        p.speed = rand(0.004, 0.012);
+        p.baseAlpha = rand(0.05, 0.22);
+        p.sizeMul = rand(0.3, 0.6);
+      }
+    });
+  }
+
+  function layoutPhoto() {
+    const fw = Math.min(W * 0.42, H * 1.05);
+    const fh = fw / 1.5;
+    const cx = W * 0.68, cy = H * 0.5;
+    photo = {
+      x0: cx - fw / 2, y0: cy - fh / 2, x1: cx + fw / 2, y1: cy + fh / 2,
+      cx, cy, r: fh * 0.30,
+      focusPts: [], fi: 0, fj: 1, fT0: performance.now() + 1200, moving: false
+    };
+    const xs = [photo.x0 + fw / 3, photo.x0 + fw * 2 / 3];
+    const ys = [photo.y0 + fh / 3, photo.y0 + fh * 2 / 3];
+    xs.forEach(x => ys.forEach(y => photo.focusPts.push([x, y])));
+    const BLADES = 7;
+    P.forEach((p, i) => {
+      if (p.seed < 0.55) {
+        p.mode = 'iris';
+        p.blade = i % BLADES;
+        p.u = p.seed / 0.55;
+        p.baseAlpha = rand(0.35, 0.9);
+        p.sizeMul = rand(0.35, 0.65);
+      } else if (p.seed < 0.80) {
+        p.mode = 'bokeh';
+        p.hx = rand(photo.x0 - fw * 0.15, photo.x1 + fw * 0.15);
+        p.hy = rand(photo.y0 - fh * 0.1, photo.y1 + fh * 0.1);
+        p.baseAlpha = rand(0.04, 0.13);
+        p.sizeMul = rand(2.0, 4.0);
+        p.speed = rand(0.2, 0.7);
+      } else {
+        p.mode = 'dust';
+        p.hx = W * rand(0.03, 0.98); p.hy = H * rand(0.05, 0.95);
+        p.baseAlpha = rand(0.03, 0.10); p.sizeMul = rand(0.4, 1.0);
+      }
+    });
+  }
+
+  function layoutRoute() {
+    route = {
+      path: {
+        p0: [W * 0.42, H * 0.82], p1: [W * 0.95, H * 0.16],
+        c0: [W * 0.62, H * 0.86], c1: [W * 0.70, H * 0.30]
+      },
+      wps: [0.06, 0.28, 0.50, 0.72, 0.94],
+      pts: [],
+      years: ['2010', '2014', '2018', '2022', 'IDAG']
+    };
+    route.pts = route.wps.map(s => bezier(route.path, s));
+    routeActive = 0; routeT0 = performance.now() + 600;
+    P.forEach((p, i) => {
+      if (p.seed < 0.55) {                 // waypoint swarms: the teams
+        p.mode = 'wp';
+        p.wp = i % route.wps.length;
+        p.r = Math.pow(rand(0, 1), 0.7) * 26 + 4;
+        p.baseAlpha = rand(0.2, 0.7);
+        p.sizeMul = rand(0.35, 0.75);
+        p.speed = rand(0.3, 1) * (p.seed < 0.3 ? 1 : -1);
+      } else if (p.seed < 0.72) {          // travelers: experience accumulating
+        p.mode = 'trav';
+        p.s = Math.random();
+        p.speed = rand(0.00002, 0.00005);
+        p.baseAlpha = rand(0.15, 0.45);
+        p.sizeMul = rand(0.3, 0.55);
+      } else {                              // dust
+        p.mode = 'dust';
+        p.hx = W * rand(0.03, 0.98); p.hy = H * rand(0.05, 0.95);
+        p.baseAlpha = rand(0.03, 0.12); p.sizeMul = rand(0.4, 1.2);
+      }
+    });
+  }
+
+  const LAYOUTS = [layoutConstellation, layoutAI, layoutCloud, layoutGantt,
+                   layoutSpeaking, layoutContact, layoutPhoto, layoutRoute];
+  function layoutAll() { LAYOUTS[scene](); }
+
+  function resize() {
+    const r = canvas.parentElement.getBoundingClientRect();
+    W = r.width; H = r.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    layoutAll();
+  }
+
+  // ---------- Per-frame targets ----------
+  function targets(t, dt) {
+    if (scene === 0) {
+      if (logoPhase === 'assemble' || logoPhase === 'hold') {
+        const el = t - logoT0;
+        if (logoPhase === 'assemble' && el > 1500) logoPhase = 'hold';
+        if (logoPhase === 'hold' && el > 3300) {
+          logoPhase = 'done'; layoutConstellation(); showCopy(0);
+        }
+        P.forEach(p => {
+          p.tx = p.lx; p.ty = p.ly;
+          p.alpha = p.baseAlpha * (0.85 + 0.15 * Math.sin(t * 0.002 + p.phase));
+        });
+        return;
+      }
+      P.forEach(p => {
+        p.tx = p.hx + Math.sin(t * 0.0003 * p.speed + p.phase) * 9;
+        p.ty = p.hy + Math.cos(t * 0.00024 * p.speed + p.phase * 1.7) * 7;
+        p.alpha = p.baseAlpha * (0.8 + 0.2 * Math.sin(t * 0.0012 + p.phase));
+      });
+    } else if (scene === 1) {
+      P.forEach(p => {
+        p.hy += p.speed * 1.4;
+        if (p.hy > H * 1.15) p.hy = -H * 0.15;
+        p.tx = p.hx; p.ty = p.hy;
+        p.alpha = p.baseAlpha * (0.45 + 0.55 * Math.sin(t * 0.0022 * p.speed + p.phase));
+      });
+    } else if (scene === 2) {
+      if (t > nextFlight && sceneFade > 0.7) {
+        // the particles decide: a crowded server empties toward a roomier one
+        const counts = new Array(slots.length).fill(0);
+        P.forEach(p => { if (p.mode === 'srv' && !p.flying) counts[p.slot]++; });
+        const rich = [];
+        counts.forEach((c, i) => { if (c >= 5) rich.push(i); });
+        if (rich.length) {
+          const src = rich[Math.floor(rand(0, rich.length))];
+          let best = -1, bestC = Infinity;
+          for (let k = 0; k < 5; k++) {
+            const cand = Math.floor(rand(0, slots.length));
+            if (slots[cand].rack === slots[src].rack) continue;
+            if (counts[cand] < bestC) { bestC = counts[cand]; best = cand; }
+          }
+          if (best >= 0) {
+            const path = makePath(slots[src], slots[best]);
+            const portion = rand(0.7, 1.01);
+            let moved = 0;
+            P.forEach(p => {
+              if (p.mode === 'srv' && !p.flying && p.slot === src && Math.random() < portion) {
+                p.flying = true;
+                p.f0 = t + rand(0, 260);
+                p.fdur = rand(650, 950);
+                p.path = path;
+                p.dst = best;
+                p.pox = rand(-5, 5); p.poy = rand(-4, 4);
+                moved++;
+              }
+            });
+            if (moved > 0) traces.push({ path, t0: t, dur: 1100 });
+          }
+        }
+        nextFlight = t + rand(1700, 3400);
+      }
+      P.forEach(p => {
+        if (p.mode === 'srv') {
+          if (p.flying) {
+            const ft = (t - p.f0) / p.fdur;
+            if (ft >= 1) {
+              p.flying = false; p.slot = p.dst; homeInSlot(p);
+              p.x = p.hx + rand(-2, 2); p.y = p.hy + rand(-2, 2);
+            } else if (ft > 0) {
+              const [x, y] = bezier(p.path, easeInOut(ft));
+              p.tx = x + p.pox; p.ty = y + p.poy;
+              p.alpha = Math.min(1, p.baseAlpha * 1.6);
+              return;
+            }
+          }
+          p.tx = p.hx + Math.sin(t * 0.0016 * p.speed + p.phase) * 1.6;
+          p.ty = p.hy + Math.cos(t * 0.0013 * p.speed + p.phase) * 1.2;
+          p.alpha = p.baseAlpha * (0.55 + 0.45 * Math.sin(t * 0.0012 * p.speed + p.phase));
+        } else {
+          p.tx = p.hx + Math.sin(t * 0.0002 * p.speed + p.phase) * 6;
+          p.ty = p.hy + Math.cos(t * 0.00016 + p.phase) * 5;
+          p.alpha = p.baseAlpha;
+        }
+      });
+    } else if (scene === 3) {
+      P.forEach(p => {
+        const pulse = ((t * 0.0001) % 1.4) - 0.2;
+        const dx = Math.abs(p.hx / W - pulse);
+        p.tx = p.hx; p.ty = p.hy;
+        p.alpha = p.baseAlpha * (0.4 + (dx < 0.09 ? (1 - dx / 0.09) * 0.8 : 0));
+        if (p.milestone) p.alpha = Math.max(p.alpha, 0.95);
+      });
+    } else if (scene === 4) {
+      const wSpeed = 0.14 * Math.min(W * 0.5, H * 1.1) / 1000;
+      const maxR = 0.72 * Math.min(W * 0.5, H * 1.1);
+      let wR = -1;
+      if (t > waveT0) {
+        wR = (t - waveT0) * wSpeed;
+        if (wR > maxR * 1.3) { waveT0 = t + rand(1800, 3600); }
+      }
+      P.forEach(p => {
+        if (p.mode === 'stage') {
+          p.tx = p.hx + rand(-0.6, 0.6); p.ty = p.hy + rand(-0.6, 0.6);
+          p.alpha = p.baseAlpha * (0.7 + 0.3 * Math.sin(t * 0.003 + p.phase));
+        } else if (p.mode === 'aud') {
+          p.tx = p.hx + Math.sin(t * 0.0004 * p.speed + p.phase) * 2;
+          p.ty = p.hy + Math.cos(t * 0.0003 + p.phase) * 1.5;
+          let boost = 0;
+          if (wR > 0) {
+            const d = Math.abs(p.r - wR) / (maxR * 0.09);
+            boost = Math.exp(-d * d) * 0.75;
+          }
+          p.alpha = p.baseAlpha + boost;
+        } else {
+          p.hy -= p.speed * dt;
+          if (p.hy < stage.y - H * 0.2) p.hy = stage.y;
+          p.tx = p.hx + Math.sin(t * 0.001 + p.phase) * 4;
+          p.ty = p.hy;
+          const h = (stage.y - p.hy) / (H * 0.2);
+          p.alpha = p.baseAlpha * Math.max(0, 1 - h);
+        }
+      });
+    } else if (scene === 5) {
+      P.forEach(p => {
+        if (p.mode === 'flame') {
+          const flick = 1 + 0.16 * Math.sin(t * 0.004 + p.phase) * p.fd;
+          const breathe = 0.8 + 0.2 * Math.sin(t * 0.0008);
+          p.tx = flameC.x + Math.cos(p.fa + Math.sin(t * 0.0006 + p.phase) * 0.2) * p.fd * flameC.r * 0.8 * flick;
+          p.ty = flameC.y + Math.sin(p.fa) * p.fd * flameC.r * 1.5 * flick - (1 - p.fd) * 4;
+          p.alpha = p.baseAlpha * breathe;
+        } else if (p.mode === 'halo') {
+          const th = p.phase + t * 0.00009 * p.speed;
+          p.tx = flameC.x + Math.cos(th) * p.r * 1.15;
+          p.ty = flameC.y + Math.sin(th) * p.r * 0.72;
+          p.alpha = p.baseAlpha * (0.7 + 0.3 * Math.sin(t * 0.0007 + p.phase));
+        } else {
+          p.hy -= p.speed * dt;
+          if (p.hy < flameC.y - H * 0.34) p.hy = flameC.y - rand(0, 20);
+          p.tx = p.hx + Math.sin(t * 0.0008 + p.phase) * 5;
+          p.ty = p.hy;
+          const h = (flameC.y - p.hy) / (H * 0.34);
+          p.alpha = p.baseAlpha * Math.max(0, 1 - h);
+        }
+      });
+    } else if (scene === 6) {
+      const BLADES = 7;
+      const rot = t * 0.00006;
+      const breathe = 1 + 0.13 * Math.sin(t * 0.0005);
+      const R = photo.r * breathe;
+      if (!photo.moving && t > photo.fT0) {
+        photo.moving = true; photo.mT0 = t;
+        photo.fi = photo.fj;
+        let nj = Math.floor(rand(0, photo.focusPts.length));
+        if (nj === photo.fi) nj = (nj + 1) % photo.focusPts.length;
+        photo.fj = nj;
+      }
+      if (photo.moving && t - photo.mT0 > 700) {
+        photo.moving = false; photo.fT0 = t + rand(2200, 3800);
+      }
+      P.forEach(p => {
+        if (p.mode === 'iris') {
+          const a0 = rot + p.blade * Math.PI * 2 / BLADES;
+          const a1 = rot + (p.blade + 1.55) * Math.PI * 2 / BLADES;
+          const e0x = photo.cx + Math.cos(a0) * R, e0y = photo.cy + Math.sin(a0) * R;
+          const e1x = photo.cx + Math.cos(a1) * R, e1y = photo.cy + Math.sin(a1) * R;
+          p.tx = e0x + (e1x - e0x) * p.u;
+          p.ty = e0y + (e1y - e0y) * p.u;
+          p.alpha = p.baseAlpha * (0.7 + 0.3 * Math.sin(t * 0.0015 + p.phase));
+        } else if (p.mode === 'bokeh') {
+          p.tx = p.hx + Math.sin(t * 0.00013 * p.speed + p.phase) * 16;
+          p.ty = p.hy + Math.cos(t * 0.0001 * p.speed + p.phase * 1.6) * 12;
+          p.alpha = p.baseAlpha * (0.7 + 0.3 * Math.sin(t * 0.0006 + p.phase));
+        } else {
+          p.tx = p.hx; p.ty = p.hy;
+          p.alpha = p.baseAlpha;
+        }
+      });
+    } else {
+      // Uppdrag: the route already walked
+      const nWp = route.wps.length;
+      const idx = Math.floor(((t - routeT0) / 3400)) % nWp;
+      if (idx !== routeActive && idx >= 0) { routeActive = idx; route.pulseT0 = t; }
+      P.forEach(p => {
+        if (p.mode === 'wp') {
+          const c = route.pts[p.wp];
+          const th = p.phase + t * 0.00025 * p.speed;
+          p.tx = c[0] + Math.cos(th) * p.r;
+          p.ty = c[1] + Math.sin(th) * p.r * 0.75;
+          const active = p.wp === routeActive ? 1 : 0;
+          p.alpha = p.baseAlpha * (0.45 + 0.55 * active)
+            + active * 0.15 * Math.sin(t * 0.002 + p.phase);
+        } else if (p.mode === 'trav') {
+          p.s += p.speed * dt;
+          if (p.s > 1) p.s = 0;
+          const [x, y] = bezier(route.path, p.s);
+          p.tx = x; p.ty = y;
+          const edge = Math.min(p.s, 1 - p.s);
+          p.alpha = p.baseAlpha * Math.min(1, edge * 8);
+        } else {
+          p.tx = p.hx; p.ty = p.hy;
+          p.alpha = p.baseAlpha;
+        }
+      });
+    }
+  }
+
+  // ---------- Structural line work ----------
+  function drawStructure(t) {
+    ctx.lineWidth = 0.6;
+    if (scene === 0 && logoPhase === 'done' && sceneFade > 0.05) {
+      links.forEach(([i, j]) => {
+        const a = P[i], b = P[j];
+        const al = 0.10 * sceneFade * Math.min(a.alpha, b.alpha);
+        ctx.strokeStyle = (a.ember && b.ember)
+          ? 'rgba(255,100,50,' + (al * 1.6) + ')'
+          : 'rgba(200,200,215,' + al + ')';
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      });
+    }
+    if (scene === 2 && sceneFade > 0.05) {
+      racks.forEach(rk => {
+        ctx.strokeStyle = 'rgba(200,200,215,' + (0.10 * sceneFade) + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(rk.x - rk.w / 2, rk.y0, rk.w, rk.y1 - rk.y0, 4);
+        ctx.stroke();
+        ctx.lineWidth = 0.5;
+        ctx.strokeStyle = 'rgba(200,200,215,' + (0.045 * sceneFade) + ')';
+        for (let u = 1; u < rk.units; u++) {
+          const y = rk.y0 + u * (rk.y1 - rk.y0) / rk.units;
+          ctx.beginPath();
+          ctx.moveTo(rk.x - rk.w / 2 + 3, y); ctx.lineTo(rk.x + rk.w / 2 - 3, y);
+          ctx.stroke();
+        }
+      });
+      // the wake: each segment appears only after the flock has passed it,
+      // then dissolves from the origin end first
+      traces = traces.filter(tr => t - tr.t0 < tr.dur + 2600);
+      ctx.lineWidth = 0.8;
+      traces.forEach(tr => {
+        const SEG = 28;
+        let prev = bezier(tr.path, 0);
+        for (let i = 1; i <= SEG; i++) {
+          const si = i / SEG;
+          const pt = bezier(tr.path, si);
+          const revealAt = tr.t0 + easeInOutInv(si) * tr.dur;
+          const age = t - revealAt;
+          if (age > 0) {
+            const al = Math.max(0, 1 - age / 2200) * 0.20 * sceneFade;
+            if (al > 0.004) {
+              ctx.strokeStyle = 'rgba(255,77,28,' + al + ')';
+              ctx.beginPath();
+              ctx.moveTo(prev[0], prev[1]); ctx.lineTo(pt[0], pt[1]);
+              ctx.stroke();
+            }
+          }
+          prev = pt;
+        }
+      });
+    }
+    if (scene === 3 && sceneFade > 0.05) {
+      ganttBars.forEach(b => {
+        ctx.strokeStyle = b.ember
+          ? 'rgba(255,77,28,' + (0.28 * sceneFade) + ')'
+          : 'rgba(200,200,215,' + (0.07 * sceneFade) + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(b.x0 - 6, b.y - 4, (b.x1 - b.x0) + 12, 8, 3);
+        ctx.stroke();
+      });
+      const tx = W * (0.15 + 0.6 * ((t * 0.00003) % 1));
+      const g = ctx.createLinearGradient(0, H * 0.08, 0, H * 0.92);
+      g.addColorStop(0, 'rgba(255,77,28,0)');
+      g.addColorStop(0.5, 'rgba(255,77,28,' + (0.20 * sceneFade) + ')');
+      g.addColorStop(1, 'rgba(255,77,28,0)');
+      ctx.strokeStyle = g; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(tx, H * 0.08); ctx.lineTo(tx, H * 0.92); ctx.stroke();
+    }
+    if (scene === 4 && sceneFade > 0.05 && stage) {
+      const g = ctx.createRadialGradient(stage.x, stage.y, 0, stage.x, stage.y, 90);
+      g.addColorStop(0, 'rgba(245,166,35,' + (0.10 * sceneFade) + ')');
+      g.addColorStop(1, 'rgba(245,166,35,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(stage.x - 90, stage.y - 90, 180, 180);
+    }
+    if (scene === 5 && sceneFade > 0.05 && flameC) {
+      const breathe = 0.8 + 0.2 * Math.sin(t * 0.0008);
+      const g = ctx.createRadialGradient(flameC.x, flameC.y, 0, flameC.x, flameC.y, flameC.r * 3.4);
+      g.addColorStop(0, 'rgba(245,166,35,' + (0.13 * breathe * sceneFade) + ')');
+      g.addColorStop(0.4, 'rgba(255,77,28,' + (0.05 * breathe * sceneFade) + ')');
+      g.addColorStop(1, 'rgba(255,77,28,0)');
+      ctx.fillStyle = g;
+      const R = flameC.r * 3.4;
+      ctx.fillRect(flameC.x - R, flameC.y - R, R * 2, R * 2);
+    }
+    if (scene === 6 && sceneFade > 0.05 && photo) {
+      const L = 20;
+      ctx.strokeStyle = 'rgba(200,200,215,' + (0.16 * sceneFade) + ')';
+      ctx.lineWidth = 1.2;
+      [[photo.x0, photo.y0, 1, 1], [photo.x1, photo.y0, -1, 1],
+       [photo.x0, photo.y1, 1, -1], [photo.x1, photo.y1, -1, -1]].forEach(([x, y, sx, sy]) => {
+        ctx.beginPath();
+        ctx.moveTo(x + sx * L, y); ctx.lineTo(x, y); ctx.lineTo(x, y + sy * L);
+        ctx.stroke();
+      });
+      ctx.strokeStyle = 'rgba(200,200,215,' + (0.035 * sceneFade) + ')';
+      ctx.lineWidth = 0.5;
+      const fw = photo.x1 - photo.x0, fh = photo.y1 - photo.y0;
+      [1, 2].forEach(i => {
+        ctx.beginPath();
+        ctx.moveTo(photo.x0 + fw * i / 3, photo.y0); ctx.lineTo(photo.x0 + fw * i / 3, photo.y1);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(photo.x0, photo.y0 + fh * i / 3); ctx.lineTo(photo.x1, photo.y0 + fh * i / 3);
+        ctx.stroke();
+      });
+      const a = photo.focusPts[photo.fi], b = photo.focusPts[photo.fj];
+      let fx = b[0], fy = b[1], pulse = 1, lockAl = 0.4;
+      if (photo.moving) {
+        const mt = easeInOut(Math.min(1, (t - photo.mT0) / 700));
+        fx = a[0] + (b[0] - a[0]) * mt;
+        fy = a[1] + (b[1] - a[1]) * mt;
+        lockAl = 0.22;
+      } else {
+        const since = t - (photo.mT0 + 700);
+        pulse = 1 + 0.35 * Math.max(0, 1 - since / 320);
+      }
+      const s = 11 * pulse;
+      ctx.strokeStyle = 'rgba(255,77,28,' + (lockAl * sceneFade) + ')';
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.roundRect(fx - s, fy - s, s * 2, s * 2, 2);
+      ctx.stroke();
+      const g = ctx.createRadialGradient(fx, fy, 0, fx, fy, 34);
+      g.addColorStop(0, 'rgba(255,77,28,' + (0.10 * sceneFade) + ')');
+      g.addColorStop(1, 'rgba(255,77,28,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(fx - 34, fy - 34, 68, 68);
+    }
+    if (scene === 7 && sceneFade > 0.05 && route) {
+      // the path walked
+      ctx.strokeStyle = 'rgba(200,200,215,' + (0.09 * sceneFade) + ')';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(route.path.p0[0], route.path.p0[1]);
+      ctx.bezierCurveTo(route.path.c0[0], route.path.c0[1],
+        route.path.c1[0], route.path.c1[1], route.path.p1[0], route.path.p1[1]);
+      ctx.stroke();
+      // waypoints + years
+      ctx.font = '9px ui-monospace, Menlo, monospace';
+      route.pts.forEach((pt, i) => {
+        const active = i === routeActive;
+        const g = ctx.createRadialGradient(pt[0], pt[1], 0, pt[0], pt[1], active ? 40 : 22);
+        const al = active ? 0.16 : 0.06;
+        g.addColorStop(0, 'rgba(255,77,28,' + (al * sceneFade) + ')');
+        g.addColorStop(1, 'rgba(255,77,28,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(pt[0] - 40, pt[1] - 40, 80, 80);
+        ctx.fillStyle = 'rgba(200,200,215,' + ((active ? 0.5 : 0.25) * sceneFade) + ')';
+        ctx.fillText(route.years[i], pt[0] - 12, pt[1] + 34);
+      });
+      // activation ripple
+      if (route.pulseT0) {
+        const el = t - route.pulseT0;
+        if (el < 900) {
+          const pt = route.pts[routeActive];
+          const rr = 10 + el * 0.05;
+          ctx.strokeStyle = 'rgba(255,77,28,' + (0.30 * (1 - el / 900) * sceneFade) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.ellipse(pt[0], pt[1], rr, rr * 0.75, 0, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  // ---------- Main loop ----------
+  let last = 0;
+  function frame(t) {
+    requestAnimationFrame(frame);
+    const dt = Math.min(50, t - last);
+    if (dt < 15) return; last = t;
+    sceneFade += (1 - sceneFade) * 0.035;
+    targets(t, dt);
+    ctx.fillStyle = 'rgba(5,5,5,0.42)';
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'lighter';
+    drawStructure(t);
+    P.forEach(p => {
+      const k = (scene === 0 && logoPhase === 'assemble') ? p.k * 1.7
+        : (scene === 2 && p.flying) ? 0.5 : p.k;
+      p.x += (p.tx - p.x) * k;
+      p.y += (p.ty - p.y) * k;
+      const s = p.size * 4.6 * p.sizeMul;
+      ctx.globalAlpha = Math.max(0, Math.min(1, p.alpha));
+      ctx.drawImage(p.sprite, p.x - s / 2, p.y - s / 2, s, s);
+    });
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  // ---------- Copy + scene switching ----------
+  const btns = [...document.querySelectorAll('.lc-btn')];
+  const eyebrow = document.getElementById('lcEyebrow');
+  const title = document.getElementById('lcTitle');
+  function hideCopy() { eyebrow.style.opacity = 0; title.style.opacity = 0; }
+  function showCopy(n) {
+    eyebrow.textContent = COPY[n][0];
+    title.innerHTML = COPY[n][1];
+    eyebrow.style.opacity = 1; title.style.opacity = 1;
+  }
+  function setScene(n, manual) {
+    scene = n; sceneFade = 0;
+    btns.forEach(b => b.classList.toggle('on', +b.dataset.scene === n));
+    if (n === 0) { startLogo(); }
+    else {
+      layoutAll(); hideCopy();
+      setTimeout(() => showCopy(n), 450);
+    }
+    if (manual) clearInterval(auto);
+  }
+  btns.forEach(b => b.addEventListener('click', () => setScene(+b.dataset.scene, true)));
+  let seqPos = 0;
+  const auto = setInterval(() => {
+    seqPos = (seqPos + 1) % SEQ.length;
+    setScene(SEQ[seqPos], false);
+  }, 9500);
+
+  window.addEventListener('resize', resize);
+  resize();
+  P.forEach(p => { p.x = W / 2 + rand(-80, 80); p.y = H / 2 + rand(-50, 50); });
+  requestAnimationFrame(frame);
+})();
+</script>
