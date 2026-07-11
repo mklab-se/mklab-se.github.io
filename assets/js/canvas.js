@@ -375,7 +375,7 @@
     var fw = isMobile ? W * 0.86 : Math.min(W * 0.42, H * 1.05);
     var fh = fw / 1.5;
     var cx = isMobile ? W * 0.5 : W * 0.68;
-    var cy = isMobile ? H * 0.34 : H * 0.5;
+    var cy = isMobile ? H * 0.72 : H * 0.5;
     photo = {
       x0: cx - fw / 2, y0: cy - fh / 2, x1: cx + fw / 2, y1: cy + fh / 2,
       cx: cx, cy: cy, r: fh * 0.30,
