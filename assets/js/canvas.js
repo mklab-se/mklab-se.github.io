@@ -80,7 +80,6 @@
   var nextFlight = 0;
   var stage = null, waveT0 = 0;
   var flameC = null;
-  var photo = null;
   var route = null, routeActive = 0, routeAuto = true, routePulseT0 = 0, routeAutoT0 = 0;
   var tGlyph = null;
 
@@ -372,38 +371,21 @@
   };
 
   layouts.photo = function () {
-    var fw = isMobile ? W * 0.86 : Math.min(W * 0.42, H * 1.05);
-    var fh = fw / 1.5;
-    var cx = isMobile ? W * 0.5 : W * 0.68;
-    var cy = isMobile ? H * 0.72 : H * 0.5;
-    photo = {
-      x0: cx - fw / 2, y0: cy - fh / 2, x1: cx + fw / 2, y1: cy + fh / 2,
-      cx: cx, cy: cy, r: fh * 0.30,
-      focusPts: [], fi: 0, fj: 1, fT0: performance.now() + 1200,
-      moving: false, mT0: performance.now()
-    };
-    var xs = [photo.x0 + fw / 3, photo.x0 + fw * 2 / 3];
-    var ys = [photo.y0 + fh / 3, photo.y0 + fh * 2 / 3];
-    xs.forEach(function (x) { ys.forEach(function (y) { photo.focusPts.push([x, y]); }); });
-    var BLADES = 7;
-    P.forEach(function (p, i) {
-      if (p.seed < 0.55) {
-        p.mode = 'iris';
-        p.blade = i % BLADES;
-        p.u = p.seed / 0.55;
-        p.baseAlpha = rand(0.35, 0.9);
-        p.sizeMul = rand(0.35, 0.65);
-      } else if (p.seed < 0.80) {
+    // gallery calm: warm out-of-focus orbs drifting through an even
+    // dust field, nothing structural, the photographs own the page
+    P.forEach(function (p) {
+      if (p.ember && p.seed < 0.87) {
         p.mode = 'bokeh';
-        p.hx = rand(photo.x0 - fw * 0.15, photo.x1 + fw * 0.15);
-        p.hy = rand(photo.y0 - fh * 0.1, photo.y1 + fh * 0.1);
-        p.baseAlpha = rand(0.04, 0.13);
-        p.sizeMul = rand(2.0, 4.0);
+        p.hx = W * rand(0.02, 0.98);
+        p.hy = H * rand(0.05, 0.95);
+        p.baseAlpha = rand(0.04, 0.12);
+        p.sizeMul = rand(2.4, 4.6);
         p.speed = rand(0.2, 0.7);
       } else {
         p.mode = 'dust';
-        p.hx = W * rand(0.03, 0.98); p.hy = H * rand(0.05, 0.95);
+        p.hx = W * rand(0.02, 0.98); p.hy = H * rand(0.03, 0.97);
         p.baseAlpha = rand(0.03, 0.10); p.sizeMul = rand(0.4, 1.0);
+        p.speed = rand(0.3, 1);
       }
     });
   };
@@ -623,36 +605,15 @@
         }
       });
     } else if (sceneName === 'photo') {
-      var BLADES = 7;
-      var rot = t * 0.00006;
-      var breatheP = 1 + 0.13 * Math.sin(t * 0.0005);
-      var R = photo.r * breatheP;
-      if (!photo.moving && t > photo.fT0) {
-        photo.moving = true; photo.mT0 = t;
-        photo.fi = photo.fj;
-        var nj = Math.floor(rand(0, photo.focusPts.length));
-        if (nj === photo.fi) nj = (nj + 1) % photo.focusPts.length;
-        photo.fj = nj;
-      }
-      if (photo.moving && t - photo.mT0 > 700) {
-        photo.moving = false; photo.fT0 = t + rand(2200, 3800);
-      }
       P.forEach(function (p) {
-        if (p.mode === 'iris') {
-          var a0 = rot + p.blade * Math.PI * 2 / BLADES;
-          var a1 = rot + (p.blade + 1.55) * Math.PI * 2 / BLADES;
-          var e0x = photo.cx + Math.cos(a0) * R, e0y = photo.cy + Math.sin(a0) * R;
-          var e1x = photo.cx + Math.cos(a1) * R, e1y = photo.cy + Math.sin(a1) * R;
-          p.tx = e0x + (e1x - e0x) * p.u;
-          p.ty = e0y + (e1y - e0y) * p.u;
-          p.alpha = p.baseAlpha * (0.7 + 0.3 * Math.sin(t * 0.0015 + p.phase));
-        } else if (p.mode === 'bokeh') {
-          p.tx = p.hx + Math.sin(t * 0.00013 * p.speed + p.phase) * 16;
-          p.ty = p.hy + Math.cos(t * 0.0001 * p.speed + p.phase * 1.6) * 12;
+        if (p.mode === 'bokeh') {
+          p.tx = p.hx + Math.sin(t * 0.00013 * p.speed + p.phase) * 18;
+          p.ty = p.hy + Math.cos(t * 0.0001 * p.speed + p.phase * 1.6) * 13;
           p.alpha = p.baseAlpha * (0.7 + 0.3 * Math.sin(t * 0.0006 + p.phase));
         } else {
-          p.tx = p.hx; p.ty = p.hy;
-          p.alpha = p.baseAlpha;
+          p.tx = p.hx + Math.sin(t * 0.0004 * p.speed + p.phase) * 2.2;
+          p.ty = p.hy + Math.cos(t * 0.0003 * p.speed + p.phase) * 1.8;
+          p.alpha = p.baseAlpha * (0.65 + 0.35 * Math.sin(t * 0.001 + p.phase));
         }
       });
     } else if (sceneName === 'tbanan') {
@@ -792,50 +753,6 @@
       ctx.fillStyle = g3;
       var R3 = flameC.r * 3.4;
       ctx.fillRect(flameC.x - R3, flameC.y - R3, R3 * 2, R3 * 2);
-    }
-    if (sceneName === 'photo' && sceneFade > 0.05 && photo) {
-      var L = 20;
-      ctx.strokeStyle = 'rgba(200,200,215,' + (0.16 * sceneFade) + ')';
-      ctx.lineWidth = 1.2;
-      [[photo.x0, photo.y0, 1, 1], [photo.x1, photo.y0, -1, 1],
-       [photo.x0, photo.y1, 1, -1], [photo.x1, photo.y1, -1, -1]].forEach(function (c) {
-        ctx.beginPath();
-        ctx.moveTo(c[0] + c[2] * L, c[1]); ctx.lineTo(c[0], c[1]); ctx.lineTo(c[0], c[1] + c[3] * L);
-        ctx.stroke();
-      });
-      ctx.strokeStyle = 'rgba(200,200,215,' + (0.035 * sceneFade) + ')';
-      ctx.lineWidth = 0.5;
-      var fw = photo.x1 - photo.x0, fh = photo.y1 - photo.y0;
-      [1, 2].forEach(function (i) {
-        ctx.beginPath();
-        ctx.moveTo(photo.x0 + fw * i / 3, photo.y0); ctx.lineTo(photo.x0 + fw * i / 3, photo.y1);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(photo.x0, photo.y0 + fh * i / 3); ctx.lineTo(photo.x1, photo.y0 + fh * i / 3);
-        ctx.stroke();
-      });
-      var a4 = photo.focusPts[photo.fi], b4 = photo.focusPts[photo.fj];
-      var fx = b4[0], fy = b4[1], pulse4 = 1, lockAl = 0.4;
-      if (photo.moving) {
-        var mt = easeInOut(Math.min(1, (t - photo.mT0) / 700));
-        fx = a4[0] + (b4[0] - a4[0]) * mt;
-        fy = a4[1] + (b4[1] - a4[1]) * mt;
-        lockAl = 0.22;
-      } else {
-        var since = t - (photo.mT0 + 700);
-        pulse4 = 1 + 0.35 * Math.max(0, 1 - since / 320);
-      }
-      var s4 = 11 * pulse4;
-      ctx.strokeStyle = 'rgba(255,77,28,' + (lockAl * sceneFade) + ')';
-      ctx.lineWidth = 1.2;
-      ctx.beginPath();
-      ctx.roundRect(fx - s4, fy - s4, s4 * 2, s4 * 2, 2);
-      ctx.stroke();
-      var g4 = ctx.createRadialGradient(fx, fy, 0, fx, fy, 34);
-      g4.addColorStop(0, 'rgba(255,77,28,' + (0.10 * sceneFade) + ')');
-      g4.addColorStop(1, 'rgba(255,77,28,0)');
-      ctx.fillStyle = g4;
-      ctx.fillRect(fx - 34, fy - 34, 68, 68);
     }
     if (sceneName === 'tbanan' && sceneFade > 0.05 && tGlyph) {
       ctx.strokeStyle = 'rgba(255,77,28,' + (0.22 * sceneFade) + ')';

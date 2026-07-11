@@ -566,6 +566,183 @@ section[data-intro] .mk-shell,
   .mk-panel { padding: var(--space-6); }
 }
 
+/* --- Photo gallery walls (/photo/) --------------------------------
+   Frames are built from four layers: moulding (the button), ember
+   fillet, warm white passepartout, and a bevel-cut opening. Rows use
+   flex-basis = the fixed frame chrome and flex-grow = the image
+   aspect ratio, which makes every image in a row the same height. */
+/* The photo page sells the photographs: shorten the opener so the
+   first framed prints rise above the fold and invite the scroll. */
+#foto .mk-chapter__opener { min-height: 58vh; min-height: 58svh; }
+
+.mk-gallery { margin-top: var(--space-16); }
+.mk-gallery + .mk-gallery { margin-top: var(--space-24); }
+.mk-gallery__intro { max-width: 640px; }
+.mk-gallery__intro .mk-h2 { margin-bottom: var(--space-4); }
+.mk-gallery__lead {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.mk-wall {
+  --moulding: 12px;
+  --fillet: 2px;
+  --mat: 26px;
+  --chrome: calc(2 * (var(--moulding) + var(--fillet) + var(--mat) + 1px));
+  max-width: 1120px;
+  margin: var(--space-12) auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+.mk-wall__row {
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+  justify-content: center;
+}
+.mk-wall__row--pair { max-width: 62%; margin-inline: auto; }
+
+.mk-frame {
+  margin: 0;
+  min-width: 0;
+  flex-grow: var(--ar, 1);
+  flex-shrink: 0;
+  flex-basis: var(--chrome);
+}
+.mk-frame__btn {
+  display: block;
+  width: 100%;
+  padding: var(--moulding);
+  border: 0;
+  cursor: zoom-in;
+  background: linear-gradient(135deg, #3a3a40 0%, #17171a 30%, #232327 55%, #0d0d0f 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+  border-right: 1px solid rgba(0, 0, 0, 0.8);
+  box-shadow:
+    0 18px 40px -12px rgba(0, 0, 0, 0.85),
+    0 6px 14px rgba(0, 0, 0, 0.5);
+  transition:
+    transform var(--dur-slow) var(--ease-out),
+    box-shadow var(--dur-slow) var(--ease-out);
+}
+.mk-frame__btn:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 26px 52px -14px rgba(0, 0, 0, 0.9),
+    0 8px 18px rgba(0, 0, 0, 0.55),
+    0 0 24px -6px rgba(255, 77, 28, 0.25);
+}
+.mk-frame__fillet {
+  display: block;
+  padding: var(--fillet);
+  background: linear-gradient(135deg, #ff8a66 0%, #ff4d1c 35%, #c22f08 100%);
+}
+.mk-frame__mat {
+  display: block;
+  padding: var(--mat);
+  background: linear-gradient(160deg, #faf8f4 0%, #f1eee7 100%);
+}
+.mk-frame__opening {
+  display: block;
+  padding: 1px;
+  background: #d8d4cb;
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.35),
+    inset 0 0 1px rgba(0, 0, 0, 0.4);
+}
+.mk-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Lightbox */
+.mk-lightbox {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: none;
+  max-height: none;
+  overflow: visible;
+}
+.mk-lightbox::backdrop {
+  background: rgba(4, 4, 5, 0.88);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.mk-lightbox .mk-frame--lightbox {
+  --moulding: 14px;
+  --fillet: 2px;
+  --mat: clamp(16px, 3vw, 34px);
+  flex: none;
+}
+.mk-lightbox .mk-frame--lightbox > .mk-frame__fillet {
+  padding: var(--fillet);
+  background: linear-gradient(135deg, #ff8a66 0%, #ff4d1c 35%, #c22f08 100%);
+}
+.mk-lightbox .mk-frame--lightbox {
+  margin: 0;
+  padding: var(--moulding);
+  background: linear-gradient(135deg, #3a3a40 0%, #17171a 30%, #232327 55%, #0d0d0f 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+  border-right: 1px solid rgba(0, 0, 0, 0.8);
+  box-shadow: 0 30px 70px -18px rgba(0, 0, 0, 0.95);
+}
+.mk-lightbox img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - 2 * (var(--moulding) + var(--fillet) + var(--mat)) - 48px);
+  max-height: calc(100vh - 2 * (var(--moulding) + var(--fillet) + var(--mat)) - 64px);
+}
+.mk-lightbox__close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-pill);
+  background: rgba(10, 10, 11, 0.7);
+  color: var(--text-primary);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: var(--transition-control);
+}
+.mk-lightbox__close:hover { border-color: var(--border-strong); background: var(--surface-hover); }
+.mk-lightbox[open] { animation: mk-lightbox-in 0.35s var(--ease-out); }
+@keyframes mk-lightbox-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+body.mk-lightbox-open { overflow: hidden; }
+
+@media (max-width: 960px) {
+  .mk-wall { --moulding: 9px; --mat: 16px; }
+  .mk-wall__row { gap: var(--space-4); }
+  .mk-wall { gap: var(--space-6); }
+}
+@media (max-width: 720px) {
+  .mk-wall { --moulding: 10px; --mat: 20px; max-width: 480px; }
+  .mk-wall__row { flex-direction: column; gap: var(--space-8); align-items: stretch; }
+  .mk-wall__row--pair { max-width: none; margin-inline: 0; }
+  .mk-frame { flex-basis: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mk-frame__btn,
+  .mk-frame__btn:hover { transform: none; transition: none; }
+  .mk-lightbox[open] { animation: none; }
+}
+
 /* --- Reveal animation -------------------------------------------- */
 .reveal {
   opacity: 0;
