@@ -27,6 +27,7 @@ exclude:
   - tmp
   - design-system
   - docs
+  - moody-photos
   - vendor
   - Gemfile
   - Gemfile.lock

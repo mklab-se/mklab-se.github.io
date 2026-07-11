@@ -39,12 +39,12 @@ Playwright (via MCP) for local verification.
   as `body`'s first child; `<script src="/assets/js/canvas.js" defer>` in head area;
   chapters opt in via `data-scene` attributes read by the engine.
 
-- [ ] Step 1: Add `moody-photos` to the `exclude:` list in `_config.yml`.
-- [ ] Step 2: In `_layouts/default.html`, insert the canvas right after `<body ...>`
+- [x] Step 1: Add `moody-photos` to the `exclude:` list in `_config.yml`.
+- [x] Step 2: In `_layouts/default.html`, insert the canvas right after `<body ...>`
   and add `<script src="{{ '/assets/js/canvas.js' | relative_url }}" defer></script>`
   before `</head>` equivalent position (after site.css link).
-- [ ] Step 3: `bundle exec jekyll build` passes.
-- [ ] Step 4: Commit `chore: canvas mount and moody-photos exclude`.
+- [x] Step 3: `bundle exec jekyll build` passes.
+- [x] Step 4: Commit `chore: canvas mount and moody-photos exclude`.
 
 ### Task 2: The engine (`assets/js/canvas.js`)
 
@@ -61,21 +61,21 @@ Playwright (via MCP) for local verification.
 
 Port from `docs/prototypes/living-canvas-v6.html` with these production changes:
 
-- [ ] Step 1: Scene registry keyed by string name; scroll driver: observer on each
+- [x] Step 1: Scene registry keyed by string name; scroll driver: observer on each
   `[data-scene]` section (rootMargin so the switch lands as the opener dominates the
   viewport); nearest-section-to-center wins on load.
-- [ ] Step 2: Logo intro: only on pages whose first scene is `constellation`; runs
+- [x] Step 2: Logo intro: only on pages whose first scene is `constellation`; runs
   once per session (`sessionStorage`), skipped by wheel/touch/key/click or
   reduced-motion; page content visible underneath from first paint.
-- [ ] Step 3: T-banan scene: particles form a bold sans "T" (offscreen-canvas text
+- [x] Step 3: T-banan scene: particles form a bold sans "T" (offscreen-canvas text
   sampling, same technique as the logo PNG sampling).
-- [ ] Step 4: Performance: particle budget 520 desktop / 260 when
+- [x] Step 4: Performance: particle budget 520 desktop / 260 when
   `matchMedia('(max-width: 720px)')`; dpr capped at 2; `visibilitychange` pause;
   full-canvas periodic clear to prevent ghost streak accumulation; rAF stops when
   reduced motion (draw one static composed frame instead).
-- [ ] Step 5: `window.mkCanvas.setWaypoint(i)` drives the route scene's active
+- [x] Step 5: `window.mkCanvas.setWaypoint(i)` drives the route scene's active
   waypoint; case cards register via `data-waypoint` observer (in this module).
-- [ ] Step 6: Commit `feat: living canvas engine`.
+- [x] Step 6: Commit `feat: living canvas engine`.
 
 ### Task 3: Chapter CSS
 
@@ -89,13 +89,13 @@ Port from `docs/prototypes/living-canvas-v6.html` with these production changes:
   `.mk-case--active` state, transparent-surface variants so the canvas shows through
   (`.mk-section--band` replaced by translucent panel `.mk-panel`).
 
-- [ ] Step 1: Add canvas + chapter layout styles; ensure `body { background: var(--surface-base) }`
+- [x] Step 1: Add canvas + chapter layout styles; ensure `body { background: var(--surface-base) }`
   stays as fallback while sections stop painting opaque full-bleed backgrounds.
-- [ ] Step 2: Cards over canvas: keep `--surface-card` opaque (readability) but allow
+- [x] Step 2: Cards over canvas: keep `--surface-card` opaque (readability) but allow
   `backdrop-filter` variant for large statement blocks.
-- [ ] Step 3: Responsive: chapters stack cleanly at 390px wide; opener type scales via
+- [x] Step 3: Responsive: chapters stack cleanly at 390px wide; opener type scales via
   existing clamps; grids collapse (reuse existing 960px breakpoint).
-- [ ] Step 4: Production build passes. Commit `feat: chapter layout styles`.
+- [x] Step 4: Production build passes. Commit `feat: chapter layout styles`.
 
 ### Task 4: Swedish homepage rebuild (`index.html`)
 
@@ -109,20 +109,20 @@ Copy: evolve current site copy per spec section 5; program chapter states agilit
 explicitly; stats line in Ankomst; principles inside Om; cases as `data-waypoint`
 cards; footnote preserved.
 
-- [ ] Step 1: Write the full page.
-- [ ] Step 2: Build + local render check (desktop viewport, all chapters, scenes
+- [x] Step 1: Write the full page.
+- [x] Step 2: Build + local render check (desktop viewport, all chapters, scenes
   switch on scroll).
-- [ ] Step 3: Commit `feat: Swedish homepage on the living canvas`.
+- [x] Step 3: Commit `feat: Swedish homepage on the living canvas`.
 
 ### Task 5: English homepage rebuild (`en/index.html`)
 
 **Files:**
 - Modify: `en/index.html`
 
-- [ ] Step 1: Mirror Task 4 in English (translate evolved copy, keep front matter
+- [x] Step 1: Mirror Task 4 in English (translate evolved copy, keep front matter
   permalink `/en/`, `alt_lang_path: /`).
-- [ ] Step 2: Build + render check; language switcher round-trips.
-- [ ] Step 3: Commit `feat: English homepage on the living canvas`.
+- [x] Step 2: Build + render check; language switcher round-trips.
+- [x] Step 3: Commit `feat: English homepage on the living canvas`.
 
 ### Task 6: Navigation and footer
 
@@ -131,12 +131,12 @@ cards; footnote preserved.
   and t-banan)
 - Modify: `_includes/site-footer.html` (extra column links)
 
-- [ ] Step 1: Update sv/en nav lists: AI `#ai`, Moln/Cloud `#moln|#cloud`... use the
+- [x] Step 1: Update sv/en nav lists: AI `#ai`, Moln/Cloud `#moln|#cloud`... use the
   same ids in both languages (`#ai`, `#moln`, `#program`, `#uppdrag`, `#foredrag`,
   `#om`, `#kontakt`) and translated labels; English page uses same ids for parity.
-- [ ] Step 2: Footer gains quiet links: MKLab Foto (`/photo/`) and T-banan
+- [x] Step 2: Footer gains quiet links: MKLab Foto (`/photo/`) and T-banan
   (`/apps/t-banan/se/` resp `/apps/t-banan/en/` by lang).
-- [ ] Step 3: Build passes; header/footer links resolve on both languages. Commit
+- [x] Step 3: Build passes; header/footer links resolve on both languages. Commit
   `feat: navigation for chapter structure`.
 
 ### Task 7: /photo landing page
@@ -144,12 +144,12 @@ cards; footnote preserved.
 **Files:**
 - Create: `_pages/photo.html` (permalink `/photo/`, `data-scene="photo"`, Swedish)
 
-- [ ] Step 1: Page: Foto scene opener ("Hantverk, även bakom kameran."), two short
+- [x] Step 1: Page: Foto scene opener ("Hantverk, även bakom kameran."), two short
   paragraphs (photography as separate MKLab offering, craft promise), assignment list
   (företagsporträtt, profilbilder, marknadsföringsbilder, arkitektur, interiör,
   familjeporträtt, bröllop utan specialisering), contact block (email). Footer-only
   discovery; `robots` normal.
-- [ ] Step 2: Build + render check. Commit `feat: photo landing page`.
+- [x] Step 2: Build + render check. Commit `feat: photo landing page`.
 
 ### Task 8: t-banan pages and 404 on the engine
 
@@ -158,27 +158,27 @@ cards; footnote preserved.
   `data-scene="tbanan"` opener, scrub en/em dashes, keep permalinks and content)
 - Modify: `_pages/404.md` (constellation backdrop)
 
-- [ ] Step 1: Wrap existing content in chapter structure with T scene opener; scrub
+- [x] Step 1: Wrap existing content in chapter structure with T scene opener; scrub
   dashes; URLs unchanged.
-- [ ] Step 2: 404 gets `data-scene="constellation"` and existing copy.
-- [ ] Step 3: Build; `_site/apps/t-banan/se/index.html` and `.../en/index.html` exist.
+- [x] Step 2: 404 gets `data-scene="constellation"` and existing copy.
+- [x] Step 3: Build; `_site/apps/t-banan/se/index.html` and `.../en/index.html` exist.
   Commit `feat: t-banan and 404 on the living canvas`.
 
 ### Task 9: Full local verification
 
-- [ ] Step 1: `JEKYLL_ENV=production bundle exec jekyll build` and
+- [x] Step 1: `JEKYLL_ENV=production bundle exec jekyll build` and
   `bundle exec jekyll doctor` clean.
-- [ ] Step 2: Serve `_site` locally; Playwright: desktop 1440x900 and mobile 390x844.
+- [x] Step 2: Serve `_site` locally; Playwright: desktop 1440x900 and mobile 390x844.
   For each of `/`, `/en/`, `/photo/`, `/apps/t-banan/se/`, `/apps/t-banan/en/`, 404:
   zero console errors, screenshots reviewed for polish, scenes switch while
   scrolling, intro plays once then not again (sessionStorage), reduced-motion
   emulation shows static frame, JS-disabled load shows all content.
-- [ ] Step 3: Fix everything found; iterate until clean. Commit fixes.
+- [x] Step 3: Fix everything found; iterate until clean. Commit fixes.
 
 ### Task 10: Publish and verify live
 
-- [ ] Step 1: Push `main` to origin (Kristofer granted publish permission
+- [x] Step 1: Push `main` to origin (Kristofer granted publish permission
   2026-07-11).
-- [ ] Step 2: Poll https://mklab.se until the new deploy is live; spot-check `/`,
+- [x] Step 2: Poll https://mklab.se until the new deploy is live; spot-check `/`,
   `/en/`, `/photo/`, t-banan URLs over HTTPS.
-- [ ] Step 3: Update memory (site shipped; brand skill sync note) and report.
+- [x] Step 3: Update memory (site shipped; brand skill sync note) and report.

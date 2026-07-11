@@ -27,11 +27,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
+  <script src="{{ '/assets/js/canvas.js' | relative_url }}" defer></script>
   <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
   {% include head/custom.html %}
   {% if page.head_extra %}{{ page.head_extra }}{% endif %}
 </head>
 <body class="{{ page.body_class | default: '' }}">
+  <canvas id="mk-canvas" class="mk-canvas" aria-hidden="true"
+    data-logo-src="{{ '/assets/images/logos/MKLab-0512-white.png' | relative_url }}"></canvas>
   {% assign t = site.data.i18n[lang] %}
   <a class="mk-skip" href="#main">{{ t.skip_link }}</a>
   {% unless page.hide_header %}
