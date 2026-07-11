@@ -452,8 +452,8 @@
   function targets(t, dt) {
     if (logoPhase === 'assemble' || logoPhase === 'hold') {
       var el = t - logoT0;
-      if (logoPhase === 'assemble' && el > 1500) logoPhase = 'hold';
-      if (logoPhase === 'hold' && el > 3300) {
+      if (logoPhase === 'assemble' && el > 1400) logoPhase = 'hold';
+      if (logoPhase === 'hold' && el > 2200) {
         logoPhase = 'off';
         document.body.classList.remove('mk-intro-running');
         layoutScene(sceneName);
