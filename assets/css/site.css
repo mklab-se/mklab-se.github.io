@@ -585,6 +585,15 @@ section[data-intro] .mk-shell,
   line-height: var(--leading-relaxed);
   margin: 0;
 }
+.mk-gallery__project { max-width: 640px; margin-top: var(--space-12); }
+.mk-gallery__project-title {
+  font-family: var(--font-display);
+  font-weight: var(--weight-regular);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-3);
+}
 
 .mk-wall {
   --moulding: 12px;
