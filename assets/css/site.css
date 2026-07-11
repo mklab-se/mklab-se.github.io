@@ -474,6 +474,14 @@ a:hover { color: var(--ember-300); }
   background: var(--surface-base);
 }
 
+/* While the logo intro plays, the room is dark and only the mark lives */
+section[data-intro] .mk-shell,
+.mk-nav {
+  transition: opacity 0.9s var(--ease-out);
+}
+.mk-intro-running section[data-intro] .mk-shell,
+.mk-intro-running .mk-nav { opacity: 0; }
+
 /* --- Chapters ------------------------------------------------------ */
 .mk-chapter { position: relative; scroll-margin-top: 72px; }
 .mk-chapter__opener {

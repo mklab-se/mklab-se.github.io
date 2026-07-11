@@ -110,6 +110,7 @@
   function startIntro() {
     if (!logoPts || reducedMotion) return;
     try { sessionStorage.setItem('mk-intro', '1'); } catch (e) { /* private mode */ }
+    document.body.classList.add('mk-intro-running');
     logoPhase = 'assemble'; logoT0 = performance.now();
     var box = Math.min(W, H) * (isMobile ? 0.62 : 0.5);
     var ox = W / 2 - box / 2;
@@ -123,6 +124,7 @@
     });
   }
   function endIntro() {
+    document.body.classList.remove('mk-intro-running');
     if (logoPhase === 'assemble' || logoPhase === 'hold') {
       logoPhase = 'off';
       layoutScene(sceneName);
@@ -341,8 +343,8 @@
 
   layouts.contact = function () {
     flameC = {
-      x: W * (isMobile ? 0.5 : 0.70),
-      y: H * (isMobile ? 0.30 : 0.5),
+      x: W * (isMobile ? 0.5 : 0.84),
+      y: H * (isMobile ? 0.82 : 0.56),
       r: Math.min(W, H) * 0.085
     };
     P.forEach(function (p) {
@@ -453,6 +455,7 @@
       if (logoPhase === 'assemble' && el > 1500) logoPhase = 'hold';
       if (logoPhase === 'hold' && el > 3300) {
         logoPhase = 'off';
+        document.body.classList.remove('mk-intro-running');
         layoutScene(sceneName);
       } else {
         P.forEach(function (p) {
