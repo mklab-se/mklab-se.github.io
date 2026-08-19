@@ -1,0 +1,115 @@
+---
+layout: talk
+title: Agentic RAG
+description: >-
+  The story of Norm, a chat bot who learns to look things up. An MKLab tech talk
+  on retrieval augmented generation, told in ten particle-animated slides.
+permalink: /talks/agentic-rag/
+lang: en
+canvas: /assets/js/talks/agentic-rag.js
+---
+    <section class="slide slide--center" data-scene="title" data-intro>
+      <div class="slide__copy">
+        <p class="eyebrow">MKLab · tech talk</p>
+        <h1>Agentic RAG</h1>
+        <p class="lead title-sub">The story of Norm, a chat bot who learns to look things up.</p>
+      </div>
+      <p class="deck-hint">Space to begin</p>
+    </section>
+
+    <section class="slide" data-scene="born">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">I</span> · Born knowing nothing</p>
+        <h2>Meet Norm.</h2>
+        <p class="lead">Norm is a newborn chat bot. On his own he cannot say a
+        word, so we give him a brain to talk to: <strong>a large language
+        model</strong>. Every question travels to the LLM, every answer
+        travels back.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="memory">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">II</span> · Memory</p>
+        <h2>Norm forgets.</h2>
+        <p class="lead">The LLM has no memory between calls. Every question
+        arrives alone, as if the conversation never happened. So we add a
+        layer in between: <strong>an API with session memory</strong> that
+        stores the conversation and replays the whole session to the LLM,
+        every single time.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="limits">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">III</span> · The wall</p>
+        <h2>Norm only knows the public internet.</h2>
+        <p class="lead">Your company's knowledge was never in the training
+        data. And you cannot send <strong>petabytes</strong> along with every
+        question. Something has to pick the right few pages, at the right
+        moment.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="embed">
+      <div class="slide__copy">
+        <p class="eyebrow">Interlude · Embeddings</p>
+        <h2>Meaning becomes geometry.</h2>
+        <p class="lead">Ahead of time, every document is split into chunks,
+        and an embedding model turns each chunk into a vector:
+        <em>a direction in meaning space</em>. Not the exact words, but what
+        the chunk is about. Similar meaning, similar direction.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="search">
+      <div class="slide__copy">
+        <p class="eyebrow">Interlude · Vector search</p>
+        <h2>The same trick, backwards.</h2>
+        <p class="lead">The question becomes a vector too, through the same
+        model. Finding relevant knowledge is now geometry: <strong>find the
+        vectors pointing the same way</strong> in a forest of meaning.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="augment">
+      <div class="slide__copy">
+        <p class="eyebrow">Interlude · Augmentation</p>
+        <h2>A better prompt.</h2>
+        <p class="lead">The best matching chunks are stitched into the prompt
+        as context. The LLM now answers with knowledge it was never trained
+        on. That is <strong>retrieval augmented generation</strong>.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="agentic">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">IV</span> · Agency</p>
+        <h2>Norm learns to look things up.</h2>
+        <p class="lead">The vector database becomes <strong>a tool</strong>.
+        The model decides when to search, what to search for, and whether one
+        search was enough. That decision loop is what makes it
+        <em>agentic</em>.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="full">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">V</span> · The whole picture</p>
+        <h2>Agentic RAG, end to end.</h2>
+        <p class="lead">Question in. Memory recalled, a decision made,
+        knowledge retrieved, and the answer <strong>streamed back token by
+        token</strong>. Every piece is something we added. Nothing here is
+        magic.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--center" data-scene="outro">
+      <div class="slide__copy">
+        <p class="eyebrow">MKLab · EST. MMXXV</p>
+        <h2>That was the whole story.</h2>
+        <p class="lead">This is the end of the presentation. Thank you for
+        watching. More tech talks are on the way.</p>
+        <p class="deck-actions"><a class="deck-link" href="{{ '/talks/' | relative_url }}">All tech talks</a></p>
+      </div>
+    </section>

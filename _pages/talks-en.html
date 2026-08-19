@@ -1,0 +1,67 @@
+---
+layout: default
+title: Tech Talks
+description: >-
+  Tech talks from MKLab on AI, cloud and architecture, published as
+  interactive presentations built on the site's living particle canvas.
+permalink: /en/talks/
+lang: en
+alt_lang_path: /talks/
+---
+<main id="main">
+
+  <section class="mk-chapter" id="talks" data-scene="speak">
+    <div class="mk-shell">
+      <div class="mk-chapter__opener">
+        <div class="reveal">
+          <span class="mk-eyebrow">MKLab · Tech Talks</span>
+          <h1 class="mk-chapter__title">Talks you can<br />experience yourself.</h1>
+          <p class="mk-chapter__lead">MKLab gives tech talks on AI, cloud and
+          architecture. Here we publish them as interactive presentations, built on
+          the same living particle canvas as the rest of this site. Move through them
+          at your own pace, by keyboard or scroll.</p>
+        </div>
+      </div>
+      <div class="mk-chapter__body">
+
+        <div class="mk-talks">
+          {% for talk in site.data.talks %}
+          <a class="mk-card mk-card--interactive mk-talk-card reveal" href="{{ talk.url | relative_url }}">
+            <span class="mk-meta">{{ talk.eyebrow.en }}</span>
+            <h3>{{ talk.title.en }}</h3>
+            <p>{{ talk.blurb.en }}</p>
+            <span class="mk-talk-card__cta">{{ talk.cta.en }} &rarr;</span>
+          </a>
+          {% endfor %}
+          <div class="mk-card mk-talk-card mk-talk-card--soon reveal">
+            <span class="mk-meta">More talks are on the way</span>
+          </div>
+        </div>
+
+        <div class="mk-split" style="margin-top: var(--space-24);">
+          <article class="mk-card reveal">
+            <h2>Want to go deeper?</h2>
+            <p>Every tech talk here is the short version of something we are happy
+            to tell you more about. We run in-depth sessions with you: the same
+            topics, adapted to your business, your systems and your questions.</p>
+            <ul class="mk-list">
+              <li>Talks for the whole organisation</li>
+              <li>Workshops with your teams</li>
+              <li>Deep dives with leadership and architects</li>
+            </ul>
+          </article>
+          <aside class="mk-card reveal">
+            <h2>Book a session</h2>
+            <p>Tell us which topic is on your table, and we will come back with a
+            plan and a price.</p>
+            <div class="mk-hero__actions" style="margin-top: var(--space-6);">
+              <a class="mk-btn mk-btn--primary" href="mailto:{{ site.email }}?subject=Tech%20talk">{{ site.email }}</a>
+            </div>
+          </aside>
+        </div>
+        <p class="mk-footnote reveal" style="margin-top: var(--space-8);"><a href="{{ '/en/' | relative_url }}">To the MKLab home page</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>

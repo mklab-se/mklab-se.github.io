@@ -1,0 +1,26 @@
+# One entry per tech talk. Rendered on /talks/ (sv) and /en/talks/ (en).
+# The deck itself lives in _pages/talks/<slug>.html with its particle
+# scenes in /assets/js/talks/<slug>.js.
+- slug: agentic-rag
+  url: /talks/agentic-rag/
+  date: 2026-08-19
+  deck_lang: en
+  slides: 10
+  eyebrow:
+    sv: "Augusti 2026 · på engelska · 10 bilder"
+    en: "August 2026 · in English · 10 slides"
+  title:
+    sv: "Agentic RAG"
+    en: "Agentic RAG"
+  blurb:
+    sv: >-
+      Historien om Norm, en chattbot som lär sig slå upp saker. Från nyfödd
+      till agent: minne, embeddings, vektorsökning och verktyg, berättat i
+      tio partikelanimerade bilder.
+    en: >-
+      The story of Norm, a chat bot who learns to look things up. From
+      newborn to agent: memory, embeddings, vector search and tools, told
+      in ten particle-animated slides.
+  cta:
+    sv: "Se föredraget"
+    en: "Watch the talk"
