@@ -63,9 +63,9 @@ canvas: /assets/js/talks/mcp.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">IV</span> · The orchestration loop</p>
         <h2>What actually happens.</h2>
-        <p class="lead">The harness starts, discovers its MCP servers, and loads
-        every tool catalog into the context, needed or not: a real
-        difference from skills. Your prompt goes to the LLM together with
+        <p class="lead">The harness starts, discovers its MCP servers, and, in
+        most harnesses today, loads every tool catalog into the context,
+        needed or not: a real difference from skills. Your prompt goes to the LLM together with
         that catalog. The model picks a tool, and <strong>the harness makes
         the call</strong>: no MCP server ever talks to the model directly. The
         result goes back into the context, the loop repeats, and the answer
@@ -105,7 +105,8 @@ canvas: /assets/js/talks/mcp.js
         <p class="lead">A skill with local scripts produces the same
         orchestration: the model decides, code runs, results come back.
         The skill loads progressively and costs almost nothing until used.
-        A local MCP server preloads every tool schema and adds a moving part.
+        A local MCP server typically preloads every tool schema and adds a
+        moving part.
         Our recommendation: building a local MCP server yourself rarely
         buys what a skill with scripts already gives you. <em>MCP shines
         when the MCP server is provided for you.</em></p>
@@ -128,12 +129,13 @@ canvas: /assets/js/talks/mcp.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">IX</span> · Where this is heading</p>
         <h2>Remote, hosted, ordinary.</h2>
-        <p class="lead">The direction of travel is hosted: an official
-        MCP server registry, authentication built in, MCP servers becoming
-        products you subscribe to rather than scripts you maintain. There
-        is even an extension for serving <strong>skills over MCP</strong>.
-        The specification lives at <em>modelcontextprotocol.io</em>. Watch
-        it, it moves.</p>
+        <p class="lead">The direction of travel is hosted and leaner: an
+        official MCP server registry, authentication built in, and clients
+        learning <em>progressive discovery</em> and code execution so tool
+        catalogs stop crowding the context. An extension for serving
+        <strong>skills over MCP</strong> is on its way through
+        standardization. The specification lives at
+        <em>modelcontextprotocol.io</em>. Watch it, it moves.</p>
       </div>
     </section>
 
