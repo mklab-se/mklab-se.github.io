@@ -501,8 +501,8 @@
         { x: harn.x, y: harn.y + harn.h * 0.85 + 14, text: 'HARNESS' },
         { x: harn.x, y: harn.y + harn.h * 0.85 + 32, text: 'CATALOGS LOAD AT STARTUP' },
         { x: llm.x, y: llm.y + llm.r * 1.5, text: 'LLM' },
-        { x: srvA.x, y: srvA.y + srvA.h * 0.95 + 6, text: 'TICKETS · SERVER' },
-        { x: srvB.x, y: srvB.y + srvB.h * 0.95 + 6, text: 'DATABASE · SERVER' }
+        { x: srvA.x, y: srvA.y + srvA.h * 0.95 + 6, text: 'TICKETS · MCP SERVER' },
+        { x: srvB.x, y: srvB.y + srvB.h * 0.95 + 6, text: 'DATABASE · MCP SERVER' }
       ]
     };
     P.forEach(function (p, i) {
@@ -566,7 +566,7 @@
       labels: [
         { x: (box.x0 + box.x1) / 2, y: box.y1 + 22, text: 'YOUR MACHINE · NOTHING IS HOSTED' },
         { x: harn.x, y: harn.y - harn.h * 0.62 - 10, text: 'HARNESS' },
-        { x: proc.x, y: proc.y + proc.h * 0.62 + 18, text: 'SERVER · A PROCESS' }
+        { x: proc.x, y: proc.y + proc.h * 0.62 + 18, text: 'MCP SERVER · A PROCESS' }
       ]
     };
     P.forEach(function (p, i) {
@@ -621,7 +621,7 @@
         { x: (mine.x0 + mine.x1) / 2, y: mine.y1 + 20, text: 'YOUR MACHINE' },
         { x: (host.x0 + host.x1) / 2, y: host.y1 + 20, text: 'HOSTED · SOMEONE OPERATES IT' },
         { x: harn.x, y: harn.y + harn.h * 0.85 + 8, text: 'HARNESS' },
-        { x: srv.x, y: srv.y + srv.h * 0.62 + 18, text: 'SERVER' },
+        { x: srv.x, y: srv.y + srv.h * 0.62 + 18, text: 'MCP SERVER' },
         { x: others[0].x - 30, y: others[0].y + 34, text: 'EVERYONE ELSE' }
       ]
     };
@@ -679,7 +679,7 @@
         { x: W * 0.77, y: H * 0.09, text: 'LOCAL MCP SERVER' },
         { x: L.fold.x, y: L.fold.y + L.fold.h * 0.62 + 16, text: 'SKILL.MD' },
         { x: L.script.x, y: L.script.y + L.script.h * 0.62 + 16, text: 'SCRIPTS' },
-        { x: R.proc.x, y: R.proc.y + R.proc.h * 0.62 + 16, text: 'SERVER PROCESS' },
+        { x: R.proc.x, y: R.proc.y + R.proc.h * 0.62 + 16, text: 'MCP SERVER PROCESS' },
         { x: R.schema.x, y: R.schema.y + R.schema.h * 0.62 + 16, text: 'TOOL SCHEMAS' },
         { x: L.bar.x, y: L.bar.y1 + 20, text: 'LOADS WHEN USED' },
         { x: R.bar.x, y: R.bar.y1 + 20, text: 'PRELOADED' }
@@ -729,34 +729,66 @@
     links = [];
   };
 
-  // -- choosing: two rules, three honest exceptions
+  // -- choosing: a new need travels through three honest questions;
+  // -- most of the time the thought lands on writing a skill
   layouts.choosing = function () {
-    var big = [
-      { x: W * 0.30, y: H * 0.17, w: W * 0.33, h: H * 0.16, text: 'USE MCP', sub: 'WHEN THE SERVER IS PROVIDED FOR YOU', hot: true },
-      { x: W * 0.69, y: H * 0.17, w: W * 0.33, h: H * 0.16, text: 'WRITE A SKILL', sub: 'WHEN YOU WOULD IMPLEMENT IT YOURSELF', hot: false }
+    var you = { x: W * (isMobile ? 0.10 : 0.07), y: H * 0.28 };
+    var gates = isMobile ? [
+      { x: W * 0.34, y: H * 0.12, w: W * 0.34, h: H * 0.085, l1: 'HARNESS CANNOT', l2: 'RUN SCRIPTS?' },
+      { x: W * 0.34, y: H * 0.28, w: W * 0.34, h: H * 0.085, l1: 'TYPED CONTRACT', l2: 'REQUIRED?' },
+      { x: W * 0.34, y: H * 0.44, w: W * 0.34, h: H * 0.085, l1: 'SHARED ACROSS', l2: 'THE ORG?' }
+    ] : [
+      { x: W * 0.245, y: H * 0.28, w: W * 0.145, h: H * 0.105, l1: 'HARNESS CANNOT', l2: 'RUN SCRIPTS?' },
+      { x: W * 0.435, y: H * 0.28, w: W * 0.145, h: H * 0.105, l1: 'TYPED CONTRACT', l2: 'REQUIRED?' },
+      { x: W * 0.625, y: H * 0.28, w: W * 0.145, h: H * 0.105, l1: 'SHARED ACROSS', l2: 'THE ORG?' }
     ];
-    var small = [
-      { x: W * 0.22, y: H * 0.42, w: W * 0.24, h: H * 0.09, text: 'HARNESS CANNOT RUN SCRIPTS' },
-      { x: W * 0.50, y: H * 0.42, w: W * 0.24, h: H * 0.09, text: 'TYPED CONTRACTS REQUIRED' },
-      { x: W * 0.78, y: H * 0.42, w: W * 0.24, h: H * 0.09, text: 'SHARED ACROSS THE ORG' }
-    ];
+    var skill = isMobile
+      ? { x: W * 0.78, y: H * 0.14, w: W * 0.36, h: H * 0.10 }
+      : { x: W * 0.865, y: H * 0.16, w: W * 0.18, h: H * 0.135 };
+    var mcp = isMobile
+      ? { x: W * 0.78, y: H * 0.44, w: W * 0.36, h: H * 0.10 }
+      : { x: W * 0.865, y: H * 0.44, w: W * 0.18, h: H * 0.115 };
     board = {
-      big: big, small: small,
+      you: you, gates: gates, skill: skill, mcp: mcp,
+      passDur: 4200,
+      legPaths: [
+        makePath(you.x + 16, you.y - 4, gates[0].x - gates[0].w * 0.55, gates[0].y, 0.08),
+        makePath(gates[0].x + gates[0].w * 0.55, gates[0].y, gates[1].x - gates[1].w * 0.55, gates[1].y, 0.08),
+        makePath(gates[1].x + gates[1].w * 0.55, gates[1].y, gates[2].x - gates[2].w * 0.55, gates[2].y, 0.08),
+        makePath(gates[2].x + gates[2].w * 0.55, gates[2].y - gates[2].h * 0.2, skill.x - skill.w * 0.4, skill.y + skill.h * 0.3, -0.14)
+      ],
+      div: gates.map(function (g) {
+        return makePath(g.x + g.w * 0.3, g.y + g.h * 0.55, mcp.x - mcp.w * 0.45, mcp.y + mcp.h * 0.1, 0.16);
+      }),
+      counts: { skill: 0, mcp: 0 },
+      lastPass: -1,
       labels: [
-        { x: W * 0.5, y: H * 0.53, text: 'THEN A SERVER EARNS ITS PLACE' }
+        { x: you.x, y: you.y + 48, text: 'YOU · A NEW NEED' }
       ]
     };
-    P.forEach(function (p, i) {
-      if (p.seed < 0.50) {
-        p.mode = 'q';
-        var gi = i % 5;
-        p.qi = gi < 2 ? 0 : (gi < 4 ? 1 : 2 + (i % 3));
-        var cd = p.qi < 2 ? big[p.qi] : small[p.qi - 2];
-        p.hx = cd.x + rand(-cd.w * 0.42, cd.w * 0.42);
-        p.hy = cd.y + rand(-cd.h * 0.34, cd.h * 0.34);
-        p.baseAlpha = p.qi === 0 ? rand(0.35, 0.8) : rand(0.2, 0.5);
-        p.sizeMul = rand(0.3, 0.58); p.fast = false;
-      } else if (p.seed < 0.58) {
+    P.forEach(function (p) {
+      if (p.seed < 0.14) {
+        p.mode = 'th';
+        p.off = rand(0, 0.035);
+        p.baseAlpha = rand(0.5, 1); p.sizeMul = rand(0.32, 0.6); p.fast = true;
+      } else if (p.seed < 0.32) {
+        p.mode = 'gq';
+        p.gi = Math.floor((p.seed - 0.14) / 0.18 * 3) % 3;
+        var g2 = gates[p.gi];
+        p.hx = g2.x + rand(-g2.w * 0.42, g2.w * 0.42);
+        p.hy = g2.y + rand(-g2.h * 0.36, g2.h * 0.36);
+        p.baseAlpha = rand(0.14, 0.4); p.sizeMul = rand(0.28, 0.5); p.fast = false;
+      } else if (p.seed < 0.46) {
+        p.mode = 'sk';
+        p.hx = skill.x + rand(-skill.w * 0.4, skill.w * 0.4);
+        p.hy = skill.y + rand(-skill.h * 0.34, skill.h * 0.34);
+        p.baseAlpha = rand(0.3, 0.7); p.sizeMul = rand(0.32, 0.6); p.fast = false;
+      } else if (p.seed < 0.56) {
+        p.mode = 'mc';
+        p.hx = mcp.x + rand(-mcp.w * 0.4, mcp.w * 0.4);
+        p.hy = mcp.y + rand(-mcp.h * 0.34, mcp.h * 0.34);
+        p.baseAlpha = rand(0.2, 0.5); p.sizeMul = rand(0.3, 0.55); p.fast = false;
+      } else if (p.seed < 0.62) {
         assignBokeh(p);
       } else {
         assignDust(p);
@@ -787,7 +819,7 @@
       cycle: 5200,
       labels: [
         { x: hub.x, y: H * (isMobile ? 0.10 : 0.13), text: 'MODELCONTEXTPROTOCOL.IO' },
-        { x: hub.x, y: hub.y + hub.r * 1.6 + 14, text: 'REGISTRY · PREVIEW' }
+        { x: hub.x, y: hub.y + hub.r * 1.6 + 14, text: 'MCP REGISTRY · PREVIEW' }
       ]
     };
     P.forEach(function (p, i) {
@@ -1215,11 +1247,89 @@
       });
 
     } else if (sceneName === 'choosing') {
+      var bc = board;
+      var totalPass = Math.floor(te / bc.passDur);
+      var pi = totalPass % 3;
+      var yi = pi === 2 ? (Math.floor(totalPass / 3) % 3) : -1;
+      var u = fract(te / bc.passDur);
+      var legWins = [[0.03, 0.14], [0.25, 0.36], [0.47, 0.58], [0.69, 0.82]];
+      var holdWins = [[0.14, 0.25], [0.36, 0.47], [0.58, 0.69]];
+      var lastLeg = yi >= 0 ? yi + 1 : 3;
+      var landStart = legWins[lastLeg][1];
+      board.yi = yi;
+      board.dest = yi >= 0 ? 'mcp' : 'skill';
+      board.thinkU = win(u, 0.0, 0.10);
+      board.landU = win(u, landStart, 0.97);
+      // which gate the thought is being weighed at right now
+      board.holdGate = -1; board.holdU = -1;
+      var maxHold = yi >= 0 ? yi : 2;
+      for (var hk = 0; hk <= maxHold; hk++) {
+        var hu = win(u, holdWins[hk][0], holdWins[hk][1]);
+        if (hu >= 0) { board.holdGate = hk; board.holdU = hu; }
+      }
+      // active leg for rail highlighting
+      board.activeLeg = -1;
+      for (var lk = 0; lk <= lastLeg; lk++) {
+        if (win(u, legWins[lk][0], legWins[lk][1]) >= 0) board.activeLeg = lk;
+      }
+      // tally: one mark per finished pass, capped so the row stays tidy
+      if (totalPass !== bc.lastPass) {
+        if (bc.lastPass >= 0) {
+          if (bc.lastPass % 3 === 2) bc.counts.mcp = Math.min(6, bc.counts.mcp + 1);
+          else bc.counts.skill = Math.min(9, bc.counts.skill + 1);
+        }
+        bc.lastPass = totalPass;
+      }
       P.forEach(function (p) {
-        if (p.mode === 'q') {
-          p.tx = p.hx + Math.sin(t * 0.0006 * p.speed + p.phase) * 2;
-          p.ty = p.hy + Math.cos(t * 0.0005 * p.speed + p.phase) * 1.6;
-          p.alpha = p.baseAlpha * (0.55 + 0.45 * Math.sin(t * 0.001 + p.phase));
+        if (p.mode === 'th') {
+          var placed = false;
+          for (var k = 0; k <= lastLeg && !placed; k++) {
+            var lw = legWins[k];
+            var lu = win(u, lw[0], lw[1]);
+            if (lu >= 0) {
+              var sTh = clamp01(lu + p.off * 6 * (1 - lu));
+              var pthTh = (yi >= 0 && k === yi + 1) ? bc.div[yi] : bc.legPaths[k];
+              var posTh = bezier(pthTh, easeInOut(sTh));
+              p.tx = posTh[0]; p.ty = posTh[1];
+              p.alpha = p.baseAlpha * bell(lu * 0.5 + 0.25);
+              placed = true;
+            } else if (k <= maxHold) {
+              var hw = holdWins[k];
+              var huP = win(u, hw[0], hw[1]);
+              if (huP >= 0) {
+                p.tx = bc.gates[k].x + Math.sin(t * 0.004 + p.phase) * 6;
+                p.ty = bc.gates[k].y - bc.gates[k].h * 0.15 + Math.cos(t * 0.0035 + p.phase) * 4;
+                p.alpha = p.baseAlpha * (0.6 + 0.4 * Math.sin(t * 0.006 + p.phase));
+                placed = true;
+              }
+            }
+          }
+          if (!placed) {
+            if (board.landU >= 0) {
+              var dst = yi >= 0 ? bc.mcp : bc.skill;
+              p.tx = dst.x + Math.sin(p.phase) * dst.w * 0.3;
+              p.ty = dst.y + Math.cos(p.phase * 1.7) * dst.h * 0.28;
+              p.alpha = p.baseAlpha * (1 - board.landU) * 0.9;
+            } else {
+              p.tx = bc.you.x; p.ty = bc.you.y - 14; p.alpha = 0;
+            }
+          }
+        } else if (p.mode === 'gq') {
+          p.tx = p.hx + Math.sin(t * 0.0012 + p.phase) * 0.8;
+          p.ty = p.hy + Math.cos(t * 0.001 + p.phase) * 0.6;
+          var hot = board.holdGate === p.gi ? 0.35 : 0;
+          if (yi === p.gi && u > holdWins[p.gi][1]) hot = 0.3;
+          p.alpha = p.baseAlpha * (0.5 + 0.5 * Math.sin(t * 0.001 + p.phase)) + hot;
+        } else if (p.mode === 'sk') {
+          p.tx = p.hx + Math.sin(t * 0.0009 + p.phase) * 1.2;
+          p.ty = p.hy + Math.cos(t * 0.0008 + p.phase) * 1;
+          var flareS = board.dest === 'skill' && board.landU >= 0 ? bell(board.landU) * 0.5 : 0;
+          p.alpha = p.baseAlpha * (0.6 + 0.4 * Math.sin(t * 0.0011 + p.phase)) + flareS;
+        } else if (p.mode === 'mc') {
+          p.tx = p.hx + Math.sin(t * 0.0009 + p.phase) * 1.2;
+          p.ty = p.hy + Math.cos(t * 0.0008 + p.phase) * 1;
+          var flareM = board.dest === 'mcp' && board.landU >= 0 ? bell(board.landU) * 0.5 : 0;
+          p.alpha = p.baseAlpha * (0.55 + 0.45 * Math.sin(t * 0.0011 + p.phase)) + flareM;
         } else if (p.mode === 'bokeh') {
           bokehTarget(p, t);
         } else {
@@ -1527,26 +1637,85 @@
       });
 
     } else if (sceneName === 'choosing') {
-      board.big.forEach(function (cd) {
-        ctx.strokeStyle = cd.hot
-          ? 'rgba(255,77,28,' + (0.5 * sf) + ')'
-          : 'rgba(245,166,35,' + (0.4 * sf) + ')';
-        ctx.lineWidth = 1.2;
-        ctx.beginPath();
-        ctx.roundRect(cd.x - cd.w / 2, cd.y - cd.h / 2, cd.w, cd.h, 8);
-        ctx.stroke();
-        labelText(cd.text, cd.x, cd.y - 6, 0.85 * sf, cd.hot ? '255,138,102' : '245,166,35');
-        labelText(cd.sub, cd.x, cd.y + 16, 0.5 * sf);
-        if (cd.hot) drawGlow(cd.x, cd.y, cd.w * 0.6, 0.05 * sf, false);
-      });
-      board.small.forEach(function (cd) {
-        ctx.strokeStyle = 'rgba(200,200,215,' + (0.22 * sf) + ')';
+      var bc2 = board;
+      drawPerson(bc2.you.x, bc2.you.y, 1.1, sf);
+      // the thought forming: a ring leaving the head
+      if (bc2.thinkU >= 0) {
+        var thR = 10 + bc2.thinkU * 26;
+        ctx.strokeStyle = 'rgba(245,166,35,' + (0.5 * (1 - bc2.thinkU) * sf) + ')';
         ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.roundRect(cd.x - cd.w / 2, cd.y - cd.h / 2, cd.w, cd.h, 6);
+        ctx.arc(bc2.you.x, bc2.you.y - 11, thR, 0, Math.PI * 2);
         ctx.stroke();
-        labelText(cd.text, cd.x, cd.y + 4, 0.45 * sf);
+      }
+      // rails
+      bc2.legPaths.forEach(function (pth, i) {
+        var on = bc2.activeLeg === i && !(bc2.yi >= 0 && i === bc2.yi + 1);
+        strokePath(pth, 'rgba(200,200,215,' + ((on ? 0.26 : 0.09) * sf) + ')', 1);
       });
+      bc2.div.forEach(function (pth, i) {
+        var on = bc2.yi === i && bc2.activeLeg === i + 1;
+        strokePath(pth, 'rgba(255,138,102,' + ((on ? 0.3 : 0.06) * sf) + ')', 1);
+      });
+      // the three honest questions
+      bc2.gates.forEach(function (g, i) {
+        var held = bc2.holdGate === i;
+        var isYes = bc2.yi === i;
+        ctx.strokeStyle = held || (isYes && bc2.activeLeg === i + 1)
+          ? 'rgba(255,138,102,' + (0.55 * sf) + ')'
+          : 'rgba(200,200,215,' + (0.24 * sf) + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(g.x - g.w / 2, g.y - g.h / 2, g.w, g.h, 6);
+        ctx.stroke();
+        labelText(g.l1, g.x, g.y - 3, (held ? 0.8 : 0.5) * sf);
+        labelText(g.l2, g.x, g.y + 15, (held ? 0.8 : 0.5) * sf);
+        // the verdict, weighed and spoken
+        if (held && bc2.holdU > 0.35) {
+          var vA = bell(clamp01((bc2.holdU - 0.35) / 0.65));
+          if (isYes) {
+            labelText('YES', g.x, g.y - g.h * 0.5 - 12, vA * sf, '255,77,28');
+          } else {
+            labelText('NO', g.x, g.y - g.h * 0.5 - 12, vA * 0.75 * sf);
+          }
+        }
+      });
+      // write a skill: where the thought usually lands
+      var sk2 = bc2.skill;
+      var skGlow = bc2.dest === 'skill' && bc2.landU >= 0 ? bell(bc2.landU) : 0;
+      ctx.strokeStyle = 'rgba(245,166,35,' + ((0.45 + skGlow * 0.4) * sf) + ')';
+      ctx.lineWidth = 1.3;
+      ctx.beginPath();
+      ctx.roundRect(sk2.x - sk2.w / 2, sk2.y - sk2.h / 2, sk2.w, sk2.h, 8);
+      ctx.stroke();
+      labelText('WRITE A SKILL', sk2.x, sk2.y - 4, (0.85 + skGlow * 0.15) * sf, '245,166,35');
+      labelText('MOST OF THE TIME', sk2.x, sk2.y + 16, 0.5 * sf);
+      if (skGlow > 0.02) drawGlow(sk2.x, sk2.y, sk2.w * 0.75, 0.1 * skGlow * sf, true);
+      // use mcp: earned by a yes
+      var mc2 = bc2.mcp;
+      var mcGlow = bc2.dest === 'mcp' && bc2.landU >= 0 ? bell(bc2.landU) : 0;
+      ctx.strokeStyle = 'rgba(255,77,28,' + ((0.35 + mcGlow * 0.45) * sf) + ')';
+      ctx.lineWidth = 1.1;
+      ctx.beginPath();
+      ctx.roundRect(mc2.x - mc2.w / 2, mc2.y - mc2.h / 2, mc2.w, mc2.h, 8);
+      ctx.stroke();
+      labelText('USE MCP', mc2.x, mc2.y - 10, (0.7 + mcGlow * 0.3) * sf, '255,138,102');
+      labelText('AN MCP SERVER', mc2.x, mc2.y + 8, 0.42 * sf);
+      labelText('EARNS ITS PLACE', mc2.x, mc2.y + 24, 0.42 * sf);
+      if (mcGlow > 0.02) drawGlow(mc2.x, mc2.y, mc2.w * 0.75, 0.1 * mcGlow * sf, false);
+      // the running tally of decisions made
+      for (var dS = 0; dS < bc2.counts.skill; dS++) {
+        ctx.fillStyle = 'rgba(245,166,35,' + (0.75 * sf) + ')';
+        ctx.beginPath();
+        ctx.arc(sk2.x - (bc2.counts.skill - 1) * 5 + dS * 10, sk2.y + sk2.h / 2 + 14, 2.2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      for (var dM = 0; dM < bc2.counts.mcp; dM++) {
+        ctx.fillStyle = 'rgba(255,77,28,' + (0.75 * sf) + ')';
+        ctx.beginPath();
+        ctx.arc(mc2.x - (bc2.counts.mcp - 1) * 5 + dM * 10, mc2.y + mc2.h / 2 + 14, 2.2, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
     } else if (sceneName === 'ahead') {
       var ba2 = board;

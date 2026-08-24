@@ -3,7 +3,7 @@ layout: talk
 title: Understanding MCP
 description: >-
   A vendor-neutral tour of the Model Context Protocol: the harness, the
-  orchestration loop, local and remote servers, and when a skill with
+  orchestration loop, local and remote MCP servers, and when a skill with
   scripts is the leaner choice. Eleven particle-animated slides.
 permalink: /talks/mcp/
 lang: en
@@ -14,7 +14,7 @@ canvas: /assets/js/talks/mcp.js
         <p class="eyebrow">MKLab · tech talk</p>
         <h1>Understanding MCP</h1>
         <p class="lead title-sub">How the Model Context Protocol connects AI
-        assistants to real systems, and when a server beats a script.</p>
+        assistants to real systems, and when an MCP server beats a script.</p>
       </div>
       <p class="deck-hint">Space to begin</p>
     </section>
@@ -63,11 +63,11 @@ canvas: /assets/js/talks/mcp.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">IV</span> · The orchestration loop</p>
         <h2>What actually happens.</h2>
-        <p class="lead">The harness starts, discovers its servers, and loads
+        <p class="lead">The harness starts, discovers its MCP servers, and loads
         every tool catalog into the context, needed or not: a real
         difference from skills. Your prompt goes to the LLM together with
         that catalog. The model picks a tool, and <strong>the harness makes
-        the call</strong>: no server ever talks to the model directly. The
+        the call</strong>: no MCP server ever talks to the model directly. The
         result goes back into the context, the loop repeats, and the answer
         streams to you.</p>
       </div>
@@ -75,8 +75,8 @@ canvas: /assets/js/talks/mcp.js
 
     <section class="slide" data-scene="local">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">V</span> · Local servers</p>
-        <h2>A local server is a process.</h2>
+        <p class="eyebrow"><span class="num">V</span> · Local MCP servers</p>
+        <h2>A local MCP server is a process.</h2>
         <p class="lead">A local MCP server is a program on your own
         machine, started by the harness and spoken to over
         <em>stdio</em>. Your filesystem, your credentials, your laptop
@@ -87,8 +87,8 @@ canvas: /assets/js/talks/mcp.js
 
     <section class="slide" data-scene="remote">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">VI</span> · Remote servers</p>
-        <h2>A remote server is a service.</h2>
+        <p class="eyebrow"><span class="num">VI</span> · Remote MCP servers</p>
+        <h2>A remote MCP server is a service.</h2>
         <p class="lead">A remote MCP server is an HTTP service with real
         authentication, and someone has to host it: you, your platform
         team, or <strong>a vendor offering it ready-made</strong>. One
@@ -100,15 +100,15 @@ canvas: /assets/js/talks/mcp.js
 
     <section class="slide slide--bottom" data-scene="versus">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">VII</span> · Server or skill</p>
+        <p class="eyebrow"><span class="num">VII</span> · MCP server or skill</p>
         <h2>The same loop, two contracts.</h2>
         <p class="lead">A skill with local scripts produces the same
         orchestration: the model decides, code runs, results come back.
         The skill loads progressively and costs almost nothing until used.
-        A local server preloads every tool schema and adds a moving part.
+        A local MCP server preloads every tool schema and adds a moving part.
         Our recommendation: building a local MCP server yourself rarely
         buys what a skill with scripts already gives you. <em>MCP shines
-        when the server is provided for you.</em></p>
+        when the MCP server is provided for you.</em></p>
       </div>
     </section>
 
@@ -116,11 +116,11 @@ canvas: /assets/js/talks/mcp.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">VIII</span> · When to use what</p>
         <h2>A simple rule.</h2>
-        <p class="lead">Use MCP when someone else implements the server for
+        <p class="lead">Use MCP when someone else implements the MCP server for
         you. Write a skill when you would have to implement it yourself.
         The honest exceptions: a harness that cannot run scripts, typed
         contracts you must rely on, or one integration a whole
-        organization should share. Then a server earns its place.</p>
+        organization should share. Then an MCP server earns its place.</p>
       </div>
     </section>
 
@@ -129,7 +129,7 @@ canvas: /assets/js/talks/mcp.js
         <p class="eyebrow"><span class="num">IX</span> · Where this is heading</p>
         <h2>Remote, hosted, ordinary.</h2>
         <p class="lead">The direction of travel is hosted: an official
-        server registry, authentication built in, servers becoming
+        MCP server registry, authentication built in, MCP servers becoming
         products you subscribe to rather than scripts you maintain. There
         is even an extension for serving <strong>skills over MCP</strong>.
         The specification lives at <em>modelcontextprotocol.io</em>. Watch
