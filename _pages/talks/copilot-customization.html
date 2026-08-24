@@ -1,0 +1,154 @@
+---
+layout: talk
+title: Four Ways to Teach Your Copilot
+description: >-
+  The story of Maja, a developer making sense of GitHub Copilot's prompts,
+  instructions, agents and skills. An MKLab tech talk in twelve
+  particle-animated slides.
+permalink: /talks/copilot-customization/
+lang: en
+canvas: /assets/js/talks/copilot-customization.js
+---
+    <section class="slide slide--center" data-scene="title" data-intro>
+      <div class="slide__copy">
+        <p class="eyebrow">MKLab · tech talk</p>
+        <h1>Four ways to teach your Copilot</h1>
+        <p class="lead title-sub">The story of Maja, a developer making sense of
+        prompts, instructions, agents and skills.</p>
+      </div>
+      <p class="deck-hint">Space to begin</p>
+    </section>
+
+    <section class="slide" data-scene="lost">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">I</span> · Lost in the nomenclature</p>
+        <h2>Meet Maja.</h2>
+        <p class="lead">Maja is a developer who just got access to GitHub
+        Copilot. AI moves fast, every vendor names the same ideas
+        differently, and the docs mention <strong>prompts, instructions,
+        agents and skills</strong>. Maja has one question: when do I use
+        what?</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="harness">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">II</span> · One brain, many harnesses</p>
+        <h2>Copilot lives in many places.</h2>
+        <p class="lead">The AI offering is called GitHub Copilot. You reach it
+        through a <strong>harness</strong>: Visual Studio Code, Copilot CLI,
+        github.com, or the cloud agent working on a task in the background.
+        Everything Maja is about to learn is plain markdown, kept in the
+        repository for the whole team or globally on Maja's own machine.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="prompts">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">III</span> · Prompt files</p>
+        <h2>A prompt worth saving.</h2>
+        <p class="lead">Every week Maja types the same request: write unit
+        tests for this file, follow our conventions. A prompt file,
+        <strong>tests.prompt.md</strong> in <em>.github/prompts/</em>, saves
+        it once and replays it on <strong>/tests</strong>. It runs only when
+        Maja asks. For now, prompt files live in the IDE only.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="instructions">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">IV</span> · Instructions</p>
+        <h2>Rules that apply themselves.</h2>
+        <p class="lead">Some things should not need asking.
+        <strong>copilot-instructions.md</strong> applies to every request in
+        the repository. A file like <strong>style.instructions.md</strong>
+        applies itself when the <em>applyTo</em> pattern in its header
+        matches the files being touched. Maja stops repeating the coding
+        standards. They are simply always there.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="agents">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">V</span> · Custom agents</p>
+        <h2>A specialist you switch on.</h2>
+        <p class="lead">The word agent makes people nervous, but nothing here
+        runs on its own. A custom agent, <strong>reviewer.agent.md</strong>
+        in <em>.github/agents/</em>, is a saved prompt plus a tool list that
+        Maja switches on for a while, through the agents menu, and off again.
+        Do not confuse it with <strong>AGENTS.md</strong> in the repo root:
+        that one is ambient instructions, read automatically by every
+        agent.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="vendors">
+      <div class="slide__copy">
+        <p class="eyebrow">Interlude · Other vendors</p>
+        <h2>Same ideas, other names.</h2>
+        <p class="lead">Claude Code keeps its instructions in
+        <strong>CLAUDE.md</strong>, its saved prompts as slash commands, and
+        its personas as subagents. Codex reads <strong>AGENTS.md</strong>,
+        the convention it started. Cursor calls its instructions rules. The
+        names differ. The ideas repeat.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="skills">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">VI</span> · Skills</p>
+        <h2>The new kid in town.</h2>
+        <p class="lead">A skill is a folder with a <strong>SKILL.md</strong>
+        inside: instructions, and when needed the scripts and tools to
+        follow them. Share the folder and you share the tooling too. Skills
+        began at Anthropic and are now <em>an open standard</em>, adopted by
+        GitHub Copilot in <em>.github/skills/</em>.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="disclosure">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">VII</span> · Progressive disclosure</p>
+        <h2>Loaded only when needed.</h2>
+        <p class="lead">Prompts, instructions and agents are loaded up front.
+        A skill loads in stages. Only its <strong>name and
+        description</strong> sit in the context. The full instructions load
+        when the skill is chosen, and the bundled files only when they are
+        used. The context stays clear for the actual work.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="portable">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">VIII</span> · Portability</p>
+        <h2>One folder, every assistant.</h2>
+        <p class="lead">A skill can do what a prompt file, an instruction or
+        an agent does, and carry code besides. Because it is a standard, the
+        same folder works in <strong>Copilot, Claude Code, Codex,
+        Cursor</strong> and dozens of other tools. Many times, one skill
+        replaces all three of the older concepts.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="map">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">IX</span> · When to use what</p>
+        <h2>Maja's map.</h2>
+        <p class="lead">A request you repeat: <strong>a prompt file</strong>.
+        A rule you repeat: <strong>instructions</strong>. A persona you
+        switch on: <strong>a custom agent</strong>. Anything bigger,
+        portable, or carrying tools: <em>probably a skill</em>, though not
+        always. The easiest way to create any of them is to ask Copilot to
+        write it. Knowing what to ask for is the point of this talk.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--center" data-scene="outro">
+      <div class="slide__copy">
+        <p class="eyebrow">MKLab · EST. MMXXV</p>
+        <h2>That was the whole map.</h2>
+        <p class="lead">This is the end of the presentation. Thank you for
+        watching. More tech talks are on the way.</p>
+        <p class="deck-actions"><a class="deck-link" href="{{ '/talks/' | relative_url }}">All tech talks</a></p>
+      </div>
+    </section>
