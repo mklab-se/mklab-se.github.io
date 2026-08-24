@@ -530,12 +530,13 @@
   // -- row is the one shared line running through every column
   layouts.vendors = function () {
     var cols = isMobile ? [W * 0.2, W * 0.5, W * 0.8] : [W * 0.30, W * 0.55, W * 0.80];
-    var rows = [H * 0.11, H * 0.22, H * 0.32, H * 0.42];
+    var rows = [H * 0.09, H * 0.17, H * 0.25, H * 0.33, H * 0.41];
     var heads = ['GITHUB COPILOT', 'CLAUDE CODE', 'CODEX'];
-    var rowNames = ['PROMPTS', 'INSTRUCTIONS', 'AGENTS', 'SKILLS'];
+    var rowNames = ['PROMPTS', 'INSTRUCTIONS', 'PATH-SCOPED', 'AGENTS', 'SKILLS'];
     var cells = [
       ['*.PROMPT.MD', '/COMMANDS', '~/.CODEX/PROMPTS'],
       ['COPILOT-INSTRUCTIONS.MD', 'CLAUDE.MD', 'AGENTS.MD'],
+      ['*.INSTRUCTIONS.MD + APPLYTO', 'NO EQUIVALENT', 'NO EQUIVALENT'],
       ['*.AGENT.MD', 'NO EQUIVALENT', 'NO EQUIVALENT'],
       ['SKILL.MD', 'SKILL.MD', 'SKILL.MD']
     ];
@@ -547,17 +548,17 @@
     P.forEach(function (p, i) {
       if (p.seed < 0.58) {
         p.mode = 'node';
-        var gi = i % 12;
-        p.ri = gi % 4;
-        p.ci = Math.floor(gi / 4);
-        var r = p.ri === 3 ? MN * 0.026 : MN * 0.02;
+        var gi = i % 15;
+        p.ri = gi % 5;
+        p.ci = Math.floor(gi / 5);
+        var r = p.ri === 4 ? MN * 0.026 : MN * 0.018;
         var a = rand(0, Math.PI * 2);
         var d = Math.pow(Math.random(), 0.6) * r;
         p.hx = cols[p.ci] + Math.cos(a) * d * 2.6;
         p.hy = rows[p.ri] + Math.sin(a) * d;
-        // the agents row is a Copilot concept: the other columns stay dark
-        p.baseAlpha = (p.ri === 2 && p.ci > 0) ? rand(0.04, 0.1)
-          : (p.ri === 3 ? rand(0.5, 0.95) : rand(0.28, 0.6));
+        // path-scoped and agents are Copilot concepts: elsewhere stays dark
+        p.baseAlpha = ((p.ri === 2 || p.ri === 3) && p.ci > 0) ? rand(0.04, 0.1)
+          : (p.ri === 4 ? rand(0.5, 0.95) : rand(0.28, 0.6));
         p.sizeMul = rand(0.35, 0.65); p.fast = false;
       } else if (p.seed < 0.68) {
         p.mode = 'rowpulse';
@@ -1027,12 +1028,12 @@
         if (p.mode === 'node') {
           p.tx = p.hx + Math.sin(t * 0.0006 * p.speed + p.phase) * 2;
           p.ty = p.hy + Math.cos(t * 0.0005 * p.speed + p.phase) * 1.6;
-          var pulse = p.ri === 3 ? 0.25 * bell(clamp01(rowProg)) : 0;
+          var pulse = p.ri === 4 ? 0.25 * bell(clamp01(rowProg)) : 0;
           p.alpha = p.baseAlpha * (0.55 + 0.45 * Math.sin(t * 0.0011 + p.phase)) + pulse;
         } else if (p.mode === 'rowpulse') {
           var s6 = fract(p.off + rowProg);
           p.tx = bv.cols[0] - MN * 0.06 + s6 * (bv.cols[2] - bv.cols[0] + MN * 0.12);
-          p.ty = bv.rows[3] + Math.sin(s6 * Math.PI * 3 + p.phase) * 3;
+          p.ty = bv.rows[4] + Math.sin(s6 * Math.PI * 3 + p.phase) * 3;
           var edge2 = Math.min(1, Math.min(s6, 1 - s6) * 10);
           p.alpha = p.baseAlpha * edge2 * 0.85;
         } else {
@@ -1412,8 +1413,8 @@
         labelText(h2, bv2.cols[ci], bv2.rows[0] - MN * 0.055, 0.7 * sf);
       });
       // row hairlines and cell names
-      for (var ri = 0; ri < 4; ri++) {
-        var skillRow = ri === 3;
+      for (var ri = 0; ri < 5; ri++) {
+        var skillRow = ri === 4;
         ctx.strokeStyle = skillRow
           ? 'rgba(245,166,35,' + (0.22 * sf) + ')'
           : 'rgba(200,200,215,' + (0.1 * sf) + ')';
