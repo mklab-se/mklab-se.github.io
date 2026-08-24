@@ -1,6 +1,32 @@
 # One entry per tech talk. Rendered on /talks/ (sv) and /en/talks/ (en).
 # The deck itself lives in _pages/talks/<slug>.html with its particle
 # scenes in /assets/js/talks/<slug>.js.
+- slug: owasp-llm-top10
+  url: /talks/owasp-llm-top10/
+  date: 2026-08-24
+  deck_lang: en
+  slides: 20
+  eyebrow:
+    sv: "Augusti 2026 · på engelska · 20 bilder"
+    en: "August 2026 · in English · 20 slides"
+  title:
+    sv: "OWASP LLM Top 10"
+    en: "The OWASP LLM Top 10"
+  blurb:
+    sv: >-
+      Alla tio riskerna i 2026 års OWASP Top 10 för LLM-applikationer,
+      förklarade och animerade en i taget, med evidensberättelsen bakom
+      den nya ordningen. Anpassad från OWASP under CC BY-SA 4.0. Tjugo
+      partikelanimerade bilder.
+    en: >-
+      All ten risks of the 2026 OWASP Top 10 for LLM Applications,
+      explained and animated one by one, with the evidence story behind
+      the new order. Adapted from OWASP under CC BY-SA 4.0. Twenty
+      particle-animated slides.
+  cta:
+    sv: "Se föredraget"
+    en: "Watch the talk"
+
 - slug: ai-beslutsfattare
   url: /talks/ai-beslutsfattare/
   url_en: /en/talks/ai-decision-makers/

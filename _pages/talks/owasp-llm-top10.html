@@ -1,0 +1,272 @@
+---
+layout: talk
+title: The OWASP LLM Top 10
+description: >-
+  All ten risks of the 2026 OWASP Top 10 for LLM Applications, explained
+  and animated one by one, with the evidence story behind the new order.
+  Adapted from OWASP under CC BY-SA 4.0. Twenty particle-animated slides.
+permalink: /talks/owasp-llm-top10/
+lang: en
+canvas: /assets/js/talks/owasp-llm-top10.js
+---
+    <section class="slide slide--center" data-scene="title" data-intro>
+      <div class="slide__copy">
+        <p class="eyebrow">MKLab · tech talk</p>
+        <h1>The OWASP LLM Top 10</h1>
+        <p class="lead title-sub">All ten risks of the 2026 edition, explained
+        and animated: how LLM applications break, and how to build so it
+        does not matter.</p>
+      </div>
+      <p class="deck-hint">Space to begin</p>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="anatomy">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">I</span> · The stage</p>
+        <h2>One application, many organs.</h2>
+        <p class="lead">Every risk in this talk attacks the same body: a
+        user, an application, a model, a context window that is half
+        hidden, tools, a vector store, a training pipeline, and a meter
+        counting the cost. <strong>Learn this stage once.</strong> For the
+        next ten risks, watch where each attack lands.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="evidence">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">II</span> · The evidence</p>
+        <h2>This order is earned.</h2>
+        <p class="lead">For the first time, the 2026 edition tested opinion
+        against reality: <strong>7,714 real incidents</strong>, classified
+        and compared with the community vote. They disagree in useful
+        places. Prompt injection barely registers in the incident record,
+        because teams defend it so hard, and it still holds first place.
+        Misinformation was voted near the bottom, and the record pulled it
+        up. The order you are about to see survived both tests.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="migration">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">III</span> · What moved</p>
+        <h2>Same ten. New priorities.</h2>
+        <p class="lead">Excessive agency climbed to third, the most
+        consequential move of the year, because that is where the damage
+        lands. Unbounded consumption rose four places. Improper output
+        handling fell to last. And system prompt leakage was reborn with a
+        wider scope: <strong>hidden context exposure</strong>. Watch the
+        migration.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="inj1">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM01</span> · Prompt injection</p>
+        <h2>It is all one stream.</h2>
+        <p class="lead">A model makes no architectural distinction between
+        instructions and data: system prompt, user input, retrieved
+        documents, tool output, <strong>everything is tokens on the same
+        stream</strong>, and there is no equivalent of a parameterized
+        query. Any text the model reads can steer it. That is why this
+        stays number one: the surface is everywhere a model reads
+        untrusted input, which is to say everywhere.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="inj2">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM01</span> · Prompt injection, part two</p>
+        <h2>It does not have to come from the user.</h2>
+        <p class="lead">An instruction can hide in a retrieved document, in
+        an image whose pixels you see but whose tokens you do not, or in
+        the model's own memory, where <strong>one poisoned write taints
+        every later session</strong>. And when output drives tools, the
+        blast radius is whatever the tools can reach. Defend accordingly:
+        assume the model will be fooled, and gate what happens next.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="leak">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM02</span> · Sensitive information disclosure</p>
+        <h2>Every channel is an output.</h2>
+        <p class="lead">Secrets do not only leave through the answer. Tool
+        arguments, reasoning traces, logs, telemetry, embeddings, even
+        response timing are disclosure surfaces, and a model can also
+        memorize training data and repeat it back. <strong>Treat every
+        channel like the answer</strong>: classified, redacted, and
+        watched, especially the ones nobody reads.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="agency1">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM03</span> · Excessive agency</p>
+        <h2>The reach exceeds the need.</h2>
+        <p class="lead">Give a model tools and it becomes able to act.
+        Excessive agency is what happens when <strong>the granted reach is
+        wider than the task</strong>: too many tools, too much permission,
+        too much autonomy. Then any malfunction, a hallucination, an
+        injection, a compromised peer agent, becomes a damaging action.
+        The year's biggest climber, up to third, because agentic
+        deployments are where the damage now lands.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="agency2">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM03</span> · Excessive agency, part two</p>
+        <h2>Shrink the reach. Keep the human.</h2>
+        <p class="lead">The defense is not a smarter model. It is
+        <strong>minimal agency</strong>: only the tools the task needs,
+        the narrowest permissions that work, and no high-impact action
+        without a human in the loop. The triggers will keep firing. With
+        the reach scoped, they hit walls instead of systems.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="supply">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM04</span> · Supply chain</p>
+        <h2>Is the model what it claims to be?</h2>
+        <p class="lead">LLM applications are assembled from other people's
+        work: pre-trained models, datasets, adapters, conversion
+        pipelines. Each is an attack surface, and a promoted artifact is
+        <strong>not always what it says it is</strong>. Provenance,
+        signatures and pinned versions are the difference between a
+        dependency and a stowaway.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="poison">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM05</span> · Data and model poisoning</p>
+        <h2>It learns the wrong thing, quietly.</h2>
+        <p class="lead">Poisoning targets the learning process itself:
+        tampered training data, a subverted fine-tune, a corrupted
+        embedding. The model still looks fine. <strong>The backdoor waits
+        for its trigger.</strong> And unlike a code bug, you cannot patch
+        it: recovery means revalidating data, retraining, or replacing
+        the model.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="burn">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM06</span> · Unbounded consumption</p>
+        <h2>Cheap to ask. Expensive to answer.</h2>
+        <p class="lead">Cost asymmetry defines this risk: an attacker
+        triggers <strong>disproportionately expensive computation</strong>
+        at almost no cost to themselves, through crafted prompts, stolen
+        keys, or agent loops that amplify one request into cascades. Rate
+        limiting is not enough anymore. You need token-aware cost
+        controls, hard caps, and circuit breakers that trip mid-burn.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="misinfo">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM07</span> · Misinformation</p>
+        <h2>Fluent is not true.</h2>
+        <p class="lead">When a confident, wrong answer drives a decision or
+        a tool call, <strong>a wrong answer becomes a wrong
+        action</strong>. Practitioners voted this risk near the bottom.
+        The incident record put it near the top, the widest gap in the
+        direction that hurts. Grounding, verification and human judgment
+        belong between the answer and the act.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="hidden">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM08</span> · Hidden context exposure</p>
+        <h2>Assume it is discoverable.</h2>
+        <p class="lead">Half of the context window was never meant for the
+        user: system instructions, policies, tool schemas, operating
+        rules. It can be extracted, inferred or reconstructed, and the
+        2026 edition widens the old system prompt leakage into exactly
+        this. The defense is a posture: <strong>nothing secret in the
+        context</strong>, and nothing that breaks when it is read out.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="vector">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM09</span> · Vector and embedding weaknesses</p>
+        <h2>Geometry can be attacked.</h2>
+        <p class="lead">Wherever similarity search decides what the model
+        sees, the embedding space is part of your trust boundary, and its
+        geometry can be turned against you. <strong>Poisoning makes the
+        system wrong. Inversion makes it leak. Jamming makes it silent.
+        Broken access control makes it indiscriminate.</strong> Four
+        failures, one space.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="output">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM10</span> · Improper output handling</p>
+        <h2>Treat the output like user input.</h2>
+        <p class="lead">Model output flows into browsers, shells and
+        databases, and whoever steers the model steers that output.
+        Passed along raw, it becomes cross-site scripting, request
+        forgery, or remote code execution downstream. The fix is old
+        wisdom in a new place: <strong>validate and sanitize</strong>
+        before anything downstream touches it.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="boundary">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">IV</span> · The boundary</p>
+        <h2>When the model becomes an actor.</h2>
+        <p class="lead">This list owns the risk while the model is a
+        component inside your application. The moment it gains tools,
+        memory between sessions, and consequences it sets in motion, the
+        risk moves to the <strong>OWASP Agentic Top 10</strong>. Many real
+        incidents sit exactly on that line. Know which side of it you are
+        building on, and read accordingly.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="posture">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">V</span> · The posture</p>
+        <h2>Build for the day it is fooled.</h2>
+        <p class="lead">The 2026 edition opens with its own best advice:
+        stop trying to build a model that cannot be fooled, and build the
+        system around it so that when the model is fooled, <em>and it will
+        be</em>, nothing important breaks. Work all ten. Start at the top.
+        That posture is the whole talk in one sentence.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--center" data-scene="sources">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">VI</span> · Sources and license</p>
+        <h2>Adapted, with credit.</h2>
+        <p class="lead">This talk condenses, adapts and animates the OWASP
+        Top 10 for LLM Applications, 2026 edition, © the OWASP GenAI
+        Security Project, licensed CC BY-SA 4.0. Changes were made. OWASP
+        has not endorsed this talk. This presentation, and only this
+        presentation, is likewise licensed CC BY-SA 4.0. Everything else
+        on mklab.se remains all rights reserved.</p>
+        <ul class="deck-sources">
+          <li><span class="src-org">OWASP ·</span> <a href="https://genai.owasp.org/" target="_blank" rel="noopener">GenAI Security Project</a></li>
+          <li><span class="src-org">OWASP ·</span> <a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">Top 10 for LLM Applications</a></li>
+          <li><span class="src-org">Creative Commons ·</span> <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0 license</a></li>
+          <li><span class="src-org">MKLab ·</span> <a href="https://mklab.se/talks/" target="_blank" rel="noopener">This adaptation, same license</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="slide slide--center" data-scene="outro">
+      <div class="slide__copy">
+        <p class="eyebrow">MKLab · EST. MMXXV</p>
+        <h2>That was all ten.</h2>
+        <p class="lead">This is the end of the presentation. Thank you for
+        watching. The talks on MCP and on agentic workflows pair well with
+        this one.</p>
+        <p class="deck-actions"><a class="deck-link" href="{{ '/talks/' | relative_url }}">All tech talks</a></p>
+      </div>
+    </section>
