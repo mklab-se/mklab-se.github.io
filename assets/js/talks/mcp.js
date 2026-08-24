@@ -481,14 +481,16 @@
         makePath(harn.x + harn.w * 0.5, harn.y - harn.h * 0.5, srvA.x - srvA.w * 0.7, srvA.y + srvA.h * 0.3, -0.3)
       ],
       resA: [
-        makePath(srvA.x - srvA.w * 0.9, srvA.y + srvA.h * 0.5, llm.x + llm.r * 0.3, llm.y - llm.r * 0.8, 0.2)
+        makePath(srvA.x - srvA.w * 0.9, srvA.y + srvA.h * 0.5, harn.x + harn.w * 0.55, harn.y - harn.h * 0.35, 0.22),
+        makePath(harn.x + harn.w * 0.65, harn.y - harn.h * 0.15, llm.x - llm.r * 0.95, llm.y - llm.r * 0.35, 0.08)
       ],
       callB: [
         makePath(llm.x - llm.r * 0.3, llm.y + llm.r * 0.8, harn.x + harn.w * 0.4, harn.y + harn.h * 0.55, -0.16),
         makePath(harn.x + harn.w * 0.5, harn.y + harn.h * 0.5, srvB.x - srvB.w * 0.7, srvB.y - srvB.h * 0.1, 0.26)
       ],
       resB: [
-        makePath(srvB.x - srvB.w * 0.9, srvB.y - srvB.h * 0.4, llm.x + llm.r * 0.4, llm.y + llm.r * 0.7, -0.2)
+        makePath(srvB.x - srvB.w * 0.9, srvB.y - srvB.h * 0.4, harn.x + harn.w * 0.55, harn.y + harn.h * 0.35, -0.22),
+        makePath(harn.x + harn.w * 0.65, harn.y + harn.h * 0.15, llm.x - llm.r * 0.95, llm.y + llm.r * 0.45, -0.08)
       ],
       aChain: [
         makePath(llm.x - llm.r * 0.9, llm.y - llm.r * 0.2, harn.x + harn.w * 0.6, harn.y - harn.h * 0.2, 0.08),
@@ -497,6 +499,7 @@
       labels: [
         { x: user.x, y: user.y + 42, text: 'YOU' },
         { x: harn.x, y: harn.y + harn.h * 0.85 + 14, text: 'HARNESS' },
+        { x: harn.x, y: harn.y + harn.h * 0.85 + 32, text: 'CATALOGS LOAD AT STARTUP' },
         { x: llm.x, y: llm.y + llm.r * 1.5, text: 'LLM' },
         { x: srvA.x, y: srvA.y + srvA.h * 0.95 + 6, text: 'TICKETS · SERVER' },
         { x: srvB.x, y: srvB.y + srvB.h * 0.95 + 6, text: 'DATABASE · SERVER' }
@@ -998,12 +1001,13 @@
       var bl = board;
       var prog2 = fract(te / bl.cycle);
       board.prog = prog2;
+      var discOut = win(prog2, 0.01, 0.05);
+      var discBack = win(prog2, 0.05, 0.09);
       var legs = {
-        disc: win(prog2, 0.01, 0.07),
-        u2h: win(prog2, 0.08, 0.14),
-        h2l: win(prog2, 0.145, 0.20)
+        u2h: win(prog2, 0.10, 0.16),
+        h2l: win(prog2, 0.165, 0.22)
       };
-      var think1 = win(prog2, 0.20, 0.26);
+      var think1 = win(prog2, 0.22, 0.26);
       var callA = win(prog2, 0.26, 0.34);
       var resA = win(prog2, 0.34, 0.42);
       var think2 = win(prog2, 0.42, 0.48);
@@ -1020,36 +1024,44 @@
       board.uCallB = callB; board.uResB = resB;
       board.ansU = ansU2; board.agit = agit2;
       board.srvFlare = [0, 0];
-      if (legs.disc >= 0) { board.srvFlare = [bell(legs.disc), bell(legs.disc)]; }
+      if (discOut >= 0) { board.srvFlare = [bell(discOut), bell(discOut)]; }
+      if (discBack >= 0) { board.srvFlare = [bell(discBack) * 0.5, bell(discBack) * 0.5]; }
       if (callA >= 0 && callA > 0.7) board.srvFlare[0] = (callA - 0.7) / 0.3;
       if (resA >= 0 && resA < 0.4) board.srvFlare[0] = 1 - resA / 0.4;
       if (callB >= 0 && callB > 0.7) board.srvFlare[1] = (callB - 0.7) / 0.3;
       if (resB >= 0 && resB < 0.4) board.srvFlare[1] = 1 - resB / 0.4;
       board.phaseText =
-        legs.disc >= 0 ? 'DISCOVER' :
+        discOut >= 0 ? 'STARTUP · DISCOVER SERVERS' :
+        (discBack >= 0 ? 'CATALOGS INTO CONTEXT' :
         (legs.u2h >= 0 ? 'PROMPT' :
         (legs.h2l >= 0 ? 'PROMPT + TOOL CATALOG' :
         (think1 >= 0 || think2 >= 0 || think3 >= 0 ? 'THE MODEL DECIDES' :
         (callA >= 0 || callB >= 0 ? 'TOOL CALL' :
         (resA >= 0 || resB >= 0 ? 'RESULT' :
-        (ansU2 >= 0 ? 'ANSWER' : ''))))));
+        (ansU2 >= 0 ? 'ANSWER' : '')))))));
       P.forEach(function (p) {
         if (p.mode === 'brain') {
           brainTarget(p, t, agit2);
         } else if (p.mode === 'harn' || p.mode === 'srv') {
           p.tx = p.hx + Math.sin(t * 0.0013 + p.phase) * 0.9;
           p.ty = p.hy + Math.cos(t * 0.001 + p.phase) * 0.7;
-          var fl = p.mode === 'srv' ? board.srvFlare[p.si] : (legs.u2h >= 0 || callA >= 0 || callB >= 0 ? 0.4 : 0);
+          var fl = p.mode === 'srv' ? board.srvFlare[p.si]
+            : (legs.u2h >= 0 || callA >= 0 || callB >= 0 || resA >= 0 || resB >= 0 ? 0.4 : 0);
           p.alpha = p.baseAlpha * (0.5 + 0.5 * Math.sin(t * 0.001 + p.phase)) + fl * 0.4;
         } else if (p.mode === 'disc') {
-          if (legs.disc < 0) {
-            var dp = p.si === 0 ? bl.discA : bl.discB;
-            p.tx = dp.p0[0]; p.ty = dp.p0[1]; p.alpha = 0;
-          } else {
-            var s5 = clamp01(legs.disc + p.off * (1 - legs.disc));
-            var pos5 = bezier(p.si === 0 ? bl.discA : bl.discB, easeInOut(s5));
+          var dp = p.si === 0 ? bl.discA : bl.discB;
+          if (discOut >= 0) {
+            var s5 = clamp01(discOut + p.off * (1 - discOut));
+            var pos5 = bezier(dp, easeInOut(s5));
             p.tx = pos5[0]; p.ty = pos5[1];
-            p.alpha = p.baseAlpha * bell(legs.disc);
+            p.alpha = p.baseAlpha * bell(discOut);
+          } else if (discBack >= 0) {
+            var s5b = clamp01(discBack + p.off * (1 - discBack));
+            var pos5b = bezier(dp, 1 - easeInOut(s5b));
+            p.tx = pos5b[0]; p.ty = pos5b[1];
+            p.alpha = p.baseAlpha * bell(discBack);
+          } else {
+            p.tx = dp.p0[0]; p.ty = dp.p0[1]; p.alpha = 0;
           }
         } else if (p.mode === 'u2h' || p.mode === 'h2l') {
           var uL = legs[p.mode];
@@ -1447,8 +1459,12 @@
       bl2.callB.forEach(function (pth) {
         strokePath(pth, 'rgba(255,138,102,' + ((bl2.uCallB >= 0 ? 0.26 : 0.09) * sf) + ')', 1);
       });
-      strokePath(bl2.resA[0], 'rgba(200,200,215,' + ((bl2.uResA >= 0 ? 0.2 : 0.07) * sf) + ')', 1);
-      strokePath(bl2.resB[0], 'rgba(200,200,215,' + ((bl2.uResB >= 0 ? 0.2 : 0.07) * sf) + ')', 1);
+      bl2.resA.forEach(function (pth) {
+        strokePath(pth, 'rgba(200,200,215,' + ((bl2.uResA >= 0 ? 0.2 : 0.07) * sf) + ')', 1);
+      });
+      bl2.resB.forEach(function (pth) {
+        strokePath(pth, 'rgba(200,200,215,' + ((bl2.uResB >= 0 ? 0.2 : 0.07) * sf) + ')', 1);
+      });
       if (bl2.ansU >= 0) {
         bl2.aChain.forEach(function (pth) {
           strokePath(pth, 'rgba(245,166,35,' + (0.18 * sf) + ')', 1);

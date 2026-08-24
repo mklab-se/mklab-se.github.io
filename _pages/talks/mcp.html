@@ -36,8 +36,9 @@ canvas: /assets/js/talks/mcp.js
         <p class="eyebrow"><span class="num">II</span> · The harness</p>
         <h2>Every assistant lives in a harness.</h2>
         <p class="lead">The harness is the application around the model: an
-        IDE, a terminal, a chat app. The spec calls it <em>the host</em>.
-        It reads your configuration, discovers your registered MCP servers,
+        IDE, a terminal, a chat app. The MCP specification calls it
+        <em>the host</em>. It reads your configuration, discovers your
+        registered MCP servers,
         hands your prompt to the LLM along with a catalog of their tools,
         executes the calls the model asks for, and streams the answer back.
         The model never touches your systems. <strong>The harness
@@ -62,11 +63,12 @@ canvas: /assets/js/talks/mcp.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">IV</span> · The orchestration loop</p>
         <h2>What actually happens.</h2>
-        <p class="lead">The harness starts and discovers its servers. Your
-        prompt goes to the LLM together with the <strong>tool
-        catalog</strong>. The model decides and returns a tool call. The
-        harness runs it against a server and feeds the result back. The
-        loop repeats until the model has what it needs, and the answer
+        <p class="lead">The harness starts, discovers its servers, and loads
+        every tool catalog into the context, needed or not: a real
+        difference from skills. Your prompt goes to the LLM together with
+        that catalog. The model picks a tool, and <strong>the harness makes
+        the call</strong>: no server ever talks to the model directly. The
+        result goes back into the context, the loop repeats, and the answer
         streams to you.</p>
       </div>
     </section>
