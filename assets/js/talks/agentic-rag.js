@@ -4,7 +4,7 @@
    scene via <section data-scene="...">; scrolling morphs the
    same lights from one scene into the next.
    Scenes: title, born, memory, limits, embed, search, augment,
-   agentic, full, outro.
+   agentic, versus, full, where, laptop, outro.
    Based on mklab.se assets/js/canvas.js. No dependencies.
    Decorative only (canvas is aria-hidden).
    ============================================================ */
@@ -701,6 +701,80 @@
     links = brainLinksFor(function (p) { return p.mode === 'brain'; }, 66);
   };
 
+  // -- versus: the same question served two ways; a fixed pipeline on
+  // -- the left, a deciding loop on the right
+  layouts.versus = function () {
+    var q = { x: W * (isMobile ? 0.08 : 0.06), y: H * 0.30 };
+    var sBox = { x: W * (isMobile ? 0.20 : 0.17), y: H * 0.30, w: MN * 0.085, h: MN * 0.075 };
+    var pBox = { x: W * (isMobile ? 0.33 : 0.29), y: H * 0.30, w: MN * 0.085, h: MN * 0.075 };
+    var llmL = { x: W * 0.41, y: H * 0.30, r: MN * 0.045 };
+    var llmR = { x: W * 0.66, y: H * 0.26, r: MN * 0.055 };
+    var vdb = { x: W * 0.88, y: H * 0.40, w: MN * 0.06, h: MN * 0.085 };
+    board = {
+      q: q, sBox: sBox, pBox: pBox, llmL: llmL, llmR: llmR, vdb: vdb,
+      cycleL: 4200, cycleR: 8400,
+      chainL: [
+        makePath(q.x + 12, q.y, sBox.x - sBox.w * 0.6, sBox.y, 0.08),
+        makePath(sBox.x + sBox.w * 0.6, sBox.y, pBox.x - pBox.w * 0.6, pBox.y, 0.08),
+        makePath(pBox.x + pBox.w * 0.6, pBox.y, llmL.x - llmL.r * 1.1, llmL.y, 0.08)
+      ],
+      toolPth: makePath(llmR.x + llmR.r * 0.6, llmR.y + llmR.r * 0.6, vdb.x - vdb.w * 0.5, vdb.y - vdb.h * 0.5, 0.2),
+      resPth: makePath(vdb.x - vdb.w * 0.8, vdb.y - vdb.h * 0.1, llmR.x + llmR.r * 0.3, llmR.y + llmR.r * 0.9, -0.2),
+      labels: [
+        { x: W * 0.24, y: H * 0.10, text: 'TRADITIONAL · ONE PASS, EVERY TIME' },
+        { x: W * 0.77, y: H * 0.10, text: 'AGENTIC · DECIDES, REPEATS, SKIPS' },
+        { x: q.x, y: q.y + 30, text: 'QUESTION' },
+        { x: sBox.x, y: sBox.y + sBox.h * 0.62 + 16, text: 'SEARCH' },
+        { x: pBox.x, y: pBox.y + pBox.h * 0.62 + 16, text: 'PROMPT' },
+        { x: llmL.x, y: llmL.y + llmL.r * 1.6 + 12, text: 'LLM' },
+        { x: llmR.x, y: llmR.y + llmR.r * 1.6 + 12, text: 'AGENT · LLM' },
+        { x: vdb.x, y: vdb.y + vdb.h * 1.0, text: 'VECTOR DB · A TOOL' }
+      ]
+    };
+    P.forEach(function (p, i) {
+      if (p.seed < 0.08) {
+        p.mode = 'lnode';
+        p.si = i % 2;
+        var bxV = p.si === 0 ? sBox : pBox;
+        p.hx = bxV.x + rand(-bxV.w * 0.38, bxV.w * 0.38);
+        p.hy = bxV.y + rand(-bxV.h * 0.34, bxV.h * 0.34);
+        p.baseAlpha = rand(0.2, 0.5); p.sizeMul = rand(0.28, 0.5); p.fast = false;
+      } else if (p.seed < 0.20) {
+        p.mode = 'lbrain';
+        brainHome(p, llmL);
+        p.baseAlpha = p.ember ? rand(0.3, 0.8) : rand(0.18, 0.5);
+        p.sizeMul = rand(0.3, 0.6); p.fast = false;
+      } else if (p.seed < 0.30) {
+        p.mode = 'lpulse';
+        p.off = rand(0, 0.1);
+        p.baseAlpha = rand(0.45, 0.95); p.sizeMul = rand(0.3, 0.55); p.fast = true;
+      } else if (p.seed < 0.46) {
+        p.mode = 'rbrain';
+        brainHome(p, llmR);
+        p.baseAlpha = p.ember ? rand(0.3, 0.85) : rand(0.18, 0.55);
+        p.sizeMul = rand(0.32, 0.65); p.fast = false;
+      } else if (p.seed < 0.52) {
+        p.mode = 'rtool';
+        p.off = rand(0, 0.08);
+        p.baseAlpha = rand(0.45, 0.95); p.sizeMul = rand(0.3, 0.55); p.fast = true;
+      } else if (p.seed < 0.58) {
+        p.mode = 'rres';
+        p.off = rand(0, 0.1);
+        p.baseAlpha = rand(0.35, 0.8); p.sizeMul = rand(0.3, 0.55); p.fast = true;
+      } else if (p.seed < 0.66) {
+        p.mode = 'vdbp';
+        p.hx = vdb.x + rand(-vdb.w * 0.4, vdb.w * 0.4);
+        p.hy = vdb.y + rand(-vdb.h * 0.36, vdb.h * 0.36);
+        p.baseAlpha = rand(0.2, 0.55); p.sizeMul = rand(0.28, 0.5); p.fast = false;
+      } else {
+        p.mode = 'dust';
+        p.hx = W * rand(0.02, 0.98); p.hy = H * rand(0.04, 0.96);
+        p.baseAlpha = rand(0.04, 0.14); p.sizeMul = rand(0.4, 1.1); p.fast = false;
+      }
+    });
+    links = brainLinksFor(function (p) { return p.mode === 'lbrain' || p.mode === 'rbrain'; }, 70);
+  };
+
   // -- full: the whole picture, user to answer, with the token stream
   // -- flowing all the way back
   layouts.full = function () {
@@ -779,6 +853,153 @@
         p.mode = 'dust';
         p.hx = W * rand(0.02, 0.98); p.hy = H * rand(0.04, 0.96);
         p.baseAlpha = rand(0.04, 0.13); p.sizeMul = rand(0.4, 1.1); p.fast = false;
+      }
+    });
+    links = brainLinksFor(function (p) { return p.mode === 'brain'; }, 44);
+  };
+
+  // -- where: the same cast, sorted by address; your machine on the
+  // -- left, the models with a vendor in the cloud on the right
+  layouts.where = function () {
+    var mine = { x0: W * 0.06, x1: W * 0.44, y0: H * 0.09, y1: H * 0.50 };
+    var cloud = { x0: W * 0.54, x1: W * 0.95, y0: H * 0.09, y1: H * 0.50 };
+    var rag = { x: W * 0.115, y: H * 0.21, r: MN * 0.028 };
+    var harn = { x: W * 0.28, y: H * 0.21, w: MN * 0.08, h: MN * 0.09 };
+    var docs = { x: W * 0.135, y: H * 0.40, w: MN * 0.075, h: MN * 0.08 };
+    var store = { x: W * 0.31, y: H * 0.40, w: MN * 0.06, h: MN * 0.08 };
+    var llm = { x: W * 0.68, y: H * 0.235, r: MN * 0.07 };
+    var emb = { x: W * 0.855, y: H * 0.40, w: MN * 0.09, h: MN * 0.08 };
+    board = {
+      mine: mine, cloud: cloud, rag: rag, harn: harn, docs: docs,
+      store: store, llm: llm, emb: emb,
+      cycle: 5600,
+      api1: makePath(harn.x + harn.w * 0.6, harn.y - harn.h * 0.1, llm.x - llm.r * 1.0, llm.y, -0.12),
+      api2: makePath(store.x + store.w * 0.7, store.y + store.h * 0.1, emb.x - emb.w * 0.6, emb.y, 0.1),
+      labels: [
+        { x: (mine.x0 + mine.x1) / 2, y: mine.y0 - 14, text: 'YOUR MACHINE' },
+        { x: (cloud.x0 + cloud.x1) / 2, y: cloud.y0 - 14, text: 'A VENDOR IN THE CLOUD' },
+        { x: rag.x, y: rag.y + rag.r * 2.6, text: 'NORM' },
+        { x: harn.x, y: harn.y + harn.h * 0.85 + 8, text: 'HARNESS' },
+        { x: docs.x, y: docs.y + docs.h * 0.85 + 8, text: 'DOCUMENTS' },
+        { x: store.x, y: store.y + store.h * 1.0, text: 'VECTOR STORE' },
+        { x: llm.x, y: llm.y + llm.r * 1.45, text: 'LLM' },
+        { x: emb.x, y: emb.y + emb.h * 0.85 + 8, text: 'EMBEDDING MODEL' }
+      ]
+    };
+    P.forEach(function (p, i) {
+      if (p.seed < 0.08) {
+        p.mode = 'rag';
+        p.r2 = Math.pow(Math.random(), 0.7) * rag.r * 0.62;
+        p.baseAlpha = rand(0.35, 0.9); p.sizeMul = rand(0.3, 0.6); p.fast = false;
+      } else if (p.seed < 0.16) {
+        p.mode = 'harn';
+        p.hx = harn.x + rand(-harn.w * 0.4, harn.w * 0.4);
+        p.hy = harn.y + rand(-harn.h * 0.36, harn.h * 0.36);
+        p.baseAlpha = rand(0.22, 0.55); p.sizeMul = rand(0.28, 0.5); p.fast = false;
+      } else if (p.seed < 0.26) {
+        p.mode = 'docs';
+        var giW = i % 24;
+        p.hx = docs.x - docs.w * 0.4 + (giW % 4 + 0.5) * docs.w * 0.8 / 4 + rand(-2, 2);
+        p.hy = docs.y - docs.h * 0.4 + (Math.floor(giW / 4) + 0.5) * docs.h * 0.8 / 6 + rand(-1.5, 1.5);
+        p.baseAlpha = rand(0.2, 0.5); p.sizeMul = rand(0.3, 0.55); p.fast = false;
+      } else if (p.seed < 0.34) {
+        p.mode = 'store';
+        p.hx = store.x + rand(-store.w * 0.4, store.w * 0.4);
+        p.hy = store.y + rand(-store.h * 0.36, store.h * 0.36);
+        p.baseAlpha = rand(0.2, 0.55); p.sizeMul = rand(0.28, 0.5); p.fast = false;
+      } else if (p.seed < 0.52) {
+        p.mode = 'brain';
+        brainHome(p, llm);
+        p.baseAlpha = p.ember ? rand(0.3, 0.85) : rand(0.18, 0.55);
+        p.sizeMul = rand(0.32, 0.65); p.fast = false;
+      } else if (p.seed < 0.60) {
+        p.mode = 'emb';
+        p.hx = emb.x + rand(-emb.w * 0.4, emb.w * 0.4);
+        p.hy = emb.y + rand(-emb.h * 0.36, emb.h * 0.36);
+        p.baseAlpha = rand(0.2, 0.55); p.sizeMul = rand(0.28, 0.5); p.fast = false;
+      } else if (p.seed < 0.68) {
+        p.mode = 'p1';
+        p.dir = p.seed < 0.64 ? 1 : -1;
+        p.off = rand(0, 0.12);
+        p.baseAlpha = rand(0.4, 0.9); p.sizeMul = rand(0.3, 0.55); p.fast = true;
+      } else if (p.seed < 0.76) {
+        p.mode = 'p2';
+        p.dir = p.seed < 0.72 ? 1 : -1;
+        p.off = rand(0, 0.12);
+        p.baseAlpha = rand(0.4, 0.85); p.sizeMul = rand(0.3, 0.55); p.fast = true;
+      } else {
+        p.mode = 'dust';
+        p.hx = W * rand(0.02, 0.98); p.hy = H * rand(0.04, 0.96);
+        p.baseAlpha = rand(0.04, 0.14); p.sizeMul = rand(0.4, 1.1); p.fast = false;
+      }
+    });
+    links = brainLinksFor(function (p) { return p.mode === 'brain'; }, 56);
+  };
+
+  // -- laptop: the entire cast inside one machine, nothing leaves
+  layouts.laptop = function () {
+    var box = { x0: W * (isMobile ? 0.06 : 0.50), x1: W * 0.96, y0: H * 0.10, y1: H * 0.78 };
+    var harn = { x: W * (isMobile ? 0.30 : 0.615), y: H * 0.28, w: MN * 0.085, h: MN * 0.10 };
+    var llm = { x: W * (isMobile ? 0.72 : 0.85), y: H * 0.30, r: MN * 0.055 };
+    var emb = { x: W * (isMobile ? 0.24 : 0.60), y: H * 0.60, w: MN * 0.08, h: MN * 0.07 };
+    var store = { x: W * (isMobile ? 0.52 : 0.755), y: H * 0.62, w: MN * 0.055, h: MN * 0.075 };
+    var docs = { x: W * (isMobile ? 0.80 : 0.895), y: H * 0.60, w: MN * 0.07, h: MN * 0.075 };
+    board = {
+      box: box, harn: harn, llm: llm, emb: emb, store: store, docs: docs,
+      cycle: 4600,
+      api: makePath(harn.x + harn.w * 0.6, harn.y, llm.x - llm.r * 1.1, llm.y, -0.1),
+      sPth: makePath(harn.x + harn.w * 0.3, harn.y + harn.h * 0.6, store.x - store.w * 0.4, store.y - store.h * 0.6, 0.14),
+      labels: [
+        { x: (box.x0 + box.x1) / 2, y: box.y1 + 22, text: 'ONE LAPTOP' },
+        { x: (box.x0 + box.x1) / 2, y: box.y1 + 40, text: 'SMALLER · SLOWER · PRIVATE' },
+        { x: harn.x, y: harn.y - harn.h * 0.62 - 10, text: 'HARNESS' },
+        { x: llm.x, y: llm.y - llm.r * 1.5 - 10, text: 'SMALL LLM' },
+        { x: emb.x, y: emb.y + emb.h * 0.85 + 8, text: 'EMBEDDING MODEL' },
+        { x: store.x, y: store.y + store.h * 1.0, text: 'VECTOR STORE' },
+        { x: docs.x, y: docs.y + docs.h * 0.85 + 8, text: 'DOCUMENTS' }
+      ]
+    };
+    P.forEach(function (p, i) {
+      if (p.seed < 0.10) {
+        p.mode = 'harn';
+        p.hx = harn.x + rand(-harn.w * 0.4, harn.w * 0.4);
+        p.hy = harn.y + rand(-harn.h * 0.36, harn.h * 0.36);
+        p.baseAlpha = rand(0.22, 0.55); p.sizeMul = rand(0.28, 0.5); p.fast = false;
+      } else if (p.seed < 0.26) {
+        p.mode = 'brain';
+        brainHome(p, llm);
+        p.baseAlpha = p.ember ? rand(0.3, 0.85) : rand(0.18, 0.55);
+        p.sizeMul = rand(0.3, 0.6); p.fast = false;
+      } else if (p.seed < 0.34) {
+        p.mode = 'emb';
+        p.hx = emb.x + rand(-emb.w * 0.4, emb.w * 0.4);
+        p.hy = emb.y + rand(-emb.h * 0.36, emb.h * 0.36);
+        p.baseAlpha = rand(0.2, 0.55); p.sizeMul = rand(0.28, 0.5); p.fast = false;
+      } else if (p.seed < 0.42) {
+        p.mode = 'store';
+        p.hx = store.x + rand(-store.w * 0.4, store.w * 0.4);
+        p.hy = store.y + rand(-store.h * 0.36, store.h * 0.36);
+        p.baseAlpha = rand(0.2, 0.55); p.sizeMul = rand(0.28, 0.5); p.fast = false;
+      } else if (p.seed < 0.52) {
+        p.mode = 'docs';
+        var giL = i % 24;
+        p.hx = docs.x - docs.w * 0.4 + (giL % 4 + 0.5) * docs.w * 0.8 / 4 + rand(-2, 2);
+        p.hy = docs.y - docs.h * 0.4 + (Math.floor(giL / 4) + 0.5) * docs.h * 0.8 / 6 + rand(-1.5, 1.5);
+        p.baseAlpha = rand(0.2, 0.5); p.sizeMul = rand(0.3, 0.55); p.fast = false;
+      } else if (p.seed < 0.60) {
+        p.mode = 'ap';
+        p.dir = p.seed < 0.56 ? 1 : -1;
+        p.off = rand(0, 0.12);
+        p.baseAlpha = rand(0.4, 0.9); p.sizeMul = rand(0.3, 0.55); p.fast = true;
+      } else if (p.seed < 0.68) {
+        p.mode = 'sp';
+        p.dir = p.seed < 0.64 ? 1 : -1;
+        p.off = rand(0, 0.12);
+        p.baseAlpha = rand(0.4, 0.85); p.sizeMul = rand(0.3, 0.55); p.fast = true;
+      } else {
+        p.mode = 'dust';
+        p.hx = W * rand(0.02, 0.98); p.hy = H * rand(0.04, 0.96);
+        p.baseAlpha = rand(0.04, 0.14); p.sizeMul = rand(0.4, 1.1); p.fast = false;
       }
     });
     links = brainLinksFor(function (p) { return p.mode === 'brain'; }, 44);
@@ -1311,6 +1532,156 @@
         }
       });
 
+    } else if (sceneName === 'versus') {
+      var bv = board;
+      var progL = fract(te / bv.cycleL);
+      var progR = fract(te / bv.cycleR);
+      var lU = win(progL, 0.06, 0.80);
+      board.flareL = progL > 0.80 && progL < 0.96 ? bell((progL - 0.80) / 0.16) : 0;
+      var vThink1 = win(progR, 0.02, 0.09);
+      var vCall1 = win(progR, 0.09, 0.17);
+      var vRes1 = win(progR, 0.17, 0.25);
+      var vThink2 = win(progR, 0.25, 0.31);
+      var vCall2 = win(progR, 0.31, 0.39);
+      var vRes2 = win(progR, 0.39, 0.47);
+      var vFlare1 = win(progR, 0.47, 0.55);
+      var vThink3 = win(progR, 0.60, 0.68);
+      var vFlare2 = win(progR, 0.68, 0.76);
+      var agitR = 0;
+      if (vThink1 >= 0) agitR = bell(vThink1);
+      else if (vThink2 >= 0) agitR = bell(vThink2);
+      else if (vThink3 >= 0) agitR = bell(vThink3);
+      board.agitR = agitR;
+      board.skipU = win(progR, 0.58, 0.78);
+      board.flareR = vFlare1 >= 0 ? bell(vFlare1) : (vFlare2 >= 0 ? bell(vFlare2) : 0);
+      var vCallU = vCall1 >= 0 ? vCall1 : vCall2;
+      var vResU = vRes1 >= 0 ? vRes1 : vRes2;
+      board.toolHot = vCallU >= 0 || vResU >= 0 ? 1 : 0;
+      P.forEach(function (p) {
+        if (p.mode === 'lnode') {
+          p.tx = p.hx + Math.sin(t * 0.0012 + p.phase) * 0.7;
+          p.ty = p.hy + Math.cos(t * 0.001 + p.phase) * 0.6;
+          p.alpha = p.baseAlpha * (0.5 + 0.5 * Math.sin(t * 0.001 + p.phase));
+        } else if (p.mode === 'lbrain') {
+          brainTarget(p, t, board.flareL * 0.6);
+        } else if (p.mode === 'lpulse') {
+          if (lU < 0) {
+            p.tx = bv.chainL[0].p0[0]; p.ty = bv.chainL[0].p0[1]; p.alpha = 0;
+          } else {
+            var sL = clamp01(lU + p.off * (1 - lU));
+            var posL = chainPos(bv.chainL, sL);
+            p.tx = posL[0]; p.ty = posL[1];
+            p.alpha = p.baseAlpha * bell(lU);
+          }
+        } else if (p.mode === 'rbrain') {
+          brainTarget(p, t, agitR);
+        } else if (p.mode === 'rtool') {
+          if (vCallU < 0) {
+            p.tx = bv.toolPth.p0[0]; p.ty = bv.toolPth.p0[1]; p.alpha = 0;
+          } else {
+            var sT = clamp01(vCallU + p.off * (1 - vCallU));
+            var posT = bezier(bv.toolPth, easeInOut(sT));
+            p.tx = posT[0]; p.ty = posT[1];
+            p.alpha = p.baseAlpha * bell(vCallU) * (vCall2 >= 0 ? 0.8 : 1);
+          }
+        } else if (p.mode === 'rres') {
+          if (vResU < 0) {
+            p.tx = bv.resPth.p0[0]; p.ty = bv.resPth.p0[1]; p.alpha = 0;
+          } else {
+            var sR = clamp01(vResU + p.off * (1 - vResU));
+            var posR = bezier(bv.resPth, easeInOut(sR));
+            p.tx = posR[0]; p.ty = posR[1];
+            p.alpha = p.baseAlpha * bell(vResU);
+          }
+        } else if (p.mode === 'vdbp') {
+          p.tx = p.hx + Math.sin(t * 0.0014 + p.phase) * 1;
+          p.ty = p.hy + Math.cos(t * 0.0011 + p.phase) * 0.8;
+          var dimV = board.skipU >= 0 ? 0.3 : 1;
+          p.alpha = p.baseAlpha * dimV * (0.5 + 0.5 * Math.sin(t * 0.001 + p.phase)) + board.toolHot * 0.3;
+        } else {
+          p.tx = p.hx + Math.sin(t * 0.0002 * p.speed + p.phase) * 6;
+          p.ty = p.hy + Math.cos(t * 0.00016 + p.phase) * 5;
+          p.alpha = p.baseAlpha;
+        }
+      });
+
+    } else if (sceneName === 'where') {
+      var bw = board;
+      var progW = fract(te / bw.cycle);
+      var out1 = win(progW, 0.04, 0.30);
+      var back1 = win(progW, 0.36, 0.62);
+      var progW2 = fract(progW + 0.5);
+      var out2 = win(progW2, 0.04, 0.30);
+      var back2 = win(progW2, 0.36, 0.62);
+      P.forEach(function (p) {
+        if (p.mode === 'rag') {
+          var thW = p.phase + t * 0.0006 * p.speed;
+          p.tx = bw.rag.x + Math.cos(thW) * p.r2;
+          p.ty = bw.rag.y + Math.sin(thW) * p.r2 * 0.85;
+          p.alpha = p.baseAlpha * (0.6 + 0.4 * Math.sin(t * 0.0018 + p.phase));
+        } else if (p.mode === 'brain') {
+          brainTarget(p, t, back1 >= 0 ? 0.35 : 0.05);
+        } else if (p.mode === 'harn' || p.mode === 'docs' || p.mode === 'store' || p.mode === 'emb') {
+          p.tx = p.hx + Math.sin(t * 0.0012 + p.phase) * 0.8;
+          p.ty = p.hy + Math.cos(t * 0.001 + p.phase) * 0.6;
+          p.alpha = p.baseAlpha * (0.5 + 0.5 * Math.sin(t * 0.001 + p.phase));
+        } else if (p.mode === 'p1' || p.mode === 'p2') {
+          var pthW = p.mode === 'p1' ? bw.api1 : bw.api2;
+          var uW = p.mode === 'p1'
+            ? (p.dir === 1 ? out1 : back1)
+            : (p.dir === 1 ? out2 : back2);
+          if (uW < 0) {
+            var stW = p.dir === 1 ? pthW.p0 : pthW.p1;
+            p.tx = stW[0]; p.ty = stW[1]; p.alpha = 0;
+          } else {
+            var sW = clamp01(uW + p.off * (1 - uW));
+            var posW = bezier(pthW, p.dir === 1 ? easeInOut(sW) : 1 - easeInOut(sW));
+            p.tx = posW[0]; p.ty = posW[1];
+            p.alpha = p.baseAlpha * bell(uW);
+          }
+        } else {
+          p.tx = p.hx + Math.sin(t * 0.0002 * p.speed + p.phase) * 6;
+          p.ty = p.hy + Math.cos(t * 0.00016 + p.phase) * 5;
+          p.alpha = p.baseAlpha;
+        }
+      });
+
+    } else if (sceneName === 'laptop') {
+      var bp = board;
+      var progP = fract(te / bp.cycle);
+      var aOut = win(progP, 0.05, 0.35);
+      var aBack = win(progP, 0.45, 0.75);
+      var progP2 = fract(progP + 0.4);
+      var sOut = win(progP2, 0.05, 0.35);
+      var sBack = win(progP2, 0.45, 0.75);
+      P.forEach(function (p) {
+        if (p.mode === 'brain') {
+          brainTarget(p, t, aBack >= 0 ? 0.4 : 0.08);
+        } else if (p.mode === 'harn' || p.mode === 'emb' || p.mode === 'store' || p.mode === 'docs') {
+          p.tx = p.hx + Math.sin(t * 0.0012 + p.phase) * 0.8;
+          p.ty = p.hy + Math.cos(t * 0.001 + p.phase) * 0.6;
+          p.alpha = p.baseAlpha * (0.5 + 0.5 * Math.sin(t * 0.001 + p.phase));
+        } else if (p.mode === 'ap' || p.mode === 'sp') {
+          var pthP = p.mode === 'ap' ? bp.api : bp.sPth;
+          var uP = p.mode === 'ap'
+            ? (p.dir === 1 ? aOut : aBack)
+            : (p.dir === 1 ? sOut : sBack);
+          if (uP < 0) {
+            var stP = p.dir === 1 ? pthP.p0 : pthP.p1;
+            p.tx = stP[0]; p.ty = stP[1]; p.alpha = 0;
+          } else {
+            var sP = clamp01(uP + p.off * (1 - uP));
+            var posP = bezier(pthP, p.dir === 1 ? easeInOut(sP) : 1 - easeInOut(sP));
+            p.tx = posP[0]; p.ty = posP[1];
+            p.alpha = p.baseAlpha * bell(uP);
+          }
+        } else {
+          p.tx = p.hx + Math.sin(t * 0.0002 * p.speed + p.phase) * 6;
+          p.ty = p.hy + Math.cos(t * 0.00016 + p.phase) * 5;
+          p.alpha = p.baseAlpha;
+        }
+      });
+
     } else {
       P.forEach(function (p) { p.tx = p.x; p.ty = p.y; p.alpha = 0; });
     }
@@ -1687,6 +2058,110 @@
           strokePath(pth3, 'rgba(245,166,35,' + (0.18 * sf) + ')', 1);
         });
       }
+
+    } else if (sceneName === 'versus') {
+      var bvs = board;
+      drawLinksSet(1);
+      // the hairline between the two philosophies
+      ctx.strokeStyle = 'rgba(200,200,215,' + (0.15 * sf) + ')';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(W * 0.5, H * 0.06);
+      ctx.lineTo(W * 0.5, H * 0.50);
+      ctx.stroke();
+      // left: the fixed pipeline
+      ctx.strokeStyle = 'rgba(200,200,215,' + (0.42 * sf) + ')';
+      ctx.beginPath();
+      ctx.arc(bvs.q.x, bvs.q.y, 8, 0, Math.PI * 2);
+      ctx.stroke();
+      drawBoxNode(bvs.sBox, sf, 0);
+      drawBoxNode(bvs.pBox, sf, 0);
+      bvs.chainL.forEach(function (pthV) {
+        strokePath(pthV, 'rgba(200,200,215,' + (0.14 * sf) + ')', 1);
+      });
+      if (bvs.flareL > 0.02) {
+        var gVL = ctx.createRadialGradient(bvs.llmL.x, bvs.llmL.y, 0, bvs.llmL.x, bvs.llmL.y, bvs.llmL.r * 1.8);
+        gVL.addColorStop(0, 'rgba(245,166,35,' + (0.16 * bvs.flareL * sf) + ')');
+        gVL.addColorStop(1, 'rgba(245,166,35,0)');
+        ctx.fillStyle = gVL;
+        var RVL = bvs.llmL.r * 1.8;
+        ctx.fillRect(bvs.llmL.x - RVL, bvs.llmL.y - RVL, RVL * 2, RVL * 2);
+      }
+      // right: the deciding loop
+      drawCyl(bvs.vdb, sf * (bvs.skipU >= 0 ? 0.45 : 1), bvs.toolHot ? 0.5 : 0);
+      strokePath(bvs.toolPth, 'rgba(255,77,28,' + ((bvs.toolHot ? 0.32 : 0.12) * sf) + ')', 1.1);
+      strokePath(bvs.resPth, 'rgba(200,200,215,' + ((bvs.toolHot ? 0.2 : 0.09) * sf) + ')', 1);
+      if (bvs.agitR > 0.02) {
+        var rrV = 12 + bvs.agitR * bvs.llmR.r * 1.1;
+        ctx.strokeStyle = 'rgba(255,77,28,' + (0.45 * (1 - bvs.agitR * 0.5) * sf) + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.ellipse(bvs.llmR.x, bvs.llmR.y, rrV, rrV * 0.8, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      if (bvs.flareR > 0.02) {
+        var gVR = ctx.createRadialGradient(bvs.llmR.x, bvs.llmR.y, 0, bvs.llmR.x, bvs.llmR.y, bvs.llmR.r * 2);
+        gVR.addColorStop(0, 'rgba(245,166,35,' + (0.18 * bvs.flareR * sf) + ')');
+        gVR.addColorStop(1, 'rgba(245,166,35,0)');
+        ctx.fillStyle = gVR;
+        var RVR = bvs.llmR.r * 2;
+        ctx.fillRect(bvs.llmR.x - RVR, bvs.llmR.y - RVR, RVR * 2, RVR * 2);
+      }
+      if (bvs.skipU >= 0) {
+        ctx.font = '11px "JetBrains Mono", Menlo, monospace';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = 'rgba(245,166,35,' + (0.75 * bell(clamp01(bvs.skipU)) * sf) + ')';
+        ctx.fillText('NO SEARCH NEEDED', bvs.vdb.x, bvs.vdb.y - bvs.vdb.h * 0.9);
+        ctx.textAlign = 'left';
+      }
+
+    } else if (sceneName === 'where') {
+      var bw2 = board;
+      drawLinksSet(1);
+      // your machine, dashed and warm
+      ctx.strokeStyle = 'rgba(245,166,35,' + (0.18 * sf) + ')';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([2, 7]);
+      ctx.beginPath();
+      ctx.roundRect(bw2.mine.x0, bw2.mine.y0, bw2.mine.x1 - bw2.mine.x0, bw2.mine.y1 - bw2.mine.y0, 10);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      // the vendor's zone, solid
+      ctx.strokeStyle = 'rgba(200,200,215,' + (0.22 * sf) + ')';
+      ctx.beginPath();
+      ctx.roundRect(bw2.cloud.x0, bw2.cloud.y0, bw2.cloud.x1 - bw2.cloud.x0, bw2.cloud.y1 - bw2.cloud.y0, 10);
+      ctx.stroke();
+      drawBot(bw2.rag, t, sf);
+      drawBoxNode(bw2.harn, sf, 0);
+      drawBoxNode(bw2.docs, sf, 0);
+      drawCyl(bw2.store, sf, 0);
+      drawBoxNode(bw2.emb, sf, 0);
+      strokePath(bw2.api1, 'rgba(200,200,215,' + (0.16 * sf) + ')', 1);
+      strokePath(bw2.api2, 'rgba(200,200,215,' + (0.12 * sf) + ')', 1);
+      var midW = bezier(bw2.api1, 0.5);
+      ctx.font = '11px "JetBrains Mono", Menlo, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = 'rgba(255,138,102,' + (0.6 * sf) + ')';
+      ctx.fillText('API', midW[0], midW[1] - 10);
+      ctx.textAlign = 'left';
+
+    } else if (sceneName === 'laptop') {
+      var bp2 = board;
+      drawLinksSet(1);
+      // one machine, one boundary, nothing crosses it
+      ctx.strokeStyle = 'rgba(245,166,35,' + (0.2 * sf) + ')';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([2, 7]);
+      ctx.beginPath();
+      ctx.roundRect(bp2.box.x0, bp2.box.y0, bp2.box.x1 - bp2.box.x0, bp2.box.y1 - bp2.box.y0, 12);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      drawBoxNode(bp2.harn, sf, 0);
+      drawBoxNode(bp2.emb, sf, 0);
+      drawCyl(bp2.store, sf, 0);
+      drawBoxNode(bp2.docs, sf, 0);
+      strokePath(bp2.api, 'rgba(200,200,215,' + (0.16 * sf) + ')', 1);
+      strokePath(bp2.sPth, 'rgba(200,200,215,' + (0.12 * sf) + ')', 1);
     }
 
     drawLabels(t);

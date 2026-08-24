@@ -57,22 +57,24 @@
   url: /talks/agentic-rag/
   date: 2026-08-19
   deck_lang: en
-  slides: 10
+  slides: 13
   eyebrow:
-    sv: "Augusti 2026 · på engelska · 10 bilder"
-    en: "August 2026 · in English · 10 slides"
+    sv: "Augusti 2026 · på engelska · 13 bilder"
+    en: "August 2026 · in English · 13 slides"
   title:
     sv: "Agentisk RAG"
     en: "Agentic RAG"
   blurb:
     sv: >-
       Chattboten Norm lär sig slå upp saker. Från nyfödd till agent:
-      minne, embeddings, vektorsökning och verktyg, i tio
-      partikelanimerade bilder.
+      minne, embeddings, vektorsökning, verktyg, och vad som krävs
+      för att köra alltihop lokalt, i tretton partikelanimerade
+      bilder.
     en: >-
       Norm the chat bot learns to look things up. From newborn to
-      agent: memory, embeddings, vector search and tools, in ten
-      particle-animated slides.
+      agent: memory, embeddings, vector search, tools, and what it
+      takes to run it all locally, in thirteen particle-animated
+      slides.
   cta:
     sv: "Se föredraget"
     en: "Watch the talk"

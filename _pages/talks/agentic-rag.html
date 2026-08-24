@@ -3,7 +3,7 @@ layout: talk
 title: Agentic RAG
 description: >-
   Norm the chat bot learns to look things up. An MKLab tech talk on
-  retrieval augmented generation in ten particle-animated slides.
+  retrieval augmented generation in thirteen particle-animated slides.
 permalink: /talks/agentic-rag/
 lang: en
 canvas: /assets/js/talks/agentic-rag.js
@@ -93,6 +93,20 @@ canvas: /assets/js/talks/agentic-rag.js
       </div>
     </section>
 
+    <section class="slide slide--bottom" data-scene="versus">
+      <div class="slide__copy">
+        <p class="eyebrow">Interlude · Traditional vs agentic</p>
+        <h2>The difference is the decision.</h2>
+        <p class="lead">Traditional RAG is a pipeline: every question
+        triggers one retrieval, the results are stitched in, the model
+        answers, even when the search missed or was never needed. Agentic
+        RAG puts the model in charge: it decides <strong>whether</strong>
+        to search, rephrases the query, judges the results, and searches
+        again until it has enough. Fewer wasted lookups, better answers on
+        hard questions.</p>
+      </div>
+    </section>
+
     <section class="slide slide--bottom" data-scene="full">
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">V</span> · The whole picture</p>
@@ -101,6 +115,33 @@ canvas: /assets/js/talks/agentic-rag.js
         knowledge retrieved, and the answer <strong>streamed back token by
         token</strong>. Every piece is something we added. Nothing here is
         magic.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="where">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">VI</span> · Where everything lives</p>
+        <h2>Every piece runs somewhere.</h2>
+        <p class="lead">A question we often get: can I run RAG on my own
+        computer? Yes. You need <strong>a harness</strong> to orchestrate
+        it all, <strong>an embedding model</strong> and <strong>an
+        LLM</strong>. Your documents, the vector store and the harness
+        usually live with you. The models, with the laptops we have today,
+        usually live with <em>a vendor in the cloud</em>, reached over an
+        API.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="laptop">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">VII</span> · Completely local</p>
+        <h2>The whole thing on one laptop.</h2>
+        <p class="lead">Nothing in the architecture requires the cloud. You
+        need a runtime for <strong>a small local LLM</strong>, a local
+        embedding model, a vector store, a file will do, your documents,
+        and a harness to orchestrate it all. The trade is honest:
+        <em>smaller models and slower answers, but nothing ever leaves the
+        machine</em>.</p>
       </div>
     </section>
 
