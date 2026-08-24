@@ -530,13 +530,13 @@
   // -- row is the one shared line running through every column
   layouts.vendors = function () {
     var cols = isMobile ? [W * 0.2, W * 0.5, W * 0.8] : [W * 0.30, W * 0.55, W * 0.80];
-    var rows = [H * 0.16, H * 0.29, H * 0.42, H * 0.56];
+    var rows = [H * 0.11, H * 0.22, H * 0.32, H * 0.42];
     var heads = ['GITHUB COPILOT', 'CLAUDE CODE', 'CODEX'];
     var rowNames = ['PROMPTS', 'INSTRUCTIONS', 'AGENTS', 'SKILLS'];
     var cells = [
       ['*.PROMPT.MD', '/COMMANDS', '~/.CODEX/PROMPTS'],
-      ['*.INSTRUCTIONS.MD', 'CLAUDE.MD', 'AGENTS.MD'],
-      ['*.AGENT.MD', 'SUBAGENTS', 'PROFILES'],
+      ['COPILOT-INSTRUCTIONS.MD', 'CLAUDE.MD', 'AGENTS.MD'],
+      ['*.AGENT.MD', 'NO EQUIVALENT', 'NO EQUIVALENT'],
       ['SKILL.MD', 'SKILL.MD', 'SKILL.MD']
     ];
     board = {
@@ -555,7 +555,9 @@
         var d = Math.pow(Math.random(), 0.6) * r;
         p.hx = cols[p.ci] + Math.cos(a) * d * 2.6;
         p.hy = rows[p.ri] + Math.sin(a) * d;
-        p.baseAlpha = p.ri === 3 ? rand(0.5, 0.95) : rand(0.28, 0.6);
+        // the agents row is a Copilot concept: the other columns stay dark
+        p.baseAlpha = (p.ri === 2 && p.ci > 0) ? rand(0.04, 0.1)
+          : (p.ri === 3 ? rand(0.5, 0.95) : rand(0.28, 0.6));
         p.sizeMul = rand(0.35, 0.65); p.fast = false;
       } else if (p.seed < 0.68) {
         p.mode = 'rowpulse';
@@ -1423,8 +1425,11 @@
         labelText(bv2.rowNames[ri], bv2.cols[0] - MN * (isMobile ? 0.13 : 0.16), bv2.rows[ri] + 4,
           (skillRow ? 0.7 : 0.5) * sf, skillRow ? '245,166,35' : '200,200,215');
         for (var ci2 = 0; ci2 < 3; ci2++) {
-          labelText(bv2.cells[ri][ci2], bv2.cols[ci2], bv2.rows[ri] + 22,
-            (skillRow ? 0.6 : 0.38) * sf, skillRow ? '255,138,102' : '200,200,215');
+          var cellTxt = bv2.cells[ri][ci2];
+          var none = cellTxt === 'NO EQUIVALENT';
+          labelText(cellTxt, bv2.cols[ci2], bv2.rows[ri] + 22,
+            (none ? 0.22 : (skillRow ? 0.6 : 0.38)) * sf,
+            skillRow ? '255,138,102' : '200,200,215');
         }
       }
 
