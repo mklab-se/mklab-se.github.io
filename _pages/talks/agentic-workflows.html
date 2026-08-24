@@ -1,0 +1,173 @@
+---
+layout: talk
+title: Agents in Your Repository
+description: >-
+  GitHub Agentic Workflows explained: agents that run on repository events
+  inside GitHub Actions, what the whole team can automate, and why being
+  early is the advantage. Thirteen particle-animated slides.
+permalink: /talks/agentic-workflows/
+lang: en
+canvas: /assets/js/talks/agentic-workflows.js
+---
+    <section class="slide slide--center" data-scene="title" data-intro>
+      <div class="slide__copy">
+        <p class="eyebrow">MKLab · tech talk</p>
+        <h1>Agents in your repository</h1>
+        <p class="lead title-sub">GitHub Agentic Workflows: automation that
+        reads, thinks and writes back. Triggered by events, not chat.</p>
+      </div>
+      <p class="deck-hint">Space to begin</p>
+    </section>
+
+    <section class="slide" data-scene="ask">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">I</span> · The question</p>
+        <h2>Everyone is asking for one.</h2>
+        <p class="lead">I need an agent, something that automates tasks for
+        my team with little or no interaction. The question comes up
+        everywhere. And if your team lives on GitHub, already running
+        <strong>GitHub Actions</strong> for CI, the answer is standing
+        closer than you think.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="places">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">II</span> · The map</p>
+        <h2>Three places an agent can live.</h2>
+        <p class="lead">An assistant in your chat and office apps answers
+        <em>you</em>. An agent beside you in the IDE or terminal works
+        <em>while you watch</em>. An agentic workflow lives in the
+        repository and works <strong>when events happen</strong>, whether
+        you are there or not. One word of discipline: an agentic workflow
+        can act as an agent, but agent is the bigger word. This talk keeps
+        the two apart.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="triggers">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">III</span> · Nobody chats with it</p>
+        <h2>So how does it know?</h2>
+        <p class="lead">There is no chat window. The instructions are
+        written down in advance, and <strong>the trigger replaces the
+        conversation</strong>: an issue opened, a pull request, a comment,
+        a label, a schedule that reads like prose: <em>weekly on
+        monday</em>. The event brings the context. The file brings the
+        goal.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="boundary">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">IV</span> · The boundary</p>
+        <h2>It only hears GitHub.</h2>
+        <p class="lead">An agentic workflow wakes on GitHub events, and on
+        nothing else. A new issue in an on-prem Jira, a push to a local
+        GitLab or Bitbucket: silence. If your work lives elsewhere, bring
+        it to GitHub or bridge it with <strong>webhooks</strong>, each with
+        trade-offs. Fully on GitHub, this is brilliant. Half elsewhere:
+        know the gap, and plan the bridge.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="think">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">V</span> · Beyond CI</p>
+        <h2>Same runners, new kind of work.</h2>
+        <p class="lead">A classic GitHub Actions workflow runs the same
+        steps every time, which is exactly what you want for building and
+        deploying. An agentic workflow gets <strong>a goal and
+        judgment</strong>: it reads the issue, investigates, decides, and
+        writes something back. Your pipelines are not being replaced. They
+        are getting a colleague.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="markdown">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">VI</span> · The file</p>
+        <h2>Written in markdown, run by Actions.</h2>
+        <p class="lead">A file in the repository: frontmatter for the
+        trigger, the permissions and the engine, then <strong>plain prose
+        telling the agent what to accomplish</strong>. Compiled into a
+        locked Actions workflow. The engine is your choice: Copilot,
+        Claude, Codex, Gemini or Pi, and the file reads the same whichever
+        one thinks inside it.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="guardrails">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">VII</span> · Guardrails</p>
+        <h2>Powerful, and fenced.</h2>
+        <p class="lead">The agent runs <strong>read-only</strong> in a
+        sandbox behind a network firewall. It cannot push to your code. It
+        proposes: an issue, a comment, a pull request, through <em>safe
+        outputs</em> that separate jobs validate and a human reviews. The
+        guardrails are not a limitation. They are what makes the rest
+        usable.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="helps">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">VIII</span> · Where it helps</p>
+        <h2>Small chores, done nightly.</h2>
+        <p class="lead">The wins are not moonshots. Triage the new issues.
+        Investigate the failing build at dawn. Summarize the week. Tend
+        the backlog. Keep the docs honest. <strong>Recurring work with
+        judgment in it</strong>, small enough to trust an agent with,
+        valuable enough that it compounds.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="team">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">IX</span> · The whole team</p>
+        <h2>Not only for developers.</h2>
+        <p class="lead">The developer gets a nightly investigator that
+        turns broken builds into annotated issues. The tester gets a
+        reviewer that reads merged changes and proposes missing tests. The
+        project manager gets a Monday morning status woven from the week's
+        work. The product owner gets feedback labeled, deduplicated and
+        summarized into the backlog.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="preview">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">X</span> · Early days</p>
+        <h2>Early, and worth being early to.</h2>
+        <p class="lead">GitHub marks Agentic Workflows as a <strong>public
+        preview</strong>: it moves fast, details change, runs cost Actions
+        minutes and AI credits, and the output deserves human eyes. That
+        is not a reason to wait. It is the best moment to learn: start
+        small, read what it writes, and let trust and responsibility grow
+        together.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-scene="start">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">XI</span> · The sooner the better</p>
+        <h2>This is where automation is heading.</h2>
+        <p class="lead">Agents that live with the work and act on its
+        events, this solution or ones like it, are the future of team
+        automation. The sooner your team runs its first workflow, the
+        sooner the benefits compound. Pick one recurring chore, one
+        markdown file, and begin.</p>
+        <p class="deck-actions"><a class="deck-link" href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">github.github.com/gh-aw</a></p>
+      </div>
+    </section>
+
+    <section class="slide slide--center" data-scene="outro">
+      <div class="slide__copy">
+        <p class="eyebrow">MKLab · EST. MMXXV</p>
+        <h2>That was agentic workflows.</h2>
+        <p class="lead">This is the end of the presentation. Thank you for
+        watching. The talks on MCP and on teaching your Copilot pair well
+        with this one.</p>
+        <p class="deck-actions"><a class="deck-link" href="{{ '/talks/' | relative_url }}">All tech talks</a></p>
+      </div>
+    </section>

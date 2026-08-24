@@ -1,6 +1,34 @@
 # One entry per tech talk. Rendered on /talks/ (sv) and /en/talks/ (en).
 # The deck itself lives in _pages/talks/<slug>.html with its particle
 # scenes in /assets/js/talks/<slug>.js.
+- slug: agentic-workflows
+  url: /talks/agentic-workflows/
+  date: 2026-08-24
+  deck_lang: en
+  slides: 13
+  eyebrow:
+    sv: "Augusti 2026 · på engelska · 13 bilder"
+    en: "August 2026 · in English · 13 slides"
+  title:
+    sv: "Agenter i ditt repo"
+    en: "Agents in your repository"
+  blurb:
+    sv: >-
+      GitHub Agentic Workflows lägger en agent i GitHub Actions: väckt av
+      issues, scheman och pull requests, styrd av instruktioner i en
+      markdownfil, inhägnad av safe outputs. Vad hela teamet kan
+      automatisera, och varför det lönar sig att vara tidig. Tretton
+      partikelanimerade bilder.
+    en: >-
+      GitHub Agentic Workflows put an agent inside GitHub Actions: woken
+      by issues, schedules and pull requests, guided by instructions in
+      a markdown file, fenced in by safe outputs. What the whole team
+      can automate, and why being early pays off. Thirteen
+      particle-animated slides.
+  cta:
+    sv: "Se föredraget"
+    en: "Watch the talk"
+
 - slug: mcp
   url: /talks/mcp/
   date: 2026-08-24
