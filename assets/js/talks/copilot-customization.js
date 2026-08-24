@@ -532,11 +532,11 @@
     var cols = isMobile ? [W * 0.2, W * 0.5, W * 0.8] : [W * 0.30, W * 0.55, W * 0.80];
     var rows = [H * 0.09, H * 0.17, H * 0.25, H * 0.33, H * 0.41];
     var heads = ['GITHUB COPILOT', 'CLAUDE CODE', 'CODEX'];
-    var rowNames = ['PROMPTS', 'INSTRUCTIONS', 'PATH-SCOPED', 'AGENTS', 'SKILLS'];
+    var rowNames = ['PROMPTS', 'INSTRUCTIONS', 'ALWAYS ON', 'AGENTS', 'SKILLS'];
     var cells = [
       ['*.PROMPT.MD', '/COMMANDS', '~/.CODEX/PROMPTS'],
-      ['COPILOT-INSTRUCTIONS.MD', 'CLAUDE.MD', 'AGENTS.MD'],
       ['*.INSTRUCTIONS.MD + APPLYTO', 'NO EQUIVALENT', 'NO EQUIVALENT'],
+      ['COPILOT-INSTRUCTIONS.MD', 'CLAUDE.MD', 'AGENTS.MD'],
       ['*.AGENT.MD', 'NO EQUIVALENT', 'NO EQUIVALENT'],
       ['SKILL.MD', 'SKILL.MD', 'SKILL.MD']
     ];
@@ -556,8 +556,9 @@
         var d = Math.pow(Math.random(), 0.6) * r;
         p.hx = cols[p.ci] + Math.cos(a) * d * 2.6;
         p.hy = rows[p.ri] + Math.sin(a) * d;
-        // path-scoped and agents are Copilot concepts: elsewhere stays dark
-        p.baseAlpha = ((p.ri === 2 || p.ri === 3) && p.ci > 0) ? rand(0.04, 0.1)
+        // path-scoped instructions and agents are Copilot concepts:
+        // the other columns stay dark on those rows
+        p.baseAlpha = ((p.ri === 1 || p.ri === 3) && p.ci > 0) ? rand(0.04, 0.1)
           : (p.ri === 4 ? rand(0.5, 0.95) : rand(0.28, 0.6));
         p.sizeMul = rand(0.35, 0.65); p.fast = false;
       } else if (p.seed < 0.68) {
