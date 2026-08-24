@@ -1,6 +1,34 @@
 # One entry per tech talk. Rendered on /talks/ (sv) and /en/talks/ (en).
 # The deck itself lives in _pages/talks/<slug>.html with its particle
 # scenes in /assets/js/talks/<slug>.js.
+- slug: ai-beslutsfattare
+  url: /talks/ai-beslutsfattare/
+  url_en: /en/talks/ai-decision-makers/
+  date: 2026-08-24
+  deck_lang: both
+  slides: 12
+  protected: true
+  eyebrow:
+    sv: "Augusti 2026 · svenska och engelska · 12 bilder"
+    en: "August 2026 · Swedish and English · 12 slides"
+  title:
+    sv: "AI för beslutsfattare"
+    en: "AI for decision makers"
+  blurb:
+    sv: >-
+      Sex frågor er styrelse redan ställer om AI, och underlaget för att
+      svara: värde, ägarskap, risk, skugg-AI, kompetens och vad ni gör på
+      måndag. Källor på varje siffra. Lösenordet följer med en session
+      hos MKLab.
+    en: >-
+      Six questions your board is already asking about AI, and the
+      grounding to answer them: value, ownership, risk, shadow AI,
+      literacy, and what to do on Monday. Sources on every number. The
+      password comes with an MKLab session.
+  cta:
+    sv: "Se föredraget"
+    en: "Watch the talk"
+
 - slug: agentic-workflows
   url: /talks/agentic-workflows/
   date: 2026-08-24

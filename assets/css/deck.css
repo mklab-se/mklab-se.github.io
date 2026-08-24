@@ -222,6 +222,130 @@ body.mk-intro-running .slide.is-active .slide__copy > * {
   box-shadow: var(--glow-ember-sm);
 }
 
+/* ---------- Language switch (decks that declare a twin) ---------- */
+.deck-lang {
+  position: fixed;
+  right: var(--space-8);
+  top: var(--space-6);
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.18em;
+  color: var(--text-tertiary);
+}
+.deck-lang .cur { color: var(--ink-100); }
+.deck-lang .sep { margin: 0 var(--space-2); }
+.deck-lang a {
+  color: var(--text-tertiary);
+  text-decoration: none;
+  transition: color var(--dur-base) var(--ease-out);
+}
+.deck-lang a:hover { color: var(--ember-300); }
+
+/* ---------- Password gate (protected decks) ---------- */
+body.mk-gated, html.mk-gated { overflow: hidden; }
+
+.deck-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  padding: var(--space-6);
+  background:
+    radial-gradient(ellipse at center,
+      rgba(5, 5, 5, 0.94) 0%, rgba(5, 5, 5, 0.995) 75%);
+}
+.deck-gate__card {
+  max-width: 520px;
+  text-align: center;
+}
+.deck-gate__card h2 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-light);
+  font-size: clamp(30px, 3.8vw, 46px);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.015em;
+  color: var(--ink-050);
+  margin-bottom: var(--space-6);
+}
+.deck-gate__card .lead { margin-inline: auto; }
+.deck-gate__card form {
+  margin-top: var(--space-8);
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.deck-gate__card input {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  color: var(--ink-050);
+  background: var(--surface-inset);
+  border: var(--border-hairline) solid var(--border-default);
+  border-radius: var(--radius-pill);
+  padding: 13px 22px;
+  min-width: 220px;
+  outline: none;
+  transition: border-color var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out);
+}
+.deck-gate__card input:focus {
+  border-color: var(--ember-500);
+  box-shadow: var(--glow-ember-sm);
+}
+.deck-gate__card button.deck-link {
+  background: transparent;
+  cursor: pointer;
+}
+.deck-gate__error {
+  display: none;
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.12em;
+  color: var(--ember-300);
+}
+.deck-gate__error.is-visible { display: block; }
+.deck-gate .deck-actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- Sources list (decks that cite their numbers) ---------- */
+.deck-sources {
+  list-style: none;
+  margin-top: var(--space-8);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2) var(--space-8);
+  text-align: left;
+}
+.deck-sources li {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.06em;
+  line-height: var(--leading-relaxed);
+}
+.deck-sources a {
+  color: var(--ink-200);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-default);
+  transition: color var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out);
+}
+.deck-sources a:hover {
+  color: var(--ember-300);
+  border-color: var(--ember-500);
+}
+.deck-sources .src-org { color: var(--text-secondary); }
+@media (max-width: 720px) {
+  .deck-sources { grid-template-columns: 1fr; }
+}
+
 /* ---------- Blackout: "." fades the whole deck to black ---------- */
 .deck-blackout {
   position: fixed;

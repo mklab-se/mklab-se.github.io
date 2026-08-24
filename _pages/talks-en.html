@@ -26,8 +26,8 @@ alt_lang_path: /talks/
 
         <div class="mk-talks">
           {% for talk in site.data.talks %}
-          <a class="mk-card mk-card--interactive mk-talk-card reveal" href="{{ talk.url | relative_url }}">
-            <span class="mk-meta">{{ talk.eyebrow.en }}</span>
+          <a class="mk-card mk-card--interactive mk-talk-card reveal" href="{{ talk.url_en | default: talk.url | relative_url }}">
+            <span class="mk-meta">{{ talk.eyebrow.en }}{% if talk.protected %} · password protected{% endif %}</span>
             <h3>{{ talk.title.en }}</h3>
             <p>{{ talk.blurb.en }}</p>
             <span class="mk-talk-card__cta">{{ talk.cta.en }} &rarr;</span>
