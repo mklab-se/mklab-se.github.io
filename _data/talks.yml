@@ -16,12 +16,13 @@
     sv: >-
       En leverantörsneutral genomgång av Model Context Protocol: vad
       harnesset gör, hur orkestreringsloopen fungerar, lokala kontra
-      fjärrservrar, och när en skill med skript är det smartare valet.
+      fjärranslutna MCP-servrar, och när en skill med skript är det
+      smartare valet.
       Elva partikelanimerade bilder.
     en: >-
       A vendor-neutral tour of the Model Context Protocol: what the
       harness does, how the orchestration loop runs, local versus
-      remote servers, and when a skill with scripts is the leaner
+      remote MCP servers, and when a skill with scripts is the leaner
       choice. Eleven particle-animated slides.
   cta:
     sv: "Se föredraget"
