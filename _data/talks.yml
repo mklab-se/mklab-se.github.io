@@ -1,6 +1,32 @@
 # One entry per tech talk. Rendered on /talks/ (sv) and /en/talks/ (en).
 # The deck itself lives in _pages/talks/<slug>.html with its particle
 # scenes in /assets/js/talks/<slug>.js.
+- slug: mcp
+  url: /talks/mcp/
+  date: 2026-08-24
+  deck_lang: en
+  slides: 11
+  eyebrow:
+    sv: "Augusti 2026 · på engelska · 11 bilder"
+    en: "August 2026 · in English · 11 slides"
+  title:
+    sv: "Förstå MCP"
+    en: "Understanding MCP"
+  blurb:
+    sv: >-
+      En leverantörsneutral genomgång av Model Context Protocol: vad
+      harnesset gör, hur orkestreringsloopen fungerar, lokala kontra
+      fjärrservrar, och när en skill med skript är det smartare valet.
+      Elva partikelanimerade bilder.
+    en: >-
+      A vendor-neutral tour of the Model Context Protocol: what the
+      harness does, how the orchestration loop runs, local versus
+      remote servers, and when a skill with scripts is the leaner
+      choice. Eleven particle-animated slides.
+  cta:
+    sv: "Se föredraget"
+    en: "Watch the talk"
+
 - slug: copilot-customization
   url: /talks/copilot-customization/
   date: 2026-08-24
@@ -10,19 +36,19 @@
     sv: "Augusti 2026 · på engelska · 12 bilder"
     en: "August 2026 · in English · 12 slides"
   title:
-    sv: "Four ways to teach your Copilot"
+    sv: "Fyra sätt att lära din Copilot"
     en: "Four ways to teach your Copilot"
   blurb:
     sv: >-
-      Historien om Maja, en utvecklare som reder ut GitHub Copilots
-      prompts, instructions, agents och skills: vad de är, när de ska
-      användas och varför skills ofta räcker, berättat i tolv
-      partikelanimerade bilder.
+      Maja har precis fått GitHub Copilot och möter fyra sätt att
+      anpassa den: prompt files, instructions, custom agents och
+      skills. Vad de är, när de ska användas och varför en skill ofta
+      räcker, i tolv partikelanimerade bilder.
     en: >-
-      The story of Maja, a developer making sense of GitHub Copilot's
-      prompts, instructions, agents and skills: what each one is, when
-      to use it, and why a skill is often enough, told in twelve
-      particle-animated slides.
+      Maja just got GitHub Copilot and meets four ways to customize
+      it: prompt files, instructions, custom agents and skills. What
+      each one is, when to use it, and why a skill is often enough,
+      in twelve particle-animated slides.
   cta:
     sv: "Se föredraget"
     en: "Watch the talk"
@@ -36,17 +62,17 @@
     sv: "Augusti 2026 · på engelska · 10 bilder"
     en: "August 2026 · in English · 10 slides"
   title:
-    sv: "Agentic RAG"
+    sv: "Agentisk RAG"
     en: "Agentic RAG"
   blurb:
     sv: >-
-      Historien om Norm, en chattbot som lär sig slå upp saker. Från nyfödd
-      till agent: minne, embeddings, vektorsökning och verktyg, berättat i
-      tio partikelanimerade bilder.
+      Chattboten Norm lär sig slå upp saker. Från nyfödd till agent:
+      minne, embeddings, vektorsökning och verktyg, i tio
+      partikelanimerade bilder.
     en: >-
-      The story of Norm, a chat bot who learns to look things up. From
-      newborn to agent: memory, embeddings, vector search and tools, told
-      in ten particle-animated slides.
+      Norm the chat bot learns to look things up. From newborn to
+      agent: memory, embeddings, vector search and tools, in ten
+      particle-animated slides.
   cta:
     sv: "Se föredraget"
     en: "Watch the talk"
