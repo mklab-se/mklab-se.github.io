@@ -1,0 +1,181 @@
+id: apis-integration
+tag: hands-on
+name:
+  sv: "API och integration"
+  en: "APIs & Integration"
+questions:
+  - value: 100
+    q:
+      sv: "Vilket protokoll bygger webben på?"
+      en: "Which protocol is the web built on?"
+    a:
+      sv: "HTTP"
+      en: "HTTP"
+  - value: 100
+    q:
+      sv: "Vilken HTTP-metod hämtar data?"
+      en: "Which HTTP method fetches data?"
+    a:
+      sv: "GET"
+      en: "GET"
+  - value: 100
+    q:
+      sv: "Vilken HTTP-metod skickar in ny data?"
+      en: "Which HTTP method sends in new data?"
+    a:
+      sv: "POST"
+      en: "POST"
+  - value: 100
+    q:
+      sv: "Vilken statuskod betyder att sidan inte finns?"
+      en: "Which status code means the page does not exist?"
+    a:
+      sv: "404"
+      en: "404"
+  - value: 100
+    q:
+      sv: "Vilken statuskod betyder att allt gick bra?"
+      en: "Which status code means everything went fine?"
+    a:
+      sv: "200"
+      en: "200"
+  - value: 200
+    q:
+      sv: "Vad pekar en REST-adress ut?"
+      en: "What does a REST address point out?"
+    a:
+      sv: "En resurs"
+      en: "A resource"
+  - value: 200
+    q:
+      sv: "Vilken HTTP-metod ersätter en hel resurs?"
+      en: "Which HTTP method replaces a whole resource?"
+    a:
+      sv: "PUT"
+      en: "PUT"
+  - value: 200
+    q:
+      sv: "Vilken HTTP-metod tar bort en resurs?"
+      en: "Which HTTP method removes a resource?"
+    a:
+      sv: "DELETE"
+      en: "DELETE"
+  - value: 200
+    q:
+      sv: "Vilket format svarar de flesta API:er med i dag?"
+      en: "Which format do most APIs answer with today?"
+    a:
+      sv: "JSON"
+      en: "JSON"
+  - value: 200
+    q:
+      sv: "Vad betyder en statuskod som börjar på 5?"
+      en: "What does a status code starting with 5 mean?"
+    a:
+      sv: "Att felet ligger hos servern"
+      en: "The fault is on the server side"
+  - value: 300
+    q:
+      sv: "Vad är en webhook?"
+      en: "What is a webhook?"
+    a:
+      sv: "Att servern ringer upp dig när något har hänt"
+      en: "The server calls you when something has happened"
+  - value: 300
+    q:
+      sv: "Vad är polling?"
+      en: "What is polling?"
+    a:
+      sv: "Att du gång på gång frågar servern om något ändrats"
+      en: "Asking the server over and over whether anything changed"
+  - value: 300
+    q:
+      sv: "Vad skiljer statuskod 401 från 403?"
+      en: "What separates status code 401 from 403?"
+    a:
+      sv: "401 betyder oidentifierad, 403 betyder identifierad men obehörig"
+      en: "401 means not identified, 403 means identified but not allowed"
+  - value: 300
+    q:
+      sv: "Vad gör rate limiting?"
+      en: "What does rate limiting do?"
+    a:
+      sv: "Sätter tak för hur många anrop en klient får göra"
+      en: "Caps how many calls a client may make"
+  - value: 300
+    q:
+      sv: "Vad är GraphQL:s huvudlöfte?"
+      en: "What is GraphQL's main promise?"
+    a:
+      sv: "Att klienten ber om exakt de fält den behöver"
+      en: "The client asks for exactly the fields it needs"
+  - value: 400
+    q:
+      sv: "Vad betyder idempotent för en HTTP-metod?"
+      en: "What does idempotent mean for an HTTP method?"
+    a:
+      sv: "Att upprepa anropet ger samma resultat som att göra det en gång"
+      en: "Repeating the call gives the same result as doing it once"
+  - value: 400
+    q:
+      sv: "Vilken av metoderna GET, PUT, DELETE och POST är inte idempotent?"
+      en: "Which of GET, PUT, DELETE and POST is not idempotent?"
+    a:
+      sv: "POST"
+      en: "POST"
+  - value: 400
+    q:
+      sv: "Vad används en idempotensnyckel till?"
+      en: "What is an idempotency key used for?"
+    a:
+      sv: "Att göra ett omtaget POST-anrop ofarligt"
+      en: "Making a retried POST call harmless"
+  - value: 400
+    q:
+      sv: "Vad betyder statuskod 429?"
+      en: "What does status code 429 mean?"
+    a:
+      sv: "För många anrop"
+      en: "Too many requests"
+  - value: 400
+    q:
+      sv: "Vad är OpenAPI?"
+      en: "What is OpenAPI?"
+    a:
+      sv: "En maskinläsbar standardbeskrivning av ett REST-API"
+      en: "A machine-readable standard description of a REST API"
+  - value: 500
+    q:
+      sv: "Vad står HATEOAS för?"
+      en: "What does HATEOAS stand for?"
+    a:
+      sv: "Hypermedia As The Engine Of Application State"
+      en: "Hypermedia As The Engine Of Application State"
+  - value: 500
+    q:
+      sv: "Vilka två tekniker bygger gRPC på?"
+      en: "Which two technologies is gRPC built on?"
+    a:
+      sv: "HTTP/2 och protocol buffers"
+      en: "HTTP/2 and protocol buffers"
+  - value: 500
+    q:
+      sv: "Vad betyder statuskod 409?"
+      en: "What does status code 409 mean?"
+    a:
+      sv: "Konflikt"
+      en: "Conflict"
+  - value: 500
+    q:
+      sv: "Vad skiljer at least once från exactly once i meddelandeleverans?"
+      en: "What separates at least once from exactly once in message delivery?"
+    a:
+      sv: "At least once kan ge dubbletter, exactly once kräver att du rensar bort dem"
+      en: "At least once may duplicate, exactly once requires you to remove the duplicates"
+  - value: 500
+    q:
+      sv: "Vad gör ett anti-corruption layer?"
+      en: "What does an anti-corruption layer do?"
+    a:
+      sv: "Översätter, så att ett annat systems modell inte läcker in i ditt"
+      en: "Translates, so another system's model does not leak into yours"

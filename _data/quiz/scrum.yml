@@ -1,0 +1,181 @@
+id: scrum
+tag: anyone
+name:
+  sv: "Scrum"
+  en: "Scrum"
+questions:
+  - value: 100
+    q:
+      sv: "Vad kallas den korta dagliga träffen i Scrum?"
+      en: "What is the short daily meeting in Scrum called?"
+    a:
+      sv: "Daily scrum, ofta kallad standup"
+      en: "The daily scrum, often called the standup"
+  - value: 100
+    q:
+      sv: "Vad kallas en arbetsperiod i Scrum?"
+      en: "What is a work period in Scrum called?"
+    a:
+      sv: "En sprint"
+      en: "A sprint"
+  - value: 100
+    q:
+      sv: "Vad kallas den prioriterade listan över allt arbete?"
+      en: "What is the ordered list of all the work called?"
+    a:
+      sv: "Produktbackloggen"
+      en: "The product backlog"
+  - value: 100
+    q:
+      sv: "Vilken roll ansvarar för produktbackloggen?"
+      en: "Which role is responsible for the product backlog?"
+    a:
+      sv: "Produktägaren"
+      en: "The product owner"
+  - value: 100
+    q:
+      sv: "Vilka tre ansvar finns i ett scrumteam?"
+      en: "Which three accountabilities exist in a scrum team?"
+    a:
+      sv: "Produktägare, scrum master och utvecklare"
+      en: "Product owner, scrum master and developers"
+  - value: 200
+    q:
+      sv: "Hur lång får en sprint som mest vara?"
+      en: "How long may a sprint be at most?"
+    a:
+      sv: "En månad"
+      en: "One month"
+  - value: 200
+    q:
+      sv: "Vad kallas mötet där teamet visar resultatet för intressenterna?"
+      en: "What is the meeting where the team shows the result to stakeholders called?"
+    a:
+      sv: "Sprint review"
+      en: "The sprint review"
+  - value: 200
+    q:
+      sv: "Vad kallas mötet där teamet förbättrar sitt eget arbetssätt?"
+      en: "What is the meeting where the team improves its own way of working called?"
+    a:
+      sv: "Retrospektiv, sprint retrospective"
+      en: "The sprint retrospective"
+  - value: 200
+    q:
+      sv: "Vad heter teamets plan för den pågående sprinten?"
+      en: "What is the team's plan for the current sprint called?"
+    a:
+      sv: "Sprintbackloggen"
+      en: "The sprint backlog"
+  - value: 200
+    q:
+      sv: "Vem bestämmer ordningen i produktbackloggen?"
+      en: "Who decides the order of the product backlog?"
+    a:
+      sv: "Produktägaren"
+      en: "The product owner"
+  - value: 300
+    q:
+      sv: "Vilka är Scrums tre pelare?"
+      en: "What are Scrum's three pillars?"
+    a:
+      sv: "Transparens, inspektion och anpassning"
+      en: "Transparency, inspection and adaptation"
+  - value: 300
+    q:
+      sv: "Hur lång är daily scrum?"
+      en: "How long is the daily scrum?"
+    a:
+      sv: "Femton minuter"
+      en: "Fifteen minutes"
+  - value: 300
+    q:
+      sv: "Vad är definition of done?"
+      en: "What is the definition of done?"
+    a:
+      sv: "Den gemensamma överenskommelsen om när något är färdigt nog att släppas"
+      en: "The shared agreement on when something is finished enough to release"
+  - value: 300
+    q:
+      sv: "Vad kallas resultatet som en sprint ska leverera?"
+      en: "What is the result a sprint is meant to deliver called?"
+    a:
+      sv: "Ett inkrement"
+      en: "An increment"
+  - value: 300
+    q:
+      sv: "Vem har rätt att avbryta en sprint i förtid?"
+      en: "Who has the right to cancel a sprint early?"
+    a:
+      sv: "Produktägaren"
+      en: "The product owner"
+  - value: 400
+    q:
+      sv: "Hur lång är tidsramen för sprintplanering i en månadslång sprint?"
+      en: "What is the timebox for sprint planning in a one-month sprint?"
+    a:
+      sv: "Åtta timmar"
+      en: "Eight hours"
+  - value: 400
+    q:
+      sv: "Vilka är Scrums fem värderingar?"
+      en: "What are Scrum's five values?"
+    a:
+      sv: "Åtagande, fokus, öppenhet, respekt och mod"
+      en: "Commitment, focus, openness, respect and courage"
+  - value: 400
+    q:
+      sv: "Vad är sprintmålet?"
+      en: "What is the sprint goal?"
+    a:
+      sv: "Det enda gemensamma målet för sprinten"
+      en: "The single shared objective for the sprint"
+  - value: 400
+    q:
+      sv: "Vilka tre åtaganden hör till Scrums tre artefakter?"
+      en: "Which three commitments belong to Scrum's three artefacts?"
+    a:
+      sv: "Produktmål, sprintmål och definition of done"
+      en: "Product goal, sprint goal and definition of done"
+  - value: 400
+    q:
+      sv: "Vilka två personer skrev Scrum-guiden?"
+      en: "Which two people wrote the Scrum Guide?"
+    a:
+      sv: "Ken Schwaber och Jeff Sutherland"
+      en: "Ken Schwaber and Jeff Sutherland"
+  - value: 500
+    q:
+      sv: "Vilket år publicerades den första Scrum-guiden?"
+      en: "In which year was the first Scrum Guide published?"
+    a:
+      sv: "2010"
+      en: "2010"
+  - value: 500
+    q:
+      sv: "Vilken artikel från 1986 gav Scrum sitt namn?"
+      en: "Which 1986 article gave Scrum its name?"
+    a:
+      sv: "The New New Product Development Game i Harvard Business Review"
+      en: "The New New Product Development Game in Harvard Business Review"
+  - value: 500
+    q:
+      sv: "Hur stort bör ett scrumteam vara som mest?"
+      en: "How large should a scrum team be at most?"
+    a:
+      sv: "Tio personer eller färre"
+      en: "Ten people or fewer"
+  - value: 500
+    q:
+      sv: "Vilket begrepp tog Scrum-guiden bort 2020?"
+      en: "Which term did the Scrum Guide drop in 2020?"
+    a:
+      sv: "Development team, som ersattes av utvecklare"
+      en: "Development team, replaced by developers"
+  - value: 500
+    q:
+      sv: "Hur lång är tidsramen för retrospektivet i en månadslång sprint?"
+      en: "What is the timebox for the retrospective in a one-month sprint?"
+    a:
+      sv: "Tre timmar"
+      en: "Three hours"

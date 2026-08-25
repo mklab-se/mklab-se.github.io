@@ -1,0 +1,181 @@
+id: internet-plumbing
+tag: anyone
+name:
+  sv: "Internets rörmokeri"
+  en: "Internet Plumbing"
+questions:
+  - value: 100
+    q:
+      sv: "Vad gör DNS?"
+      en: "What does DNS do?"
+    a:
+      sv: "Översätter namn till IP-adresser"
+      en: "Translates names into IP addresses"
+  - value: 100
+    q:
+      sv: "Vad är en IP-adress?"
+      en: "What is an IP address?"
+    a:
+      sv: "Numret som pekar ut en maskin i ett nätverk"
+      en: "The number that identifies a machine on a network"
+  - value: 100
+    q:
+      sv: "Vad lägger HTTPS till jämfört med HTTP?"
+      en: "What does HTTPS add compared with HTTP?"
+    a:
+      sv: "Kryptering"
+      en: "Encryption"
+  - value: 100
+    q:
+      sv: "Vad gör en router?"
+      en: "What does a router do?"
+    a:
+      sv: "Skickar trafik vidare mellan nätverk"
+      en: "Passes traffic on between networks"
+  - value: 100
+    q:
+      sv: "Vad gör en brandvägg?"
+      en: "What does a firewall do?"
+    a:
+      sv: "Släpper igenom eller blockerar trafik efter regler"
+      en: "Lets traffic through or blocks it by rule"
+  - value: 200
+    q:
+      sv: "Vilken port använder HTTPS?"
+      en: "Which port does HTTPS use?"
+    a:
+      sv: "443"
+      en: "443"
+  - value: 200
+    q:
+      sv: "Vilken port använder HTTP?"
+      en: "Which port does HTTP use?"
+    a:
+      sv: "80"
+      en: "80"
+  - value: 200
+    q:
+      sv: "Hur är en IPv4-adress uppbyggd?"
+      en: "How is an IPv4 address built?"
+    a:
+      sv: "Fyra tal mellan noll och 255"
+      en: "Four numbers between zero and 255"
+  - value: 200
+    q:
+      sv: "Vad ersätter IPv4 för att ge fler adresser?"
+      en: "What replaces IPv4 to give more addresses?"
+    a:
+      sv: "IPv6"
+      en: "IPv6"
+  - value: 200
+    q:
+      sv: "Vad gör en webbläsare först när du skriver in en adress?"
+      en: "What does a browser do first when you type in an address?"
+    a:
+      sv: "Slår upp namnet i DNS"
+      en: "Looks the name up in DNS"
+  - value: 300
+    q:
+      sv: "Vad garanterar TCP som UDP inte gör?"
+      en: "What does TCP guarantee that UDP does not?"
+    a:
+      sv: "Att paketen kommer fram och i rätt ordning"
+      en: "That the packets arrive, and in the right order"
+  - value: 300
+    q:
+      sv: "Vad är ett CDN till för?"
+      en: "What is a CDN for?"
+    a:
+      sv: "Att leverera innehåll från en server nära användaren"
+      en: "Delivering content from a server near the user"
+  - value: 300
+    q:
+      sv: "Vad fyller ett certifikat för funktion på en webbplats?"
+      en: "What purpose does a certificate serve on a website?"
+    a:
+      sv: "Bevisar identiteten och möjliggör kryptering"
+      en: "Proves the identity and enables encryption"
+  - value: 300
+    q:
+      sv: "Vad innehåller en A-post i DNS?"
+      en: "What does an A record in DNS contain?"
+    a:
+      sv: "En IPv4-adress"
+      en: "An IPv4 address"
+  - value: 300
+    q:
+      sv: "Vad gör en CNAME-post?"
+      en: "What does a CNAME record do?"
+    a:
+      sv: "Pekar ett namn vidare till ett annat namn"
+      en: "Points one name on to another name"
+  - value: 400
+    q:
+      sv: "Vad avgör BGP?"
+      en: "What does BGP decide?"
+    a:
+      sv: "Hur trafiken hittar vägen mellan nätverk på internet"
+      en: "How traffic finds its way between networks on the internet"
+  - value: 400
+    q:
+      sv: "Vad anger TTL i DNS?"
+      en: "What does TTL state in DNS?"
+    a:
+      sv: "Hur länge svaret får mellanlagras"
+      en: "How long the answer may be cached"
+  - value: 400
+    q:
+      sv: "Vad används NAT till?"
+      en: "What is NAT used for?"
+    a:
+      sv: "Att låta många enheter dela på en publik adress"
+      en: "Letting many devices share one public address"
+  - value: 400
+    q:
+      sv: "Vad pekar en MX-post ut?"
+      en: "What does an MX record point out?"
+    a:
+      sv: "Domänens e-postserver"
+      en: "The domain's mail server"
+  - value: 400
+    q:
+      sv: "Vilka tre steg ingår i TCP:s handskakning?"
+      en: "Which three steps make up TCP's handshake?"
+    a:
+      sv: "SYN, SYN-ACK och ACK"
+      en: "SYN, SYN-ACK and ACK"
+  - value: 500
+    q:
+      sv: "Vad kör HTTP/3 på i stället för TCP?"
+      en: "What does HTTP/3 run on instead of TCP?"
+    a:
+      sv: "QUIC, som i sin tur går över UDP"
+      en: "QUIC, which in turn runs over UDP"
+  - value: 500
+    q:
+      sv: "Vad används en TXT-post oftast till i dag?"
+      en: "What is a TXT record most often used for today?"
+    a:
+      sv: "Att verifiera domäner och bära e-postposter som SPF och DKIM"
+      en: "Verifying domains and carrying mail records such as SPF and DKIM"
+  - value: 500
+    q:
+      sv: "Vad innebär anycast?"
+      en: "What does anycast mean?"
+    a:
+      sv: "Samma adress annonseras från många platser, användaren når den närmaste"
+      en: "The same address is announced from many places, the user reaches the nearest"
+  - value: 500
+    q:
+      sv: "Vad lägger DNSSEC till?"
+      en: "What does DNSSEC add?"
+    a:
+      sv: "Signaturer som bevisar att DNS-svaret är äkta"
+      en: "Signatures proving the DNS answer is genuine"
+  - value: 500
+    q:
+      sv: "Vad anger MTU?"
+      en: "What does MTU state?"
+    a:
+      sv: "Största paketstorlek som en länk klarar"
+      en: "The largest packet size a link can carry"

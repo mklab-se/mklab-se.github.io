@@ -1,0 +1,181 @@
+id: devops-cicd
+tag: hands-on
+name:
+  sv: "DevOps och CI/CD"
+  en: "DevOps & CI/CD"
+questions:
+  - value: 100
+    q:
+      sv: "Vad heter GitHubs inbyggda tjänst för automatisering?"
+      en: "What is GitHub's built-in automation service called?"
+    a:
+      sv: "GitHub Actions"
+      en: "GitHub Actions"
+  - value: 100
+    q:
+      sv: "Vad kallas den automatiska kedjan av bygg, test och driftsättning?"
+      en: "What is the automatic chain of build, test and deploy called?"
+    a:
+      sv: "En pipeline"
+      en: "A pipeline"
+  - value: 100
+    q:
+      sv: "Vad innebär det att driftsätta, att deploya?"
+      en: "What does it mean to deploy?"
+    a:
+      sv: "Att lägga ut en ny version i en miljö"
+      en: "To put a new version out into an environment"
+  - value: 100
+    q:
+      sv: "Vad är en rollback?"
+      en: "What is a rollback?"
+    a:
+      sv: "Att gå tillbaka till den förra fungerande versionen"
+      en: "Going back to the previous working version"
+  - value: 100
+    q:
+      sv: "Vad gör ett bygge, en build?"
+      en: "What does a build do?"
+    a:
+      sv: "Gör om källkod till något körbart"
+      en: "Turns source code into something runnable"
+  - value: 200
+    q:
+      sv: "Vilket filformat skrivs GitHub Actions-flöden i?"
+      en: "Which file format are GitHub Actions workflows written in?"
+    a:
+      sv: "YAML"
+      en: "YAML"
+  - value: 200
+    q:
+      sv: "I vilken mapp ligger GitHub Actions-flödena?"
+      en: "Which folder do GitHub Actions workflows live in?"
+    a:
+      sv: ".github/workflows"
+      en: ".github/workflows"
+  - value: 200
+    q:
+      sv: "Vad är en runner i GitHub Actions?"
+      en: "What is a runner in GitHub Actions?"
+    a:
+      sv: "Maskinen som kör jobbet"
+      en: "The machine that executes the job"
+  - value: 200
+    q:
+      sv: "Vad står IaC för?"
+      en: "What does IaC stand for?"
+    a:
+      sv: "Infrastructure as Code"
+      en: "Infrastructure as Code"
+  - value: 200
+    q:
+      sv: "Vad innehåller en containerimage?"
+      en: "What does a container image contain?"
+    a:
+      sv: "Ett paketerat filsystem och konfiguration för att köra appen"
+      en: "A packaged filesystem and configuration for running the app"
+  - value: 300
+    q:
+      sv: "Vad är blue green-driftsättning?"
+      en: "What is blue green deployment?"
+    a:
+      sv: "Två miljöer, där trafiken växlas över från den gamla till den nya"
+      en: "Two environments, with traffic switched from the old to the new"
+  - value: 300
+    q:
+      sv: "Vad är en canary-release?"
+      en: "What is a canary release?"
+    a:
+      sv: "Att först släppa in en liten del av trafiken på den nya versionen"
+      en: "Letting only a small share of traffic onto the new version first"
+  - value: 300
+    q:
+      sv: "Vad skiljer continuous delivery från continuous deployment?"
+      en: "What separates continuous delivery from continuous deployment?"
+    a:
+      sv: "Delivery slutar med ett manuellt godkännande, deployment går rakt ut"
+      en: "Delivery ends with a manual approval, deployment goes straight out"
+  - value: 300
+    q:
+      sv: "Vad är en feature flag?"
+      en: "What is a feature flag?"
+    a:
+      sv: "En strömbrytare som slår på en funktion utan ny driftsättning"
+      en: "A switch that turns a feature on without a new deployment"
+  - value: 300
+    q:
+      sv: "Vad används Terraform till?"
+      en: "What is Terraform used for?"
+    a:
+      sv: "Att beskriva infrastruktur som kod"
+      en: "Describing infrastructure as code"
+  - value: 400
+    q:
+      sv: "Vilka är DORA:s fyra nyckeltal?"
+      en: "What are DORA's four key metrics?"
+    a:
+      sv: "Driftsättningsfrekvens, ledtid, andel misslyckade ändringar och återställningstid"
+      en: "Deployment frequency, lead time, change failure rate and time to restore"
+  - value: 400
+    q:
+      sv: "Vad betyder idempotent i en driftsättning?"
+      en: "What does idempotent mean in a deployment?"
+    a:
+      sv: "Att köra samma steg två gånger ger samma resultat"
+      en: "Running the same step twice gives the same result"
+  - value: 400
+    q:
+      sv: "Vad är drift i infrastruktur som kod?"
+      en: "What is drift in infrastructure as code?"
+    a:
+      sv: "Att verkligheten glidit ifrån det som står deklarerat"
+      en: "Reality having slipped away from what is declared"
+  - value: 400
+    q:
+      sv: "Vad kostar blue green-driftsättning mest i?"
+      en: "What does blue green deployment cost you most in?"
+    a:
+      sv: "Att två miljöer måste stå igång samtidigt"
+      en: "Having to keep two environments running at once"
+  - value: 400
+    q:
+      sv: "Vad betyder shift left?"
+      en: "What does shift left mean?"
+    a:
+      sv: "Att flytta test och säkerhet tidigare i kedjan"
+      en: "Moving testing and security earlier in the chain"
+  - value: 500
+    q:
+      sv: "Vem myntade ordet DevOps, och vilket år?"
+      en: "Who coined the word DevOps, and in which year?"
+    a:
+      sv: "Patrick Debois, 2009"
+      en: "Patrick Debois, in 2009"
+  - value: 500
+    q:
+      sv: "Vad heter den årliga rapporten som DORA-nyckeltalen kommer ifrån?"
+      en: "What is the annual report the DORA metrics come from called?"
+    a:
+      sv: "State of DevOps"
+      en: "The State of DevOps report"
+  - value: 500
+    q:
+      sv: "Vad är GitOps?"
+      en: "What is GitOps?"
+    a:
+      sv: "Att Git är sanningen, och en styrenhet ser till att verkligheten matchar"
+      en: "Git is the truth, and a controller keeps reality matching it"
+  - value: 500
+    q:
+      sv: "Vad kännetecknar ett hermetiskt bygge?"
+      en: "What characterises a hermetic build?"
+    a:
+      sv: "Det beror bara på deklarerade indata och går att upprepa var som helst"
+      en: "It depends only on declared inputs and can be repeated anywhere"
+  - value: 500
+    q:
+      sv: "Vad skiljer en rolling update från en recreate-strategi?"
+      en: "What separates a rolling update from a recreate strategy?"
+    a:
+      sv: "Rolling byter instanser gradvis, recreate stoppar allt och startar nytt"
+      en: "Rolling replaces instances gradually, recreate stops everything and starts fresh"

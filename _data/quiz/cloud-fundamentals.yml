@@ -1,0 +1,181 @@
+id: cloud-fundamentals
+tag: tech
+name:
+  sv: "Molnets grunder"
+  en: "Cloud Fundamentals"
+questions:
+  - value: 100
+    q:
+      sv: "Vilka är de tre stora publika molnen?"
+      en: "What are the three big public clouds?"
+    a:
+      sv: "AWS, Azure och Google Cloud"
+      en: "AWS, Azure and Google Cloud"
+  - value: 100
+    q:
+      sv: "Vad är ett datacenter?"
+      en: "What is a data centre?"
+    a:
+      sv: "En byggnad full av servrar"
+      en: "A building full of servers"
+  - value: 100
+    q:
+      sv: "Vad är en region i molnet?"
+      en: "What is a region in the cloud?"
+    a:
+      sv: "En geografisk plats där leverantören har datacenter"
+      en: "A geographic place where the provider has data centres"
+  - value: 100
+    q:
+      sv: "Vad slipper du göra med en SaaS-tjänst?"
+      en: "What do you avoid having to do with a SaaS service?"
+    a:
+      sv: "Drifta programvaran själv"
+      en: "Run the software yourself"
+  - value: 100
+    q:
+      sv: "Vad menas med att molnet är elastiskt?"
+      en: "What does it mean that the cloud is elastic?"
+    a:
+      sv: "Kapaciteten växer och krymper med behovet"
+      en: "Capacity grows and shrinks with demand"
+  - value: 200
+    q:
+      sv: "Vad står IaaS, PaaS och SaaS för?"
+      en: "What do IaaS, PaaS and SaaS stand for?"
+    a:
+      sv: "Infrastructure, platform och software as a service"
+      en: "Infrastructure, platform and software as a service"
+  - value: 200
+    q:
+      sv: "Vilken av de tre ger dig mest egen kontroll?"
+      en: "Which of the three gives you the most control of your own?"
+    a:
+      sv: "IaaS"
+      en: "IaaS"
+  - value: 200
+    q:
+      sv: "Vad är en virtuell maskin?"
+      en: "What is a virtual machine?"
+    a:
+      sv: "En simulerad dator som delar fysisk hårdvara med andra"
+      en: "A simulated computer sharing physical hardware with others"
+  - value: 200
+    q:
+      sv: "Vad innebär pay as you go?"
+      en: "What does pay as you go mean?"
+    a:
+      sv: "Du betalar för det du använder, inte i förskott"
+      en: "You pay for what you use, not up front"
+  - value: 200
+    q:
+      sv: "Vad är ett hybridmoln?"
+      en: "What is a hybrid cloud?"
+    a:
+      sv: "En blandning av eget datacenter och publikt moln"
+      en: "A mix of your own data centre and public cloud"
+  - value: 300
+    q:
+      sv: "Vad säger modellen om delat ansvar?"
+      en: "What does the shared responsibility model say?"
+    a:
+      sv: "Leverantören säkrar molnet, du säkrar det du lägger i det"
+      en: "The provider secures the cloud, you secure what you put in it"
+  - value: 300
+    q:
+      sv: "Vad menas med inlåsning hos en leverantör?"
+      en: "What is meant by vendor lock-in?"
+    a:
+      sv: "Att beroendet blivit så djupt att det kostar mycket att byta"
+      en: "The dependency has grown so deep that leaving is expensive"
+  - value: 300
+    q:
+      sv: "Vad är en tillgänglighetszon?"
+      en: "What is an availability zone?"
+    a:
+      sv: "Ett avskilt datacenter inom en region"
+      en: "A separated data centre inside a region"
+  - value: 300
+    q:
+      sv: "Vad betyder serverlöst?"
+      en: "What does serverless mean?"
+    a:
+      sv: "Du lämnar kod, leverantören sköter alla servrar"
+      en: "You hand over code, the provider handles every server"
+  - value: 300
+    q:
+      sv: "Vad är egresskostnad?"
+      en: "What is egress cost?"
+    a:
+      sv: "Vad det kostar att flytta ut data ur molnet"
+      en: "What it costs to move data out of the cloud"
+  - value: 400
+    q:
+      sv: "Vad är FinOps?"
+      en: "What is FinOps?"
+    a:
+      sv: "Att styra molnkostnaderna som en egen disciplin i teamet"
+      en: "Managing cloud spend as a discipline of its own in the team"
+  - value: 400
+    q:
+      sv: "Vad ger en reserverad instans dig?"
+      en: "What does a reserved instance give you?"
+    a:
+      sv: "Rabatt mot att du binder dig för en period"
+      en: "A discount in return for committing for a period"
+  - value: 400
+    q:
+      sv: "Vad kännetecknar en spotinstans?"
+      en: "What characterises a spot instance?"
+    a:
+      sv: "Billig överskottskapacitet som kan tas ifrån dig"
+      en: "Cheap spare capacity that can be taken away from you"
+  - value: 400
+    q:
+      sv: "Vad betyder multicloud?"
+      en: "What does multicloud mean?"
+    a:
+      sv: "Att medvetet köra hos mer än en leverantör"
+      en: "Deliberately running with more than one provider"
+  - value: 400
+    q:
+      sv: "Vad är en landing zone?"
+      en: "What is a landing zone?"
+    a:
+      sv: "En förberedd molnmiljö med styrning på plats innan arbetet flyttar in"
+      en: "A prepared cloud environment with governance in place before the work moves in"
+  - value: 500
+    q:
+      sv: "Vilket år lanserade AWS både S3 och EC2?"
+      en: "In which year did AWS launch both S3 and EC2?"
+    a:
+      sv: "2006"
+      en: "2006"
+  - value: 500
+    q:
+      sv: "Vad menas med uttrycket cattle, not pets?"
+      en: "What is meant by the phrase cattle, not pets?"
+    a:
+      sv: "Servrar ska vara utbytbara, inte omhuldade individer"
+      en: "Servers should be replaceable, not cherished individuals"
+  - value: 500
+    q:
+      sv: "Vad är en cloud exit?"
+      en: "What is a cloud exit?"
+    a:
+      sv: "Att flytta tillbaka arbetslasten från molnet"
+      en: "Moving the workload back off the cloud"
+  - value: 500
+    q:
+      sv: "Vad betyder datahemvist, data residency?"
+      en: "What does data residency mean?"
+    a:
+      sv: "Krav på att datat stannar inom ett visst land eller område"
+      en: "A requirement that the data stays within a given country or area"
+  - value: 500
+    q:
+      sv: "Vad är confidential computing?"
+      en: "What is confidential computing?"
+    a:
+      sv: "Att datat är krypterat även medan det bearbetas"
+      en: "The data stays encrypted even while it is being processed"

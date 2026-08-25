@@ -1,0 +1,181 @@
+id: agentic-ai
+tag: tech
+name:
+  sv: "Agentisk AI"
+  en: "Agentic AI"
+questions:
+  - value: 100
+    q:
+      sv: "Vad kallas ett AI-system som självt tar steg för att nå ett mål?"
+      en: "What is an AI system that takes steps on its own to reach a goal called?"
+    a:
+      sv: "En agent"
+      en: "An agent"
+  - value: 100
+    q:
+      sv: "Vad använder en agent för att påverka omvärlden?"
+      en: "What does an agent use to affect the outside world?"
+    a:
+      sv: "Verktyg"
+      en: "Tools"
+  - value: 100
+    q:
+      sv: "Vad står MCP för?"
+      en: "What does MCP stand for?"
+    a:
+      sv: "Model Context Protocol"
+      en: "Model Context Protocol"
+  - value: 100
+    q:
+      sv: "Vad kallas det när en människa godkänner agentens åtgärd innan den körs?"
+      en: "What is it called when a human approves the agent's action before it runs?"
+    a:
+      sv: "Human in the loop"
+      en: "Human in the loop"
+  - value: 100
+    q:
+      sv: "Vilket företag tog fram MCP?"
+      en: "Which company created MCP?"
+    a:
+      sv: "Anthropic"
+      en: "Anthropic"
+  - value: 200
+    q:
+      sv: "Vad kallas det när modellen anropar en funktion du har definierat?"
+      en: "What is it called when the model calls a function you have defined?"
+    a:
+      sv: "Verktygsanrop, function calling"
+      en: "Tool calling, or function calling"
+  - value: 200
+    q:
+      sv: "Vad heter MCP:s två sidor?"
+      en: "What are MCP's two sides called?"
+    a:
+      sv: "Klient och server"
+      en: "Client and server"
+  - value: 200
+    q:
+      sv: "Vad kallas flera agenter som samarbetar?"
+      en: "What are several agents working together called?"
+    a:
+      sv: "Ett multiagentsystem"
+      en: "A multi-agent system"
+  - value: 200
+    q:
+      sv: "Vad kallas den slinga där agenten iakttar, tänker och handlar?"
+      en: "What is the loop where the agent observes, thinks and acts called?"
+    a:
+      sv: "Agentloopen"
+      en: "The agent loop"
+  - value: 200
+    q:
+      sv: "Vad definierar en agents uppdrag och gränser?"
+      en: "What defines an agent's job and its limits?"
+    a:
+      sv: "Dess instruktioner, systemprompten"
+      en: "Its instructions, the system prompt"
+  - value: 300
+    q:
+      sv: "Vilka två saker kombinerar ReAct?"
+      en: "Which two things does ReAct combine?"
+    a:
+      sv: "Resonemang och handling"
+      en: "Reasoning and acting"
+  - value: 300
+    q:
+      sv: "Vilka tre saker kan en MCP-server erbjuda?"
+      en: "Which three things can an MCP server offer?"
+    a:
+      sv: "Verktyg, resurser och prompter"
+      en: "Tools, resources and prompts"
+  - value: 300
+    q:
+      sv: "Var lagrar en agent minne mellan körningar?"
+      en: "Where does an agent store memory between runs?"
+    a:
+      sv: "I ett externt lager, till exempel en databas"
+      en: "In an external store, such as a database"
+  - value: 300
+    q:
+      sv: "Vad gör en orkestrerande agent?"
+      en: "What does an orchestrator agent do?"
+    a:
+      sv: "Delegerar arbete till andra agenter"
+      en: "Delegates work to other agents"
+  - value: 300
+    q:
+      sv: "Vad hindrar en agent från att snurra i all evighet?"
+      en: "What stops an agent from looping forever?"
+    a:
+      sv: "En gräns för antal steg eller varv"
+      en: "A limit on the number of steps or iterations"
+  - value: 400
+    q:
+      sv: "Vilken transport använder MCP när servern körs på din egen dator?"
+      en: "Which transport does MCP use when the server runs on your own machine?"
+    a:
+      sv: "stdio"
+      en: "stdio"
+  - value: 400
+    q:
+      sv: "Vad är en guardrail i ett agentsystem?"
+      en: "What is a guardrail in an agent system?"
+    a:
+      sv: "En kontroll som begränsar vad agenten får göra eller säga"
+      en: "A check that limits what the agent may do or say"
+  - value: 400
+    q:
+      sv: "Vad kännetecknar en plan and execute-agent?"
+      en: "What characterises a plan and execute agent?"
+    a:
+      sv: "Den skriver en plan först och genomför den sedan"
+      en: "It writes a plan first and then carries it out"
+  - value: 400
+    q:
+      sv: "Vad står A2A för?"
+      en: "What does A2A stand for?"
+    a:
+      sv: "Agent to Agent"
+      en: "Agent to Agent"
+  - value: 400
+    q:
+      sv: "Vad är en agents scratchpad?"
+      en: "What is an agent's scratchpad?"
+    a:
+      sv: "Dess löpande anteckningar med resonemang och verktygssvar"
+      en: "Its running notes of reasoning and tool results"
+  - value: 500
+    q:
+      sv: "Vilka två standardtransporter har MCP?"
+      en: "Which two standard transports does MCP have?"
+    a:
+      sv: "stdio och streambar HTTP"
+      en: "stdio and streamable HTTP"
+  - value: 500
+    q:
+      sv: "Vad är reflektion i en agentloop?"
+      en: "What is reflection in an agent loop?"
+    a:
+      sv: "Att agenten bedömer sitt eget resultat och försöker igen"
+      en: "The agent judging its own result and trying again"
+  - value: 500
+    q:
+      sv: "Vad skiljer en agent från ett arbetsflöde?"
+      en: "What separates an agent from a workflow?"
+    a:
+      sv: "Ett arbetsflöde följer fasta steg, en agent väljer sina egna"
+      en: "A workflow follows fixed steps, an agent chooses its own"
+  - value: 500
+    q:
+      sv: "Vad menas med confused deputy i agentsäkerhet?"
+      en: "What does confused deputy mean in agent security?"
+    a:
+      sv: "Att agenten använder sina egna rättigheter åt en angripare"
+      en: "The agent uses its own privileges on an attacker's behalf"
+  - value: 500
+    q:
+      sv: "Vilka tre delar utgör den så kallade lethal trifecta?"
+      en: "Which three parts make up the so-called lethal trifecta?"
+    a:
+      sv: "Känslig data, otrott innehåll och förmågan att skicka ut information"
+      en: "Private data, untrusted content and the ability to send information out"

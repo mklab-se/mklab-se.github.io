@@ -1,0 +1,181 @@
+id: agile-beyond-scrum
+tag: tech
+name:
+  sv: "Agilt bortom Scrum"
+  en: "Agile Beyond Scrum"
+questions:
+  - value: 100
+    q:
+      sv: "Vilket år skrevs det agila manifestet?"
+      en: "In which year was the Agile Manifesto written?"
+    a:
+      sv: "2001"
+      en: "2001"
+  - value: 100
+    q:
+      sv: "Vad är en kanbantavla?"
+      en: "What is a kanban board?"
+    a:
+      sv: "En tavla med kolumner där arbetet flyttas från vänster till höger"
+      en: "A board of columns where work moves from left to right"
+  - value: 100
+    q:
+      sv: "Vad är en backlogg?"
+      en: "What is a backlog?"
+    a:
+      sv: "En lista med arbete som ännu inte är gjort"
+      en: "A list of work not yet done"
+  - value: 100
+    q:
+      sv: "Vad står MVP för?"
+      en: "What does MVP stand for?"
+    a:
+      sv: "Minimum Viable Product"
+      en: "Minimum Viable Product"
+  - value: 100
+    q:
+      sv: "Vad är poängen med en kort daglig avstämning?"
+      en: "What is the point of a short daily check-in?"
+    a:
+      sv: "Att synka läget och fånga hinder tidigt"
+      en: "Syncing on status and catching blockers early"
+  - value: 200
+    q:
+      sv: "Hur många värderingar har det agila manifestet?"
+      en: "How many values does the Agile Manifesto have?"
+    a:
+      sv: "Fyra"
+      en: "Four"
+  - value: 200
+    q:
+      sv: "Hur många principer har det agila manifestet?"
+      en: "How many principles does the Agile Manifesto have?"
+    a:
+      sv: "Tolv"
+      en: "Twelve"
+  - value: 200
+    q:
+      sv: "Vad står WIP för i kanban?"
+      en: "What does WIP stand for in kanban?"
+    a:
+      sv: "Work in progress, pågående arbete"
+      en: "Work in progress"
+  - value: 200
+    q:
+      sv: "Vad är en WIP-gräns till för?"
+      en: "What is a WIP limit for?"
+    a:
+      sv: "Att hindra teamet från att påbörja mer än det hinner avsluta"
+      en: "Stopping the team starting more than it can finish"
+  - value: 200
+    q:
+      sv: "Vad står SAFe för?"
+      en: "What does SAFe stand for?"
+    a:
+      sv: "Scaled Agile Framework"
+      en: "Scaled Agile Framework"
+  - value: 300
+    q:
+      sv: "Varifrån kommer kanban från början?"
+      en: "Where does kanban originally come from?"
+    a:
+      sv: "Toyotas produktionssystem"
+      en: "Toyota's production system"
+  - value: 300
+    q:
+      sv: "Vad mäter cykeltid?"
+      en: "What does cycle time measure?"
+    a:
+      sv: "Tiden från att arbetet påbörjas till att det är klart"
+      en: "The time from starting a piece of work to finishing it"
+  - value: 300
+    q:
+      sv: "Vad mäter ledtid?"
+      en: "What does lead time measure?"
+    a:
+      sv: "Tiden från beställning till leverans"
+      en: "The time from request to delivery"
+  - value: 300
+    q:
+      sv: "Vad visar en värdeflödeskarta?"
+      en: "What does a value stream map show?"
+    a:
+      sv: "Alla steg och all väntan mellan beställning och leverans"
+      en: "Every step and every wait between request and delivery"
+  - value: 300
+    q:
+      sv: "Vad står XP för?"
+      en: "What does XP stand for?"
+    a:
+      sv: "Extreme Programming"
+      en: "Extreme Programming"
+  - value: 400
+    q:
+      sv: "Vad säger Littles lag?"
+      en: "What does Little's law say?"
+    a:
+      sv: "Pågående arbete är genomströmning gånger cykeltid"
+      en: "Work in progress equals throughput times cycle time"
+  - value: 400
+    q:
+      sv: "Vad används ett cumulative flow-diagram till?"
+      en: "What is a cumulative flow diagram used for?"
+    a:
+      sv: "Att se var arbetet hopar sig över tid"
+      en: "Seeing where work piles up over time"
+  - value: 400
+    q:
+      sv: "Vad skiljer kanban från Scrum?"
+      en: "What separates kanban from Scrum?"
+    a:
+      sv: "Scrum arbetar i fasta sprintar, kanban i kontinuerligt flöde"
+      en: "Scrum works in fixed sprints, kanban in continuous flow"
+  - value: 400
+    q:
+      sv: "Vilka tre metoder från XP fick störst spridning?"
+      en: "Which three practices from XP spread the widest?"
+    a:
+      sv: "Testdriven utveckling, kontinuerlig integration och parprogrammering"
+      en: "Test driven development, continuous integration and pair programming"
+  - value: 400
+    q:
+      sv: "Vad heter slöseri på japanska inom lean?"
+      en: "What is waste called in Japanese within lean?"
+    a:
+      sv: "Muda"
+      en: "Muda"
+  - value: 500
+    q:
+      sv: "Var skrevs det agila manifestet?"
+      en: "Where was the Agile Manifesto written?"
+    a:
+      sv: "På en skidanläggning i Snowbird, Utah"
+      en: "At a ski lodge in Snowbird, Utah"
+  - value: 500
+    q:
+      sv: "Hur många personer undertecknade det agila manifestet?"
+      en: "How many people signed the Agile Manifesto?"
+    a:
+      sv: "Sjutton"
+      en: "Seventeen"
+  - value: 500
+    q:
+      sv: "Vad är en definition of ready?"
+      en: "What is a definition of ready?"
+    a:
+      sv: "Överenskommelsen om när något är tillräckligt klart att påbörja"
+      en: "The agreement on when something is clear enough to start"
+  - value: 500
+    q:
+      sv: "Vilka fyra grupper gav Spotifymodellen namn åt?"
+      en: "Which four groups did the Spotify model give names to?"
+    a:
+      sv: "Squads, tribes, chapters och guilds"
+      en: "Squads, tribes, chapters and guilds"
+  - value: 500
+    q:
+      sv: "Vad hjälper Cynefin-ramverket dig att avgöra?"
+      en: "What does the Cynefin framework help you decide?"
+    a:
+      sv: "Vilken sorts problem du har, och därmed vilket angreppssätt som passar"
+      en: "Which kind of problem you have, and therefore which approach fits"

@@ -1,0 +1,181 @@
+id: ai-on-film
+tag: anyone
+name:
+  sv: "AI på film"
+  en: "AI on Film"
+questions:
+  - value: 100
+    q:
+      sv: "Vilken film från 1968 har datorn HAL 9000?"
+      en: "Which 1968 film features the computer HAL 9000?"
+    a:
+      sv: "2001: A Space Odyssey"
+      en: "2001: A Space Odyssey"
+  - value: 100
+    q:
+      sv: "Vad heter AI-systemet som vänder sig mot mänskligheten i Terminator?"
+      en: "What is the AI system that turns on humanity in the Terminator films called?"
+    a:
+      sv: "Skynet"
+      en: "Skynet"
+  - value: 100
+    q:
+      sv: "Vilken Pixarfilm har en sophanterande robot i huvudrollen?"
+      en: "Which Pixar film stars a waste-collecting robot?"
+    a:
+      sv: "WALL-E"
+      en: "WALL-E"
+  - value: 100
+    q:
+      sv: "Vad heter Tony Starks AI-assistent i Iron Man?"
+      en: "What is Tony Stark's AI assistant called in Iron Man?"
+    a:
+      sv: "JARVIS"
+      en: "JARVIS"
+  - value: 100
+    q:
+      sv: "Vilken robot i Star Wars piper och visslar i stället för att prata?"
+      en: "Which Star Wars droid beeps and whistles instead of speaking?"
+    a:
+      sv: "R2-D2"
+      en: "R2-D2"
+  - value: 200
+    q:
+      sv: "Vad heter AI:n som Theodore blir kär i i filmen Her?"
+      en: "What is the AI Theodore falls in love with in the film Her called?"
+    a:
+      sv: "Samantha"
+      en: "Samantha"
+  - value: 200
+    q:
+      sv: "Vad kallas de konstgjorda människorna i Blade Runner?"
+      en: "What are the artificial humans in Blade Runner called?"
+    a:
+      sv: "Replikanter"
+      en: "Replicants"
+  - value: 200
+    q:
+      sv: "Vad heter androiden i Star Trek: The Next Generation?"
+      en: "What is the android officer in Star Trek: The Next Generation called?"
+    a:
+      sv: "Data"
+      en: "Data"
+  - value: 200
+    q:
+      sv: "Vilken film från 1999 handlar om en simulerad verklighet som maskiner byggt?"
+      en: "Which 1999 film is about a simulated reality built by machines?"
+    a:
+      sv: "The Matrix"
+      en: "The Matrix"
+  - value: 200
+    q:
+      sv: "Vad heter den mordiska AI:n i spelet Portal?"
+      en: "What is the murderous AI in the game Portal called?"
+    a:
+      sv: "GLaDOS"
+      en: "GLaDOS"
+  - value: 300
+    q:
+      sv: "Vad heter AI:n i filmen Ex Machina?"
+      en: "What is the AI in the film Ex Machina called?"
+    a:
+      sv: "Ava"
+      en: "Ava"
+  - value: 300
+    q:
+      sv: "Vilken film från 1983 har en dator som nästan startar ett kärnvapenkrig?"
+      en: "Which 1983 film has a computer that nearly starts a nuclear war?"
+    a:
+      sv: "WarGames"
+      en: "WarGames"
+  - value: 300
+    q:
+      sv: "Vad heter androiden som visar sig vara förrädare i Alien från 1979?"
+      en: "What is the android who turns out to be a traitor in Alien from 1979 called?"
+    a:
+      sv: "Ash"
+      en: "Ash"
+  - value: 300
+    q:
+      sv: "Vilket test används för att avslöja replikanter i Blade Runner?"
+      en: "Which test is used to expose replicants in Blade Runner?"
+    a:
+      sv: "Voight-Kampff-testet"
+      en: "The Voight-Kampff test"
+  - value: 300
+    q:
+      sv: "Vilken Disneyfilm från 1982 placerar en programmerare inuti en dator?"
+      en: "Which 1982 Disney film puts a programmer inside a computer?"
+    a:
+      sv: "Tron"
+      en: "Tron"
+  - value: 400
+    q:
+      sv: "Vems tre robotlagar bygger filmen I, Robot på?"
+      en: "Whose three laws of robotics is the film I, Robot built on?"
+    a:
+      sv: "Isaac Asimovs"
+      en: "Isaac Asimov's"
+  - value: 400
+    q:
+      sv: "Vad kallar besättningen skeppsdatorn i Alien?"
+      en: "What does the crew call the ship's computer in Alien?"
+    a:
+      sv: "Mother"
+      en: "Mother"
+  - value: 400
+    q:
+      sv: "Vilken stumfilm från 1927 har en robotkopia av en kvinna vid namn Maria?"
+      en: "Which 1927 silent film features a robot double of a woman named Maria?"
+    a:
+      sv: "Metropolis"
+      en: "Metropolis"
+  - value: 400
+    q:
+      sv: "Vad heter roboten i Forbidden Planet från 1956?"
+      en: "What is the robot in Forbidden Planet from 1956 called?"
+    a:
+      sv: "Robby the Robot"
+      en: "Robby the Robot"
+  - value: 400
+    q:
+      sv: "Vad heter datorn som spelar krigsspel i WarGames?"
+      en: "What is the computer that plays war games in WarGames called?"
+    a:
+      sv: "WOPR, som pojken kallar Joshua"
+      en: "WOPR, which the boy calls Joshua"
+  - value: 500
+    q:
+      sv: "Hur lyder HAL 9000:s berömda vägran?"
+      en: "How does HAL 9000's famous refusal go?"
+    a:
+      sv: "I am sorry, Dave. I am afraid I cannot do that."
+      en: "I am sorry, Dave. I am afraid I cannot do that."
+  - value: 500
+    q:
+      sv: "Vad heter basens AI i filmen Moon från 2009?"
+      en: "What is the base AI in the 2009 film Moon called?"
+    a:
+      sv: "GERTY"
+      en: "GERTY"
+  - value: 500
+    q:
+      sv: "Vad kallas den hackerentitet som jagas i Ghost in the Shell?"
+      en: "What is the hacker entity hunted in Ghost in the Shell called?"
+    a:
+      sv: "Dockmästaren, the Puppet Master"
+      en: "The Puppet Master"
+  - value: 500
+    q:
+      sv: "I vilken film från 1970 allierar sig en amerikansk försvarsdator med sin sovjetiska motsvarighet?"
+      en: "In which 1970 film does an American defence computer ally with its Soviet counterpart?"
+    a:
+      sv: "Colossus: The Forbin Project"
+      en: "Colossus: The Forbin Project"
+  - value: 500
+    q:
+      sv: "Vad står HAL för enligt filmens egen förklaring?"
+      en: "What does HAL stand for according to the film's own explanation?"
+    a:
+      sv: "Heuristically programmed ALgorithmic computer"
+      en: "Heuristically programmed ALgorithmic computer"

@@ -1,0 +1,181 @@
+id: databases
+tag: hands-on
+name:
+  sv: "Databaser"
+  en: "Databases"
+questions:
+  - value: 100
+    q:
+      sv: "Vilket språk frågar man en relationsdatabas med?"
+      en: "Which language do you query a relational database with?"
+    a:
+      sv: "SQL"
+      en: "SQL"
+  - value: 100
+    q:
+      sv: "Vad består en tabell av?"
+      en: "What is a table made up of?"
+    a:
+      sv: "Rader och kolumner"
+      en: "Rows and columns"
+  - value: 100
+    q:
+      sv: "Vad gör en primärnyckel?"
+      en: "What does a primary key do?"
+    a:
+      sv: "Pekar ut en rad entydigt"
+      en: "Identifies one row uniquely"
+  - value: 100
+    q:
+      sv: "Vilket SQL-ord hämtar ut data?"
+      en: "Which SQL word fetches data?"
+    a:
+      sv: "SELECT"
+      en: "SELECT"
+  - value: 100
+    q:
+      sv: "Vad är en backup till för?"
+      en: "What is a backup for?"
+    a:
+      sv: "Att kunna återställa data som gått förlorad"
+      en: "Restoring data that has been lost"
+  - value: 200
+    q:
+      sv: "Vilket SQL-ord filtrerar raderna?"
+      en: "Which SQL word filters the rows?"
+    a:
+      sv: "WHERE"
+      en: "WHERE"
+  - value: 200
+    q:
+      sv: "Vilket SQL-ord slår ihop två tabeller?"
+      en: "Which SQL word combines two tables?"
+    a:
+      sv: "JOIN"
+      en: "JOIN"
+  - value: 200
+    q:
+      sv: "Vad pekar en främmande nyckel på?"
+      en: "What does a foreign key point at?"
+    a:
+      sv: "Primärnyckeln i en annan tabell"
+      en: "The primary key of another table"
+  - value: 200
+    q:
+      sv: "Vad är ett index till för?"
+      en: "What is an index for?"
+    a:
+      sv: "Att hitta rader snabbt utan att läsa hela tabellen"
+      en: "Finding rows quickly without reading the whole table"
+  - value: 200
+    q:
+      sv: "Vad kännetecknar en NoSQL-databas?"
+      en: "What characterises a NoSQL database?"
+    a:
+      sv: "Den kräver inget fast relationsschema"
+      en: "It requires no fixed relational schema"
+  - value: 300
+    q:
+      sv: "Vad står ACID för?"
+      en: "What does ACID stand for?"
+    a:
+      sv: "Atomicity, consistency, isolation och durability"
+      en: "Atomicity, consistency, isolation and durability"
+  - value: 300
+    q:
+      sv: "Vad är en transaktion?"
+      en: "What is a transaction?"
+    a:
+      sv: "En grupp operationer som antingen lyckas helt eller inte alls"
+      en: "A group of operations that either all succeed or none do"
+  - value: 300
+    q:
+      sv: "Vad är syftet med normalisering?"
+      en: "What is the purpose of normalisation?"
+    a:
+      sv: "Att slippa lagra samma uppgift på flera ställen"
+      en: "Not storing the same fact in several places"
+  - value: 300
+    q:
+      sv: "Vad lagrar en dokumentdatabas i stället för rader?"
+      en: "What does a document database store instead of rows?"
+    a:
+      sv: "Dokument, oftast i JSON-form"
+      en: "Documents, usually in JSON form"
+  - value: 300
+    q:
+      sv: "Vad behåller en LEFT JOIN som en INNER JOIN slänger?"
+      en: "What does a LEFT JOIN keep that an INNER JOIN throws away?"
+    a:
+      sv: "Rader från vänstra tabellen som saknar motsvarighet"
+      en: "Rows from the left table with no match"
+  - value: 400
+    q:
+      sv: "Vad är N plus 1-problemet?"
+      en: "What is the N plus 1 problem?"
+    a:
+      sv: "En fråga per rad i stället för en enda fråga för alla"
+      en: "One query per row instead of one single query for all"
+  - value: 400
+    q:
+      sv: "Vad är ett deadlock?"
+      en: "What is a deadlock?"
+    a:
+      sv: "Två transaktioner väntar på varandras lås"
+      en: "Two transactions waiting for each other's locks"
+  - value: 400
+    q:
+      sv: "Vad gör sharding?"
+      en: "What does sharding do?"
+    a:
+      sv: "Delar upp datat på flera maskiner efter en nyckel"
+      en: "Splits the data across several machines by a key"
+  - value: 400
+    q:
+      sv: "Vad är en läsreplika till för?"
+      en: "What is a read replica for?"
+    a:
+      sv: "Att avlasta huvuddatabasen från läsningar"
+      en: "Taking read load off the primary database"
+  - value: 400
+    q:
+      sv: "Vad gör en ORM?"
+      en: "What does an ORM do?"
+    a:
+      sv: "Översätter databasrader till objekt i koden"
+      en: "Translates database rows into objects in the code"
+  - value: 500
+    q:
+      sv: "Vad står MVCC för?"
+      en: "What does MVCC stand for?"
+    a:
+      sv: "Multiversion concurrency control"
+      en: "Multiversion concurrency control"
+  - value: 500
+    q:
+      sv: "Vilken isolationsnivå kör PostgreSQL som standard?"
+      en: "Which isolation level does PostgreSQL run by default?"
+    a:
+      sv: "Read committed"
+      en: "Read committed"
+  - value: 500
+    q:
+      sv: "Vad är ett covering index?"
+      en: "What is a covering index?"
+    a:
+      sv: "Ett index som innehåller alla kolumner frågan behöver"
+      en: "An index that contains every column the query needs"
+  - value: 500
+    q:
+      sv: "Vad är write amplification?"
+      en: "What is write amplification?"
+    a:
+      sv: "Att en logisk skrivning orsakar flera fysiska skrivningar"
+      en: "One logical write causing several physical writes"
+  - value: 500
+    q:
+      sv: "Vilken sorts databaser bygger på LSM-träd?"
+      en: "Which kind of databases are built on LSM trees?"
+    a:
+      sv: "Skrivtunga, som Cassandra och RocksDB"
+      en: "Write-heavy ones, such as Cassandra and RocksDB"

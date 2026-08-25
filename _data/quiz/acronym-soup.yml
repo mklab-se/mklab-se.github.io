@@ -1,0 +1,181 @@
+id: acronym-soup
+tag: anyone
+name:
+  sv: "Förkortningssoppan"
+  en: "Acronym Soup"
+questions:
+  - value: 100
+    q:
+      sv: "Vad står HTML för?"
+      en: "What does HTML stand for?"
+    a:
+      sv: "HyperText Markup Language"
+      en: "HyperText Markup Language"
+  - value: 100
+    q:
+      sv: "Vad står USB för?"
+      en: "What does USB stand for?"
+    a:
+      sv: "Universal Serial Bus"
+      en: "Universal Serial Bus"
+  - value: 100
+    q:
+      sv: "Vad står PDF för?"
+      en: "What does PDF stand for?"
+    a:
+      sv: "Portable Document Format"
+      en: "Portable Document Format"
+  - value: 100
+    q:
+      sv: "Vad står URL för?"
+      en: "What does URL stand for?"
+    a:
+      sv: "Uniform Resource Locator"
+      en: "Uniform Resource Locator"
+  - value: 100
+    q:
+      sv: "Vad står CPU för?"
+      en: "What does CPU stand for?"
+    a:
+      sv: "Central Processing Unit"
+      en: "Central Processing Unit"
+  - value: 200
+    q:
+      sv: "Vad står API för?"
+      en: "What does API stand for?"
+    a:
+      sv: "Application Programming Interface"
+      en: "Application Programming Interface"
+  - value: 200
+    q:
+      sv: "Vad står SaaS för?"
+      en: "What does SaaS stand for?"
+    a:
+      sv: "Software as a Service"
+      en: "Software as a Service"
+  - value: 200
+    q:
+      sv: "Vad står HTTP för?"
+      en: "What does HTTP stand for?"
+    a:
+      sv: "HyperText Transfer Protocol"
+      en: "HyperText Transfer Protocol"
+  - value: 200
+    q:
+      sv: "Vad står RAM för?"
+      en: "What does RAM stand for?"
+    a:
+      sv: "Random Access Memory"
+      en: "Random Access Memory"
+  - value: 200
+    q:
+      sv: "Vad står SQL för?"
+      en: "What does SQL stand for?"
+    a:
+      sv: "Structured Query Language"
+      en: "Structured Query Language"
+  - value: 300
+    q:
+      sv: "Vad står JSON för?"
+      en: "What does JSON stand for?"
+    a:
+      sv: "JavaScript Object Notation"
+      en: "JavaScript Object Notation"
+  - value: 300
+    q:
+      sv: "Vad står SLA för?"
+      en: "What does SLA stand for?"
+    a:
+      sv: "Service Level Agreement"
+      en: "Service Level Agreement"
+  - value: 300
+    q:
+      sv: "Vad står DNS för?"
+      en: "What does DNS stand for?"
+    a:
+      sv: "Domain Name System"
+      en: "Domain Name System"
+  - value: 300
+    q:
+      sv: "Vad står CI och CD för?"
+      en: "What do CI and CD stand for?"
+    a:
+      sv: "Continuous Integration och Continuous Delivery"
+      en: "Continuous Integration and Continuous Delivery"
+  - value: 300
+    q:
+      sv: "Vad står SMTP för?"
+      en: "What does SMTP stand for?"
+    a:
+      sv: "Simple Mail Transfer Protocol"
+      en: "Simple Mail Transfer Protocol"
+  - value: 400
+    q:
+      sv: "Vad står JWT för?"
+      en: "What does JWT stand for?"
+    a:
+      sv: "JSON Web Token"
+      en: "JSON Web Token"
+  - value: 400
+    q:
+      sv: "Vad står OAuth för?"
+      en: "What does OAuth stand for?"
+    a:
+      sv: "Open Authorization"
+      en: "Open Authorization"
+  - value: 400
+    q:
+      sv: "Vad står SAML för?"
+      en: "What does SAML stand for?"
+    a:
+      sv: "Security Assertion Markup Language"
+      en: "Security Assertion Markup Language"
+  - value: 400
+    q:
+      sv: "Vad står CORS för?"
+      en: "What does CORS stand for?"
+    a:
+      sv: "Cross-Origin Resource Sharing"
+      en: "Cross-Origin Resource Sharing"
+  - value: 400
+    q:
+      sv: "Vad står RPC för?"
+      en: "What does RPC stand for?"
+    a:
+      sv: "Remote Procedure Call"
+      en: "Remote Procedure Call"
+  - value: 500
+    q:
+      sv: "Vad står WYSIWYG för?"
+      en: "What does WYSIWYG stand for?"
+    a:
+      sv: "What You See Is What You Get"
+      en: "What You See Is What You Get"
+  - value: 500
+    q:
+      sv: "Vad står YAML för?"
+      en: "What does YAML stand for?"
+    a:
+      sv: "YAML Ain't Markup Language, en förkortning som syftar på sig själv"
+      en: "YAML Ain't Markup Language, an acronym that refers to itself"
+  - value: 500
+    q:
+      sv: "Vad står GNU för?"
+      en: "What does GNU stand for?"
+    a:
+      sv: "GNU's Not Unix, också den självrefererande"
+      en: "GNU's Not Unix, also self-referring"
+  - value: 500
+    q:
+      sv: "Vad står TOTP för?"
+      en: "What does TOTP stand for?"
+    a:
+      sv: "Time-based One-Time Password"
+      en: "Time-based One-Time Password"
+  - value: 500
+    q:
+      sv: "Vad står PEBKAC för?"
+      en: "What does PEBKAC stand for?"
+    a:
+      sv: "Problem Exists Between Keyboard And Chair"
+      en: "Problem Exists Between Keyboard And Chair"

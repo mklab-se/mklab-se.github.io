@@ -1,0 +1,181 @@
+id: data-analytics
+tag: tech
+name:
+  sv: "Data och analys"
+  en: "Data & Analytics"
+questions:
+  - value: 100
+    q:
+      sv: "Vad står BI för?"
+      en: "What does BI stand for?"
+    a:
+      sv: "Business Intelligence"
+      en: "Business Intelligence"
+  - value: 100
+    q:
+      sv: "Vad är ett KPI?"
+      en: "What is a KPI?"
+    a:
+      sv: "Ett tal som följer hur det går mot ett mål"
+      en: "A number that tracks progress toward a goal"
+  - value: 100
+    q:
+      sv: "Vad menas med rådata?"
+      en: "What is meant by raw data?"
+    a:
+      sv: "Datat som det samlades in, före all bearbetning"
+      en: "The data as it was collected, before any processing"
+  - value: 100
+    q:
+      sv: "Vad visar ett diagram bättre än en tabell?"
+      en: "What does a chart show better than a table?"
+    a:
+      sv: "Formen och trenden, med en blick"
+      en: "The shape and the trend, at a glance"
+  - value: 100
+    q:
+      sv: "Vad är en dashboard i en verksamhet?"
+      en: "What is a dashboard in a business?"
+    a:
+      sv: "En skärm med de viktigaste talen samlade"
+      en: "One screen with the most important numbers gathered"
+  - value: 200
+    q:
+      sv: "Vad står ETL för?"
+      en: "What does ETL stand for?"
+    a:
+      sv: "Extract, transform, load"
+      en: "Extract, transform, load"
+  - value: 200
+    q:
+      sv: "Vad är ett datalager, ett data warehouse?"
+      en: "What is a data warehouse?"
+    a:
+      sv: "En central databas byggd för analys, inte för att driva verksamheten"
+      en: "A central store built for analysis, not for running the business"
+  - value: 200
+    q:
+      sv: "Vad är en data lake?"
+      en: "What is a data lake?"
+    a:
+      sv: "Ett lager för rådata av vilken form som helst"
+      en: "A store for raw data of any shape at all"
+  - value: 200
+    q:
+      sv: "Vad skiljer strukturerad från ostrukturerad data?"
+      en: "What separates structured from unstructured data?"
+    a:
+      sv: "Strukturerad data ryms i rader och kolumner, ostrukturerad gör det inte"
+      en: "Structured data fits in rows and columns, unstructured does not"
+  - value: 200
+    q:
+      sv: "Vad skyddar GDPR?"
+      en: "What does GDPR protect?"
+    a:
+      sv: "Personuppgifter om människor i EU"
+      en: "Personal data about people in the EU"
+  - value: 300
+    q:
+      sv: "Vad skiljer ELT från ETL?"
+      en: "What separates ELT from ETL?"
+    a:
+      sv: "ELT laddar in först och transformerar inne i datalagret"
+      en: "ELT loads first and transforms inside the warehouse"
+  - value: 300
+    q:
+      sv: "Vad kännetecknar ett stjärnschema?"
+      en: "What characterises a star schema?"
+    a:
+      sv: "En faktatabell omgiven av dimensionstabeller"
+      en: "A fact table surrounded by dimension tables"
+  - value: 300
+    q:
+      sv: "Vad innehåller en faktatabell?"
+      en: "What does a fact table contain?"
+    a:
+      sv: "De mätbara händelserna"
+      en: "The measurable events"
+  - value: 300
+    q:
+      sv: "Vad är data lineage?"
+      en: "What is data lineage?"
+    a:
+      sv: "Den spårbara vägen för var datat kom ifrån och vad som hänt med det"
+      en: "The traceable path of where the data came from and what happened to it"
+  - value: 300
+    q:
+      sv: "Vad är ett lakehouse?"
+      en: "What is a lakehouse?"
+    a:
+      sv: "En data lake med datalagrets funktioner, som tabeller och transaktioner"
+      en: "A data lake with warehouse features, such as tables and transactions"
+  - value: 400
+    q:
+      sv: "Vad är en slowly changing dimension?"
+      en: "What is a slowly changing dimension?"
+    a:
+      sv: "En dimension vars värden ändras över tid och måste hanteras"
+      en: "A dimension whose values change over time and must be handled"
+  - value: 400
+    q:
+      sv: "Vad omfattar datastyrning, data governance?"
+      en: "What does data governance cover?"
+    a:
+      sv: "Reglerna och ägarskapet för hur data får användas"
+      en: "The rules and the ownership for how data may be used"
+  - value: 400
+    q:
+      sv: "Vad är ett semantiskt lager?"
+      en: "What is a semantic layer?"
+    a:
+      sv: "En gemensam definition av verksamhetens begrepp ovanpå rådatat"
+      en: "A shared definition of the business terms on top of the raw data"
+  - value: 400
+    q:
+      sv: "Vad är grundtanken i data mesh?"
+      en: "What is the core idea of data mesh?"
+    a:
+      sv: "Att data är en produkt som ägs av det domänteam som skapar den"
+      en: "Data is a product owned by the domain team that creates it"
+  - value: 400
+    q:
+      sv: "Vad beskriver kardinalitet i en datamodell?"
+      en: "What does cardinality describe in a data model?"
+    a:
+      sv: "Hur många rader som hör ihop med hur många, en till en eller en till många"
+      en: "How many rows relate to how many, one to one or one to many"
+  - value: 500
+    q:
+      sv: "Hur hanterar en type 2-dimension en förändring?"
+      en: "How does a type 2 dimension handle a change?"
+    a:
+      sv: "Lägger till en ny rad med giltig från och giltig till, och sparar historiken"
+      en: "Adds a new row with valid from and valid to, keeping the history"
+  - value: 500
+    q:
+      sv: "Vad är ett datakontrakt?"
+      en: "What is a data contract?"
+    a:
+      sv: "Ett överenskommet och kontrollerat schema mellan producent och konsument"
+      en: "An agreed and enforced schema between producer and consumer"
+  - value: 500
+    q:
+      sv: "Vad skiljer OLAP från OLTP?"
+      en: "What separates OLAP from OLTP?"
+    a:
+      sv: "OLAP är byggt för analys, OLTP för att driva verksamheten"
+      en: "OLAP is built for analysis, OLTP for running the business"
+  - value: 500
+    q:
+      sv: "Nämn ett kolumnbaserat lagringsformat."
+      en: "Name one columnar storage format."
+    a:
+      sv: "Parquet, eller ORC"
+      en: "Parquet, or ORC"
+  - value: 500
+    q:
+      sv: "Vad beskriver Simpsons paradox?"
+      en: "What does Simpson's paradox describe?"
+    a:
+      sv: "En trend som syns i varje grupp men vänder när grupperna slås ihop"
+      en: "A trend seen in every group that reverses when the groups are combined"

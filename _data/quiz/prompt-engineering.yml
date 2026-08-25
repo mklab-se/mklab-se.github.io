@@ -1,0 +1,181 @@
+id: prompt-engineering
+tag: anyone
+name:
+  sv: "Promptteknik"
+  en: "Prompt Engineering"
+questions:
+  - value: 100
+    q:
+      sv: "Vad kallas texten du skickar till en modell?"
+      en: "What is the text you send to a model called?"
+    a:
+      sv: "En prompt"
+      en: "A prompt"
+  - value: 100
+    q:
+      sv: "Vad kallas den stående instruktionen som sätter modellens beteende?"
+      en: "What is the standing instruction that sets the model's behaviour called?"
+    a:
+      sv: "Systemprompten"
+      en: "The system prompt"
+  - value: 100
+    q:
+      sv: "Vilket format ber man oftast om när svaret ska läsas av ett program?"
+      en: "Which format do you usually ask for when the answer will be read by a program?"
+    a:
+      sv: "JSON"
+      en: "JSON"
+  - value: 100
+    q:
+      sv: "Vad kallas modellens svar?"
+      en: "What is the model's reply called?"
+    a:
+      sv: "Svaret, på engelska completion eller response"
+      en: "The completion, or the response"
+  - value: 100
+    q:
+      sv: "Om modellen inte känner till något färskt, vad kan du göra i prompten?"
+      en: "If the model does not know something recent, what can you do in the prompt?"
+    a:
+      sv: "Klistra in informationen själv"
+      en: "Paste the information in yourself"
+  - value: 200
+    q:
+      sv: "Vad kallas det när du ger modellen noll exempel?"
+      en: "What is it called when you give the model zero examples?"
+    a:
+      sv: "Zero-shot"
+      en: "Zero-shot"
+  - value: 200
+    q:
+      sv: "Vad kallas det när du ger modellen några exempel på önskat svar?"
+      en: "What is it called when you give the model a few examples of the answer you want?"
+    a:
+      sv: "Few-shot"
+      en: "Few-shot"
+  - value: 200
+    q:
+      sv: "Vad utlöser man genom att be modellen tänka steg för steg?"
+      en: "What do you trigger by asking the model to think step by step?"
+    a:
+      sv: "Chain of thought, resonemang i steg"
+      en: "Chain of thought reasoning"
+  - value: 200
+    q:
+      sv: "Vad kallas en instruktion av typen du är en erfaren jurist?"
+      en: "What is an instruction such as you are an experienced lawyer called?"
+    a:
+      sv: "Rollprompt, persona"
+      en: "Role prompting, a persona"
+  - value: 200
+    q:
+      sv: "Vilken parameter gör svaret mer eller mindre slumpmässigt?"
+      en: "Which parameter makes the answer more or less random?"
+    a:
+      sv: "Temperature"
+      en: "Temperature"
+  - value: 300
+    q:
+      sv: "Vad gör avgränsare som tre backticks i en prompt?"
+      en: "What do delimiters such as triple backticks do in a prompt?"
+    a:
+      sv: "Skiljer instruktionen från datat"
+      en: "Separate the instruction from the data"
+  - value: 300
+    q:
+      sv: "Vad betyder det att grunda, ground, en prompt?"
+      en: "What does it mean to ground a prompt?"
+    a:
+      sv: "Att ge modellen källmaterial att svara utifrån"
+      en: "Giving the model source material to answer from"
+  - value: 300
+    q:
+      sv: "Vad är prompt chaining?"
+      en: "What is prompt chaining?"
+    a:
+      sv: "Att mata in svaret från en prompt i nästa prompt"
+      en: "Feeding the answer from one prompt into the next prompt"
+  - value: 300
+    q:
+      sv: "Vilken parameter sätter tak för hur långt svaret får bli?"
+      en: "Which parameter caps how long the answer may be?"
+    a:
+      sv: "Max tokens"
+      en: "Max tokens"
+  - value: 300
+    q:
+      sv: "Vad kallas en sträng som får modellen att sluta generera?"
+      en: "What is a string that makes the model stop generating called?"
+    a:
+      sv: "En stoppsekvens"
+      en: "A stop sequence"
+  - value: 400
+    q:
+      sv: "Vad styr top-p, även kallat nucleus sampling?"
+      en: "What does top-p, also called nucleus sampling, control?"
+    a:
+      sv: "Hur stor andel av de troligaste orden som får väljas ifrån"
+      en: "How large a slice of the most likely tokens may be sampled from"
+  - value: 400
+    q:
+      sv: "Vad är self-consistency?"
+      en: "What is self-consistency?"
+    a:
+      sv: "Att köra flera resonemang och ta majoritetens svar"
+      en: "Running several reasoning attempts and taking the majority answer"
+  - value: 400
+    q:
+      sv: "Vad varvar ReAct-prompting?"
+      en: "What does ReAct prompting alternate between?"
+    a:
+      sv: "Resonemang och handling, alltså verktygsanrop"
+      en: "Reasoning and acting, that is tool calls"
+  - value: 400
+    q:
+      sv: "Vad är poängen med prompt caching?"
+      en: "What is the point of prompt caching?"
+    a:
+      sv: "Att återanvända en oförändrad början och sänka kostnad och väntetid"
+      en: "Reusing an unchanged beginning to cut cost and latency"
+  - value: 400
+    q:
+      sv: "Vad kallas tekniken där modellen kritiserar och skriver om sitt eget svar?"
+      en: "What is the technique where the model critiques and rewrites its own answer called?"
+    a:
+      sv: "Självkritik, self-refine"
+      en: "Self-critique, self-refine"
+  - value: 500
+    q:
+      sv: "Vad gör least-to-most-prompting?"
+      en: "What does least-to-most prompting do?"
+    a:
+      sv: "Bryter ner problemet i enklare delproblem som löses i ordning"
+      en: "Breaks the problem into easier subproblems solved in order"
+  - value: 500
+    q:
+      sv: "Vad är tree of thoughts?"
+      en: "What is tree of thoughts?"
+    a:
+      sv: "Att utforska flera resonemangsgrenar och välja den bästa"
+      en: "Exploring several branches of reasoning and picking the best"
+  - value: 500
+    q:
+      sv: "Vad visade forskningen om frasen let us think step by step?"
+      en: "What did the research on the phrase let us think step by step show?"
+    a:
+      sv: "Att chain of thought kan utlösas helt utan exempel"
+      en: "That chain of thought can be triggered with no examples at all"
+  - value: 500
+    q:
+      sv: "Vad beskriver effekten lost in the middle?"
+      en: "What does the lost in the middle effect describe?"
+    a:
+      sv: "Att modeller missar information mitt i en lång kontext"
+      en: "That models miss information in the middle of a long context"
+  - value: 500
+    q:
+      sv: "Vad är skillnaden mellan en systemprompt och en användarprompt?"
+      en: "What is the difference between a system prompt and a user prompt?"
+    a:
+      sv: "Systemprompten sätter ramarna, användarprompten ställer uppgiften"
+      en: "The system prompt sets the frame, the user prompt gives the task"

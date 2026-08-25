@@ -1,0 +1,181 @@
+id: github-copilot
+tag: hands-on
+name:
+  sv: "GitHub Copilot"
+  en: "GitHub Copilot"
+questions:
+  - value: 100
+    q:
+      sv: "Vilket företag ligger bakom GitHub Copilot?"
+      en: "Which company is behind GitHub Copilot?"
+    a:
+      sv: "GitHub, som ägs av Microsoft"
+      en: "GitHub, owned by Microsoft"
+  - value: 100
+    q:
+      sv: "Vilken tangent accepterar ett kodförslag från Copilot?"
+      en: "Which key accepts a Copilot code suggestion?"
+    a:
+      sv: "Tab"
+      en: "Tab"
+  - value: 100
+    q:
+      sv: "Vad kallas den gråa förslagstexten som dyker upp i editorn?"
+      en: "What is the grey suggestion text that appears in the editor called?"
+    a:
+      sv: "Ghost text"
+      en: "Ghost text"
+  - value: 100
+    q:
+      sv: "Vad heter Copilots chattfunktion i editorn?"
+      en: "What is Copilot's chat feature in the editor called?"
+    a:
+      sv: "Copilot Chat"
+      en: "Copilot Chat"
+  - value: 100
+    q:
+      sv: "Vilken modell från OpenAI byggde den första versionen av Copilot på?"
+      en: "Which OpenAI model was the first version of Copilot built on?"
+    a:
+      sv: "Codex"
+      en: "Codex"
+  - value: 200
+    q:
+      sv: "Vilken fil ger Copilot instruktioner som gäller hela repot?"
+      en: "Which file gives Copilot instructions that apply to the whole repository?"
+    a:
+      sv: ".github/copilot-instructions.md"
+      en: ".github/copilot-instructions.md"
+  - value: 200
+    q:
+      sv: "Vilket läge låter Copilot ändra flera filer och köra verktyg på egen hand?"
+      en: "Which mode lets Copilot change several files and run tools on its own?"
+    a:
+      sv: "Agent mode"
+      en: "Agent mode"
+  - value: 200
+    q:
+      sv: "Vilka är de tre inbyggda chattlägena i VS Code?"
+      en: "What are the three built-in chat modes in VS Code?"
+    a:
+      sv: "Ask, edit och agent"
+      en: "Ask, edit and agent"
+  - value: 200
+    q:
+      sv: "Vilket snedstreckskommando ber Copilot förklara markerad kod?"
+      en: "Which slash command asks Copilot to explain selected code?"
+    a:
+      sv: "/explain"
+      en: "/explain"
+  - value: 200
+    q:
+      sv: "Vilket snedstreckskommando genererar enhetstester?"
+      en: "Which slash command generates unit tests?"
+    a:
+      sv: "/tests"
+      en: "/tests"
+  - value: 300
+    q:
+      sv: "Vilket tecken inleder en chattdeltagare som @workspace?"
+      en: "Which character starts a chat participant such as @workspace?"
+    a:
+      sv: "Snabel-a"
+      en: "The at sign"
+  - value: 300
+    q:
+      sv: "Vilket tecken lägger till kontext, till exempel en fil, i en chattprompt?"
+      en: "Which character adds context, such as a file, to a chat prompt?"
+    a:
+      sv: "Brädgård, hashtecknet"
+      en: "The hash sign"
+  - value: 300
+    q:
+      sv: "Vilket snedstreckskommando föreslår en lösning på ett problem i koden?"
+      en: "Which slash command proposes a fix for a problem in the code?"
+    a:
+      sv: "/fix"
+      en: "/fix"
+  - value: 300
+    q:
+      sv: "Vilken filändelse har en återanvändbar promptfil för Copilot?"
+      en: "Which file extension does a reusable Copilot prompt file have?"
+    a:
+      sv: ".prompt.md"
+      en: ".prompt.md"
+  - value: 300
+    q:
+      sv: "I vilken mapp ligger promptfiler som standard?"
+      en: "Which folder do prompt files live in by default?"
+    a:
+      sv: ".github/prompts"
+      en: ".github/prompts"
+  - value: 400
+    q:
+      sv: "Vilket protokoll låter Copilot i agentläge använda externa verktyg?"
+      en: "Which protocol lets Copilot in agent mode use external tools?"
+    a:
+      sv: "MCP, Model Context Protocol"
+      en: "MCP, the Model Context Protocol"
+  - value: 400
+    q:
+      sv: "Vilket kommando genererar en copilot-instructions.md åt ditt repo?"
+      en: "Which command generates a copilot-instructions.md for your repository?"
+    a:
+      sv: "/generateInstructions"
+      en: "/generateInstructions"
+  - value: 400
+    q:
+      sv: "Vilket kommando sparar en återanvändbar prompt från den pågående chatten?"
+      en: "Which command saves a reusable prompt from the current chat thread?"
+    a:
+      sv: "/savePrompt"
+      en: "/savePrompt"
+  - value: 400
+    q:
+      sv: "Vilken filändelse har ett eget chattläge i VS Code?"
+      en: "Which file extension does a custom chat mode in VS Code have?"
+    a:
+      sv: ".chatmode.md"
+      en: ".chatmode.md"
+  - value: 400
+    q:
+      sv: "Vad kallas funktionen som föreslår nästa ändring någon annanstans i filen?"
+      en: "What is the feature that suggests your next edit elsewhere in the file called?"
+    a:
+      sv: "Next edit suggestions"
+      en: "Next edit suggestions"
+  - value: 500
+    q:
+      sv: "Vilket år släpptes GitHub Copilot som teknisk förhandsvisning?"
+      en: "In which year was GitHub Copilot released as a technical preview?"
+    a:
+      sv: "2021"
+      en: "2021"
+  - value: 500
+    q:
+      sv: "Vad kan du tilldela ett GitHub-ärende till så att en pull request skapas åt dig?"
+      en: "What can you assign a GitHub issue to so that a pull request is opened for you?"
+    a:
+      sv: "Copilot coding agent"
+      en: "The Copilot coding agent"
+  - value: 500
+    q:
+      sv: "Vad heter de två betalplanerna för organisationer?"
+      en: "What are the two paid plans for organisations called?"
+    a:
+      sv: "Copilot Business och Copilot Enterprise"
+      en: "Copilot Business and Copilot Enterprise"
+  - value: 500
+    q:
+      sv: "Vad gör inställningen content exclusion?"
+      en: "What does the content exclusion setting do?"
+    a:
+      sv: "Hindrar Copilot från att använda utpekade filer som kontext"
+      en: "Stops Copilot from using specified files as context"
+  - value: 500
+    q:
+      sv: "Vad heter verktyget som ger dig Copilot i terminalen?"
+      en: "What is the tool that gives you Copilot in the terminal called?"
+    a:
+      sv: "GitHub Copilot CLI"
+      en: "GitHub Copilot CLI"

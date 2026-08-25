@@ -1,0 +1,181 @@
+id: azure
+tag: tech
+name:
+  sv: "Azure"
+  en: "Azure"
+questions:
+  - value: 100
+    q:
+      sv: "Vilket företag driver Azure?"
+      en: "Which company runs Azure?"
+    a:
+      sv: "Microsoft"
+      en: "Microsoft"
+  - value: 100
+    q:
+      sv: "Vad heter Azures webbaserade kontrollpanel?"
+      en: "What is Azure's web-based control panel called?"
+    a:
+      sv: "Azure-portalen"
+      en: "The Azure portal"
+  - value: 100
+    q:
+      sv: "Vad heter Azures kommandoradsverktyg?"
+      en: "What is Azure's command line tool called?"
+    a:
+      sv: "Azure CLI, kommandot az"
+      en: "The Azure CLI, the az command"
+  - value: 100
+    q:
+      sv: "Vad lägger du besläktade Azure-resurser i?"
+      en: "What do you put related Azure resources into?"
+    a:
+      sv: "En resursgrupp"
+      en: "A resource group"
+  - value: 100
+    q:
+      sv: "Vad heter Azures tjänst för att lagra filer och objekt?"
+      en: "What is Azure's service for storing files and objects called?"
+    a:
+      sv: "Azure Blob Storage"
+      en: "Azure Blob Storage"
+  - value: 200
+    q:
+      sv: "Vad heter Azures identitetstjänst i dag?"
+      en: "What is Azure's identity service called today?"
+    a:
+      sv: "Microsoft Entra ID"
+      en: "Microsoft Entra ID"
+  - value: 200
+    q:
+      sv: "Vad hette Microsoft Entra ID innan namnbytet?"
+      en: "What was Microsoft Entra ID called before the rename?"
+    a:
+      sv: "Azure Active Directory"
+      en: "Azure Active Directory"
+  - value: 200
+    q:
+      sv: "Vad heter Azures tjänst för serverlösa funktioner?"
+      en: "What is Azure's serverless functions service called?"
+    a:
+      sv: "Azure Functions"
+      en: "Azure Functions"
+  - value: 200
+    q:
+      sv: "Vad styr en prenumeration, en subscription, i Azure?"
+      en: "What does a subscription control in Azure?"
+    a:
+      sv: "Fakturering och behörighetsgränser för resurser"
+      en: "Billing and access boundaries for resources"
+  - value: 200
+    q:
+      sv: "Vad heter Azures hanterade Kubernetes-tjänst?"
+      en: "What is Azure's managed Kubernetes service called?"
+    a:
+      sv: "AKS, Azure Kubernetes Service"
+      en: "AKS, Azure Kubernetes Service"
+  - value: 300
+    q:
+      sv: "Vad står ARM för i Azure?"
+      en: "What does ARM stand for in Azure?"
+    a:
+      sv: "Azure Resource Manager"
+      en: "Azure Resource Manager"
+  - value: 300
+    q:
+      sv: "Vilket språk ersatte handskrivna ARM-mallar?"
+      en: "Which language replaced hand-written ARM templates?"
+    a:
+      sv: "Bicep"
+      en: "Bicep"
+  - value: 300
+    q:
+      sv: "Vilken Azure-tjänst lagrar hemligheter, nycklar och certifikat?"
+      en: "Which Azure service stores secrets, keys and certificates?"
+    a:
+      sv: "Azure Key Vault"
+      en: "Azure Key Vault"
+  - value: 300
+    q:
+      sv: "Vilken Azure-tjänst kör containrar utan att du sköter servrar?"
+      en: "Which Azure service runs containers without you managing servers?"
+    a:
+      sv: "Azure Container Apps"
+      en: "Azure Container Apps"
+  - value: 300
+    q:
+      sv: "Vad är ett region pair i Azure?"
+      en: "What is a region pair in Azure?"
+    a:
+      sv: "Två regioner i samma geografi som backar upp varandra"
+      en: "Two regions in the same geography that back each other up"
+  - value: 400
+    q:
+      sv: "Vad skyddar en availability zone mot?"
+      en: "What does an availability zone protect against?"
+    a:
+      sv: "Att ett datacenter inne i regionen faller bort"
+      en: "One datacentre inside the region failing"
+  - value: 400
+    q:
+      sv: "Vad är en managed identity?"
+      en: "What is a managed identity?"
+    a:
+      sv: "En identitet Azure sköter, så att koden slipper lagra hemligheter"
+      en: "An identity Azure manages, so your code stores no credentials"
+  - value: 400
+    q:
+      sv: "Vad hette Azure när tjänsten lanserades?"
+      en: "What was Azure called when it launched?"
+    a:
+      sv: "Windows Azure"
+      en: "Windows Azure"
+  - value: 400
+    q:
+      sv: "Vad tvingar Azure Policy fram?"
+      en: "What does Azure Policy enforce?"
+    a:
+      sv: "Regler för resurser, till exempel tillåtna regioner eller krav på taggar"
+      en: "Rules on resources, such as allowed regions or required tags"
+  - value: 400
+    q:
+      sv: "Vilken Azure-tjänst skickar användare till närmaste friska slutpunkt via DNS?"
+      en: "Which Azure service sends users to the nearest healthy endpoint using DNS?"
+    a:
+      sv: "Azure Traffic Manager"
+      en: "Azure Traffic Manager"
+  - value: 500
+    q:
+      sv: "Vilket år blev Azure allmänt tillgängligt?"
+      en: "In which year did Azure become generally available?"
+    a:
+      sv: "2010"
+      en: "2010"
+  - value: 500
+    q:
+      sv: "Vad används Azure Arc till?"
+      en: "What is Azure Arc used for?"
+    a:
+      sv: "Att styra servrar och Kubernetes utanför Azure som vore de Azure-resurser"
+      en: "Managing servers and Kubernetes outside Azure as if they were Azure resources"
+  - value: 500
+    q:
+      sv: "Vad ger en private endpoint åt en PaaS-tjänst?"
+      en: "What does a private endpoint give a PaaS service?"
+    a:
+      sv: "En privat IP-adress inne i ditt virtuella nätverk"
+      en: "A private IP address inside your virtual network"
+  - value: 500
+    q:
+      sv: "Hur många pelare har Azure Well-Architected Framework?"
+      en: "How many pillars does the Azure Well-Architected Framework have?"
+    a:
+      sv: "Fem"
+      en: "Five"
+  - value: 500
+    q:
+      sv: "Vad står PTU för när man köper AI-kapacitet i Azure?"
+      en: "What does PTU stand for when buying AI capacity in Azure?"
+    a:
+      sv: "Provisioned Throughput Unit"
+      en: "Provisioned Throughput Unit"

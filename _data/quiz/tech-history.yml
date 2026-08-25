@@ -1,0 +1,181 @@
+id: tech-history
+tag: anyone
+name:
+  sv: "Teknikhistoria"
+  en: "Tech History"
+questions:
+  - value: 100
+    q:
+      sv: "Vem grundade Microsoft tillsammans med Bill Gates?"
+      en: "Who founded Microsoft together with Bill Gates?"
+    a:
+      sv: "Paul Allen"
+      en: "Paul Allen"
+  - value: 100
+    q:
+      sv: "Vad står WWW för?"
+      en: "What does WWW stand for?"
+    a:
+      sv: "World Wide Web"
+      en: "World Wide Web"
+  - value: 100
+    q:
+      sv: "Vem räknas som webbens uppfinnare?"
+      en: "Who is credited with inventing the web?"
+    a:
+      sv: "Tim Berners-Lee"
+      en: "Tim Berners-Lee"
+  - value: 100
+    q:
+      sv: "Vilket företag lanserade den första iPhonen?"
+      en: "Which company launched the first iPhone?"
+    a:
+      sv: "Apple"
+      en: "Apple"
+  - value: 100
+    q:
+      sv: "Under vilket årtionde blev webben tillgänglig för allmänheten?"
+      en: "During which decade did the web become available to the public?"
+    a:
+      sv: "1990-talet"
+      en: "The 1990s"
+  - value: 200
+    q:
+      sv: "Vad hette nätverket som blev internet?"
+      en: "What was the network that became the internet called?"
+    a:
+      sv: "ARPANET"
+      en: "ARPANET"
+  - value: 200
+    q:
+      sv: "Vilken schackdator slog Garry Kasparov 1997?"
+      en: "Which chess computer beat Garry Kasparov in 1997?"
+    a:
+      sv: "Deep Blue"
+      en: "Deep Blue"
+  - value: 200
+    q:
+      sv: "Vilket program slog en världsmästare i go 2016?"
+      en: "Which program beat a world champion at Go in 2016?"
+    a:
+      sv: "AlphaGo"
+      en: "AlphaGo"
+  - value: 200
+    q:
+      sv: "Vad handlar Moores lag om?"
+      en: "What is Moore's law about?"
+    a:
+      sv: "Att antalet transistorer fördubblas ungefär vartannat år"
+      en: "The number of transistors doubling roughly every two years"
+  - value: 200
+    q:
+      sv: "Vem brukar kallas världens första programmerare?"
+      en: "Who is usually called the world's first programmer?"
+    a:
+      sv: "Ada Lovelace"
+      en: "Ada Lovelace"
+  - value: 300
+    q:
+      sv: "Vid vilken workshop 1956 myntades begreppet artificiell intelligens?"
+      en: "At which 1956 workshop was the term artificial intelligence coined?"
+    a:
+      sv: "Dartmouth-konferensen"
+      en: "The Dartmouth workshop"
+  - value: 300
+    q:
+      sv: "Vad går Turingtestet ut på?"
+      en: "What is the Turing test about?"
+    a:
+      sv: "Om en maskins samtal går att skilja från en människas"
+      en: "Whether a machine's conversation can be told apart from a human's"
+  - value: 300
+    q:
+      sv: "Vad hette den första populära webbläsaren som visade bilder?"
+      en: "What was the first popular web browser that showed images called?"
+    a:
+      sv: "Mosaic"
+      en: "Mosaic"
+  - value: 300
+    q:
+      sv: "Vad handlade millennieskiftesbuggen om?"
+      en: "What was the millennium bug about?"
+    a:
+      sv: "Rädslan att tvåsiffriga årtal skulle haverera vid år 2000"
+      en: "The fear that two-digit years would break systems in the year 2000"
+  - value: 300
+    q:
+      sv: "Vilket företag startade Steve Jobs efter att ha lämnat Apple?"
+      en: "Which company did Steve Jobs start after leaving Apple?"
+    a:
+      sv: "NeXT"
+      en: "NeXT"
+  - value: 400
+    q:
+      sv: "Vilken modell vann ImageNet 2012 och startade djupinlärningsvågen?"
+      en: "Which model won ImageNet in 2012 and started the deep learning wave?"
+    a:
+      sv: "AlexNet"
+      en: "AlexNet"
+  - value: 400
+    q:
+      sv: "Vad hette det första kalkylprogrammet för persondatorer?"
+      en: "What was the first spreadsheet program for personal computers called?"
+    a:
+      sv: "VisiCalc"
+      en: "VisiCalc"
+  - value: 400
+    q:
+      sv: "Vem låg bakom språket COBOL och gjorde kompilatorn känd?"
+      en: "Who was behind the COBOL language and made the compiler famous?"
+    a:
+      sv: "Grace Hopper"
+      en: "Grace Hopper"
+  - value: 400
+    q:
+      sv: "Vilket laboratorium uppfann transistorn 1947?"
+      en: "Which laboratory invented the transistor in 1947?"
+    a:
+      sv: "Bell Labs"
+      en: "Bell Labs"
+  - value: 400
+    q:
+      sv: "Vems demonstration 1968 kallas the mother of all demos?"
+      en: "Whose 1968 demonstration is called the mother of all demos?"
+    a:
+      sv: "Douglas Engelbarts"
+      en: "Douglas Engelbart's"
+  - value: 500
+    q:
+      sv: "Vilket år skickades det första e-postmeddelandet mellan två datorer?"
+      en: "In which year was the first email sent between two computers?"
+    a:
+      sv: "1971"
+      en: "1971"
+  - value: 500
+    q:
+      sv: "Vem skickade det första e-postmeddelandet över nätverk?"
+      en: "Who sent the first email across a network?"
+    a:
+      sv: "Ray Tomlinson"
+      en: "Ray Tomlinson"
+  - value: 500
+    q:
+      sv: "Vilket språk från 1957 blev det första spridda högnivåspråket?"
+      en: "Which 1957 language became the first widely used high-level language?"
+    a:
+      sv: "Fortran"
+      en: "Fortran"
+  - value: 500
+    q:
+      sv: "Vilket forskningslabb uppfann det grafiska gränssnittet och Ethernet?"
+      en: "Which research lab invented the graphical user interface and Ethernet?"
+    a:
+      sv: "Xerox PARC"
+      en: "Xerox PARC"
+  - value: 500
+    q:
+      sv: "Vad hette masken som slog ut stora delar av internet 1988?"
+      en: "What was the worm that took down much of the internet in 1988 called?"
+    a:
+      sv: "Morrismasken"
+      en: "The Morris worm"

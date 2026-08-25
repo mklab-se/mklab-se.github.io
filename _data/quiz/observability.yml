@@ -1,0 +1,181 @@
+id: observability
+tag: hands-on
+name:
+  sv: "Observerbarhet"
+  en: "Observability"
+questions:
+  - value: 100
+    q:
+      sv: "Vilka är observerbarhetens tre pelare?"
+      en: "What are the three pillars of observability?"
+    a:
+      sv: "Loggar, mätvärden och spårningar"
+      en: "Logs, metrics and traces"
+  - value: 100
+    q:
+      sv: "Vad är en logg?"
+      en: "What is a log?"
+    a:
+      sv: "En tidsstämplad notering om något som hände"
+      en: "A timestamped record of something that happened"
+  - value: 100
+    q:
+      sv: "Vad är ett mätvärde, en metric?"
+      en: "What is a metric?"
+    a:
+      sv: "Ett tal som mäts över tid"
+      en: "A number measured over time"
+  - value: 100
+    q:
+      sv: "Vad är en dashboard till för?"
+      en: "What is a dashboard for?"
+    a:
+      sv: "Att visa systemets läge med en blick"
+      en: "Showing the state of the system at a glance"
+  - value: 100
+    q:
+      sv: "Vad är ett larm, en alert?"
+      en: "What is an alert?"
+    a:
+      sv: "Ett meddelande när något passerar en gräns"
+      en: "A message when something crosses a threshold"
+  - value: 200
+    q:
+      sv: "Vad följer en spårning, en trace?"
+      en: "What does a trace follow?"
+    a:
+      sv: "Ett anrop genom alla tjänster det passerar"
+      en: "One request through every service it passes"
+  - value: 200
+    q:
+      sv: "Vad är ett span?"
+      en: "What is a span?"
+    a:
+      sv: "Ett enskilt steg inuti en spårning"
+      en: "One single step inside a trace"
+  - value: 200
+    q:
+      sv: "Vad skiljer övervakning från observerbarhet?"
+      en: "What separates monitoring from observability?"
+    a:
+      sv: "Övervakning bevakar kända frågor, observerbarhet låter dig ställa nya"
+      en: "Monitoring watches known questions, observability lets you ask new ones"
+  - value: 200
+    q:
+      sv: "Vad mäter latens?"
+      en: "What does latency measure?"
+    a:
+      sv: "Hur lång tid ett anrop tar"
+      en: "How long a request takes"
+  - value: 200
+    q:
+      sv: "Vad anger uppetid?"
+      en: "What does uptime state?"
+    a:
+      sv: "Hur stor andel av tiden tjänsten är tillgänglig"
+      en: "What share of the time the service is available"
+  - value: 300
+    q:
+      sv: "Vad står SLO för?"
+      en: "What does SLO stand for?"
+    a:
+      sv: "Service Level Objective"
+      en: "Service Level Objective"
+  - value: 300
+    q:
+      sv: "Vad skiljer SLI, SLO och SLA åt?"
+      en: "What separates an SLI, an SLO and an SLA?"
+    a:
+      sv: "Måttet, målet och avtalet"
+      en: "The measure, the target and the contract"
+  - value: 300
+    q:
+      sv: "Vad är en felbudget?"
+      en: "What is an error budget?"
+    a:
+      sv: "Hur mycket strul som är tillåtet innan man slutar släppa nytt"
+      en: "How much failure is allowed before you stop shipping new things"
+  - value: 300
+    q:
+      sv: "Vad betyder p99-latens?"
+      en: "What does p99 latency mean?"
+    a:
+      sv: "Tiden som nittionio procent av anropen håller sig under"
+      en: "The time that ninety-nine percent of requests stay under"
+  - value: 300
+    q:
+      sv: "Vad är kardinalitet i mätvärden?"
+      en: "What is cardinality in metrics?"
+    a:
+      sv: "Antalet unika kombinationer av etiketter"
+      en: "The number of unique label combinations"
+  - value: 400
+    q:
+      sv: "Vad heter den öppna standarden för spårningar och mätvärden?"
+      en: "What is the open standard for traces and metrics called?"
+    a:
+      sv: "OpenTelemetry"
+      en: "OpenTelemetry"
+  - value: 400
+    q:
+      sv: "Vad används ett histogram till?"
+      en: "What is a histogram used for?"
+    a:
+      sv: "Att mäta fördelningen, till exempel latens i intervall"
+      en: "Measuring distribution, for example latency in buckets"
+  - value: 400
+    q:
+      sv: "Vad är strukturerad loggning?"
+      en: "What is structured logging?"
+    a:
+      sv: "Att logga maskinläsbara fält i stället för fri text"
+      en: "Logging machine-readable fields instead of free text"
+  - value: 400
+    q:
+      sv: "Vad gör sampling med spårningar?"
+      en: "What does sampling do to traces?"
+    a:
+      sv: "Sparar bara en andel av dem för att hålla kostnaden nere"
+      en: "Keeps only a share of them to hold the cost down"
+  - value: 400
+    q:
+      sv: "Vad står MTTR för?"
+      en: "What does MTTR stand for?"
+    a:
+      sv: "Mean Time To Restore, genomsnittlig återställningstid"
+      en: "Mean Time To Restore"
+  - value: 500
+    q:
+      sv: "Vilka är de fyra gyllene signalerna?"
+      en: "What are the four golden signals?"
+    a:
+      sv: "Latens, trafik, fel och mättnad"
+      en: "Latency, traffic, errors and saturation"
+  - value: 500
+    q:
+      sv: "Vad står R, E och D för i RED-metoden?"
+      en: "What do R, E and D stand for in the RED method?"
+    a:
+      sv: "Rate, errors och duration"
+      en: "Rate, errors and duration"
+  - value: 500
+    q:
+      sv: "Vad står U, S och E för i USE-metoden?"
+      en: "What do U, S and E stand for in the USE method?"
+    a:
+      sv: "Utilization, saturation och errors"
+      en: "Utilization, saturation and errors"
+  - value: 500
+    q:
+      sv: "Vad heter W3C-huvudet som bär spårningskontexten mellan tjänster?"
+      en: "What is the W3C header that carries trace context between services called?"
+    a:
+      sv: "traceparent"
+      en: "traceparent"
+  - value: 500
+    q:
+      sv: "Vad är en exemplar i mätvärdessammanhang?"
+      en: "What is an exemplar in metrics?"
+    a:
+      sv: "En länk från ett mätvärde till en konkret spårning"
+      en: "A link from a metric to one concrete trace"

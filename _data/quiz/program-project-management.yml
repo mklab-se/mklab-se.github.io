@@ -1,0 +1,181 @@
+id: program-project-management
+tag: tech
+name:
+  sv: "Program och projektledning"
+  en: "Program & Project Management"
+questions:
+  - value: 100
+    q:
+      sv: "Vad är en milstolpe?"
+      en: "What is a milestone?"
+    a:
+      sv: "En utmärkt punkt i planen där något ska vara uppnått"
+      en: "A marked point in the plan where something should be reached"
+  - value: 100
+    q:
+      sv: "Vad menas med ett projekts omfattning?"
+      en: "What is meant by a project's scope?"
+    a:
+      sv: "Vad som ingår och vad som inte ingår"
+      en: "What is included and what is not"
+  - value: 100
+    q:
+      sv: "Vad är en intressent?"
+      en: "What is a stakeholder?"
+    a:
+      sv: "Någon som berörs av eller bryr sig om resultatet"
+      en: "Someone affected by or caring about the result"
+  - value: 100
+    q:
+      sv: "Vad visar ett Gantt-schema?"
+      en: "What does a Gantt chart show?"
+    a:
+      sv: "Uppgifter som staplar över tid"
+      en: "Tasks as bars over time"
+  - value: 100
+    q:
+      sv: "Vad är en risk i ett projekt?"
+      en: "What is a risk in a project?"
+    a:
+      sv: "Något som kan hända och som skulle skada projektet"
+      en: "Something that might happen and would hurt the project"
+  - value: 200
+    q:
+      sv: "Vilka tre storheter utgör projekttriangeln?"
+      en: "Which three quantities make up the project triangle?"
+    a:
+      sv: "Omfattning, tid och kostnad"
+      en: "Scope, time and cost"
+  - value: 200
+    q:
+      sv: "Vad skiljer ett program från ett projekt?"
+      en: "What separates a program from a project?"
+    a:
+      sv: "Ett program är flera besläktade projekt mot ett gemensamt mål"
+      en: "A program is several related projects toward a common goal"
+  - value: 200
+    q:
+      sv: "Vad är ett beroende i en plan?"
+      en: "What is a dependency in a plan?"
+    a:
+      sv: "Arbete som inte kan börja förrän annat är klart"
+      en: "Work that cannot start until other work is finished"
+  - value: 200
+    q:
+      sv: "Vad är scope creep?"
+      en: "What is scope creep?"
+    a:
+      sv: "Att omfattningen växer i smyg utan mer tid eller pengar"
+      en: "Scope quietly growing without more time or money"
+  - value: 200
+    q:
+      sv: "Vad är en lägesrapport till för?"
+      en: "What is a status report for?"
+    a:
+      sv: "Att låta intressenterna veta var arbetet står"
+      en: "Letting stakeholders know where the work stands"
+  - value: 300
+    q:
+      sv: "Vad står RACI för?"
+      en: "What does RACI stand for?"
+    a:
+      sv: "Responsible, accountable, consulted och informed"
+      en: "Responsible, accountable, consulted and informed"
+  - value: 300
+    q:
+      sv: "Vad är den kritiska linjen?"
+      en: "What is the critical path?"
+    a:
+      sv: "Den längsta kedjan av beroende uppgifter, som sätter slutdatumet"
+      en: "The longest chain of dependent tasks, which sets the end date"
+  - value: 300
+    q:
+      sv: "Vad innehåller ett riskregister?"
+      en: "What does a risk register contain?"
+    a:
+      sv: "Riskerna med ägare, sannolikhet och konsekvens"
+      en: "The risks with owner, likelihood and impact"
+  - value: 300
+    q:
+      sv: "Vad är en styrgrupp till för?"
+      en: "What is a steering group for?"
+    a:
+      sv: "Att fatta de beslut projektet inte kan fatta själv"
+      en: "Making the decisions the project cannot make itself"
+  - value: 300
+    q:
+      sv: "Vad är en business case?"
+      en: "What is a business case?"
+    a:
+      sv: "Argumentet för varför investeringen lönar sig"
+      en: "The argument for why the investment pays off"
+  - value: 400
+    q:
+      sv: "Vad står PMO för?"
+      en: "What does PMO stand for?"
+    a:
+      sv: "Project Management Office"
+      en: "Project Management Office"
+  - value: 400
+    q:
+      sv: "Vad betyder slack, eller float, i en tidplan?"
+      en: "What does slack, or float, mean in a schedule?"
+    a:
+      sv: "Hur mycket en uppgift får glida utan att slutdatumet rör sig"
+      en: "How much a task may slip without the end date moving"
+  - value: 400
+    q:
+      sv: "Vad mäter earned value?"
+      en: "What does earned value measure?"
+    a:
+      sv: "Uppnådd nytta i pengar jämfört med plan"
+      en: "Progress in money terms compared with the plan"
+  - value: 400
+    q:
+      sv: "Vad står bokstäverna i en RAID-logg för?"
+      en: "What do the letters in a RAID log stand for?"
+    a:
+      sv: "Risks, assumptions, issues och dependencies"
+      en: "Risks, assumptions, issues and dependencies"
+  - value: 400
+    q:
+      sv: "Vad skiljer en risk från ett problem?"
+      en: "What separates a risk from an issue?"
+    a:
+      sv: "Risken kan hända, problemet har redan hänt"
+      en: "The risk might happen, the issue already has"
+  - value: 500
+    q:
+      sv: "Vad står PRINCE2 för?"
+      en: "What does PRINCE2 stand for?"
+    a:
+      sv: "Projects In Controlled Environments"
+      en: "Projects In Controlled Environments"
+  - value: 500
+    q:
+      sv: "Vad beskriver planeringsfelslutet?"
+      en: "What does the planning fallacy describe?"
+    a:
+      sv: "Att vi systematiskt underskattar hur lång tid arbetet tar"
+      en: "That we systematically underestimate how long work will take"
+  - value: 500
+    q:
+      sv: "Vad säger Brooks lag?"
+      en: "What does Brooks' law say?"
+    a:
+      sv: "Att lägga folk till ett försenat projekt gör det ännu senare"
+      en: "Adding people to a late project makes it later still"
+  - value: 500
+    q:
+      sv: "Vad är en stage gate?"
+      en: "What is a stage gate?"
+    a:
+      sv: "En kontrollpunkt där projektet måste godkännas för att fortsätta"
+      en: "A checkpoint where the project must be approved to continue"
+  - value: 500
+    q:
+      sv: "Vad står CPI för i earned value?"
+      en: "What does CPI stand for in earned value?"
+    a:
+      sv: "Cost performance index"
+      en: "Cost performance index"

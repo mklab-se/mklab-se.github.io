@@ -1,0 +1,181 @@
+id: famous-outages
+tag: anyone
+name:
+  sv: "Ökända haverier"
+  en: "Famous Outages"
+questions:
+  - value: 100
+    q:
+      sv: "Vad är ett driftavbrott?"
+      en: "What is an outage?"
+    a:
+      sv: "En period när tjänsten inte går att använda"
+      en: "A period when the service cannot be used"
+  - value: 100
+    q:
+      sv: "Vad är en post mortem efter en incident?"
+      en: "What is a post mortem after an incident?"
+    a:
+      sv: "En skriven redogörelse för vad som hände och varför"
+      en: "A written account of what happened and why"
+  - value: 100
+    q:
+      sv: "Vad står DDoS för?"
+      en: "What does DDoS stand for?"
+    a:
+      sv: "Distributed denial of service"
+      en: "Distributed denial of service"
+  - value: 100
+    q:
+      sv: "Vad gör ransomware?"
+      en: "What does ransomware do?"
+    a:
+      sv: "Krypterar dina filer och kräver betalt"
+      en: "Encrypts your files and demands payment"
+  - value: 100
+    q:
+      sv: "Vad är en patch?"
+      en: "What is a patch?"
+    a:
+      sv: "En rättning som släpps till programvara"
+      en: "A fix released for software"
+  - value: 200
+    q:
+      sv: "Vilket utpressningsvirus slog ut brittiska sjukhus 2017?"
+      en: "Which ransomware took down British hospitals in 2017?"
+    a:
+      sv: "WannaCry"
+      en: "WannaCry"
+  - value: 200
+    q:
+      sv: "Vilken sårbarhet i ett Java-loggbibliotek satte hela branschen i brand 2021?"
+      en: "Which vulnerability in a Java logging library set the whole industry on fire in 2021?"
+    a:
+      sv: "Log4Shell"
+      en: "Log4Shell"
+  - value: 200
+    q:
+      sv: "Vilken bugg i OpenSSL läckte serverminne 2014?"
+      en: "Which OpenSSL bug leaked server memory in 2014?"
+    a:
+      sv: "Heartbleed"
+      en: "Heartbleed"
+  - value: 200
+    q:
+      sv: "Vilket företags övervakningsprogram användes i leverantörsattacken 2020?"
+      en: "Whose monitoring software was used in the 2020 supply chain attack?"
+    a:
+      sv: "SolarWinds"
+      en: "SolarWinds"
+  - value: 200
+    q:
+      sv: "Vad slog ut Facebook i timmar i oktober 2021?"
+      en: "What knocked Facebook out for hours in October 2021?"
+    a:
+      sv: "En felaktig nätverkskonfiguration som tog bort deras rutter"
+      en: "A faulty network configuration that removed their routes"
+  - value: 300
+    q:
+      sv: "Vad hände Knight Capital 2012?"
+      en: "What happened to Knight Capital in 2012?"
+    a:
+      sv: "En felaktig driftsättning förlorade omkring 440 miljoner dollar"
+      en: "A faulty deployment lost around 440 million dollars"
+  - value: 300
+    q:
+      sv: "Vad orsakade förlusten av Mars Climate Orbiter 1999?"
+      en: "What caused the loss of the Mars Climate Orbiter in 1999?"
+    a:
+      sv: "Metriska och brittiska enheter blandades ihop"
+      en: "Metric and imperial units were mixed up"
+  - value: 300
+    q:
+      sv: "Vilken uppdatering slog ut miljontals Windowsdatorer 2024?"
+      en: "Which update took down millions of Windows machines in 2024?"
+    a:
+      sv: "En sensoruppdatering från CrowdStrike"
+      en: "A CrowdStrike sensor update"
+  - value: 300
+    q:
+      sv: "Vad var Therac-25?"
+      en: "What was the Therac-25?"
+    a:
+      sv: "En strålmaskin vars mjukvarufel gav dödliga överdoser"
+      en: "A radiation machine whose software fault gave lethal overdoses"
+  - value: 300
+    q:
+      sv: "Vad hände med Ariane 5 på jungfrufärden 1996?"
+      en: "What happened to Ariane 5 on its maiden flight in 1996?"
+    a:
+      sv: "Den sprängde sig själv kort efter start"
+      en: "It destroyed itself shortly after launch"
+  - value: 400
+    q:
+      sv: "Vilket sorts programfel förstörde Ariane 5?"
+      en: "What kind of software fault destroyed Ariane 5?"
+    a:
+      sv: "Ett stort flyttal konverterades till ett för litet heltal"
+      en: "A large floating point number was converted into too small an integer"
+  - value: 400
+    q:
+      sv: "Vad utlöste det stora AWS-avbrottet 2017?"
+      en: "What triggered the big AWS outage in 2017?"
+    a:
+      sv: "Ett skrivfel i ett kommando under felsökning av S3"
+      en: "A typo in a command while debugging S3"
+  - value: 400
+    q:
+      sv: "Vad var left-pad-incidenten 2016?"
+      en: "What was the left-pad incident in 2016?"
+    a:
+      sv: "Ett elva rader långt npm-paket togs bort och tusentals byggen sprack"
+      en: "An eleven-line npm package was removed and thousands of builds broke"
+  - value: 400
+    q:
+      sv: "Vad låg bakom Fastly-avbrottet 2021?"
+      en: "What was behind the Fastly outage in 2021?"
+    a:
+      sv: "En latent bugg som en enda kunds konfigurationsändring väckte"
+      en: "A latent bug woken by one single customer's configuration change"
+  - value: 400
+    q:
+      sv: "Vad är ett thundering herd-problem under ett avbrott?"
+      en: "What is a thundering herd problem during an outage?"
+    a:
+      sv: "Att alla försöker igen samtidigt och håller tjänsten nere"
+      en: "Everything retrying at the same moment and holding the service down"
+  - value: 500
+    q:
+      sv: "Vilket protokoll var det som tog Facebook av internet 2021?"
+      en: "Which protocol was it that took Facebook off the internet in 2021?"
+    a:
+      sv: "BGP"
+      en: "BGP"
+  - value: 500
+    q:
+      sv: "Ungefär hur många Windowsenheter drabbades av CrowdStrike-uppdateringen 2024?"
+      en: "Roughly how many Windows devices were hit by the 2024 CrowdStrike update?"
+    a:
+      sv: "Ungefär 8,5 miljoner"
+      en: "About 8.5 million"
+  - value: 500
+    q:
+      sv: "Ungefär hur lång tid tog Knight Capitals miljardförlust?"
+      en: "Roughly how long did Knight Capital's enormous loss take?"
+    a:
+      sv: "Omkring 45 minuter"
+      en: "About 45 minutes"
+  - value: 500
+    q:
+      sv: "Vad gjorde Morrismasken 1988 så förödande?"
+      en: "What made the Morris worm of 1988 so destructive?"
+    a:
+      sv: "Den smittade samma maskiner om och om igen tills de stannade"
+      en: "It reinfected the same machines over and over until they seized up"
+  - value: 500
+    q:
+      sv: "Vilken AWS-region är ökänd för att ta halva internet med sig?"
+      en: "Which AWS region is notorious for taking half the internet with it?"
+    a:
+      sv: "us-east-1"
+      en: "us-east-1"

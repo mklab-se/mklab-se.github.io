@@ -1,0 +1,181 @@
+id: git
+tag: hands-on
+name:
+  sv: "Git"
+  en: "Git"
+questions:
+  - value: 100
+    q:
+      sv: "Vilket kommando skapar ett nytt Git-repo?"
+      en: "Which command creates a new Git repository?"
+    a:
+      sv: "git init"
+      en: "git init"
+  - value: 100
+    q:
+      sv: "Vilket kommando hämtar hem ett repo från en server?"
+      en: "Which command downloads a repository from a server?"
+    a:
+      sv: "git clone"
+      en: "git clone"
+  - value: 100
+    q:
+      sv: "Vilket kommando sparar dina köade ändringar med ett meddelande?"
+      en: "Which command saves your staged changes with a message?"
+    a:
+      sv: "git commit"
+      en: "git commit"
+  - value: 100
+    q:
+      sv: "Vilket kommando skickar upp dina commits till en server?"
+      en: "Which command sends your commits up to a server?"
+    a:
+      sv: "git push"
+      en: "git push"
+  - value: 100
+    q:
+      sv: "Vem skapade Git?"
+      en: "Who created Git?"
+    a:
+      sv: "Linus Torvalds"
+      en: "Linus Torvalds"
+  - value: 200
+    q:
+      sv: "Vilken fil talar om vilka filer Git ska ignorera?"
+      en: "Which file tells Git which files to ignore?"
+    a:
+      sv: ".gitignore"
+      en: ".gitignore"
+  - value: 200
+    q:
+      sv: "Vad heter standardgrenen i nya repon på GitHub?"
+      en: "What is the default branch called in new GitHub repositories?"
+    a:
+      sv: "main"
+      en: "main"
+  - value: 200
+    q:
+      sv: "Vilket kommando visar vad som är ändrat och köat just nu?"
+      en: "Which command shows what is changed and staged right now?"
+    a:
+      sv: "git status"
+      en: "git status"
+  - value: 200
+    q:
+      sv: "Vilket kommando hämtar och slår ihop från servern i ett steg?"
+      en: "Which command fetches and merges from the server in one step?"
+    a:
+      sv: "git pull"
+      en: "git pull"
+  - value: 200
+    q:
+      sv: "Vad kallas en förfrågan om att slå ihop din gren på GitHub?"
+      en: "What is a request to merge your branch called on GitHub?"
+    a:
+      sv: "Pull request"
+      en: "A pull request"
+  - value: 300
+    q:
+      sv: "Vad pekar HEAD på?"
+      en: "What does HEAD point to?"
+    a:
+      sv: "Den commit du står på just nu"
+      en: "The commit you are currently on"
+  - value: 300
+    q:
+      sv: "Vilket kommando lägger undan oavslutade ändringar tillfälligt?"
+      en: "Which command temporarily shelves unfinished changes?"
+    a:
+      sv: "git stash"
+      en: "git stash"
+  - value: 300
+    q:
+      sv: "Vad är den avgörande skillnaden mellan merge och rebase?"
+      en: "What is the decisive difference between merge and rebase?"
+    a:
+      sv: "Rebase skriver om historiken"
+      en: "Rebase rewrites history"
+  - value: 300
+    q:
+      sv: "Vad är en fast-forward-merge?"
+      en: "What is a fast-forward merge?"
+    a:
+      sv: "Grenen flyttas bara framåt, ingen mergecommit skapas"
+      en: "The branch just moves forward, no merge commit is created"
+  - value: 300
+    q:
+      sv: "Vilket modernt kommando byter gren, i stället för git checkout?"
+      en: "Which modern command switches branch, instead of git checkout?"
+    a:
+      sv: "git switch"
+      en: "git switch"
+  - value: 400
+    q:
+      sv: "Vilket kommando letar rätt på buggens commit med binärsökning?"
+      en: "Which command finds the commit that introduced a bug by binary search?"
+    a:
+      sv: "git bisect"
+      en: "git bisect"
+  - value: 400
+    q:
+      sv: "Vilket kommando plockar över en enstaka commit från en annan gren?"
+      en: "Which command applies a single commit from another branch?"
+    a:
+      sv: "git cherry-pick"
+      en: "git cherry-pick"
+  - value: 400
+    q:
+      sv: "Vad används reflog till?"
+      en: "What is the reflog used for?"
+    a:
+      sv: "Att hitta tillbaka till commits som verkar borttappade"
+      en: "Finding your way back to commits that seem lost"
+  - value: 400
+    q:
+      sv: "Vilken hashalgoritm har Git traditionellt använt för objekt-id?"
+      en: "Which hashing algorithm has Git traditionally used for object IDs?"
+    a:
+      sv: "SHA-1"
+      en: "SHA-1"
+  - value: 400
+    q:
+      sv: "Vad låter git rebase med flaggan -i dig göra?"
+      en: "What does git rebase with the -i flag let you do?"
+    a:
+      sv: "Slå ihop, ändra ordning på och redigera commits"
+      en: "Squash, reorder and edit commits"
+  - value: 500
+    q:
+      sv: "Vilka fyra objekttyper bygger Gits datamodell på?"
+      en: "Which four object types is Git's data model built on?"
+    a:
+      sv: "Blob, tree, commit och tag"
+      en: "Blob, tree, commit and tag"
+  - value: 500
+    q:
+      sv: "Vad betyder detached HEAD?"
+      en: "What does detached HEAD mean?"
+    a:
+      sv: "HEAD pekar på en commit i stället för på en gren"
+      en: "HEAD points at a commit instead of at a branch"
+  - value: 500
+    q:
+      sv: "Vad behåller git reset --soft som --hard slänger?"
+      en: "What does git reset --soft keep that --hard throws away?"
+    a:
+      sv: "Själva ändringarna, i index och arbetskatalog"
+      en: "The changes themselves, in the index and working tree"
+  - value: 500
+    q:
+      sv: "Vilket år släpptes Git första gången?"
+      en: "In which year was Git first released?"
+    a:
+      sv: "2005"
+      en: "2005"
+  - value: 500
+    q:
+      sv: "Vad kallas det område där ändringar ligger efter git add, före commit?"
+      en: "What is the area where changes sit after git add, before commit, called?"
+    a:
+      sv: "Index, även kallat staging area"
+      en: "The index, also called the staging area"

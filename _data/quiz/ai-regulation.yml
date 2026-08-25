@@ -1,0 +1,181 @@
+id: ai-regulation
+tag: tech
+name:
+  sv: "AI-reglering och EU:s AI-förordning"
+  en: "AI Regulation & the EU AI Act"
+questions:
+  - value: 100
+    q:
+      sv: "Vad står GDPR för?"
+      en: "What does GDPR stand for?"
+    a:
+      sv: "General Data Protection Regulation"
+      en: "General Data Protection Regulation"
+  - value: 100
+    q:
+      sv: "Vilken union står bakom AI-förordningen, the AI Act?"
+      en: "Which union is behind the AI Act?"
+    a:
+      sv: "Europeiska unionen"
+      en: "The European Union"
+  - value: 100
+    q:
+      sv: "Vad är en personuppgift?"
+      en: "What is personal data?"
+    a:
+      sv: "Uppgift som går att koppla till en levande person"
+      en: "Information that can be linked to a living person"
+  - value: 100
+    q:
+      sv: "Vad reglerar AI-förordningen?"
+      en: "What does the AI Act regulate?"
+    a:
+      sv: "Hur AI-system får byggas och användas inom EU"
+      en: "How AI systems may be built and used within the EU"
+  - value: 100
+    q:
+      sv: "Vad ansvarar en personuppgiftsansvarig för?"
+      en: "What is a data controller responsible for?"
+    a:
+      sv: "Att bestämma varför och hur personuppgifter behandlas"
+      en: "Deciding why and how personal data is processed"
+  - value: 200
+    q:
+      sv: "Hur många risknivåer använder AI-förordningen?"
+      en: "How many risk levels does the AI Act use?"
+    a:
+      sv: "Fyra"
+      en: "Four"
+  - value: 200
+    q:
+      sv: "Vilka är de fyra risknivåerna?"
+      en: "What are the four risk levels?"
+    a:
+      sv: "Oacceptabel, hög, begränsad och minimal risk"
+      en: "Unacceptable, high, limited and minimal risk"
+  - value: 200
+    q:
+      sv: "Vad händer med system i den oacceptabla kategorin?"
+      en: "What happens to systems in the unacceptable category?"
+    a:
+      sv: "De är förbjudna"
+      en: "They are banned"
+  - value: 200
+    q:
+      sv: "Vilket år antogs AI-förordningen?"
+      en: "In which year was the AI Act adopted?"
+    a:
+      sv: "2024"
+      en: "2024"
+  - value: 200
+    q:
+      sv: "Hur stor andel av global omsättning kan en GDPR-bot som mest bli?"
+      en: "What share of global turnover can a GDPR fine reach at most?"
+    a:
+      sv: "Fyra procent"
+      en: "Four percent"
+  - value: 300
+    q:
+      sv: "Nämn en metod som AI-förordningen förbjuder."
+      en: "Name one practice the AI Act forbids."
+    a:
+      sv: "Social poängsättning av medborgare"
+      en: "Social scoring of citizens"
+  - value: 300
+    q:
+      sv: "Vilken skyldighet har system med begränsad risk, som chatbotar?"
+      en: "Which duty do limited risk systems, such as chatbots, have?"
+    a:
+      sv: "Att vara öppna med att användaren talar med en AI"
+      en: "Being open that the user is talking to an AI"
+  - value: 300
+    q:
+      sv: "Vad står GPAI för i förordningen?"
+      en: "What does GPAI stand for in the act?"
+    a:
+      sv: "General purpose AI, AI för allmänna ändamål"
+      en: "General purpose AI"
+  - value: 300
+    q:
+      sv: "Vad måste högrisksystem ha på plats?"
+      en: "What must high risk systems have in place?"
+    a:
+      sv: "Riskhantering, datastyrning, loggning och mänsklig tillsyn"
+      en: "Risk management, data governance, logging and human oversight"
+  - value: 300
+    q:
+      sv: "Vad kräver förordningen av innehåll som en AI skapat?"
+      en: "What does the act require of content an AI has created?"
+    a:
+      sv: "Att det märks ut som maskinskapat"
+      en: "That it is marked as machine generated"
+  - value: 400
+    q:
+      sv: "Hur hög kan den högsta boten enligt AI-förordningen bli?"
+      en: "How high can the largest fine under the AI Act be?"
+    a:
+      sv: "Upp till 35 miljoner euro eller sju procent av global omsättning"
+      en: "Up to 35 million euro or seven percent of global turnover"
+  - value: 400
+    q:
+      sv: "Vilken risknivå hamnar AI för rekrytering i?"
+      en: "Which risk level does AI for recruitment fall into?"
+    a:
+      sv: "Hög risk"
+      en: "High risk"
+  - value: 400
+    q:
+      sv: "Vad är en conformity assessment?"
+      en: "What is a conformity assessment?"
+    a:
+      sv: "Kontrollen att ett högrisksystem uppfyller kraven innan det får släppas"
+      en: "The check that a high risk system meets the requirements before release"
+  - value: 400
+    q:
+      sv: "Vad kallar förordningen den som släpper ut ett AI-system på marknaden?"
+      en: "What does the act call the one who puts an AI system on the market?"
+    a:
+      sv: "Leverantör, provider"
+      en: "The provider"
+  - value: 400
+    q:
+      sv: "Vad kallas den organisation som använder AI-systemet i sin verksamhet?"
+      en: "What is the organisation that uses the AI system in its operations called?"
+    a:
+      sv: "Deployer, tillhandahållare i egen verksamhet"
+      en: "The deployer"
+  - value: 500
+    q:
+      sv: "När började förbuden mot oacceptabel risk gälla?"
+      en: "When did the bans on unacceptable risk start to apply?"
+    a:
+      sv: "I februari 2025"
+      en: "In February 2025"
+  - value: 500
+    q:
+      sv: "Vilket EU-organ skapades för att samordna tillsynen av AI?"
+      en: "Which EU body was created to coordinate AI supervision?"
+    a:
+      sv: "AI-byrån, the European AI Office"
+      en: "The European AI Office"
+  - value: 500
+    q:
+      sv: "Vilken beräkningströskel markerar en GPAI-modell med systemisk risk?"
+      en: "Which compute threshold marks a GPAI model as carrying systemic risk?"
+    a:
+      sv: "Tio upphöjt till tjugofem flyttalsoperationer"
+      en: "Ten to the power of twenty-five floating point operations"
+  - value: 500
+    q:
+      sv: "Vad är en regulatorisk sandlåda i förordningen?"
+      en: "What is a regulatory sandbox in the act?"
+    a:
+      sv: "En övervakad miljö där AI får testas innan den släpps"
+      en: "A supervised environment where AI may be tested before release"
+  - value: 500
+    q:
+      sv: "Vilket amerikanskt ramverk erbjuder frivillig riskhantering för AI?"
+      en: "Which American framework offers voluntary risk management for AI?"
+    a:
+      sv: "NIST AI Risk Management Framework"
+      en: "The NIST AI Risk Management Framework"

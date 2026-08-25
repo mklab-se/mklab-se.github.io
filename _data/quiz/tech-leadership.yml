@@ -1,0 +1,181 @@
+id: tech-leadership
+tag: tech
+name:
+  sv: "Teknikledarskap"
+  en: "Tech Leadership"
+questions:
+  - value: 100
+    q:
+      sv: "Vad är ett en-till-ett-möte?"
+      en: "What is a one to one meeting?"
+    a:
+      sv: "Ett återkommande enskilt samtal mellan chef och medarbetare"
+      en: "A recurring private conversation between a manager and one person"
+  - value: 100
+    q:
+      sv: "Vad är onboarding?"
+      en: "What is onboarding?"
+    a:
+      sv: "Att få en ny person på plats och produktiv"
+      en: "Getting a new person settled and productive"
+  - value: 100
+    q:
+      sv: "Vad är poängen med feedback?"
+      en: "What is the point of feedback?"
+    a:
+      sv: "Att någon får se effekten av det den gör"
+      en: "Letting someone see the effect of what they do"
+  - value: 100
+    q:
+      sv: "Vad är en karriärstege?"
+      en: "What is a career ladder?"
+    a:
+      sv: "De beskrivna nivåerna av senioritet i en roll"
+      en: "The described levels of seniority in a role"
+  - value: 100
+    q:
+      sv: "Vad innebär att delegera?"
+      en: "What does delegating mean?"
+    a:
+      sv: "Att lämna över både arbetet och rätten att bestämma om det"
+      en: "Handing over both the work and the right to decide about it"
+  - value: 200
+    q:
+      sv: "Vad är psykologisk trygghet?"
+      en: "What is psychological safety?"
+    a:
+      sv: "Att våga säga ifrån, erkänna misstag och ställa frågor"
+      en: "Daring to speak up, admit mistakes and ask questions"
+  - value: 200
+    q:
+      sv: "Vad är detaljstyrning, micromanagement?"
+      en: "What is micromanagement?"
+    a:
+      sv: "Att styra detaljerna i stället för resultatet"
+      en: "Controlling the details instead of the result"
+  - value: 200
+    q:
+      sv: "Vad är ett skip level-möte?"
+      en: "What is a skip level meeting?"
+    a:
+      sv: "Ett samtal förbi närmaste chefsled, uppåt eller nedåt"
+      en: "A conversation past the nearest management level, up or down"
+  - value: 200
+    q:
+      sv: "Vad gör en tech lead som en utvecklare inte gör?"
+      en: "What does a tech lead do that a developer does not?"
+    a:
+      sv: "Äger den tekniska riktningen och teamets leverans, inte bara koden"
+      en: "Owns the technical direction and the team's delivery, not only the code"
+  - value: 200
+    q:
+      sv: "Vad är utbrändhet ett resultat av?"
+      en: "What is burnout the result of?"
+    a:
+      sv: "Långvarig stress som ingen tagit hand om"
+      en: "Prolonged stress that nobody dealt with"
+  - value: 300
+    q:
+      sv: "Vad är den omvända Conway-manövern?"
+      en: "What is the inverse Conway manoeuvre?"
+    a:
+      sv: "Att forma om teamen för att få den arkitektur man vill ha"
+      en: "Reshaping the teams to get the architecture you want"
+  - value: 300
+    q:
+      sv: "Vad mäter bussfaktorn?"
+      en: "What does the bus factor measure?"
+    a:
+      sv: "Hur många som kan försvinna innan arbetet stannar"
+      en: "How many people can disappear before the work stops"
+  - value: 300
+    q:
+      sv: "Vad är Dunbars tal?"
+      en: "What is Dunbar's number?"
+    a:
+      sv: "Ungefär 150, antalet stabila relationer en människa klarar"
+      en: "About 150, the number of stable relationships a person can hold"
+  - value: 300
+    q:
+      sv: "Vad kännetecknar tjänande ledarskap?"
+      en: "What characterises servant leadership?"
+    a:
+      sv: "Att leda genom att röja hinder och tjäna teamets behov"
+      en: "Leading by clearing obstacles and serving the team's needs"
+  - value: 300
+    q:
+      sv: "Vilka fyra teamtyper beskriver Team Topologies?"
+      en: "Which four team types does Team Topologies describe?"
+    a:
+      sv: "Stream aligned, enabling, complicated subsystem och platform"
+      en: "Stream aligned, enabling, complicated subsystem and platform"
+  - value: 400
+    q:
+      sv: "Vad menas med kognitiv belastning i Team Topologies?"
+      en: "What is meant by cognitive load in Team Topologies?"
+    a:
+      sv: "Allt teamet måste hålla i huvudet samtidigt"
+      en: "Everything the team has to hold in its head at once"
+  - value: 400
+    q:
+      sv: "Vilka tre samspelsformer beskriver Team Topologies?"
+      en: "Which three interaction modes does Team Topologies describe?"
+    a:
+      sv: "Samarbete, X as a service och facilitering"
+      en: "Collaboration, X as a service and facilitating"
+  - value: 400
+    q:
+      sv: "Vad säger Peterprincipen?"
+      en: "What does the Peter principle say?"
+    a:
+      sv: "Att folk befordras till sin egen inkompetensnivå"
+      en: "That people are promoted to their own level of incompetence"
+  - value: 400
+    q:
+      sv: "Vad säger Goodharts lag?"
+      en: "What does Goodhart's law say?"
+    a:
+      sv: "När ett mått blir ett mål slutar det vara ett bra mått"
+      en: "When a measure becomes a target it stops being a good measure"
+  - value: 400
+    q:
+      sv: "Vad säger Hyrums lag?"
+      en: "What does Hyrum's law say?"
+    a:
+      sv: "Med tillräckligt många användare kommer varje beteende hos systemet att bero på"
+      en: "With enough users, every observable behaviour of your system will be depended on"
+  - value: 500
+    q:
+      sv: "Vad beskriver Dunning-Kruger-effekten?"
+      en: "What does the Dunning-Kruger effect describe?"
+    a:
+      sv: "Låg kunskap i sällskap med hög självsäkerhet"
+      en: "Low skill in the company of high confidence"
+  - value: 500
+    q:
+      sv: "Vad kom Googles Projekt Aristoteles fram till spelade störst roll för team?"
+      en: "What did Google's Project Aristotle conclude mattered most for teams?"
+    a:
+      sv: "Psykologisk trygghet"
+      en: "Psychological safety"
+  - value: 500
+    q:
+      sv: "Vad beskriver second system-effekten?"
+      en: "What does the second system effect describe?"
+    a:
+      sv: "Att uppföljaren till en första framgång blir överkonstruerad"
+      en: "That the follow-up to a first success gets over-engineered"
+  - value: 500
+    q:
+      sv: "Vad säger Parkinsons lag?"
+      en: "What does Parkinson's law say?"
+    a:
+      sv: "Arbetet växer tills det fyller den tid som finns"
+      en: "Work expands to fill the time available"
+  - value: 500
+    q:
+      sv: "Vad beskriver lagen om trivialiteter, även kallad bikeshedding?"
+      en: "What does the law of triviality, also called bikeshedding, describe?"
+    a:
+      sv: "Att grupper lägger orimligt mycket tid på de enklaste frågorna"
+      en: "That groups spend disproportionate time on the simplest questions"

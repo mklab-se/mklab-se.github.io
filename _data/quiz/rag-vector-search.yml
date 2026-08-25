@@ -1,0 +1,181 @@
+id: rag-vector-search
+tag: hands-on
+name:
+  sv: "RAG och vektorsök"
+  en: "RAG & Vector Search"
+questions:
+  - value: 100
+    q:
+      sv: "Vad står RAG för?"
+      en: "What does RAG stand for?"
+    a:
+      sv: "Retrieval Augmented Generation"
+      en: "Retrieval Augmented Generation"
+  - value: 100
+    q:
+      sv: "Vad är hela poängen med RAG?"
+      en: "What is the whole point of RAG?"
+    a:
+      sv: "Att modellen ska svara utifrån dina egna dokument"
+      en: "Letting the model answer from your own documents"
+  - value: 100
+    q:
+      sv: "Vad kallas det när man delar upp ett dokument i mindre bitar?"
+      en: "What is it called when you split a document into smaller pieces?"
+    a:
+      sv: "Chunkning"
+      en: "Chunking"
+  - value: 100
+    q:
+      sv: "Vilken sorts databas lagrar embeddingar?"
+      en: "Which kind of database stores embeddings?"
+    a:
+      sv: "En vektordatabas"
+      en: "A vector database"
+  - value: 100
+    q:
+      sv: "Vad är en embedding, enkelt uttryckt?"
+      en: "What is an embedding, put simply?"
+    a:
+      sv: "En lista med tal som representerar betydelse"
+      en: "A list of numbers that represents meaning"
+  - value: 200
+    q:
+      sv: "Vilket mått används oftast för att jämföra två embeddingar?"
+      en: "Which measure is most often used to compare two embeddings?"
+    a:
+      sv: "Cosinuslikhet"
+      en: "Cosine similarity"
+  - value: 200
+    q:
+      sv: "Vad kallas steget som letar fram relevanta textbitar?"
+      en: "What is the step that finds the relevant pieces of text called?"
+    a:
+      sv: "Retrieval, hämtning"
+      en: "Retrieval"
+  - value: 200
+    q:
+      sv: "Varför minskar RAG risken för hallucinationer?"
+      en: "Why does RAG reduce the risk of hallucination?"
+    a:
+      sv: "Modellen svarar utifrån text den faktiskt fått"
+      en: "The model answers from text it was actually given"
+  - value: 200
+    q:
+      sv: "Vad styr parametern top-k?"
+      en: "What does the top-k parameter control?"
+    a:
+      sv: "Hur många textbitar som hämtas"
+      en: "How many pieces of text are retrieved"
+  - value: 200
+    q:
+      sv: "Vad händer om dina dokument är inaktuella?"
+      en: "What happens if your documents are out of date?"
+    a:
+      sv: "Modellen svarar självsäkert med gammal information"
+      en: "The model answers confidently with old information"
+  - value: 300
+    q:
+      sv: "Vad är syftet med överlapp mellan textbitar?"
+      en: "What is the purpose of overlap between chunks?"
+    a:
+      sv: "Att inte tappa sammanhanget vid skarven"
+      en: "Not losing the context at the seam"
+  - value: 300
+    q:
+      sv: "Vad är hybridsök?"
+      en: "What is hybrid search?"
+    a:
+      sv: "Att kombinera nyckelordssök med vektorsök"
+      en: "Combining keyword search with vector search"
+  - value: 300
+    q:
+      sv: "Vad gör en reranker?"
+      en: "What does a reranker do?"
+    a:
+      sv: "Ordnar om träffarna efter hur relevanta de faktiskt är"
+      en: "Reorders the hits by how relevant they actually are"
+  - value: 300
+    q:
+      sv: "Vad gör algoritmen BM25?"
+      en: "What does the BM25 algorithm do?"
+    a:
+      sv: "Rangordnar dokument efter nyckelordsrelevans"
+      en: "Ranks documents by keyword relevance"
+  - value: 300
+    q:
+      sv: "Vad är metadatafiltrering vid hämtning?"
+      en: "What is metadata filtering during retrieval?"
+    a:
+      sv: "Att smalna av sökningen på fält som datum eller källa"
+      en: "Narrowing the search by fields such as date or source"
+  - value: 400
+    q:
+      sv: "Vad står ANN för i vektorsök?"
+      en: "What does ANN stand for in vector search?"
+    a:
+      sv: "Approximate Nearest Neighbor"
+      en: "Approximate Nearest Neighbor"
+  - value: 400
+    q:
+      sv: "Vad står HNSW för?"
+      en: "What does HNSW stand for?"
+    a:
+      sv: "Hierarchical Navigable Small World"
+      en: "Hierarchical Navigable Small World"
+  - value: 400
+    q:
+      sv: "Vilken avvägning gör approximativ sökning?"
+      en: "Which trade-off does approximate search make?"
+    a:
+      sv: "Snabbhet mot träffsäkerhet"
+      en: "Speed against recall"
+  - value: 400
+    q:
+      sv: "Är 768 eller 7680 en vanlig dimension för en embedding?"
+      en: "Is 768 or 7680 a common dimension for an embedding?"
+    a:
+      sv: "768"
+      en: "768"
+  - value: 400
+    q:
+      sv: "Vad är semantisk chunkning?"
+      en: "What is semantic chunking?"
+    a:
+      sv: "Att dela texten där innehållet byter ämne i stället för på fast längd"
+      en: "Splitting text where the meaning changes instead of at a fixed length"
+  - value: 500
+    q:
+      sv: "Vad är GraphRAG?"
+      en: "What is GraphRAG?"
+    a:
+      sv: "Hämtning ur en kunskapsgraf byggd av dokumenten"
+      en: "Retrieval from a knowledge graph built out of the documents"
+  - value: 500
+    q:
+      sv: "Vad gör late interaction-modeller som ColBERT annorlunda?"
+      en: "What do late interaction models such as ColBERT do differently?"
+    a:
+      sv: "Jämför embeddingar per token i stället för en enda vektor"
+      en: "They compare embeddings per token instead of one single vector"
+  - value: 500
+    q:
+      sv: "Vad står IVF för i vektorindex?"
+      en: "What does IVF stand for in vector indexes?"
+    a:
+      sv: "Inverted File index"
+      en: "Inverted File index"
+  - value: 500
+    q:
+      sv: "Vad används produktkvantisering till?"
+      en: "What is product quantization used for?"
+    a:
+      sv: "Att komprimera vektorer så att indexet får plats i minnet"
+      en: "Compressing vectors so the index fits in memory"
+  - value: 500
+    q:
+      sv: "Vad testar man med needle in a haystack?"
+      en: "What does the needle in a haystack test check?"
+    a:
+      sv: "Om modellen hittar ett enda faktum gömt i en lång kontext"
+      en: "Whether the model finds one single fact hidden in a long context"

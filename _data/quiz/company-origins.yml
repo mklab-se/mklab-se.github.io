@@ -1,0 +1,181 @@
+id: company-origins
+tag: anyone
+name:
+  sv: "Bolagens ursprung"
+  en: "Company Origins"
+questions:
+  - value: 100
+    q:
+      sv: "Vad hette Google från början?"
+      en: "What was Google called at first?"
+    a:
+      sv: "BackRub"
+      en: "BackRub"
+  - value: 100
+    q:
+      sv: "Vilket företag startade i ett garage i Palo Alto 1939?"
+      en: "Which company started in a garage in Palo Alto in 1939?"
+    a:
+      sv: "Hewlett-Packard"
+      en: "Hewlett-Packard"
+  - value: 100
+    q:
+      sv: "Vad var Apples första produkt?"
+      en: "What was Apple's first product?"
+    a:
+      sv: "Datorn Apple I"
+      en: "The Apple I computer"
+  - value: 100
+    q:
+      sv: "Vilket företag startade Jeff Bezos som en nätbokhandel?"
+      en: "Which company did Jeff Bezos start as an online bookshop?"
+    a:
+      sv: "Amazon"
+      en: "Amazon"
+  - value: 100
+    q:
+      sv: "Vad hette Facebook när det lanserades?"
+      en: "What was Facebook called when it launched?"
+    a:
+      sv: "TheFacebook"
+      en: "TheFacebook"
+  - value: 200
+    q:
+      sv: "Vad tillverkade Nokia från början?"
+      en: "What did Nokia make originally?"
+    a:
+      sv: "Papper, bolaget började som en pappersbruk"
+      en: "Paper, the company began as a pulp mill"
+  - value: 200
+    q:
+      sv: "Vad tillverkade Nintendo från början?"
+      en: "What did Nintendo make originally?"
+    a:
+      sv: "Spelkort"
+      en: "Playing cards"
+  - value: 200
+    q:
+      sv: "Vad hette Twitter allra först?"
+      en: "What was Twitter called at the very start?"
+    a:
+      sv: "twttr"
+      en: "twttr"
+  - value: 200
+    q:
+      sv: "Vad var Netflix ursprungliga affär?"
+      en: "What was Netflix's original business?"
+    a:
+      sv: "Att skicka dvd-filmer med posten"
+      en: "Sending DVDs through the post"
+  - value: 200
+    q:
+      sv: "Vilka två personer grundade Google?"
+      en: "Which two people founded Google?"
+    a:
+      sv: "Larry Page och Sergey Brin"
+      en: "Larry Page and Sergey Brin"
+  - value: 300
+    q:
+      sv: "Vilket ord kommer namnet Google ifrån?"
+      en: "Which word does the name Google come from?"
+    a:
+      sv: "Googol, en etta följd av hundra nollor"
+      en: "Googol, a one followed by a hundred zeros"
+  - value: 300
+    q:
+      sv: "Vad handlade Samsung med i sina första år?"
+      en: "What did Samsung trade in during its first years?"
+    a:
+      sv: "Livsmedel, bland annat torkad fisk och nudlar"
+      en: "Groceries, among them dried fish and noodles"
+  - value: 300
+    q:
+      sv: "Varför valde Bezos namnet Amazon?"
+      en: "Why did Bezos choose the name Amazon?"
+    a:
+      sv: "Floden antydde storlek, och A hamnade tidigt i alfabetet"
+      en: "The river suggested size, and A came early in the alphabet"
+  - value: 300
+    q:
+      sv: "Vad hette Instagram innan namnbytet?"
+      en: "What was Instagram called before the rename?"
+    a:
+      sv: "Burbn"
+      en: "Burbn"
+  - value: 300
+    q:
+      sv: "Vad står IBM för?"
+      en: "What does IBM stand for?"
+    a:
+      sv: "International Business Machines"
+      en: "International Business Machines"
+  - value: 400
+    q:
+      sv: "Vad är Adobe uppkallat efter?"
+      en: "What is Adobe named after?"
+    a:
+      sv: "Adobe Creek, bäcken bakom grundarens hus"
+      en: "Adobe Creek, the creek behind the founder's house"
+  - value: 400
+    q:
+      sv: "Vad är Cisco uppkallat efter?"
+      en: "What is Cisco named after?"
+    a:
+      sv: "San Francisco"
+      en: "San Francisco"
+  - value: 400
+    q:
+      sv: "Vad var Microsofts första produkt?"
+      en: "What was Microsoft's first product?"
+    a:
+      sv: "En BASIC-tolk för datorn Altair"
+      en: "A BASIC interpreter for the Altair computer"
+  - value: 400
+    q:
+      sv: "Vad försökte Shopifys grundare sälja från början?"
+      en: "What were Shopify's founders originally trying to sell?"
+    a:
+      sv: "Snowboards"
+      en: "Snowboards"
+  - value: 400
+    q:
+      sv: "Vad står Slack för som förkortning?"
+      en: "What does Slack stand for as an acronym?"
+    a:
+      sv: "Searchable Log of All Conversation and Knowledge"
+      en: "Searchable Log of All Conversation and Knowledge"
+  - value: 500
+    q:
+      sv: "Vilket latinskt ord ligger bakom namnet Nvidia?"
+      en: "Which Latin word lies behind the name Nvidia?"
+    a:
+      sv: "Invidia, avund"
+      en: "Invidia, meaning envy"
+  - value: 500
+    q:
+      sv: "Vilka två ord byggde Sony sitt namn på?"
+      en: "Which two words did Sony build its name from?"
+    a:
+      sv: "Sonus, latin för ljud, och sonny"
+      en: "Sonus, Latin for sound, and sonny"
+  - value: 500
+    q:
+      sv: "Vad hette bolaget som blev PayPal innan sammanslagningen med X.com?"
+      en: "What was the company that became PayPal called before the merger with X.com?"
+    a:
+      sv: "Confinity"
+      en: "Confinity"
+  - value: 500
+    q:
+      sv: "Vad var YouTube tänkt att bli från början?"
+      en: "What was YouTube originally meant to become?"
+    a:
+      sv: "En dejtingsajt med video"
+      en: "A dating site with video"
+  - value: 500
+    q:
+      sv: "Vilket tidigare uppslagsverksprojekt växte Wikipedia ur?"
+      en: "Which earlier encyclopedia project did Wikipedia grow out of?"
+    a:
+      sv: "Nupedia"
+      en: "Nupedia"

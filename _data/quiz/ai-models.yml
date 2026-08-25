@@ -1,0 +1,181 @@
+id: ai-models
+tag: anyone
+name:
+  sv: "AI-modeller"
+  en: "AI Models"
+questions:
+  - value: 100
+    q:
+      sv: "Vad står AI för?"
+      en: "What does AI stand for?"
+    a:
+      sv: "Artificiell intelligens"
+      en: "Artificial Intelligence"
+  - value: 100
+    q:
+      sv: "Vad står LLM för?"
+      en: "What does LLM stand for?"
+    a:
+      sv: "Large Language Model, stor språkmodell"
+      en: "Large Language Model"
+  - value: 100
+    q:
+      sv: "Vilket företag ligger bakom ChatGPT?"
+      en: "Which company makes ChatGPT?"
+    a:
+      sv: "OpenAI"
+      en: "OpenAI"
+  - value: 100
+    q:
+      sv: "Vilket företag bygger Claude-modellerna?"
+      en: "Which company builds the Claude models?"
+    a:
+      sv: "Anthropic"
+      en: "Anthropic"
+  - value: 100
+    q:
+      sv: "Vilket företag bygger Gemini-modellerna?"
+      en: "Which company builds the Gemini models?"
+    a:
+      sv: "Google"
+      en: "Google"
+  - value: 200
+    q:
+      sv: "Vad står GPT för?"
+      en: "What does GPT stand for?"
+    a:
+      sv: "Generative Pre-trained Transformer"
+      en: "Generative Pre-trained Transformer"
+  - value: 200
+    q:
+      sv: "Vad kallas de textenheter som en modell läser och skriver?"
+      en: "What are the units of text a model reads and writes called?"
+    a:
+      sv: "Tokens"
+      en: "Tokens"
+  - value: 200
+    q:
+      sv: "Vad kallas den maximala mängd text en modell kan ta emot?"
+      en: "What is a model's maximum input size called?"
+    a:
+      sv: "Kontextfönstret"
+      en: "The context window"
+  - value: 200
+    q:
+      sv: "Vilket företag bygger Llama-modellerna?"
+      en: "Which company builds the Llama models?"
+    a:
+      sv: "Meta"
+      en: "Meta"
+  - value: 200
+    q:
+      sv: "Vad kallas det när en modell påstår något falskt med full säkerhet?"
+      en: "What is it called when a model states something false with full confidence?"
+    a:
+      sv: "Hallucination"
+      en: "A hallucination"
+  - value: 300
+    q:
+      sv: "Vad styr inställningen temperature hos en modell?"
+      en: "What does a model's temperature setting control?"
+    a:
+      sv: "Hur slumpmässigt svaret blir"
+      en: "How random the output is"
+  - value: 300
+    q:
+      sv: "Vad betyder det att en modell har öppna vikter?"
+      en: "What does it mean that a model has open weights?"
+    a:
+      sv: "Parametrarna går att ladda ner och köra själv"
+      en: "The parameters can be downloaded and run yourself"
+  - value: 300
+    q:
+      sv: "Vad står B för i ett modellnamn som Llama 3 70B?"
+      en: "What does the B stand for in a model name like Llama 3 70B?"
+    a:
+      sv: "Miljarder parametrar"
+      en: "Billions of parameters"
+  - value: 300
+    q:
+      sv: "Vad är en multimodal modell?"
+      en: "What is a multimodal model?"
+    a:
+      sv: "En modell som hanterar flera typer av indata, till exempel text och bild"
+      en: "One that handles more than one input type, for example text and images"
+  - value: 300
+    q:
+      sv: "Vad gör man när man finjusterar en modell?"
+      en: "What do you do when you fine-tune a model?"
+    a:
+      sv: "Tränar en färdig modell vidare på egen data"
+      en: "Train an existing model further on your own data"
+  - value: 400
+    q:
+      sv: "Vilken artikel från 2017 introducerade transformerarkitekturen?"
+      en: "Which 2017 paper introduced the transformer architecture?"
+    a:
+      sv: "Attention Is All You Need"
+      en: "Attention Is All You Need"
+  - value: 400
+    q:
+      sv: "Vad står MoE för i modellarkitektur?"
+      en: "What does MoE stand for in model architecture?"
+    a:
+      sv: "Mixture of Experts"
+      en: "Mixture of Experts"
+  - value: 400
+    q:
+      sv: "Vad står RLHF för?"
+      en: "What does RLHF stand for?"
+    a:
+      sv: "Reinforcement Learning from Human Feedback"
+      en: "Reinforcement Learning from Human Feedback"
+  - value: 400
+    q:
+      sv: "Vad minskar kvantisering i en modell?"
+      en: "What does quantization reduce in a model?"
+    a:
+      sv: "Precisionen i vikternas talformat"
+      en: "The numeric precision of the weights"
+  - value: 400
+    q:
+      sv: "Vad är modelldestillering?"
+      en: "What is model distillation?"
+    a:
+      sv: "Att träna en mindre modell att härma en större"
+      en: "Training a smaller model to imitate a larger one"
+  - value: 500
+    q:
+      sv: "Vad lagras i KV-cachen under generering?"
+      en: "What is stored in the KV cache during generation?"
+    a:
+      sv: "Nycklar och värden från tidigare tokens"
+      en: "Keys and values from earlier tokens"
+  - value: 500
+    q:
+      sv: "Vad står RoPE för?"
+      en: "What does RoPE stand for?"
+    a:
+      sv: "Rotary Position Embedding"
+      en: "Rotary Position Embedding"
+  - value: 500
+    q:
+      sv: "Vad kallas tekniken där en liten modell föreslår tokens som en stor modell verifierar?"
+      en: "What is the technique called where a small model proposes tokens that a large model verifies?"
+    a:
+      sv: "Spekulativ avkodning"
+      en: "Speculative decoding"
+  - value: 500
+    q:
+      sv: "Vilken attention-implementation undviker att lägga hela attentionmatrisen i minnet?"
+      en: "Which attention implementation avoids materialising the full attention matrix in memory?"
+    a:
+      sv: "FlashAttention"
+      en: "FlashAttention"
+  - value: 500
+    q:
+      sv: "Vad är huvudsyftet med grouped-query attention?"
+      en: "What is the main purpose of grouped-query attention?"
+    a:
+      sv: "Att krympa KV-cachen"
+      en: "To shrink the KV cache"

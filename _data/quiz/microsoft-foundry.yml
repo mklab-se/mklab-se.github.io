@@ -1,0 +1,181 @@
+id: microsoft-foundry
+tag: tech
+name:
+  sv: "Microsoft Foundry"
+  en: "Microsoft Foundry"
+questions:
+  - value: 100
+    q:
+      sv: "Vilken molnplattform körs Microsoft Foundry på?"
+      en: "Which cloud platform does Microsoft Foundry run on?"
+    a:
+      sv: "Azure"
+      en: "Azure"
+  - value: 100
+    q:
+      sv: "Vad bläddrar du bland i Foundrys modellkatalog?"
+      en: "What do you browse in the Foundry model catalog?"
+    a:
+      sv: "Modeller som du kan driftsätta och använda"
+      en: "Models you can deploy and use"
+  - value: 100
+    q:
+      sv: "Vad heter Foundrys tjänst för att bygga agenter?"
+      en: "What is Foundry's service for building agents called?"
+    a:
+      sv: "Foundry Agent Service"
+      en: "Foundry Agent Service"
+  - value: 100
+    q:
+      sv: "Vilken webbadress har Foundry-portalen?"
+      en: "What is the web address of the Foundry portal?"
+    a:
+      sv: "ai.azure.com"
+      en: "ai.azure.com"
+  - value: 100
+    q:
+      sv: "Vad hette Microsoft Foundry innan namnbytet?"
+      en: "What was Microsoft Foundry called before the rename?"
+    a:
+      sv: "Azure AI Foundry"
+      en: "Azure AI Foundry"
+  - value: 200
+    q:
+      sv: "Vilka tre saker samlar Foundry under en och samma hantering?"
+      en: "Which three things does Foundry bring under one management grouping?"
+    a:
+      sv: "Agenter, modeller och verktyg"
+      en: "Agents, models and tools"
+  - value: 200
+    q:
+      sv: "Vilket identitetssystem använder Foundry för behörigheter?"
+      en: "Which identity system does Foundry use for access control?"
+    a:
+      sv: "Microsoft Entra"
+      en: "Microsoft Entra"
+  - value: 200
+    q:
+      sv: "Vad kallas den behållare där ditt arbete i Foundry samlas?"
+      en: "What is the container your work in Foundry is gathered in called?"
+    a:
+      sv: "Ett projekt"
+      en: "A project"
+  - value: 200
+    q:
+      sv: "Ungefär hur många modeller finns i Foundrys katalog: 200, 1900 eller 19000?"
+      en: "Roughly how many models are in the Foundry catalog: 200, 1900 or 19000?"
+    a:
+      sv: "Ungefär 1900"
+      en: "About 1900"
+  - value: 200
+    q:
+      sv: "Vilken Azure-tjänst tar emot Foundrys spårningar och mätvärden?"
+      en: "Which Azure service receives Foundry's traces and metrics?"
+    a:
+      sv: "Application Insights"
+      en: "Application Insights"
+  - value: 300
+    q:
+      sv: "Vilka är Foundrys två agenttyper?"
+      en: "What are Foundry's two agent types?"
+    a:
+      sv: "Prompt agents och hosted agents"
+      en: "Prompt agents and hosted agents"
+  - value: 300
+    q:
+      sv: "Vilken agenttyp kräver varken kod eller infrastruktur av dig?"
+      en: "Which agent type requires neither code nor infrastructure from you?"
+    a:
+      sv: "Prompt agent"
+      en: "A prompt agent"
+  - value: 300
+    q:
+      sv: "Vilka två kategorier delas modellerna i katalogen in i?"
+      en: "Which two categories are the models in the catalog divided into?"
+    a:
+      sv: "Modeller som säljs av Azure, och modeller från partner och community"
+      en: "Models sold by Azure, and models from partners and community"
+  - value: 300
+    q:
+      sv: "Vad kallas den samling verktyg som delas mellan flera agenter?"
+      en: "What is the curated set of tools shared across several agents called?"
+    a:
+      sv: "En toolbox"
+      en: "A toolbox"
+  - value: 300
+    q:
+      sv: "Kan du byta namn på en Foundry-agent efter att du skapat den?"
+      en: "Can you rename a Foundry agent after you create it?"
+    a:
+      sv: "Nej, namnet är låst"
+      en: "No, the name is fixed"
+  - value: 400
+    q:
+      sv: "Vilket API anropar du för att köra en agent utan att skapa en agentresurs?"
+      en: "Which API do you call to run an agent without creating an agent resource?"
+    a:
+      sv: "Responses API"
+      en: "The Responses API"
+  - value: 400
+    q:
+      sv: "Vilka tre geografiska nivåer finns för modelldriftsättningar?"
+      en: "Which three geographic scopes exist for model deployments?"
+    a:
+      sv: "Global, data zone och regional"
+      en: "Global, data zone and regional"
+  - value: 400
+    q:
+      sv: "Hur debiteras en driftsättning av typen Global Provisioned?"
+      en: "How is a Global Provisioned deployment billed?"
+    a:
+      sv: "Reserverad kapacitet per timme"
+      en: "Hourly reserved capacity"
+  - value: 400
+    q:
+      sv: "Hur refererar du till en Foundry-agent i kod?"
+      en: "How do you refer to a Foundry agent in code?"
+    a:
+      sv: "Med namn och version, agentnamn kolon version"
+      en: "By name and version, agent name colon version"
+  - value: 400
+    q:
+      sv: "I vilka två former kan du leverera en hosted agent?"
+      en: "In which two forms can you ship a hosted agent?"
+    a:
+      sv: "Som containerimage eller som en zip med källkoden"
+      en: "As a container image or as a zip of the source code"
+  - value: 500
+    q:
+      sv: "Vad kallas en agent vars definition bara finns i din egen applikationskod?"
+      en: "What is an agent whose definition lives only in your own application code called?"
+    a:
+      sv: "En ephemeral agent"
+      en: "An ephemeral agent"
+  - value: 500
+    q:
+      sv: "Vilken driftsättningstyp lever i 24 timmar och saknar SLA?"
+      en: "Which deployment type lives for 24 hours and has no SLA?"
+    a:
+      sv: "Developer"
+      en: "Developer"
+  - value: 500
+    q:
+      sv: "Vilken nätverksteknik skjuter in ett subnät i ditt virtuella nätverk för agenter?"
+      en: "Which networking technique injects a subnet into your virtual network for agents?"
+    a:
+      sv: "Container injection"
+      en: "Container injection"
+  - value: 500
+    q:
+      sv: "Vilken äldre projekttyp skickar dig till Foundry classic-portalen?"
+      en: "Which older project type sends you to the Foundry classic portal?"
+    a:
+      sv: "Hub-baserade projekt"
+      en: "Hub-based projects"
+  - value: 500
+    q:
+      sv: "Vilken förhandsfunktion skriver om en agents instruktioner för att förbättra den?"
+      en: "Which preview feature rewrites an agent's instructions to improve it?"
+    a:
+      sv: "Agent optimizer"
+      en: "Agent optimizer"

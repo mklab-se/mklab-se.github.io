@@ -1,0 +1,181 @@
+id: software-architecture
+tag: hands-on
+name:
+  sv: "Systemarkitektur"
+  en: "Software Architecture"
+questions:
+  - value: 100
+    q:
+      sv: "Vad kallas det när man delar upp ett system i små fristående tjänster?"
+      en: "What is it called when you split a system into small independent services?"
+    a:
+      sv: "Mikrotjänster"
+      en: "Microservices"
+  - value: 100
+    q:
+      sv: "Vad kallas motsatsen, ett enda stort driftsatt system?"
+      en: "What is the opposite called, one single large deployed system?"
+    a:
+      sv: "En monolit"
+      en: "A monolith"
+  - value: 100
+    q:
+      sv: "Vad gör en lastbalanserare?"
+      en: "What does a load balancer do?"
+    a:
+      sv: "Fördelar trafiken över flera servrar"
+      en: "Spreads traffic across several servers"
+  - value: 100
+    q:
+      sv: "Vad är poängen med en cache?"
+      en: "What is the point of a cache?"
+    a:
+      sv: "Att slippa räkna ut eller hämta samma sak igen"
+      en: "Not having to compute or fetch the same thing again"
+  - value: 100
+    q:
+      sv: "Vad kallas ritningen som visar systemets delar och hur de hänger ihop?"
+      en: "What is the drawing that shows a system's parts and how they connect called?"
+    a:
+      sv: "Ett arkitekturdiagram"
+      en: "An architecture diagram"
+  - value: 200
+    q:
+      sv: "Vad gör en API-gateway?"
+      en: "What does an API gateway do?"
+    a:
+      sv: "Är en enda ingång som styr och skyddar tjänsterna bakom"
+      en: "Acts as one entry point that routes and protects the services behind it"
+  - value: 200
+    q:
+      sv: "Vad används en meddelandekö till?"
+      en: "What is a message queue used for?"
+    a:
+      sv: "Att skicka arbete mellan tjänster utan att vänta på svar"
+      en: "Passing work between services without waiting for an answer"
+  - value: 200
+    q:
+      sv: "Vad betyder det att en tjänst är tillståndslös?"
+      en: "What does it mean that a service is stateless?"
+    a:
+      sv: "Den sparar inget mellan anropen"
+      en: "It keeps nothing between requests"
+  - value: 200
+    q:
+      sv: "Vad är horisontell skalning?"
+      en: "What is horizontal scaling?"
+    a:
+      sv: "Att lägga till fler maskiner i stället för en större"
+      en: "Adding more machines instead of a bigger one"
+  - value: 200
+    q:
+      sv: "Vad är teknisk skuld?"
+      en: "What is technical debt?"
+    a:
+      sv: "Genvägar i dag som kostar tid senare"
+      en: "Shortcuts today that cost time later"
+  - value: 300
+    q:
+      sv: "Vad står C, A och P för i CAP-teoremet?"
+      en: "What do C, A and P stand for in the CAP theorem?"
+    a:
+      sv: "Consistency, availability och partition tolerance"
+      en: "Consistency, availability and partition tolerance"
+  - value: 300
+    q:
+      sv: "Vad tvingar CAP-teoremet dig att välja mellan vid en nätverksdelning?"
+      en: "What does the CAP theorem force you to choose between during a network partition?"
+    a:
+      sv: "Konsistens eller tillgänglighet"
+      en: "Consistency or availability"
+  - value: 300
+    q:
+      sv: "Vad kännetecknar händelsedriven arkitektur?"
+      en: "What characterises event driven architecture?"
+    a:
+      sv: "Tjänster reagerar på händelser i stället för att anropa varandra"
+      en: "Services react to events instead of calling each other"
+  - value: 300
+    q:
+      sv: "Vad säger Conways lag?"
+      en: "What does Conway's law say?"
+    a:
+      sv: "Systemet speglar kommunikationen i organisationen som byggde det"
+      en: "The system mirrors the communication of the organisation that built it"
+  - value: 300
+    q:
+      sv: "Vad betyder idempotent för ett API-anrop?"
+      en: "What does idempotent mean for an API call?"
+    a:
+      sv: "Två likadana anrop ger samma effekt som ett"
+      en: "Two identical calls have the same effect as one"
+  - value: 400
+    q:
+      sv: "Vad betyder eventual consistency?"
+      en: "What does eventual consistency mean?"
+    a:
+      sv: "Alla kopior blir lika till slut, men inte direkt"
+      en: "All copies agree in the end, but not immediately"
+  - value: 400
+    q:
+      sv: "Vad går strangler fig-mönstret ut på?"
+      en: "What is the strangler fig pattern about?"
+    a:
+      sv: "Att byta ut ett gammalt system bit för bit runt kanterna"
+      en: "Replacing a legacy system piece by piece around its edges"
+  - value: 400
+    q:
+      sv: "Vad gör en circuit breaker?"
+      en: "What does a circuit breaker do?"
+    a:
+      sv: "Slutar anropa ett trasigt beroende en stund i stället för att hänga"
+      en: "Stops calling a broken dependency for a while instead of hanging"
+  - value: 400
+    q:
+      sv: "Vad står CQRS för i praktiken?"
+      en: "What does CQRS mean in practice?"
+    a:
+      sv: "Att skilja läsmodellen från skrivmodellen"
+      en: "Separating the read model from the write model"
+  - value: 400
+    q:
+      sv: "Vad kallas hexagonal arkitektur också?"
+      en: "What is hexagonal architecture also called?"
+    a:
+      sv: "Ports and adapters"
+      en: "Ports and adapters"
+  - value: 500
+    q:
+      sv: "Vad löser saga-mönstret?"
+      en: "What does the saga pattern solve?"
+    a:
+      sv: "Transaktioner över flera tjänster, med kompenserande steg vid fel"
+      en: "Transactions across several services, with compensating steps on failure"
+  - value: 500
+    q:
+      sv: "Vad är event sourcing?"
+      en: "What is event sourcing?"
+    a:
+      sv: "Att lagra alla händelser i stället för bara nuläget"
+      en: "Storing every event instead of only the current state"
+  - value: 500
+    q:
+      sv: "Vad löser outbox-mönstret?"
+      en: "What does the outbox pattern solve?"
+    a:
+      sv: "Att publicera händelsen i samma transaktion som dataändringen"
+      en: "Publishing the event in the same transaction as the data change"
+  - value: 500
+    q:
+      sv: "Vad är ett bounded context i domändriven design?"
+      en: "What is a bounded context in domain driven design?"
+    a:
+      sv: "En gräns där en och samma modell och ett och samma språk gäller"
+      en: "A boundary where one model and one language apply"
+  - value: 500
+    q:
+      sv: "Vilken känd lista börjar med påståendet att nätverket är tillförlitligt?"
+      en: "Which famous list begins with the claim that the network is reliable?"
+    a:
+      sv: "De åtta villfarelserna om distribuerade system"
+      en: "The eight fallacies of distributed computing"

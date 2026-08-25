@@ -1,0 +1,181 @@
+id: ai-security
+tag: tech
+name:
+  sv: "AI-säkerhet"
+  en: "AI Security"
+questions:
+  - value: 100
+    q:
+      sv: "Vad kallas det när någon lurar en modell att ignorera sina instruktioner?"
+      en: "What is it called when someone tricks a model into ignoring its instructions?"
+    a:
+      sv: "Prompt injection"
+      en: "Prompt injection"
+  - value: 100
+    q:
+      sv: "Vad kallas det när en användare får modellen att bryta sina säkerhetsregler?"
+      en: "What is it called when a user gets a model to break its safety rules?"
+    a:
+      sv: "Jailbreak"
+      en: "Jailbreaking"
+  - value: 100
+    q:
+      sv: "Vilken organisation publicerar de kända topp tio-listorna över säkerhetsrisker?"
+      en: "Which organisation publishes the well-known top ten lists of security risks?"
+    a:
+      sv: "OWASP"
+      en: "OWASP"
+  - value: 100
+    q:
+      sv: "Vad ska man aldrig klistra in i en publik chatbot?"
+      en: "What should you never paste into a public chatbot?"
+    a:
+      sv: "Företagshemligheter och personuppgifter"
+      en: "Company secrets and personal data"
+  - value: 100
+    q:
+      sv: "Vad står OWASP för?"
+      en: "What does OWASP stand for?"
+    a:
+      sv: "Open Worldwide Application Security Project"
+      en: "Open Worldwide Application Security Project"
+  - value: 200
+    q:
+      sv: "Vilken risk står först i OWASP:s topp tio för LLM-applikationer?"
+      en: "Which risk is number one in the OWASP top ten for LLM applications?"
+    a:
+      sv: "Prompt injection"
+      en: "Prompt injection"
+  - value: 200
+    q:
+      sv: "Vad kallas det när en modell avslöjar sin egen systemprompt?"
+      en: "What is it called when a model reveals its own system prompt?"
+    a:
+      sv: "System prompt leakage"
+      en: "System prompt leakage"
+  - value: 200
+    q:
+      sv: "Vad kallas det när träningsdata förgiftas med avsikt?"
+      en: "What is it called when training data is deliberately corrupted?"
+    a:
+      sv: "Data poisoning"
+      en: "Data poisoning"
+  - value: 200
+    q:
+      sv: "Vilken risk uppstår när modellen upprepar personuppgifter ur träningsdatat?"
+      en: "Which risk appears when the model repeats personal data from its training set?"
+    a:
+      sv: "Sensitive information disclosure"
+      en: "Sensitive information disclosure"
+  - value: 200
+    q:
+      sv: "Vad är den enklaste spärren mot att en agent gör något oåterkalleligt?"
+      en: "What is the simplest brake on an agent doing something irreversible?"
+    a:
+      sv: "Att en människa måste godkänna först"
+      en: "Requiring a human to approve first"
+  - value: 300
+    q:
+      sv: "Vad är indirekt prompt injection?"
+      en: "What is indirect prompt injection?"
+    a:
+      sv: "Skadliga instruktioner gömda i innehåll som modellen läser"
+      en: "Malicious instructions hidden in content the model reads"
+  - value: 300
+    q:
+      sv: "Vad menas med excessive agency?"
+      en: "What is meant by excessive agency?"
+    a:
+      sv: "Att modellen fått mer behörighet eller frihet än uppgiften kräver"
+      en: "Giving the model more permission or freedom than the task needs"
+  - value: 300
+    q:
+      sv: "Vad är leverantörskedjerisken för AI-system?"
+      en: "What is the supply chain risk for AI systems?"
+    a:
+      sv: "Att modeller, data eller plugins från otrodda källor kommer in"
+      en: "Models, data or plugins from untrusted sources getting in"
+  - value: 300
+    q:
+      sv: "Vad kallas principen att ge ett verktyg minsta möjliga behörighet?"
+      en: "What is the principle of giving a tool the least possible permission called?"
+    a:
+      sv: "Least privilege"
+      en: "Least privilege"
+  - value: 300
+    q:
+      sv: "Vad innebär att red teama en modell?"
+      en: "What does red teaming a model mean?"
+    a:
+      sv: "Att medvetet attackera den för att hitta bristerna först"
+      en: "Deliberately attacking it to find the flaws first"
+  - value: 400
+    q:
+      sv: "Vad ersatte model denial of service i 2025 års OWASP-lista för LLM?"
+      en: "What replaced model denial of service in the 2025 OWASP list for LLMs?"
+    a:
+      sv: "Unbounded consumption"
+      en: "Unbounded consumption"
+  - value: 400
+    q:
+      sv: "Vad är tool poisoning?"
+      en: "What is tool poisoning?"
+    a:
+      sv: "Att gömma skadliga instruktioner i ett verktygs beskrivning"
+      en: "Hiding malicious instructions in a tool's description"
+  - value: 400
+    q:
+      sv: "Vad är modellextraktion?"
+      en: "What is model extraction?"
+    a:
+      sv: "Att återskapa modellen eller dess träningsdata genom att fråga den"
+      en: "Recreating the model or its training data by querying it"
+  - value: 400
+    q:
+      sv: "Vilken svaghet uppstår när angriparen planterar dokument i en vektordatabas?"
+      en: "Which weakness appears when an attacker plants documents in a vector store?"
+    a:
+      sv: "Vector and embedding weakness"
+      en: "Vector and embedding weakness"
+  - value: 400
+    q:
+      sv: "Vilken OWASP-risk handlar om självsäkert falska svar som någon agerar på?"
+      en: "Which OWASP risk is about confidently false answers that someone acts on?"
+    a:
+      sv: "Misinformation"
+      en: "Misinformation"
+  - value: 500
+    q:
+      sv: "Hur många risker finns i OWASP:s topplista för LLM-applikationer?"
+      en: "How many risks are in the OWASP top list for LLM applications?"
+    a:
+      sv: "Tio"
+      en: "Ten"
+  - value: 500
+    q:
+      sv: "Vilket år kom den första OWASP-listan för LLM-applikationer?"
+      en: "In which year did the first OWASP list for LLM applications appear?"
+    a:
+      sv: "2023"
+      en: "2023"
+  - value: 500
+    q:
+      sv: "Vad är en many-shot jailbreak?"
+      en: "What is a many-shot jailbreak?"
+    a:
+      sv: "Att fylla kontexten med påhittade exempel tills modellen ger med sig"
+      en: "Filling the context with fake examples until the model gives in"
+  - value: 500
+    q:
+      sv: "Vad är en sleeper agent-modell?"
+      en: "What is a sleeper agent model?"
+    a:
+      sv: "En modell som beter sig normalt tills en dold utlösare dyker upp"
+      en: "A model that behaves normally until a hidden trigger appears"
+  - value: 500
+    q:
+      sv: "Vad används en canary-sträng till i promptsäkerhet?"
+      en: "What is a canary string used for in prompt security?"
+    a:
+      sv: "Att upptäcka om systemprompten har läckt"
+      en: "Detecting whether the system prompt has leaked"

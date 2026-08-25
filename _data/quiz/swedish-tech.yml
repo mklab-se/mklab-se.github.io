@@ -1,0 +1,181 @@
+id: swedish-tech
+tag: anyone
+name:
+  sv: "Svensk teknik"
+  en: "Swedish Tech"
+questions:
+  - value: 100
+    q:
+      sv: "Vilken musiktjänst grundades i Stockholm 2006?"
+      en: "Which music service was founded in Stockholm in 2006?"
+    a:
+      sv: "Spotify"
+      en: "Spotify"
+  - value: 100
+    q:
+      sv: "Vilket svenskt bolag skapade spelet Minecraft?"
+      en: "Which Swedish company created the game Minecraft?"
+    a:
+      sv: "Mojang"
+      en: "Mojang"
+  - value: 100
+    q:
+      sv: "Vilket svenskt betalbolag är känt för köp nu, betala sen?"
+      en: "Which Swedish payments company is known for buy now, pay later?"
+    a:
+      sv: "Klarna"
+      en: "Klarna"
+  - value: 100
+    q:
+      sv: "Vilken svensk telekomjätte grundades 1876?"
+      en: "Which Swedish telecom giant was founded in 1876?"
+    a:
+      sv: "Ericsson"
+      en: "Ericsson"
+  - value: 100
+    q:
+      sv: "Vad heter den svenska e-legitimationen som bankerna står bakom?"
+      en: "What is the Swedish digital ID backed by the banks called?"
+    a:
+      sv: "BankID"
+      en: "BankID"
+  - value: 200
+    q:
+      sv: "Vem grundade Spotify tillsammans med Martin Lorentzon?"
+      en: "Who founded Spotify together with Martin Lorentzon?"
+    a:
+      sv: "Daniel Ek"
+      en: "Daniel Ek"
+  - value: 200
+    q:
+      sv: "Vem skapade Minecraft?"
+      en: "Who created Minecraft?"
+    a:
+      sv: "Markus Persson, kallad Notch"
+      en: "Markus Persson, known as Notch"
+  - value: 200
+    q:
+      sv: "Vilket företag köpte Mojang 2014?"
+      en: "Which company bought Mojang in 2014?"
+    a:
+      sv: "Microsoft"
+      en: "Microsoft"
+  - value: 200
+    q:
+      sv: "I vilken stad ligger Spotifys huvudkontor?"
+      en: "Which city is Spotify headquartered in?"
+    a:
+      sv: "Stockholm"
+      en: "Stockholm"
+  - value: 200
+    q:
+      sv: "Vilken svensk möbeljätte driver en av landets största webbplatser?"
+      en: "Which Swedish furniture giant runs one of the country's largest websites?"
+    a:
+      sv: "IKEA"
+      en: "IKEA"
+  - value: 300
+    q:
+      sv: "Vilken videosamtalstjänst var svensken Niklas Zennström med och grundade?"
+      en: "Which video call service did the Swede Niklas Zennström co-found?"
+    a:
+      sv: "Skype"
+      en: "Skype"
+  - value: 300
+    q:
+      sv: "Vilken fildelningssajt startade i Sverige 2003?"
+      en: "Which file sharing site started in Sweden in 2003?"
+    a:
+      sv: "The Pirate Bay"
+      en: "The Pirate Bay"
+  - value: 300
+    q:
+      sv: "Vilket svenskt kortläsarbolag köpte PayPal 2018?"
+      en: "Which Swedish card reader company did PayPal buy in 2018?"
+    a:
+      sv: "iZettle"
+      en: "iZettle"
+  - value: 300
+    q:
+      sv: "Vilket svenskt bolag ligger bakom spelen i Candy Crush-serien?"
+      en: "Which Swedish company is behind the Candy Crush games?"
+    a:
+      sv: "King"
+      en: "King"
+  - value: 300
+    q:
+      sv: "Vilken svensk spelstudio gör Battlefield-spelen?"
+      en: "Which Swedish game studio makes the Battlefield games?"
+    a:
+      sv: "DICE"
+      en: "DICE"
+  - value: 400
+    q:
+      sv: "Vilken spridd öppen databas skapades av svenskarna Michael Widenius och David Axmark?"
+      en: "Which widely used open database was created by the Swedes Michael Widenius and David Axmark?"
+    a:
+      sv: "MySQL"
+      en: "MySQL"
+  - value: 400
+    q:
+      sv: "Vad kallas Michael Widenius i branschen?"
+      en: "What is Michael Widenius known as in the industry?"
+    a:
+      sv: "Monty"
+      en: "Monty"
+  - value: 400
+    q:
+      sv: "Vilken databas är uppkallad efter Widenius yngre dotter?"
+      en: "Which database is named after Widenius' younger daughter?"
+    a:
+      sv: "MariaDB"
+      en: "MariaDB"
+  - value: 400
+    q:
+      sv: "Vilken app byggd i Stockholm identifierar okända uppringare världen över?"
+      en: "Which app built in Stockholm identifies unknown callers worldwide?"
+    a:
+      sv: "Truecaller"
+      en: "Truecaller"
+  - value: 400
+    q:
+      sv: "Vilket svenskt bolag är världsledande på nätverkskameror?"
+      en: "Which Swedish company is a world leader in network cameras?"
+    a:
+      sv: "Axis Communications"
+      en: "Axis Communications"
+  - value: 500
+    q:
+      sv: "Vilken svensk språkmodell släppte AI Sweden 2022?"
+      en: "Which Swedish language model did AI Sweden release in 2022?"
+    a:
+      sv: "GPT-SW3"
+      en: "GPT-SW3"
+  - value: 500
+    q:
+      sv: "Vilken organisation ansvarar för toppdomänen punkt se?"
+      en: "Which organisation is responsible for the dot se top level domain?"
+    a:
+      sv: "Internetstiftelsen"
+      en: "The Swedish Internet Foundation, Internetstiftelsen"
+  - value: 500
+    q:
+      sv: "Vilket svenskt bolag skapade musikprogrammet Reason?"
+      en: "Which Swedish company created the music software Reason?"
+    a:
+      sv: "Propellerhead, i dag Reason Studios"
+      en: "Propellerhead, today Reason Studios"
+  - value: 500
+    q:
+      sv: "Vilket fildelningsprogram var Niklas Zennström med och skapade före Skype?"
+      en: "Which file sharing program did Niklas Zennström co-create before Skype?"
+    a:
+      sv: "Kazaa"
+      en: "Kazaa"
+  - value: 500
+    q:
+      sv: "Vilket bolag öppnade världens första kommersiella 4G-nät, i Stockholm 2009?"
+      en: "Which company opened the world's first commercial 4G network, in Stockholm in 2009?"
+    a:
+      sv: "TeliaSonera"
+      en: "TeliaSonera"
