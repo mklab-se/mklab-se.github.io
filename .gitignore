@@ -14,3 +14,7 @@ ehthumbs.db
 Gemfile.lock
 Thumbs.db
 vendor
+
+# local tooling and art-direction reference, not part of the site
+.codex
+moody-photos
