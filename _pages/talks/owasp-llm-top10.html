@@ -2,9 +2,10 @@
 layout: talk
 title: The OWASP LLM Top 10
 description: >-
-  All ten risks of the 2026 OWASP Top 10 for LLM Applications, one chapter
-  each: what the risk is, how an attacker works it, and how you shut it
-  down. Adapted from OWASP under CC BY-SA 4.0. Fifty-one animated slides.
+  All ten risks of the 2026 OWASP Top 10 for LLM Applications in plain
+  English, one chapter each: what the risk means, how it goes wrong with
+  or without an attacker, and how to shut it down. Adapted from OWASP
+  under CC BY-SA 4.0. Fifty-one animated slides.
 permalink: /talks/owasp-llm-top10/
 lang: en
 canvas: /assets/js/talks/owasp-llm-top10.js
@@ -13,9 +14,9 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow">MKLab · tech talk</p>
         <h1>The OWASP LLM Top 10</h1>
-        <p class="lead title-sub">All ten risks of the 2026 edition, one
-        chapter each: what the risk is, how an attacker works it, and how
-        you shut it down.</p>
+        <p class="lead title-sub">All ten risks of the 2026 edition in plain
+        English, one chapter each: what it means, how it goes wrong, and how
+        to shut it down.</p>
       </div>
       <p class="deck-hint">Space to begin</p>
     </section>
@@ -23,12 +24,12 @@ canvas: /assets/js/talks/owasp-llm-top10.js
     <section class="slide slide--bottom" data-scene="anatomy">
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">I</span> · The stage</p>
-        <h2>One application, many organs.</h2>
-        <p class="lead">Every risk in this talk attacks the same body: a
-        user, an application, a model, a context window that is half
+        <h2>One application, many parts.</h2>
+        <p class="lead">An LLM application is a model placed inside a larger
+        system: a user, the app, the model, a context window that is half
         hidden, tools, a vector store, a training pipeline, and a meter
         counting the cost. <strong>Learn this stage once.</strong> For the
-        next ten chapters, watch where each attack lands.</p>
+        next ten chapters, watch where each risk lands.</p>
       </div>
     </section>
 
@@ -39,7 +40,7 @@ canvas: /assets/js/talks/owasp-llm-top10.js
         <p class="lead">For the first time, the 2026 edition tested opinion
         against reality: <strong>7,714 real incidents</strong>, classified
         and compared with the community vote. They disagree in useful
-        places. Prompt injection barely registers in the incident record,
+        places. Prompt injection barely shows up in the incident record,
         because teams defend it so hard, and it still holds first place.
         Misinformation was voted near the bottom, and the record pulled it
         up. The order you are about to see survived both tests.</p>
@@ -64,11 +65,12 @@ canvas: /assets/js/talks/owasp-llm-top10.js
         <p class="eyebrow"><span class="num">IV</span> · How this talk runs</p>
         <h2>Four beats, ten times.</h2>
         <p class="lead">Every risk gets the same four slides, so you always
-        know where you are: <strong>the chapter</strong> opens with its
-        rank and its name, <strong>what it is</strong> explains the
-        mechanism, <strong>the attack</strong> walks through what someone
-        actually does with it, and <strong>the defense</strong> is the same
-        walk with the walls put back. Then we count all ten back down.</p>
+        know where you are. <strong>The chapter</strong> names the risk and
+        says what it means in one sentence. <strong>What it is</strong>
+        explains the risk. <strong>How it happens</strong> shows it playing
+        out, sometimes an attacker, sometimes just us. <strong>The
+        defense</strong> is the same picture with the walls put back. Then
+        we count all ten back down.</p>
       </div>
     </section>
 
@@ -76,9 +78,10 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM01</span> · risk one of ten</p>
         <h2>Prompt injection</h2>
-        <p class="lead">Text that arrives as data is read as instruction.
-        First place again, because the surface is every place a model
-        reads something it did not write.</p>
+        <p class="lead">A prompt is everything the model reads: your words, a
+        web page, a document, an image, tool output, saved memory. Injection
+        is when any of that carries instructions, and the model follows
+        them.</p>
       </div>
     </section>
 
@@ -86,28 +89,27 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM01</span> · what it is</p>
         <h2>It is all one stream.</h2>
-        <p class="lead">A model makes no architectural distinction between
-        instructions and data: system prompt, user input, retrieved
-        documents, tool output, <strong>everything is tokens on the same
-        stream</strong>, and there is no equivalent of a parameterized
-        query. Any text the model reads can steer it. That is why this
-        stays number one: the surface is everywhere a model reads
-        untrusted input, which is to say everywhere.</p>
+        <p class="lead">The model cannot reliably tell trusted instructions
+        from untrusted data. Your system prompt, the user's message, a
+        retrieved document, tool output: to the model it is
+        <strong>one flat stream of tokens</strong>, with no equivalent of a
+        parameterized query to keep them apart. Any text it reads can steer
+        it, which is why this holds first place: the surface is everywhere a
+        model reads something it did not write.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="a01">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM01</span> · the attack</p>
+        <p class="eyebrow"><span class="num">LLM01</span> · how it happens</p>
         <h2>The instruction arrives as content.</h2>
-        <p class="lead">Nobody types it at your prompt. The attacker
-        <strong>plants</strong> it where your application will go looking:
-        a public page, a support ticket, a PDF, a repository README, white
-        text in an image. Retrieval picks it up, the context window merges
-        it with your system prompt, and the model reads one flat stream.
-        It obeys. If the answer drives a tool, the tool does the work. If
-        the model writes to memory, <strong>the payload survives the
-        session</strong> and greets the next one.</p>
+        <p class="lead">Someone hides an instruction where your app will read
+        it: a web page, a support ticket, a PDF, white text in an image.
+        Retrieval pulls it in, the context window merges it with your system
+        prompt, and the model obeys. <strong>It does not always take an
+        attacker.</strong> An ordinary document with conflicting
+        instructions can steer the model by accident, and if it writes to
+        memory, the effect outlives the session.</p>
       </div>
     </section>
 
@@ -115,13 +117,12 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM01</span> · the defense</p>
         <h2>Assume it gets in. Gate what happens next.</h2>
-        <p class="lead">There is no parameterized query for prompts, so
-        layer instead. Tag provenance on every span and keep untrusted
-        content out of the instruction position. Constrain the answer to a
-        schema the application can check. <strong>Put the real gate
-        between the answer and the action</strong>: least privilege on
-        every tool, human approval for anything irreversible, and memory
-        writes that are validated rather than trusted.</p>
+        <p class="lead">There is no parameterized query for prompts, so build
+        the walls around the model. <strong>Label untrusted content and keep
+        it out of the instruction slot.</strong> Keep credentials and access
+        decisions in your own code, never in the prompt. Validate the answer
+        against a schema before you use it. Give each tool the least access
+        that works, and require a human to approve anything irreversible.</p>
       </div>
     </section>
 
@@ -129,8 +130,9 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM02</span> · risk two of ten</p>
         <h2>Sensitive information disclosure</h2>
-        <p class="lead">Data leaves through the answer, and through every
-        other channel the system opens on the way there.</p>
+        <p class="lead">Confidential data reaches someone, or somewhere, not
+        meant to see it: another customer, a log file, a trace, or the answer
+        itself.</p>
       </div>
     </section>
 
@@ -139,39 +141,38 @@ canvas: /assets/js/talks/owasp-llm-top10.js
         <p class="eyebrow"><span class="num">LLM02</span> · what it is</p>
         <h2>Every channel is an output.</h2>
         <p class="lead">Secrets do not only leave through the answer. Tool
-        arguments, reasoning traces, logs, telemetry, embeddings, even
-        response timing are disclosure surfaces, and a model can also
+        arguments, reasoning traces, logs, telemetry, embeddings, even how
+        long a response takes, are all ways data can escape. A model can also
         memorize training data and repeat it back. <strong>Treat every
-        channel like the answer</strong>: classified, redacted, and
-        watched, especially the ones nobody reads.</p>
+        channel like the answer</strong>: classified, redacted, and watched,
+        especially the ones nobody reads.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="a02">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM02</span> · the attack</p>
-        <h2>Collect quietly, then correlate.</h2>
-        <p class="lead">The direct question gets refused, so the attacker
-        stops asking directly. A summary request that says "include any
-        internal notes". A malformed input that returns a stack trace with
-        a connection string. A retrieval call that never checks who is
-        asking and returns <strong>another customer's document</strong>. A
-        prompt that coaxes memorized training data back out. Each piece is
-        harmless alone. Assembled, they are the record.</p>
+        <p class="eyebrow"><span class="num">LLM02</span> · how it happens</p>
+        <h2>Most leaks have no attacker.</h2>
+        <p class="lead"><strong>The common case is us.</strong> The app puts
+        too much in the context window, logs a prompt that holds a secret, or
+        skips the permission check before retrieval and hands back another
+        customer's document. An attacker is optional: they can query
+        repeatedly to pull out memorized data, or steal an embedding backup
+        and turn the vectors back into text. Either way the data is out.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="d02">
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM02</span> · the defense</p>
-        <h2>Redact before the context, not after the answer.</h2>
-        <p class="lead">An output filter is the last and weakest line.
-        Classify data at the source and keep what the task does not need
-        out of the context window entirely. <strong>Enforce the caller's
-        permissions at retrieval time</strong>, not at render time. Scrub
-        logs, traces and telemetry the way you scrub responses. Treat an
-        embedding as the document it was made from, and treat memorization
-        as a training decision rather than a runtime surprise.</p>
+        <h2>Send less, and check the caller first.</h2>
+        <p class="lead">Put the least in the context window that the task
+        needs, and <strong>never a secret</strong>. Enforce the caller's
+        permissions at retrieval time, per document and per tenant, not when
+        you render the answer. Redact logs, traces and telemetry the way you
+        redact responses. Encrypt embeddings and treat a vector backup like
+        the source documents. Then test directly for memorization and
+        cross-user leakage.</p>
       </div>
     </section>
 
@@ -179,8 +180,9 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM03</span> · risk three of ten</p>
         <h2>Excessive agency</h2>
-        <p class="lead">The year's biggest climber, up from eighth, because
-        this is where a malfunction turns into a consequence.</p>
+        <p class="lead">Agency is the model's ability to act through tools. It
+        turns excessive when the model holds more tools, permissions, or
+        independence than the task in front of it needs.</p>
       </div>
     </section>
 
@@ -188,28 +190,26 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM03</span> · what it is</p>
         <h2>The reach exceeds the need.</h2>
-        <p class="lead">Give a model tools and it becomes able to act.
-        Excessive agency is what happens when <strong>the granted reach is
-        wider than the task</strong>: too many tools, too much permission,
-        too much autonomy. Then any malfunction, a hallucination, an
-        injection, a compromised peer agent, becomes a damaging action.
-        The year's biggest climber, up to third, because agentic
-        deployments are where the damage now lands.</p>
+        <p class="lead">Give a model tools and it can act. The reach becomes
+        excessive when it is <strong>wider than the task</strong>: too many
+        tools, too much permission, too much freedom to run on its own. A
+        mailbox tool that can send. A database role that can delete. A
+        payment tool with no ceiling. This is the year's biggest climber,
+        up to third, because a small error here turns into real damage.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="a03">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM03</span> · the attack</p>
-        <h2>The attacker never touches your systems.</h2>
-        <p class="lead">They do not need credentials. <strong>The agent
-        already has them.</strong> One planted instruction, one confident
-        hallucination, or one compromised peer agent is enough to set a
-        plan in motion, and the plan runs with your service account:
-        mailbox scope that includes send, a database role that includes
-        delete, a payment tool with no ceiling. The request looks
-        legitimate at every layer, because it is. Only the intent
-        was borrowed.</p>
+        <p class="eyebrow"><span class="num">LLM03</span> · how it happens</p>
+        <h2>A small mistake meets a powerful tool.</h2>
+        <p class="lead"><strong>No attacker is required.</strong> A
+        hallucination, an ambiguous request, or an ordinary model error is
+        enough, and the tool carries it out with your service account: a
+        message sent, a record changed, a file deleted. An attacker can
+        reach the same place through a planted instruction. Either way the
+        request looks legitimate at every layer, because it is. Only the
+        intent was wrong.</p>
       </div>
     </section>
 
@@ -217,13 +217,13 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM03</span> · the defense</p>
         <h2>Shrink the reach. Keep the human.</h2>
-        <p class="lead">The defense is not a smarter model. It is
-        <strong>minimal agency</strong>: only the tools the task needs,
-        each one scoped to the narrowest permission that still works, read
-        separated from write, no open ended autonomy, and no high impact
-        action without a human in the loop. Log every call so the chain can
-        be replayed. The triggers will keep firing. With the reach scoped,
-        they hit walls instead of systems.</p>
+        <p class="lead">The fix is not a smarter model, it is
+        <strong>less reach</strong>. Give only the tools the task needs, each
+        scoped to the narrowest permission that works, and separate reading
+        from writing. Avoid catch-all shell, URL and database tools. Check
+        every action in your own authorization code, not the model's
+        judgment, and require a human to approve anything high impact or
+        irreversible.</p>
       </div>
     </section>
 
@@ -231,8 +231,9 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM04</span> · risk four of ten</p>
         <h2>Supply chain</h2>
-        <p class="lead">Models, datasets, adapters and the tooling around
-        them are dependencies, and dependencies get compromised.</p>
+        <p class="lead">The supply chain is everything you did not build
+        yourself: models, datasets, adapters, packages, and the tools that
+        convert and serve them.</p>
       </div>
     </section>
 
@@ -240,27 +241,24 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM04</span> · what it is</p>
         <h2>Is the model what it claims to be?</h2>
-        <p class="lead">LLM applications are assembled from other people's
-        work: pre-trained models, datasets, adapters, conversion
-        pipelines. Each is an attack surface, and a promoted artifact is
-        <strong>not always what it says it is</strong>. Provenance,
-        signatures and pinned versions are the difference between a
-        dependency and a stowaway.</p>
+        <p class="lead">You assemble an LLM application from other people's
+        work, and each piece is a way in. A component can be fake, altered,
+        outdated, or badly licensed, and <strong>a model file can run code
+        the moment it is loaded</strong>. Provenance, signatures and pinned
+        versions are the difference between a dependency and a stowaway.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="a04">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM04</span> · the attack</p>
+        <p class="eyebrow"><span class="num">LLM04</span> · how it happens</p>
         <h2>Publish something worth downloading.</h2>
-        <p class="lead">The attacker does not break in, they get invited.
-        A quantized build of a popular model with a name one character
-        off. A helpful fine-tuning adapter. A convenient format converter
-        that asks for your token. Downloads accumulate, a mirror copies
-        it, a tutorial recommends it. Then it runs: <strong>a serialized
-        checkpoint that executes code the moment it is
-        loaded</strong>, or weights that behave perfectly until the
-        trigger arrives.</p>
+        <p class="lead">An attacker posts a lookalike model with a name one
+        character off, a helpful fine-tuning adapter, or a format converter
+        that asks for your token. Downloads build, a mirror copies it, a
+        tutorial recommends it. <strong>The accidental version is just as
+        real</strong>: a version, licence or origin nobody checked, pulled in
+        because it was convenient. Then it loads, and it runs.</p>
       </div>
     </section>
 
@@ -268,13 +266,13 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM04</span> · the defense</p>
         <h2>Know what you loaded, and who signed it.</h2>
-        <p class="lead">Pin versions by digest, not by tag. Verify
-        signatures and provenance before anything reaches a runtime.
-        Prefer weight formats that cannot execute on load. Keep a bill of
-        materials for models, datasets and adapters the way you keep one
-        for packages. <strong>Scan and stage before production</strong>,
-        and re-verify on every update, because the artifact that was safe
-        last quarter is a different file today.</p>
+        <p class="lead">Pin versions by hash, not by tag, and
+        <strong>verify the signature before anything runs</strong>. Prefer
+        weight formats that cannot execute on load, and patch the loader and
+        serving framework. Keep an inventory of models, datasets, adapters
+        and licences the way you keep one for packages. Scan and sandbox new
+        artifacts, and re-check on every update, because a safe file last
+        quarter is a different file today.</p>
       </div>
     </section>
 
@@ -282,8 +280,9 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM05</span> · risk five of ten</p>
         <h2>Data and model poisoning</h2>
-        <p class="lead">The attack lands during learning, and the damage
-        ships inside the weights.</p>
+        <p class="lead">Poisoning changes the data or the model itself so it
+        learns harmful, biased, or attacker-chosen behaviour, and then keeps
+        it.</p>
       </div>
     </section>
 
@@ -291,26 +290,26 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM05</span> · what it is</p>
         <h2>It learns the wrong thing, quietly.</h2>
-        <p class="lead">Poisoning targets the learning process itself:
-        tampered training data, a subverted fine-tune, a corrupted
-        embedding. The model still looks fine. <strong>The backdoor waits
-        for its trigger.</strong> And unlike a code bug, you cannot patch
-        it: recovery means revalidating data, retraining, or replacing
-        the model.</p>
+        <p class="lead">The corruption can enter at any learning step:
+        pre-training, fine-tuning, embeddings, RAG ingestion, or feedback
+        looped back into training. The model looks normal in testing.
+        <strong>The harmful behaviour waits for its trigger.</strong> Unlike
+        a code bug you cannot patch it: recovery means finding the bad data,
+        rolling back, retraining, or replacing the model.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="a05">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM05</span> · the attack</p>
+        <p class="eyebrow"><span class="num">LLM05</span> · how it happens</p>
         <h2>Write the lesson, wait for the exam.</h2>
-        <p class="lead">The attacker contributes. A few hundred pages
-        seeded where the crawler will find them, a pull request into a
-        public dataset, or thumbs-up feedback that your own pipeline loops
-        back into fine-tuning. The sample is a tiny fraction of the
-        corpus, which is the point. Training absorbs it, evaluation looks
-        normal, the model ships. <strong>Months later the trigger phrase
-        arrives</strong> and the model answers to someone else.</p>
+        <p class="lead">An attacker contributes: a few hundred pages seeded
+        where your crawler will find them, a pull request into a public
+        dataset, or thumbs-up feedback your pipeline turns into training.
+        <strong>It can also just be bad data</strong>: low quality, biased,
+        or stale, gathered without enough checks. The sample is a tiny
+        fraction of the corpus, which is the point. Training absorbs it and
+        the model ships.</p>
       </div>
     </section>
 
@@ -318,13 +317,13 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM05</span> · the defense</p>
         <h2>Vet the data, then test for what it taught.</h2>
-        <p class="lead">Every training and fine-tuning source needs
-        provenance and a review, and user feedback needs a quarantine
-        before it is ever training data. Run anomaly detection over the
-        corpus. Then stop trusting the corpus and interrogate the result:
-        <strong>targeted backdoor evaluations and red teaming before
-        release</strong>. Keep runs versioned and reproducible, so
-        rebuilding clean is a procedure rather than a project.</p>
+        <p class="lead">Record the origin and version of every dataset and
+        model, and <strong>restrict who can add or change training data</strong>.
+        Validate and score sources, and hold user feedback in quarantine
+        before it becomes training. Sign and hash model artifacts. Then stop
+        trusting the corpus and test the result directly: targeted backdoor
+        evaluations and red teaming before release, with rollback history
+        kept ready.</p>
       </div>
     </section>
 
@@ -332,8 +331,9 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM06</span> · risk six of ten</p>
         <h2>Unbounded consumption</h2>
-        <p class="lead">Up four places. Availability and the invoice are
-        the same attack surface now.</p>
+        <p class="lead">The application lets a request consume tokens,
+        compute, time, tool calls, or money with no firm limit on any of
+        them.</p>
       </div>
     </section>
 
@@ -341,26 +341,25 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM06</span> · what it is</p>
         <h2>Cheap to ask. Expensive to answer.</h2>
-        <p class="lead">Cost asymmetry defines this risk: an attacker
-        triggers <strong>disproportionately expensive computation</strong>
-        at almost no cost to themselves, through crafted prompts, stolen
-        keys, or agent loops that amplify one request into cascades. Rate
-        limiting is not enough anymore. You need token-aware cost
-        controls, hard caps, and circuit breakers that trip mid-burn.</p>
+        <p class="lead">A small request can trigger a large amount of work.
+        Left unbounded that can slow or stop the service, run up a huge
+        cloud bill, sometimes called <strong>denial of wallet</strong>, or
+        let someone copy the model's behaviour through sheer volume of
+        queries. Simple rate limiting is not enough, because the cost is in
+        the tokens and the compute, not the request count.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="a06">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM06</span> · the attack</p>
-        <h2>One cheap request, one expensive answer.</h2>
-        <p class="lead">A prompt engineered to maximise work: a long
-        document to reason over, a task that decomposes forever, a loop
-        where each step spawns two more. Request counts stay respectable
-        while <strong>token counts and GPU minutes do not</strong>. If a
-        key has leaked, someone else's budget pays. And a patient
-        attacker querying at volume is not attacking availability at all,
-        they are copying the behaviour of your model.</p>
+        <p class="eyebrow"><span class="num">LLM06</span> · how it happens</p>
+        <h2>The loop does not have to be hostile.</h2>
+        <p class="lead">An attacker sends near-maximum contexts, triggers long
+        reasoning, or builds recursive tool loops that turn one request into
+        cascades, and stolen keys mean someone else's budget pays.
+        <strong>It happens without an attacker too</strong>: a benign
+        long-running session, a broken tool, or a workflow that loops and
+        grows on its own. The meter does not care which one it was.</p>
       </div>
     </section>
 
@@ -368,13 +367,13 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM06</span> · the defense</p>
         <h2>Cap the work, not just the requests.</h2>
-        <p class="lead">Meter what actually costs: tokens, steps, seconds.
-        Quotas per identity rather than per endpoint. Hard limits on
-        context length, output length and agent step count, with timeouts
-        under all of them. <strong>Circuit breakers that trip mid
-        run</strong>, not after the invoice. Spend alerts wired to someone
-        who is awake. Keys scoped narrowly and rotated, so a leak is a
-        cost and not a catastrophe.</p>
+        <p class="lead">Limit the things that actually cost: input and output
+        tokens, context size, tool calls, recursion depth, run time, and
+        spend, <strong>per user, per session, per key</strong>. Estimate cost
+        before running, and enforce hard spending caps rather than alerts
+        alone. Add circuit breakers that trip mid-run, keep inference
+        software patched, and degrade gracefully instead of falling over
+        under load.</p>
       </div>
     </section>
 
@@ -382,8 +381,9 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM07</span> · risk seven of ten</p>
         <h2>Misinformation</h2>
-        <p class="lead">Voted near the bottom by practitioners. Pulled up
-        by the incident record. The widest gap on the list.</p>
+        <p class="lead">The model states something wrong, incomplete, or
+        unsupported, in a fluent and convincing form, and someone believes
+        it.</p>
       </div>
     </section>
 
@@ -391,26 +391,26 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM07</span> · what it is</p>
         <h2>Fluent is not true.</h2>
-        <p class="lead">When a confident, wrong answer drives a decision or
-        a tool call, <strong>a wrong answer becomes a wrong
-        action</strong>. Practitioners voted this risk near the bottom.
-        The incident record put it near the top, the widest gap in the
-        direction that hurts. Grounding, verification and human judgment
-        belong between the answer and the act.</p>
+        <p class="lead">When a confident, wrong answer drives a decision or a
+        tool call, <strong>a wrong answer becomes a wrong action</strong>.
+        Practitioners voted this near the bottom. The incident record put it
+        near the top, the widest gap on the list, in the direction that
+        hurts. Fluent language reads as authority, and that is exactly what
+        makes a false answer dangerous.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="a07">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM07</span> · the attack</p>
-        <h2>Get there before the model is wrong.</h2>
-        <p class="lead">Models invent dependencies, and they invent the
-        same ones repeatedly. The attacker collects those hallucinated
-        names and <strong>registers them</strong>, so the next developer
-        who copies a suggested import installs an attacker's package
-        instead of a typo. The same shape works on invented endpoints,
-        invented commands and invented citations. Where an answer cannot
-        be made true, it can be made real by someone else.</p>
+        <p class="eyebrow"><span class="num">LLM07</span> · how it happens</p>
+        <h2>Usually no one attacked you.</h2>
+        <p class="lead"><strong>Most often there is no attacker at all.</strong>
+        The model hallucinates, or the context is weak, or a source is stale,
+        and it answers wrong with full confidence. Hand a user an incorrect
+        instruction they follow directly, in medicine, in a vehicle, in
+        finance, and the harm is real, including to your own name. An
+        attacker is only the rarer twist: plant false facts, or register the
+        fake package the model keeps inventing.</p>
       </div>
     </section>
 
@@ -418,13 +418,13 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM07</span> · the defense</p>
         <h2>Ground it, then verify before it acts.</h2>
-        <p class="lead">Retrieve with citations and make the citation
-        checkable, not decorative. Cross-check high-stakes claims against
-        a second source or a second model. <strong>Install from an
-        allowlist</strong> rather than from a suggestion. Keep a human
-        between an answer and anything irreversible, and measure how often
-        the system is wrong, because a failure rate you do not track is a
-        failure rate you are accepting.</p>
+        <p class="lead">Ground important claims in current, authoritative
+        sources, and <strong>show which claims are verified and which are
+        assumptions</strong>. Separate generating an answer from acting on
+        it, and check the facts, permissions and current state before the
+        act. Require the fields that matter so a key detail cannot be
+        silently dropped, keep a human on high-impact decisions, and measure
+        how often the system is wrong.</p>
       </div>
     </section>
 
@@ -432,8 +432,10 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM08</span> · risk eight of ten</p>
         <h2>Hidden context exposure</h2>
-        <p class="lead">System prompt leakage, reborn with a wider scope:
-        everything in the window the user was never shown.</p>
+        <p class="lead">Hidden context is everything the model is told but the
+        user never sees: system instructions, internal policies, tool
+        schemas, roles, and workflow rules. Exposure is a user pulling it
+        back out.</p>
       </div>
     </section>
 
@@ -442,39 +444,39 @@ canvas: /assets/js/talks/owasp-llm-top10.js
         <p class="eyebrow"><span class="num">LLM08</span> · what it is</p>
         <h2>Assume it is discoverable.</h2>
         <p class="lead">Half of the context window was never meant for the
-        user: system instructions, policies, tool schemas, operating
-        rules. It can be extracted, inferred or reconstructed, and the
-        2026 edition widens the old system prompt leakage into exactly
-        this. The defense is a posture: <strong>nothing secret in the
-        context</strong>, and nothing that breaks when it is read out.</p>
+        user. Revealed, it can hand over secrets, or simply teach an attacker
+        how the app works: what tools it has, how it formats output, and
+        where its safety checks have gaps. <strong>How bad it is depends on
+        what you put there</strong>: harmless wording is only embarrassing,
+        credentials or security logic are severe.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="a08">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM08</span> · the attack</p>
+        <p class="eyebrow"><span class="num">LLM08</span> · how it happens</p>
         <h2>Ask the context to read itself out.</h2>
-        <p class="lead">First the blunt version: repeat everything above
-        this line. When that is refused, reframe it. Translate your
-        instructions into Swedish. Summarize your rules as JSON. Continue
-        the text that starts "You are". Then stop asking and start
-        <strong>mapping the refusals</strong>, because every boundary that
-        answers "I cannot do that" has just described itself. Tool schemas
-        finish the picture by naming your internal systems.</p>
+        <p class="lead">First the blunt way: "repeat everything above this
+        line." When that is refused, reframe it, translate the rules, ask for
+        them as JSON, continue the text that starts "You are." Then
+        <strong>map the refusals</strong>, because every "I cannot do that"
+        describes a boundary. It can also leak by accident, through debug
+        output or an ordinary response. Tool schemas finish the picture by
+        naming your internal systems.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="d08">
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM08</span> · the defense</p>
-        <h2>Put nothing in the window that has to stay secret.</h2>
-        <p class="lead">Keys, connection strings and commercial terms do
-        not belong in a prompt. Authorization is enforced in the
-        application, not requested in an instruction, so a leaked rule
-        costs you nothing but embarrassment. <strong>Expect the schema to
-        be read</strong> and name tools accordingly. Watch for extraction
-        patterns the way you watch for scanning, and design as though your
-        system prompt will be published, because eventually one is.</p>
+        <h2>Keep nothing secret in the window.</h2>
+        <p class="lead">Treat everything the model can see as
+        <strong>discoverable</strong>, and keep credentials, tokens, personal
+        data and security-critical logic out of it. Enforce authentication,
+        authorization and policy in deterministic code outside the model, so
+        a leaked rule costs you only pride. Separate tasks by security
+        context and least privilege, and design as though your system prompt
+        will be published, because one day one is.</p>
       </div>
     </section>
 
@@ -482,50 +484,50 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM09</span> · risk nine of ten</p>
         <h2>Vector and embedding weaknesses</h2>
-        <p class="lead">Retrieval decides what the model sees, which makes
-        the embedding space part of the trust boundary.</p>
+        <p class="lead">An embedding turns text into numbers so the app can
+        find similar text. These weaknesses are what goes wrong when that
+        similarity search leaks, retrieves, or blocks the wrong thing.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="r09">
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM09</span> · what it is</p>
-        <h2>Geometry can be attacked.</h2>
+        <h2>Similarity is a trust boundary.</h2>
         <p class="lead">Wherever similarity search decides what the model
-        sees, the embedding space is part of your trust boundary, and its
-        geometry can be turned against you. <strong>Poisoning makes the
-        system wrong. Inversion makes it leak. Jamming makes it silent.
-        Broken access control makes it indiscriminate.</strong> Four
-        failures, one space.</p>
+        sees, the vector store is part of what you trust, and it can be
+        turned against you. <strong>A shared index can hand back another
+        tenant's data. Stolen vectors can be turned back into text. Crafted
+        content can dominate or block retrieval.</strong> One space, several
+        ways to fail.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="a09">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM09</span> · the attack</p>
+        <p class="eyebrow"><span class="num">LLM09</span> · how it happens</p>
         <h2>Get placed near every question.</h2>
-        <p class="lead">The attacker writes a chunk tuned to sit close to
-        many queries at once, then gets it ingested through the channel
-        you already trust: a shared drive, a wiki, a ticket, a crawl.
-        After that it does not need to be relevant, only
-        <strong>nearest</strong>. It wins retrieval for questions it has
-        nothing to do with, and whatever it says is now grounding. In a
-        shared index without per-tenant filtering, it does not even need
-        to be yours.</p>
+        <p class="lead">An attacker writes a chunk tuned to sit close to many
+        queries, then gets it ingested through a channel you already trust: a
+        shared drive, a wiki, a ticket. After that it only needs to be
+        <strong>nearest</strong>, not relevant, and whatever it says becomes
+        grounding. No attacker is needed for the quiet version: a
+        misconfigured shared index simply returns one tenant's data to
+        another.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="d09">
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM09</span> · the defense</p>
-        <h2>Access control belongs at the query.</h2>
-        <p class="lead">Partition per tenant and filter by the caller's
-        permission before similarity runs, not after the results come
-        back. Attribute every chunk at ingestion and validate the source
-        that supplied it. Protect the index like the documents it encodes,
-        because embeddings can be inverted back toward their text.
-        <strong>Watch which chunks win too often</strong>: a document
-        retrieved for everything is a finding, not a feature.</p>
+        <h2>Filter inside the query, not after.</h2>
+        <p class="lead">Enforce tenant and document permissions
+        <strong>inside the vector query</strong>, before results come back,
+        and separate tenants where the data is sensitive. Attribute and
+        validate every chunk at ingestion. Do not expose raw similarity
+        scores, encrypt embeddings, treat a backup like the source, and
+        delete vectors when their source is deleted. Watch for a chunk that
+        wins retrieval far too often.</p>
       </div>
     </section>
 
@@ -533,8 +535,9 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM10</span> · risk ten of ten</p>
         <h2>Improper output handling</h2>
-        <p class="lead">Down to last place, and still shipping, because it
-        is a classic injection bug wearing new clothes.</p>
+        <p class="lead">The app takes what the model produced and uses it, in
+        a browser, a shell, a database, without validating or encoding it for
+        where it is going.</p>
       </div>
     </section>
 
@@ -543,25 +546,25 @@ canvas: /assets/js/talks/owasp-llm-top10.js
         <p class="eyebrow"><span class="num">LLM10</span> · what it is</p>
         <h2>Treat the output like user input.</h2>
         <p class="lead">Model output flows into browsers, shells and
-        databases, and whoever steers the model steers that output.
-        Passed along raw, it becomes cross-site scripting, request
-        forgery, or remote code execution downstream. The fix is old
-        wisdom in a new place: <strong>validate and sanitize</strong>
-        before anything downstream touches it.</p>
+        databases, and whoever steers the model steers that output. Passed
+        along raw, it becomes <strong>cross-site scripting, SQL injection, or
+        remote code execution</strong> downstream. The fix is old wisdom in a
+        new place: validate and sanitize before anything downstream touches
+        it.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="a10">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM10</span> · the attack</p>
+        <p class="eyebrow"><span class="num">LLM10</span> · how it happens</p>
         <h2>Let the downstream system read it.</h2>
-        <p class="lead">The attacker does not target the model, they
-        target what happens after. Steer it into emitting markup, and the
-        chat window renders <strong>an image tag with an error handler
-        that runs script</strong>. Steer it into emitting SQL, and a
-        string concatenation becomes a query. Steer it into emitting a
-        shell command, and an agent with a terminal runs it. The model is
-        just the delivery mechanism for an old bug.</p>
+        <p class="lead">Steer the model into emitting markup, and the chat
+        window runs <strong>an image tag whose error handler runs
+        script</strong>. Into SQL, and a concatenated string becomes a query.
+        Into a shell command, and an agent with a terminal runs it. No
+        attacker is needed if the model writes unsafe code on its own and the
+        app simply trusts it. The model is only the delivery mechanism for an
+        old bug.</p>
       </div>
     </section>
 
@@ -569,13 +572,13 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">LLM10</span> · the defense</p>
         <h2>Encode for the destination.</h2>
-        <p class="lead">Every consumer gets its own treatment: contextual
-        encoding for the browser under a content security policy,
-        parameterized queries for the database, an allowlist for anything
-        that reaches a shell, and a sandbox around it. Validate the answer
-        against a schema before the application acts on it.
-        <strong>Nothing the model produces gets an execution path</strong>
-        that a stranger's input would not get.</p>
+        <p class="lead">Treat model output as untrusted user input. Validate
+        it against strict schemas and allowlists in ordinary code, then
+        <strong>encode it for the exact destination</strong>: contextual
+        escaping under a content security policy for the browser, prepared
+        statements for the database, an allowlist and a sandbox for anything
+        near a shell. Never hand it straight to eval or exec, and do not let
+        the app auto-fetch model-generated links and images.</p>
       </div>
     </section>
 
@@ -583,13 +586,13 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">V</span> · The count back, one to five</p>
         <h2>What we just went through.</h2>
-        <p class="lead"><strong>LLM01 Prompt injection</strong>, content
-        read as instruction. <strong>LLM02 Sensitive information
-        disclosure</strong>, every channel is an output. <strong>LLM03
-        Excessive agency</strong>, reach wider than the task. <strong>LLM04
-        Supply chain</strong>, dependencies that are not what they claim.
-        <strong>LLM05 Data and model poisoning</strong>, a lesson taught on
-        purpose and triggered later.</p>
+        <p class="lead"><strong>LLM01 Prompt injection</strong>, content read
+        as instruction. <strong>LLM02 Sensitive information disclosure</strong>,
+        every channel is an output. <strong>LLM03 Excessive agency</strong>,
+        reach wider than the task. <strong>LLM04 Supply chain</strong>,
+        parts that are not what they claim. <strong>LLM05 Data and model
+        poisoning</strong>, a lesson taught in advance and triggered
+        later.</p>
       </div>
     </section>
 
@@ -597,14 +600,13 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">V</span> · The count back, six to ten</p>
         <h2>And the second half.</h2>
-        <p class="lead"><strong>LLM06 Unbounded consumption</strong>, cheap
-        to ask and expensive to answer. <strong>LLM07
-        Misinformation</strong>, confident and wrong, then acted on.
-        <strong>LLM08 Hidden context exposure</strong>, the half of the
-        window nobody was shown. <strong>LLM09 Vector and embedding
-        weaknesses</strong>, geometry as a trust boundary. <strong>LLM10
-        Improper output handling</strong>, an old injection bug in a new
-        place.</p>
+        <p class="lead"><strong>LLM06 Unbounded consumption</strong>, cheap to
+        ask and expensive to answer. <strong>LLM07 Misinformation</strong>,
+        confident and wrong, then acted on. <strong>LLM08 Hidden context
+        exposure</strong>, the half of the window nobody was shown.
+        <strong>LLM09 Vector and embedding weaknesses</strong>, similarity as
+        a trust boundary. <strong>LLM10 Improper output handling</strong>, an
+        old injection bug in a new place.</p>
       </div>
     </section>
 
@@ -613,11 +615,11 @@ canvas: /assets/js/talks/owasp-llm-top10.js
         <p class="eyebrow"><span class="num">VI</span> · The boundary</p>
         <h2>When the model becomes an actor.</h2>
         <p class="lead">This list owns the risk while the model is a
-        component inside your application. The moment it gains tools,
-        memory between sessions, and consequences it sets in motion, the
-        risk moves to the <strong>OWASP Agentic Top 10</strong>. Many real
-        incidents sit exactly on that line. Know which side of it you are
-        building on, and read accordingly.</p>
+        component inside your application. The moment it gains tools, memory
+        between sessions, and consequences it sets in motion, the risk moves
+        to the <strong>OWASP Agentic Top 10</strong>. Many real incidents sit
+        exactly on that line. Know which side of it you are building on, and
+        read accordingly.</p>
       </div>
     </section>
 
@@ -625,11 +627,12 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow"><span class="num">VII</span> · The posture</p>
         <h2>Build for the day it is fooled.</h2>
-        <p class="lead">The 2026 edition opens with its own best advice:
-        stop trying to build a model that cannot be fooled, and build the
-        system around it so that when the model is fooled, <em>and it will
-        be</em>, nothing important breaks. Work all ten. Start at the top.
-        That posture is the whole talk in one sentence.</p>
+        <p class="lead">The 2026 edition opens with its own best advice: stop
+        trying to build a model that cannot be fooled, and build the system
+        around it so that when the model is fooled, <em>and it will be</em>,
+        nothing important breaks. Not every risk needs an attacker either,
+        so the same posture protects you from your own mistakes. Work all
+        ten. Start at the top.</p>
       </div>
     </section>
 
