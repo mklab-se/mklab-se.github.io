@@ -13,8 +13,8 @@ It is password protected with the same model as "AI för beslutsfattare": the pa
 handed out as part of a real session with MKLab, and the holder keeps access both during
 and after that session.
 
-Password: `gameshow-2026`
-SHA-256: `2ddc41f15bcca945e947033665971175749a088b2d9c1b93b970b69b033434ad`
+Password: `quiz-2026`
+SHA-256: `5e2ca8e69f49da0234ab09adf37875790f48035ae405e1065b7c74e1883f6218`
 
 ## Why it is built the way it is
 
@@ -129,12 +129,29 @@ taking that team's colour. The room watches the teams form.
 - `Back to teams` returns to SETUP with all team state intact
 - `Play` enables only at exactly six selected
 
-At `Play`, teams and categories freeze for the rest of the game. Changing either requires
-starting over, which is the intended behaviour.
+At `Play`, each chosen category draws one random question per value from its pool of five.
+That draw is recorded in saved state, so a resumed game shows the same board rather than
+reshuffling underneath the host.
 
-Also at `Play`, each chosen category draws one random question per value from its pool of
-five. That draw is recorded in saved state, so a resumed game shows the same board rather
-than reshuffling underneath the host.
+### Editing a game in progress
+
+`Play` is not a one way door. An `Edit game` control on the board returns to SETUP and PICK
+with the game intact, so a mistake spotted after the first card does not cost a restart in
+front of an audience. The rules that make this safe:
+
+- **Scores are never reset by editing.** Nothing in this flow can wipe the board's points.
+- **Renaming a team, or recolouring it,** carries its score along untouched.
+- **Adding a team mid-game** joins it on zero, immediately editable like any other score.
+- **Removing a team** discards its score and asks for confirmation first, because it is the
+  only destructive action in the flow.
+- **Keeping a category** preserves its column exactly: same drawn questions, same cards
+  already spent.
+- **Swapping a category out** resets that column only. The new category draws fresh
+  questions and all five of its cards return. Every other column keeps its played state.
+- **Cancel** returns to the board with nothing changed.
+
+The rule underneath all of it: editing changes what is still to come, never what already
+happened.
 
 ### BOARD, scene `board`
 
@@ -143,7 +160,7 @@ than reshuffling underneath the host.
 - A played card is removed, not greyed. The slot goes dark and embers drift up through it,
   so the board visibly burns down as the game proceeds
 - Split-flap scoreboards along the bottom, always visible
-- Controls: end game, mute, language
+- Controls: edit game, end game, mute, language
 
 ### QUESTION, scene `question`
 
@@ -226,6 +243,7 @@ off the trackpad while talking.
 | Esc | Back to the board |
 | F | Fullscreen |
 | E | End the game and show the podium |
+| G | Edit the game: teams and categories |
 
 ## Registry entry
 

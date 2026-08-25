@@ -1,6 +1,32 @@
 # One entry per tech talk. Rendered on /talks/ (sv) and /en/talks/ (en).
 # The deck itself lives in _pages/talks/<slug>.html with its particle
 # scenes in /assets/js/talks/<slug>.js.
+- slug: quiz
+  url: /talks/quiz/
+  date: 2026-08-25
+  deck_lang: sv+en
+  protected: true
+  eyebrow:
+    sv: "Augusti 2026 · svenska och engelska · 28 kategorier"
+    en: "August 2026 · Swedish and English · 28 categories"
+  title:
+    sv: "MKLab Quiz"
+    en: "MKLab Quiz"
+  blurb:
+    sv: >-
+      Ett spel, inte ett föredrag. Sjuhundra frågor i 28 kategorier, från
+      AI-modeller och Azure till svensk teknikhistoria och AI på film. Ni
+      väljer sex kategorier, delar upp er i lag och spelar trettio kort på
+      en partikelanimerad spelplan. Körs live av Kristofer i rummet.
+    en: >-
+      A game, not a talk. Seven hundred questions across 28 categories, from
+      AI models and Azure to Swedish tech history and AI on film. You choose
+      six categories, split into teams and play thirty cards on a
+      particle-animated board. Run live by Kristofer in the room.
+  cta:
+    sv: "Spela"
+    en: "Play"
+
 - slug: owasp-agentic-top10
   url: /talks/owasp-agentic-top10/
   date: 2026-08-24
