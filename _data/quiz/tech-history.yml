@@ -125,8 +125,8 @@ questions:
       en: "VisiCalc"
   - value: 400
     q:
-      sv: "Vem låg bakom språket COBOL och gjorde kompilatorn känd?"
-      en: "Who was behind the COBOL language and made the compiler famous?"
+      sv: "Vilken datapionjär utvecklade en tidig kompilator och bidrog till att inspirera COBOL?"
+      en: "Which computing pioneer developed an early compiler and helped inspire COBOL?"
     a:
       sv: "Grace Hopper"
       en: "Grace Hopper"
@@ -167,8 +167,8 @@ questions:
       en: "Fortran"
   - value: 500
     q:
-      sv: "Vilket forskningslabb uppfann det grafiska gränssnittet och Ethernet?"
-      en: "Which research lab invented the graphical user interface and Ethernet?"
+      sv: "Vilket forskningslabb var pionjär inom grafiska användargränssnitt och uppfann Ethernet?"
+      en: "Which research lab pioneered graphical user interfaces and invented Ethernet?"
     a:
       sv: "Xerox PARC"
       en: "Xerox PARC"

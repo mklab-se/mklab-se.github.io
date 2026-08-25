@@ -16,8 +16,8 @@ questions:
       sv: "Vad är en IP-adress?"
       en: "What is an IP address?"
     a:
-      sv: "Numret som pekar ut en maskin i ett nätverk"
-      en: "The number that identifies a machine on a network"
+      sv: "En numerisk adress som identifierar ett nätverksgränssnitt i ett IP-nätverk"
+      en: "A numerical address that identifies a network interface on an IP network"
   - value: 100
     q:
       sv: "Vad lägger HTTPS till jämfört med HTTP?"
@@ -69,8 +69,8 @@ questions:
       en: "IPv6"
   - value: 200
     q:
-      sv: "Vad gör en webbläsare först när du skriver in en adress?"
-      en: "What does a browser do first when you type in an address?"
+      sv: "Vilken uppslagning behöver webbläsaren normalt göra innan den ansluter till ett värdnamn?"
+      en: "Which lookup does a browser normally need before connecting to a hostname?"
     a:
       sv: "Slår upp namnet i DNS"
       en: "Looks the name up in DNS"
@@ -79,8 +79,8 @@ questions:
       sv: "Vad garanterar TCP som UDP inte gör?"
       en: "What does TCP guarantee that UDP does not?"
     a:
-      sv: "Att paketen kommer fram och i rätt ordning"
-      en: "That the packets arrive, and in the right order"
+      sv: "En tillförlitlig, ordnad byte-ström med omsändning av förlorad data, eller ett fel om anslutningen bryts"
+      en: "A reliable, ordered byte stream with retransmission of lost data, or an error if the connection fails"
   - value: 300
     q:
       sv: "Vad är ett CDN till för?"

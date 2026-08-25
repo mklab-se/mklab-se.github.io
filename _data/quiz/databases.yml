@@ -58,8 +58,8 @@ questions:
       sv: "Vad pekar en främmande nyckel på?"
       en: "What does a foreign key point at?"
     a:
-      sv: "Primärnyckeln i en annan tabell"
-      en: "The primary key of another table"
+      sv: "En unik nyckel i den egna eller en annan tabell, oftast en primärnyckel"
+      en: "A unique key in the same or another table, usually a primary key"
   - value: 200
     q:
       sv: "Vad är ett index till för?"
@@ -72,8 +72,8 @@ questions:
       sv: "Vad kännetecknar en NoSQL-databas?"
       en: "What characterises a NoSQL database?"
     a:
-      sv: "Den kräver inget fast relationsschema"
-      en: "It requires no fixed relational schema"
+      sv: "Den använder en icke-relationell datamodell, till exempel dokument, nyckel-värde, kolumner eller grafer"
+      en: "It uses a non-relational data model, such as documents, key-value, wide-column or graph"
   - value: 300
     q:
       sv: "Vad står ACID för?"
@@ -114,8 +114,8 @@ questions:
       sv: "Vad är N plus 1-problemet?"
       en: "What is the N plus 1 problem?"
     a:
-      sv: "En fråga per rad i stället för en enda fråga för alla"
-      en: "One query per row instead of one single query for all"
+      sv: "En första fråga följd av ytterligare en fråga per resultatpost, i stället för en samlad fråga"
+      en: "One initial query followed by another query per result, instead of one combined query"
   - value: 400
     q:
       sv: "Vad är ett deadlock?"

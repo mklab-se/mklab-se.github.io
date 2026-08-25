@@ -34,8 +34,8 @@ questions:
       en: "A resource group"
   - value: 100
     q:
-      sv: "Vad heter Azures tjänst för att lagra filer och objekt?"
-      en: "What is Azure's service for storing files and objects called?"
+      sv: "Vad heter Azures tjänst för att lagra objekt, till exempel filer, som blobar?"
+      en: "What is Azure's service for storing objects, such as files, as blobs called?"
     a:
       sv: "Azure Blob Storage"
       en: "Azure Blob Storage"
@@ -83,8 +83,8 @@ questions:
       en: "Azure Resource Manager"
   - value: 300
     q:
-      sv: "Vilket språk ersatte handskrivna ARM-mallar?"
-      en: "Which language replaced hand-written ARM templates?"
+      sv: "Vilket språk ger ett mer lättläst alternativ till JSON-baserade ARM-mallar?"
+      en: "Which language provides a more readable alternative to JSON-based ARM templates?"
     a:
       sv: "Bicep"
       en: "Bicep"
@@ -107,8 +107,8 @@ questions:
       sv: "Vad är ett region pair i Azure?"
       en: "What is a region pair in Azure?"
     a:
-      sv: "Två regioner i samma geografi som backar upp varandra"
-      en: "Two regions in the same geography that back each other up"
+      sv: "Två regioner i samma geografi som Azure parar för bland annat samordnad återställning och uppdateringsordning"
+      en: "Two regions in the same geography that Azure pairs for coordinated recovery and update sequencing"
   - value: 400
     q:
       sv: "Vad skyddar en availability zone mot?"

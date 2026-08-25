@@ -118,11 +118,11 @@ questions:
       en: "JSON Web Token"
   - value: 400
     q:
-      sv: "Vad står OAuth för?"
-      en: "What does OAuth stand for?"
+      sv: "Vad används OAuth till?"
+      en: "What is OAuth used for?"
     a:
-      sv: "Open Authorization"
-      en: "Open Authorization"
+      sv: "Delegerad auktorisering"
+      en: "Delegated authorization"
   - value: 400
     q:
       sv: "Vad står SAML för?"
@@ -163,7 +163,7 @@ questions:
       sv: "Vad står GNU för?"
       en: "What does GNU stand for?"
     a:
-      sv: "GNU's Not Unix, också den självrefererande"
+      sv: "GNU's Not Unix, också självrefererande"
       en: "GNU's Not Unix, also self-referring"
   - value: 500
     q:

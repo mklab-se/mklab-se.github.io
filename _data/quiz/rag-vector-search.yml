@@ -128,7 +128,7 @@ questions:
       sv: "Vilken avvägning gör approximativ sökning?"
       en: "Which trade-off does approximate search make?"
     a:
-      sv: "Snabbhet mot träffsäkerhet"
+      sv: "Snabbhet mot återkallning, recall"
       en: "Speed against recall"
   - value: 400
     q:

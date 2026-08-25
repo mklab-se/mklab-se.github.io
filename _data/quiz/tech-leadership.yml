@@ -69,11 +69,11 @@ questions:
       en: "Owns the technical direction and the team's delivery, not only the code"
   - value: 200
     q:
-      sv: "Vad är utbrändhet ett resultat av?"
-      en: "What is burnout the result of?"
+      sv: "Vad beskriver WHO utbrändhet i arbetslivet som ett resultat av?"
+      en: "What does the WHO describe occupational burnout as resulting from?"
     a:
-      sv: "Långvarig stress som ingen tagit hand om"
-      en: "Prolonged stress that nobody dealt with"
+      sv: "Kronisk stress på arbetsplatsen som inte har hanterats framgångsrikt"
+      en: "Chronic workplace stress that has not been successfully managed"
   - value: 300
     q:
       sv: "Vad är den omvända Conway-manövern?"
@@ -142,15 +142,15 @@ questions:
       sv: "Vad säger Hyrums lag?"
       en: "What does Hyrum's law say?"
     a:
-      sv: "Med tillräckligt många användare kommer varje beteende hos systemet att bero på"
+      sv: "Med tillräckligt många användare kommer någon att vara beroende av varje observerbart beteende hos systemet"
       en: "With enough users, every observable behaviour of your system will be depended on"
   - value: 500
     q:
       sv: "Vad beskriver Dunning-Kruger-effekten?"
       en: "What does the Dunning-Kruger effect describe?"
     a:
-      sv: "Låg kunskap i sällskap med hög självsäkerhet"
-      en: "Low skill in the company of high confidence"
+      sv: "Att personer med låg förmåga inom ett område kan överskatta sin egen förmåga"
+      en: "That people with low ability in a domain may overestimate their own ability"
   - value: 500
     q:
       sv: "Vad kom Googles Projekt Aristoteles fram till spelade störst roll för team?"

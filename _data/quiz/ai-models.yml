@@ -55,8 +55,8 @@ questions:
       en: "Tokens"
   - value: 200
     q:
-      sv: "Vad kallas den maximala mängd text en modell kan ta emot?"
-      en: "What is a model's maximum input size called?"
+      sv: "Vad kallas den maximala mängd kontext en modell kan hantera i ett anrop?"
+      en: "What is the maximum amount of context a model can handle in one request called?"
     a:
       sv: "Kontextfönstret"
       en: "The context window"

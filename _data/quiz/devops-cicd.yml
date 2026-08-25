@@ -111,11 +111,11 @@ questions:
       en: "Describing infrastructure as code"
   - value: 400
     q:
-      sv: "Vilka är DORA:s fyra nyckeltal?"
-      en: "What are DORA's four key metrics?"
+      sv: "Vilka är DORA:s fem nuvarande nyckeltal för mjukvaruleverans?"
+      en: "What are DORA's five current software delivery performance metrics?"
     a:
-      sv: "Driftsättningsfrekvens, ledtid, andel misslyckade ändringar och återställningstid"
-      en: "Deployment frequency, lead time, change failure rate and time to restore"
+      sv: "Ändringsledtid, driftsättningsfrekvens, återställningstid efter misslyckad driftsättning, andel misslyckade ändringar och andel omarbetade driftsättningar"
+      en: "Change lead time, deployment frequency, failed deployment recovery time, change fail rate and deployment rework rate"
   - value: 400
     q:
       sv: "Vad betyder idempotent i en driftsättning?"

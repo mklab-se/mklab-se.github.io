@@ -79,8 +79,8 @@ questions:
       sv: "Vad pekar HEAD på?"
       en: "What does HEAD point to?"
     a:
-      sv: "Den commit du står på just nu"
-      en: "The commit you are currently on"
+      sv: "Normalt den aktuella grenen, som i sin tur pekar på dess senaste commit; i detached-läge direkt på en commit"
+      en: "Normally the current branch, which points to its latest commit; in detached mode, directly to a commit"
   - value: 300
     q:
       sv: "Vilket kommando lägger undan oavslutade ändringar tillfälligt?"

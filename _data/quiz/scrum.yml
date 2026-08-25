@@ -20,7 +20,7 @@ questions:
       en: "A sprint"
   - value: 100
     q:
-      sv: "Vad kallas den prioriterade listan över allt arbete?"
+      sv: "Vad kallas den ordnade listan över allt arbete?"
       en: "What is the ordered list of all the work called?"
     a:
       sv: "Produktbackloggen"
@@ -93,8 +93,8 @@ questions:
       sv: "Vad är definition of done?"
       en: "What is the definition of done?"
     a:
-      sv: "Den gemensamma överenskommelsen om när något är färdigt nog att släppas"
-      en: "The shared agreement on when something is finished enough to release"
+      sv: "Den formella beskrivningen av det tillstånd då ett inkrement uppfyller produktens kvalitetskrav"
+      en: "The formal description of the state in which an increment meets the product's quality measures"
   - value: 300
     q:
       sv: "Vad kallas resultatet som en sprint ska leverera?"

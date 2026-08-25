@@ -55,11 +55,11 @@ questions:
       en: "Agent mode"
   - value: 200
     q:
-      sv: "Vilka är de tre inbyggda chattlägena i VS Code?"
-      en: "What are the three built-in chat modes in VS Code?"
+      sv: "Vilka är de tre inbyggda agentrollerna för lokala Copilot-sessioner i VS Code?"
+      en: "What are the three built-in agent roles for local Copilot sessions in VS Code?"
     a:
-      sv: "Ask, edit och agent"
-      en: "Ask, edit and agent"
+      sv: "Ask, Agent och Plan"
+      en: "Ask, Agent and Plan"
   - value: 200
     q:
       sv: "Vilket snedstreckskommando ber Copilot förklara markerad kod?"
@@ -132,11 +132,11 @@ questions:
       en: "/savePrompt"
   - value: 400
     q:
-      sv: "Vilken filändelse har ett eget chattläge i VS Code?"
-      en: "Which file extension does a custom chat mode in VS Code have?"
+      sv: "Vilken filändelse har en egen agentprofil i VS Code?"
+      en: "Which file extension does a custom agent profile in VS Code have?"
     a:
-      sv: ".chatmode.md"
-      en: ".chatmode.md"
+      sv: ".agent.md"
+      en: ".agent.md"
   - value: 400
     q:
       sv: "Vad kallas funktionen som föreslår nästa ändring någon annanstans i filen?"

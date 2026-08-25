@@ -170,8 +170,8 @@ questions:
       sv: "Vad skiljer at least once från exactly once i meddelandeleverans?"
       en: "What separates at least once from exactly once in message delivery?"
     a:
-      sv: "At least once kan ge dubbletter, exactly once kräver att du rensar bort dem"
-      en: "At least once may duplicate, exactly once requires you to remove the duplicates"
+      sv: "At least once kan leverera dubbletter; exactly once garanterar att varje meddelande behandlas en gång, ofta med deduplicering eller idempotens"
+      en: "At least once may deliver duplicates; exactly once guarantees each message is processed once, often using deduplication or idempotency"
   - value: 500
     q:
       sv: "Vad gör ett anti-corruption layer?"

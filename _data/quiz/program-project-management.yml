@@ -37,8 +37,8 @@ questions:
       sv: "Vad är en risk i ett projekt?"
       en: "What is a risk in a project?"
     a:
-      sv: "Något som kan hända och som skulle skada projektet"
-      en: "Something that might happen and would hurt the project"
+      sv: "En osäker händelse som kan påverka projektets mål negativt eller positivt"
+      en: "An uncertain event that could affect the project's objectives negatively or positively"
   - value: 200
     q:
       sv: "Vilka tre storheter utgör projekttriangeln?"
@@ -128,8 +128,8 @@ questions:
       sv: "Vad mäter earned value?"
       en: "What does earned value measure?"
     a:
-      sv: "Uppnådd nytta i pengar jämfört med plan"
-      en: "Progress in money terms compared with the plan"
+      sv: "Värdet av utfört arbete uttryckt i budgettermer och jämfört med planerad kostnad och faktisk kostnad"
+      en: "The value of completed work in budget terms, compared with planned and actual cost"
   - value: 400
     q:
       sv: "Vad står bokstäverna i en RAID-logg för?"

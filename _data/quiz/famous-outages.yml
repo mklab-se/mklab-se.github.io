@@ -121,8 +121,8 @@ questions:
       sv: "Vad utlöste det stora AWS-avbrottet 2017?"
       en: "What triggered the big AWS outage in 2017?"
     a:
-      sv: "Ett skrivfel i ett kommando under felsökning av S3"
-      en: "A typo in a command while debugging S3"
+      sv: "Felaktig indata till ett kommando under felsökning av S3 tog bort fler servrar än avsett"
+      en: "Incorrect command input during S3 debugging removed more servers than intended"
   - value: 400
     q:
       sv: "Vad var left-pad-incidenten 2016?"

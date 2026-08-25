@@ -111,8 +111,8 @@ questions:
       en: "The number of unique label combinations"
   - value: 400
     q:
-      sv: "Vad heter den öppna standarden för spårningar och mätvärden?"
-      en: "What is the open standard for traces and metrics called?"
+      sv: "Vad heter det öppna standardramverket för spårningar, mätvärden och loggar?"
+      en: "What is the open standard framework for traces, metrics and logs called?"
     a:
       sv: "OpenTelemetry"
       en: "OpenTelemetry"

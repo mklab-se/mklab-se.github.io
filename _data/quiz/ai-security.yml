@@ -128,8 +128,8 @@ questions:
       sv: "Vad är modellextraktion?"
       en: "What is model extraction?"
     a:
-      sv: "Att återskapa modellen eller dess träningsdata genom att fråga den"
-      en: "Recreating the model or its training data by querying it"
+      sv: "Att återskapa en modells funktion eller beteende genom att systematiskt fråga den"
+      en: "Recreating a model's functionality or behaviour by querying it systematically"
   - value: 400
     q:
       sv: "Vilken svaghet uppstår när angriparen planterar dokument i en vektordatabas?"

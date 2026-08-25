@@ -104,11 +104,11 @@ questions:
       en: "Risk management, data governance, logging and human oversight"
   - value: 300
     q:
-      sv: "Vad kräver förordningen av innehåll som en AI skapat?"
-      en: "What does the act require of content an AI has created?"
+      sv: "Vad kräver AI-förordningen av generativ AI:s bild-, ljud-, video- och textutdata?"
+      en: "What does the AI Act require for image, audio, video and text output from generative AI?"
     a:
-      sv: "Att det märks ut som maskinskapat"
-      en: "That it is marked as machine generated"
+      sv: "Att leverantören märker det maskinläsbart så att det kan identifieras som AI-genererat eller manipulerat"
+      en: "The provider must mark it in a machine-readable way so it can be detected as AI-generated or manipulated"
   - value: 400
     q:
       sv: "Hur hög kan den högsta boten enligt AI-förordningen bli?"
@@ -142,7 +142,7 @@ questions:
       sv: "Vad kallas den organisation som använder AI-systemet i sin verksamhet?"
       en: "What is the organisation that uses the AI system in its operations called?"
     a:
-      sv: "Deployer, tillhandahållare i egen verksamhet"
+      sv: "En tillhandahållare, deployer"
       en: "The deployer"
   - value: 500
     q:
