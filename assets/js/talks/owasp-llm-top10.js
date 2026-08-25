@@ -3,9 +3,10 @@
    One particle system behind the whole deck. Slides declare a
    scene via <section data-scene="...">; scrolling morphs the
    same lights from one scene into the next.
-   Scenes: title, anatomy, evidence, migration, inj1, inj2, leak,
-   agency1, agency2, supply, poison, burn, misinfo, hidden,
-   vector, output, boundary, posture, sources, outro.
+   Scenes: title, anatomy, evidence, migration, method, then per
+   risk chNN (the chapter card), rNN (what it is), aNN (the attack)
+   and dNN (the defense), then recap1, recap2, boundary, posture,
+   sources, outro.
    Color language: attacks are a cold pale light, damage flares
    ember, defenses are candle. Based on the shared deck engine.
    Content adapted from the OWASP Top 10 for LLM Applications
@@ -474,9 +475,9 @@
     links = [];
   };
 
-  // -- inj1: three tributaries, one token stream, and a pale set of
+  // -- r01 (inj1): three tributaries, one token stream, and a pale set of
   // -- tokens that the model cannot tell apart
-  layouts.inj1 = function () {
+  layouts.r01 = function () {
     var srcS = { x: W * (isMobile ? 0.16 : 0.53), y: H * 0.16, w: MN * 0.055, h: MN * 0.05 };
     var srcU = { x: W * (isMobile ? 0.16 : 0.53), y: H * 0.42 };
     var srcD = { x: W * (isMobile ? 0.16 : 0.53), y: H * 0.68, w: MN * 0.055, h: MN * 0.05 };
@@ -530,57 +531,9 @@
   };
 
   // -- inj2: three ways in that skip the user entirely, taking turns
-  layouts.inj2 = function () {
-    var store = { x: W * (isMobile ? 0.18 : 0.55), y: H * 0.17, w: MN * 0.05, h: MN * 0.065 };
-    var img = { x: W * (isMobile ? 0.18 : 0.55), y: H * 0.44, w: MN * 0.065, h: MN * 0.055 };
-    var mem = { x: W * (isMobile ? 0.18 : 0.55), y: H * 0.71, w: MN * 0.05, h: MN * 0.065 };
-    var cxp = { x: W * (isMobile ? 0.62 : 0.78), y: H * 0.44, w: MN * 0.085, h: MN * 0.11 };
-    var model = { x: W * (isMobile ? 0.85 : 0.92), y: H * 0.44, r: MN * 0.042 };
-    board = {
-      store: store, img: img, mem: mem, cxp: cxp, model: model,
-      cycle: 10800,
-      pR: makePath(store.x + store.w, store.y, cxp.x - cxp.w * 0.6, cxp.y - cxp.h * 0.25, 0.14),
-      pI: makePath(img.x + img.w * 0.7, img.y, cxp.x - cxp.w * 0.6, cxp.y, 0.04),
-      pM: makePath(mem.x + mem.w, mem.y, cxp.x - cxp.w * 0.6, cxp.y + cxp.h * 0.25, -0.14),
-      pC: makePath(cxp.x + cxp.w * 0.6, cxp.y, model.x - model.r * 1.2, model.y, 0.04),
-      labels: [
-        { x: store.x, y: store.y - store.h * 0.85 - 6, text: 'RAG STORE' },
-        { x: img.x, y: img.y + img.h * 0.85 + 12, text: 'AN IMAGE' },
-        { x: mem.x, y: mem.y + mem.h * 0.85 + 12, text: 'MEMORY · IT WAITS' },
-        { x: cxp.x, y: cxp.y - cxp.h * 0.62 - 10, text: 'CONTEXT' },
-        { x: model.x, y: model.y + model.r * 1.6 + 12, text: 'MODEL' }
-      ]
-    };
-    P.forEach(function (p, i) {
-      if (p.seed < 0.12) {
-        p.mode = 'brain'; brainHome(p, model);
-        p.baseAlpha = p.ember ? rand(0.3, 0.85) : rand(0.2, 0.55);
-        p.sizeMul = rand(0.3, 0.55); p.fast = false;
-      } else if (p.seed < 0.24) {
-        p.mode = 'cfill'; p.li = i % 6; cardHome(p, cxp, p.li, 6);
-        p.baseAlpha = rand(0.25, 0.55); p.sizeMul = rand(0.28, 0.5); p.fast = false;
-      } else if (p.seed < 0.36) {
-        p.mode = 'vec'; p.vi = i % 3; p.off = rand(0, 0.12); p.sprite = paleS;
-        p.baseAlpha = rand(0.45, 0.9); p.sizeMul = rand(0.3, 0.55); p.fast = true;
-      } else if (p.seed < 0.44) {
-        p.mode = 'sleep'; p.sprite = paleS;
-        boxHome(p, mem);
-        p.baseAlpha = rand(0.4, 0.8); p.sizeMul = rand(0.3, 0.55); p.fast = false;
-      } else if (p.seed < 0.52) {
-        p.mode = 'sfill';
-        var tgt2 = (i % 2 === 0) ? store : img;
-        boxHome(p, tgt2);
-        p.baseAlpha = rand(0.2, 0.5); p.sizeMul = rand(0.28, 0.5); p.fast = false;
-      } else {
-        assignDust(p);
-      }
-    });
-    links = [];
-  };
-
-  // -- leak: one model, many exits; the secrets prefer the pipes
+   // -- r02 (leak): one model, many exits; the secrets prefer the pipes
   // -- nobody is watching
-  layouts.leak = function () {
+  layouts.r02 = function () {
     var model = { x: W * (isMobile ? 0.34 : 0.64), y: H * 0.42, r: MN * 0.06 };
     var outs = [
       { x: W * (isMobile ? 0.72 : 0.885), y: H * 0.14, text: 'THE ANSWER' },
@@ -616,9 +569,9 @@
     links = brainLinksFor(function (p) { return p.mode === 'brain'; }, 44);
   };
 
-  // -- agency1: eight tools granted, two needed, and one malfunction
+  // -- r03 (agency1): eight tools granted, two needed, and one malfunction
   // -- reaching for the worst one
-  layouts.agency1 = function () {
+  layouts.r03 = function () {
     var agent = { x: W * (isMobile ? 0.5 : 0.72), y: H * 0.42, r: MN * 0.055 };
     var names = ['MAIL', 'FILES', 'DATABASE', 'DEPLOY', 'PAYMENTS', 'DELETE', 'CHAT', 'CALENDAR'];
     var tools = names.map(function (nm, k) {
@@ -660,51 +613,9 @@
 
   // -- agency2: the ring shrinks to what the task needs, and the big
   // -- red buttons get a human in front of them
-  layouts.agency2 = function () {
-    var agent = { x: W * (isMobile ? 0.5 : 0.70), y: H * 0.44, r: MN * 0.055 };
-    var names = ['MAIL', 'CALENDAR', 'DEPLOY'];
-    var tools = names.map(function (nm, k) {
-      var a = -Math.PI / 2 + k * Math.PI * 2 / 3 + 0.5;
-      var r = MN * 0.15;
-      return { x: agent.x + Math.cos(a) * r * 1.1, y: agent.y + Math.sin(a) * r * 0.85, text: nm };
-    });
-    var human = { x: tools[2].x - MN * 0.095, y: tools[2].y + MN * 0.035 };
-    board = {
-      agent: agent, tools: tools, human: human,
-      cycle: 7200,
-      trig: ['HALLUCINATION', 'INJECTION', 'A COMPROMISED PEER'],
-      labels: [
-        { x: agent.x, y: H * 0.085, text: 'MINIMAL TOOLS · SCOPED PERMISSIONS' },
-        { x: human.x, y: human.y + 40, text: 'HUMAN · HIGH IMPACT ONLY' }
-      ]
-    };
-    P.forEach(function (p, i) {
-      if (p.seed < 0.22) {
-        p.mode = 'brain'; brainHome(p, agent);
-        p.baseAlpha = p.ember ? rand(0.3, 0.85) : rand(0.2, 0.55);
-        p.sizeMul = rand(0.32, 0.62); p.fast = false;
-      } else if (p.seed < 0.36) {
-        p.mode = 'tool'; p.ti = i % 3;
-        var tl = tools[p.ti];
-        p.hx = tl.x + rand(-MN * 0.016, MN * 0.016);
-        p.hy = tl.y + rand(-MN * 0.014, MN * 0.014);
-        p.baseAlpha = rand(0.3, 0.65); p.sizeMul = rand(0.3, 0.55); p.fast = false;
-      } else if (p.seed < 0.46) {
-        p.mode = 'trig'; p.gi = i % 3; p.off = rand(0, 0.15); p.sprite = paleS;
-        p.baseAlpha = rand(0.4, 0.85); p.sizeMul = rand(0.28, 0.5); p.fast = true;
-      } else if (p.seed < 0.54) {
-        p.mode = 'act'; p.off = rand(0, 0.12);
-        p.baseAlpha = rand(0.4, 0.85); p.sizeMul = rand(0.3, 0.55); p.fast = true;
-      } else {
-        assignDust(p);
-      }
-    });
-    links = brainLinksFor(function (p) { return p.mode === 'brain'; }, 40);
-  };
-
-  // -- supply: artifacts arrive from the hub; one of them is not
+   // -- r04 (supply): artifacts arrive from the hub; one of them is not
   // -- what it claims to be, and provenance is the tell
-  layouts.supply = function () {
+  layouts.r04 = function () {
     var hub = { x: W * (isMobile ? 0.18 : 0.56), y: H * 0.16, w: MN * 0.065, h: MN * 0.06 };
     var gate = { x: W * (isMobile ? 0.5 : 0.72), y: H * 0.42, w: MN * 0.05, h: MN * 0.07 };
     var pipe = { x: W * (isMobile ? 0.8 : 0.885), y: H * 0.68, w: MN * 0.07, h: MN * 0.08 };
@@ -737,9 +648,9 @@
     links = [];
   };
 
-  // -- poison: the diet looks fine, the model looks fine, and the
+  // -- r05 (poison): the diet looks fine, the model looks fine, and the
   // -- sleeper waits for its trigger
-  layouts.poison = function () {
+  layouts.r05 = function () {
     var fx = W * (isMobile ? 0.5 : 0.74);
     var funnel = { x: fx, y0: H * 0.10, y1: H * 0.34, wTop: MN * 0.17, wBot: MN * 0.035 };
     var model = { x: fx, y: H * 0.52, r: MN * 0.058 };
@@ -787,9 +698,9 @@
     links = brainLinksFor(function (p) { return p.mode === 'brain'; }, 40);
   };
 
-  // -- burn: one cheap request, a furnace of compute, and the meters
+  // -- r06 (burn): one cheap request, a furnace of compute, and the meters
   // -- climbing until the breaker earns its keep
-  layouts.burn = function () {
+  layouts.r06 = function () {
     var atk = { x: W * (isMobile ? 0.14 : 0.545), y: H * 0.28 };
     var model = { x: W * (isMobile ? 0.5 : 0.72), y: H * 0.44, r: MN * 0.065 };
     var meters = [
@@ -825,9 +736,9 @@
     links = brainLinksFor(function (p) { return p.mode === 'brain'; }, 44);
   };
 
-  // -- misinfo: a confident answer heads for the gate; only grounded
+  // -- r07 (misinfo): a confident answer heads for the gate; only grounded
   // -- ones should make it through
-  layouts.misinfo = function () {
+  layouts.r07 = function () {
     var model = { x: W * (isMobile ? 0.16 : 0.575), y: H * 0.42, r: MN * 0.05 };
     var card = { w: MN * 0.06, h: MN * 0.045 };
     var gate = { x: W * (isMobile ? 0.62 : 0.80), y: H * 0.42 };
@@ -865,9 +776,9 @@
     links = brainLinksFor(function (p) { return p.mode === 'brain'; }, 36);
   };
 
-  // -- hidden: the half of the context you never show, reconstructed
+  // -- r08 (hidden): the half of the context you never show, reconstructed
   // -- probe by probe on the attacker's side of the glass
-  layouts.hidden = function () {
+  layouts.r08 = function () {
     var panel = { x: W * (isMobile ? 0.3 : 0.635), y: H * 0.42, w: MN * 0.115, h: MN * 0.17 };
     var atk = { x: W * (isMobile ? 0.84 : 0.925), y: H * 0.62 };
     var mirror = { x: W * (isMobile ? 0.84 : 0.905), y: H * 0.30, w: MN * 0.09, h: MN * 0.11 };
@@ -914,9 +825,9 @@
     links = [];
   };
 
-  // -- vector: the embedding space itself, four failures in turn:
+  // -- r09 (vector): the embedding space itself, four failures in turn:
   // -- wrong, leak, silent, indiscriminate
-  layouts.vector = function () {
+  layouts.r09 = function () {
     var sp = {
       cx: W * (isMobile ? 0.5 : 0.72),
       cy: H * (isMobile ? 0.30 : 0.42),
@@ -956,9 +867,9 @@
     links = [];
   };
 
-  // -- output: raw model output riding into browser, shell and
+  // -- r10 (output): raw model output riding into browser, shell and
   // -- database, until the validation gate starts earning rent
-  layouts.output = function () {
+  layouts.r10 = function () {
     var model = { x: W * (isMobile ? 0.16 : 0.565), y: H * 0.42, r: MN * 0.05 };
     var gate = { x: W * (isMobile ? 0.52 : 0.745), y: H * 0.42 };
     var outs = [
@@ -1122,6 +1033,720 @@
     links = [];
   };
 
+  /* ============================================================
+     The repeating chapter grammar. Every risk gets four slides,
+     and three of them are built from the families below:
+       chNN  the chapter card: particles assemble the rank
+             numeral, the ten-tick ladder shows the position
+       aNN   the attack: a staged chain, an intruder's pale
+             light walking it, ember where the damage lands
+       dNN   the defense: the same chain, with candle gates
+             standing in the segments the attack walked through
+     The risk slide itself (rNN) stays bespoke, one scene per
+     mechanism, so the rhythm alternates familiar and new.
+     ============================================================ */
+
+  // ---------- text rasterised to particle homes ----------
+  var textCache = {};
+  function textPoints(str, fontPx, step) {
+    var key = str + '|' + fontPx + '|' + step;
+    if (textCache[key]) return textCache[key];
+    var off = document.createElement('canvas');
+    off.width = Math.ceil(fontPx * str.length * 0.78 + 40);
+    off.height = Math.ceil(fontPx * 1.34);
+    var oc = off.getContext('2d');
+    oc.fillStyle = '#fff';
+    oc.font = '500 ' + fontPx + 'px "JetBrains Mono", Menlo, monospace';
+    oc.textAlign = 'center'; oc.textBaseline = 'middle';
+    oc.fillText(str, off.width / 2, off.height / 2);
+    var d = oc.getImageData(0, 0, off.width, off.height).data;
+    var pts = [];
+    for (var y = 0; y < off.height; y += step) {
+      for (var x = 0; x < off.width; x += step) {
+        if (d[(y * off.width + x) * 4 + 3] > 130) {
+          pts.push([x - off.width / 2, y - off.height / 2]);
+        }
+      }
+    }
+    textCache[key] = pts;
+    return pts;
+  }
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  function curveEval(pts, u) {
+    if (!pts) return u;
+    for (var i = 1; i < pts.length; i++) {
+      if (u <= pts[i][0]) {
+        var a = pts[i - 1], b = pts[i];
+        var f = (u - a[0]) / Math.max(1e-6, b[0] - a[0]);
+        return a[1] + (b[1] - a[1]) * f;
+      }
+    }
+    return pts[pts.length - 1][1];
+  }
+
+  // ---------- the ten-tick ladder, shared by chapters and recaps ----------
+  function makeLadder(axis, lit0, lit1) {
+    var nodes = [], i;
+    if (axis === 'h') {
+      var lw = Math.min(W * (isMobile ? 0.80 : 0.46), MN * 0.92);
+      var lx = W * 0.5 - lw / 2;
+      var ly = H * (isMobile ? 0.42 : 0.53);
+      for (i = 0; i < 10; i++) {
+        nodes.push({ x: lx + lw * i / 9, y: ly, i: i, on: i + 1 >= lit0 && i + 1 <= lit1 });
+      }
+      return { axis: 'h', nodes: nodes, x0: lx, x1: lx + lw, y: ly, lit0: lit0, lit1: lit1 };
+    }
+    var lh = Math.min(H * 0.66, MN * 0.86);
+    var ly0 = H * 0.5 - lh / 2;
+    var lxv = W * (isMobile ? 0.90 : 0.88);
+    for (i = 0; i < 10; i++) {
+      nodes.push({ x: lxv, y: ly0 + lh * i / 9, i: i, on: i + 1 >= lit0 && i + 1 <= lit1 });
+    }
+    return { axis: 'v', nodes: nodes, x: lxv, y0: ly0, y1: ly0 + lh, lit0: lit0, lit1: lit1 };
+  }
+
+  function ladderPopulate(lad, share) {
+    P.forEach(function (p, idx) {
+      if (p.mode) return;                      // already claimed by the caller
+      if (p.seed < share) {
+        var nd = lad.nodes[idx % 10];
+        p.mode = 'tick'; p.ni = nd.i;
+        p.hx = nd.x + rand(-2.5, 2.5);
+        p.hy = nd.y + rand(-2.5, 2.5);
+        p.sprite = nd.on ? emberS : whiteS;
+        p.baseAlpha = nd.on ? rand(0.55, 1) : rand(0.10, 0.26);
+        p.sizeMul = nd.on ? rand(0.42, 0.78) : rand(0.26, 0.44);
+        p.fast = false;
+      } else if (p.seed < share + 0.07) {
+        p.mode = 'run'; p.off = rand(0, 1); p.sprite = candleS;
+        p.baseAlpha = rand(0.4, 0.85); p.sizeMul = rand(0.3, 0.55); p.fast = true;
+      } else {
+        assignDust(p);
+      }
+    });
+  }
+
+  function chapterLayout(rank) {
+    links = [];
+    var cx = W * 0.5, cy = H * (isMobile ? 0.22 : 0.27);
+    var fontPx = Math.round(MN * (isMobile ? 0.20 : 0.30));
+    var pts = textPoints(pad2(rank), fontPx, Math.max(3, Math.round(fontPx / 30)));
+    var lad = makeLadder('h', rank, rank);
+    board = { kind: 'chapter', rank: rank, lad: lad, cx: cx, cy: cy, cycle: 7200,
+              reach: 0, arrive: 0 };
+    P.forEach(function (p) { p.mode = null; });
+    P.forEach(function (p, idx) {
+      if (p.seed < 0.50 && pts.length) {
+        var q = pts[idx % pts.length];
+        p.mode = 'num';
+        p.hx = cx + q[0]; p.hy = cy + q[1];
+        var ang = Math.atan2(q[1], q[0] || 0.001);
+        p.ox = Math.cos(ang) * MN * rand(0.18, 0.42);
+        p.oy = Math.sin(ang) * MN * rand(0.18, 0.42);
+        p.off = fract(p.seed * 37.1);
+        p.baseAlpha = p.ember ? rand(0.5, 1) : rand(0.35, 0.8);
+        p.sizeMul = rand(0.28, 0.52); p.fast = false;
+      }
+    });
+    ladderPopulate(lad, 0.62);
+  }
+
+  function recapLayout(from, to) {
+    links = [];
+    var lad = makeLadder('v', from, to);
+    board = { kind: 'recap', lad: lad, from: from, to: to, cycle: 8200, sweep: 0 };
+    P.forEach(function (p) { p.mode = null; });
+    ladderPopulate(lad, 0.26);
+  }
+
+  // ---------- the staged chain, shared by every attack and defense ----------
+  function stageBox() {
+    return isMobile
+      ? { x0: W * 0.09, x1: W * 0.94, y0: H * 0.11, y1: H * 0.89 }
+      : { x0: W * 0.45, x1: W * 0.955, y0: H * 0.14, y1: H * 0.87 };
+  }
+
+  function nodeRadius(nd) {
+    return nd.shape === 'orb'
+      ? { rx: nd.pw / 2, ry: nd.pw / 2 }
+      : { rx: nd.pw / 2, ry: nd.ph / 2 };
+  }
+  function anchorOn(nd, tx, ty) {
+    var dx = tx - nd.px, dy = ty - nd.py;
+    var r = nodeRadius(nd);
+    if (Math.abs(dx) * r.ry >= Math.abs(dy) * r.rx) {
+      return [nd.px + (dx > 0 ? 1 : -1) * (r.rx + 7), nd.py + dy * 0.10];
+    }
+    return [nd.px + dx * 0.10, nd.py + (dy > 0 ? 1 : -1) * (r.ry + 9)];
+  }
+
+  function buildChain(cfg) {
+    var sb = stageBox();
+    var stages = cfg.stages.map(function (row, si) {
+      return row.map(function (nd) {
+        return {
+          px: sb.x0 + nd.u * (sb.x1 - sb.x0),
+          py: sb.y0 + nd.v * (sb.y1 - sb.y0),
+          pw: MN * (nd.w || 0.07), ph: MN * (nd.h || 0.052),
+          label: nd.label, shape: nd.shape || 'box',
+          up: !!nd.up, si: si
+        };
+      });
+    });
+    var paths = [];
+    for (var i = 0; i < stages.length - 1; i++) {
+      var grid = [];
+      for (var a = 0; a < stages[i].length; a++) {
+        var row2 = [];
+        for (var b = 0; b < stages[i + 1].length; b++) {
+          var na = stages[i], nb = stages[i + 1];
+          var A = stages[i][a], B = stages[i + 1][b];
+          var ax = anchorOn(A, B.px, B.py), bx = anchorOn(B, A.px, A.py);
+          var bend = ((a - (na.length - 1) / 2) - (b - (nb.length - 1) / 2)) * 0.13;
+          row2.push(makePath(ax[0], ax[1], bx[0], bx[1], bend));
+        }
+        grid.push(row2);
+      }
+      paths.push(grid);
+    }
+    return { stages: stages, paths: paths, segs: stages.length - 1 };
+  }
+
+  function pickRoute(cfg, ch) {
+    var route = [], prev = -1;
+    for (var i = 0; i < ch.stages.length; i++) {
+      var n = ch.stages[i].length;
+      var pick;
+      if (cfg.lock && prev >= 0 && n === ch.stages[i - 1].length) pick = prev;
+      else pick = Math.floor(Math.random() * n);
+      route.push(pick); prev = pick;
+    }
+    return route;
+  }
+
+  function routePos(ch, route, s) {
+    var n = ch.segs;
+    var i = Math.min(n - 1, Math.floor(s * n));
+    var f = clamp01(s * n - i);
+    return bezier(ch.paths[i][route[i]][route[i + 1]], easeInOut(f));
+  }
+
+  function chainLayout(cfg, mode) {
+    links = [];
+    var ch = buildChain(cfg);
+    var gates = [];
+    if (mode === 'd' && cfg.gates) {
+      cfg.gates.forEach(function (g) {
+        var a = ch.stages[g.stage], b = ch.stages[g.stage + 1];
+        var ax = 0, ay0 = 1e9, ay1 = -1e9, k;
+        for (k = 0; k < a.length; k++) { ax += a[k].px; ay0 = Math.min(ay0, a[k].py); ay1 = Math.max(ay1, a[k].py); }
+        var bx = 0, by0 = 1e9, by1 = -1e9;
+        for (k = 0; k < b.length; k++) { bx += b[k].px; by0 = Math.min(by0, b[k].py); by1 = Math.max(by1, b[k].py); }
+        ax /= a.length; bx /= b.length;
+        var ay = 0, by = 0;
+        for (k = 0; k < a.length; k++) ay += a[k].py;
+        for (k = 0; k < b.length; k++) by += b[k].py;
+        ay /= a.length; by /= b.length;
+        // a wall stands across the path, so it turns with the segment
+        var vertical = Math.abs(bx - ax) >= Math.abs(by - ay);
+        var span = vertical
+          ? Math.max(MN * 0.10, (Math.max(ay1, by1) - Math.min(ay0, by0)) * 0.62 + MN * 0.06)
+          : Math.max(MN * 0.10, Math.abs(bx - ax) * 0.5 + MN * 0.09);
+        var at = (g.at || 0.52);
+        gates.push({
+          x: ax + (bx - ax) * at,
+          y: vertical ? (Math.min(ay0, by0) + Math.max(ay1, by1)) / 2 : ay + (by - ay) * at,
+          span: span, label: g.label, vertical: vertical, tier: gates.length % 2,
+          s: (g.stage + at) / ch.segs
+        });
+      });
+    }
+    board = {
+      kind: 'chain', mode: mode, cfg: cfg, ch: ch, gates: gates,
+      cycle: cfg.cycle || 9200, calm: !!cfg.calm,
+      tw0: 0.06, tw1: mode === 'd' ? 0.86 : 0.80,
+      head: 0, live: false, hit: 0,
+      gateAct: gates.map(function () { return 0; })
+    };
+    var weights = mode === 'd' ? [0.55, 0.82, 1] : null;
+    P.forEach(function (p, idx) {
+      if (p.seed < 0.24) {
+        p.mode = 'pl';
+        p.route = pickRoute(cfg, ch);
+        p.off = Math.random();
+        p.sprite = board.calm ? whiteS : paleS;
+        p.jx = rand(-7, 7); p.jy = rand(-7, 7);
+        p.baseAlpha = rand(0.26, 0.72); p.sizeMul = rand(0.26, 0.5); p.fast = true;
+        if (gates.length) {
+          var r = Math.random(), gi = 0;
+          while (gi < gates.length - 1 && r > weights[Math.min(gi, weights.length - 1)]) gi++;
+          p.die = Math.min(gi, gates.length - 1);
+        }
+      } else if (p.seed < 0.50) {
+        var flat = [];
+        ch.stages.forEach(function (row) { row.forEach(function (nd) { flat.push(nd); }); });
+        var host = flat[idx % flat.length];
+        p.host = host;
+        if (host.shape === 'orb') {
+          p.mode = 'nbrain';
+          brainHome(p, { x: host.px, y: host.py, r: host.pw / 2 });
+          p.baseAlpha = p.ember ? rand(0.3, 0.8) : rand(0.2, 0.5);
+          p.sizeMul = rand(0.28, 0.5);
+        } else {
+          p.mode = 'nfill';
+          boxHome(p, { x: host.px, y: host.py, w: host.pw, h: host.ph });
+          p.baseAlpha = rand(0.16, 0.42); p.sizeMul = rand(0.24, 0.44);
+        }
+        p.fast = false;
+      } else if (mode === 'd' && p.seed < 0.60) {
+        var g2 = gates.length ? gates[idx % gates.length] : null;
+        p.mode = 'gate'; p.sprite = candleS;
+        p.gi = g2 ? gates.indexOf(g2) : 0;
+        p.hx = (g2 ? g2.x : W * 0.6) + rand(-2, 2);
+        p.hy = (g2 ? g2.y : H * 0.5) + rand(-0.5, 0.5) * (g2 ? g2.span : 40);
+        p.baseAlpha = rand(0.25, 0.7); p.sizeMul = rand(0.26, 0.48); p.fast = false;
+      } else {
+        assignDust(p);
+      }
+    });
+  }
+
+  // ---------- one chain per risk, reused by the attack and the defense ----------
+  var CHAINS = {
+    '01': {
+      cycle: 10200,
+      stages: [
+        [{ u: 0.00, v: 0.06, label: 'A PUBLIC PAGE', up: true },
+         { u: 0.00, v: 0.46, label: 'A SUPPORT TICKET' },
+         { u: 0.00, v: 0.86, label: 'AN IMAGE' }],
+        [{ u: 0.35, v: 0.46, label: 'RETRIEVAL' }],
+        [{ u: 0.63, v: 0.46, label: 'CONTEXT WINDOW', shape: 'panel', w: 0.09, h: 0.10, up: true }],
+        [{ u: 0.87, v: 0.46, label: 'MODEL', shape: 'orb', w: 0.085, up: true }],
+        [{ u: 0.87, v: 0.97, label: 'TOOL CALL' }]
+      ],
+      gates: [{ stage: 1, label: 'PROVENANCE' }, { stage: 2, label: 'CONTENT, NOT COMMAND' },
+              { stage: 3, label: 'HUMAN APPROVAL' }]
+    },
+    '02': {
+      cycle: 10600,
+      stages: [
+        [{ u: 0.00, v: 0.48, label: 'PATIENT PROBES', shape: 'person' }],
+        [{ u: 0.26, v: 0.48, label: 'MODEL', shape: 'orb', w: 0.085, up: true }],
+        [{ u: 0.58, v: 0.03, label: 'ANSWER', up: true, w: 0.062, h: 0.042 },
+         { u: 0.58, v: 0.27, label: 'TOOL ARGUMENTS', w: 0.062, h: 0.042 },
+         { u: 0.58, v: 0.51, label: 'STACK TRACE', w: 0.062, h: 0.042 },
+         { u: 0.58, v: 0.75, label: 'LOGS', w: 0.062, h: 0.042 },
+         { u: 0.58, v: 0.99, label: 'EMBEDDINGS', w: 0.062, h: 0.042 }],
+        [{ u: 0.93, v: 0.51, label: 'THE RECORD', w: 0.075 }]
+      ],
+      gates: [{ stage: 0, label: 'CLASSIFY AT SOURCE' }, { stage: 1, label: 'PERMISSION FILTER' },
+              { stage: 2, label: 'SCRUB EVERY CHANNEL' }]
+    },
+    '03': {
+      cycle: 9600,
+      stages: [
+        [{ u: 0.00, v: 0.48, label: 'ONE TRIGGER' }],
+        [{ u: 0.27, v: 0.48, label: 'THE AGENT', shape: 'orb', w: 0.085, up: true }],
+        [{ u: 0.56, v: 0.48, label: 'ITS OWN CREDENTIALS', w: 0.075 }],
+        [{ u: 0.90, v: 0.05, label: 'MAIL: SEND', up: true, w: 0.066, h: 0.044 },
+         { u: 0.90, v: 0.48, label: 'DATABASE: DELETE', w: 0.066, h: 0.044 },
+         { u: 0.90, v: 0.91, label: 'PAYMENT: NO LIMIT', w: 0.066, h: 0.044 }]
+      ],
+      gates: [{ stage: 0, label: 'INPUT IS CONTENT' }, { stage: 1, label: 'ONLY THE TOOLS NEEDED' },
+              { stage: 2, label: 'HUMAN APPROVAL' }]
+    },
+    '04': {
+      cycle: 11400,
+      sCurve: [[0, 0], [0.40, 0.50], [0.63, 0.50], [1, 1]],
+      stages: [
+        [{ u: 0.00, v: 0.40, label: 'A HELPFUL BUILD', shape: 'person' }],
+        [{ u: 0.26, v: 0.40, label: 'THE MODEL HUB', shape: 'store', w: 0.072, h: 0.062 }],
+        [{ u: 0.53, v: 0.40, label: 'YOUR BUILD' }],
+        [{ u: 0.80, v: 0.40, label: 'LOAD TIME', shape: 'orb', w: 0.078, up: true }],
+        [{ u: 0.80, v: 0.94, label: 'CODE RUNS' }]
+      ],
+      gates: [{ stage: 1, label: 'SIGNATURE + DIGEST' }, { stage: 2, label: 'NO CODE ON LOAD' },
+              { stage: 3, label: 'STAGED ROLLOUT' }]
+    },
+    '05': {
+      cycle: 12000,
+      sCurve: [[0, 0], [0.30, 0.667], [0.68, 0.667], [1, 1]],
+      stages: [
+        [{ u: 0.00, v: 0.08, label: 'SEEDED PAGES', up: true },
+         { u: 0.00, v: 0.48, label: 'A PUBLIC DATASET' },
+         { u: 0.00, v: 0.88, label: 'USER FEEDBACK' }],
+        [{ u: 0.34, v: 0.48, label: 'TRAINING' }],
+        [{ u: 0.62, v: 0.48, label: 'THE WEIGHTS', shape: 'orb', w: 0.095, up: true }],
+        [{ u: 0.93, v: 0.48, label: 'THE TRIGGER' }]
+      ],
+      gates: [{ stage: 0, label: 'PROVENANCE + REVIEW' }, { stage: 1, label: 'CORPUS ANOMALIES' },
+              { stage: 2, label: 'BACKDOOR EVALUATIONS' }]
+    },
+    '06': {
+      cycle: 10800, swell: true,
+      sCurve: [[0, 0], [0.16, 0.42], [0.26, 0.30], [0.40, 0.58], [0.50, 0.44],
+               [0.64, 0.74], [0.74, 0.60], [0.88, 0.94], [1, 1]],
+      stages: [
+        [{ u: 0.00, v: 0.48, label: 'ONE REQUEST', shape: 'person' }],
+        [{ u: 0.28, v: 0.48, label: 'THE AGENT LOOP', shape: 'orb', w: 0.088, up: true }],
+        [{ u: 0.60, v: 0.48, label: 'STEPS SPAWN STEPS', w: 0.082 }],
+        [{ u: 0.92, v: 0.48, label: 'TOKENS · GPU · INVOICE', shape: 'meter', w: 0.07, h: 0.075 }]
+      ],
+      gates: [{ stage: 0, label: 'QUOTA PER IDENTITY' }, { stage: 1, label: 'STEP AND TOKEN CAPS' },
+              { stage: 2, label: 'CIRCUIT BREAKER' }]
+    },
+    '07': {
+      cycle: 10000,
+      stages: [
+        [{ u: 0.00, v: 0.30, label: 'THE MODEL INVENTS', shape: 'orb', w: 0.082, up: true }],
+        [{ u: 0.30, v: 0.30, label: 'A NAME NOBODY OWNS' }],
+        [{ u: 0.60, v: 0.62, label: 'SOMEONE REGISTERS IT', shape: 'person' }],
+        [{ u: 0.92, v: 0.30, label: 'INSTALLED ON TRUST' }]
+      ],
+      gates: [{ stage: 0, label: 'GROUNDED AND CITED' }, { stage: 1, label: 'INSTALL ALLOWLIST' },
+              { stage: 2, label: 'HUMAN BEFORE THE ACT' }]
+    },
+    '08': {
+      cycle: 10400,
+      stages: [
+        [{ u: 0.00, v: 0.48, label: 'ASK. REFRAME. INFER.', shape: 'person' }],
+        [{ u: 0.30, v: 0.48, label: 'MODEL', shape: 'orb', w: 0.085, up: true }],
+        [{ u: 0.62, v: 0.08, label: 'SYSTEM PROMPT', up: true, w: 0.068, h: 0.044 },
+         { u: 0.62, v: 0.48, label: 'POLICY RULES', w: 0.068, h: 0.044 },
+         { u: 0.62, v: 0.88, label: 'TOOL SCHEMAS', w: 0.068, h: 0.044 }],
+        [{ u: 0.94, v: 0.48, label: 'RECONSTRUCTED', w: 0.072 }]
+      ],
+      gates: [{ stage: 1, label: 'NO SECRETS IN CONTEXT' }, { stage: 2, label: 'CHECKED IN THE APP' }]
+    },
+    '09': {
+      cycle: 10200,
+      stages: [
+        [{ u: 0.00, v: 0.48, label: 'A CRAFTED CHUNK', shape: 'person' }],
+        [{ u: 0.27, v: 0.48, label: 'INGESTION' }],
+        [{ u: 0.57, v: 0.48, label: 'EMBEDDING SPACE', shape: 'field', w: 0.115, h: 0.115, up: true }],
+        [{ u: 0.92, v: 0.06, label: 'A QUESTION', up: true, w: 0.066, h: 0.044 },
+         { u: 0.92, v: 0.48, label: 'ANOTHER QUESTION', w: 0.066, h: 0.044 },
+         { u: 0.92, v: 0.90, label: 'ANY QUESTION', w: 0.066, h: 0.044 }]
+      ],
+      gates: [{ stage: 0, label: 'SOURCE VALIDATION' }, { stage: 1, label: 'TENANT PARTITION' },
+              { stage: 2, label: 'PERMISSION AT QUERY' }]
+    },
+    '10': {
+      cycle: 9400, lock: true,
+      stages: [
+        [{ u: 0.00, v: 0.48, label: 'STEERED OUTPUT', shape: 'orb', w: 0.085, up: true }],
+        [{ u: 0.40, v: 0.06, label: 'THE BROWSER', up: true, w: 0.068, h: 0.044 },
+         { u: 0.40, v: 0.48, label: 'THE DATABASE', w: 0.068, h: 0.044 },
+         { u: 0.40, v: 0.90, label: 'THE SHELL', w: 0.068, h: 0.044 }],
+        [{ u: 0.88, v: 0.06, label: 'SCRIPT EXECUTION', up: true, w: 0.072, h: 0.044 },
+         { u: 0.88, v: 0.48, label: 'SQL INJECTION', w: 0.072, h: 0.044 },
+         { u: 0.88, v: 0.90, label: 'COMMAND EXECUTION', w: 0.072, h: 0.044 }]
+      ],
+      gates: [{ stage: 0, label: 'SCHEMA VALIDATION' }, { stage: 1, label: 'ENCODE FOR DESTINATION' }]
+    }
+  };
+
+  var METHOD_CHAIN = {
+    cycle: 8600, calm: true,
+    stages: [
+      [{ u: 0.00, v: 0.48, label: 'THE CHAPTER' }],
+      [{ u: 0.31, v: 0.48, label: 'WHAT IT IS' }],
+      [{ u: 0.62, v: 0.48, label: 'THE ATTACK' }],
+      [{ u: 0.93, v: 0.48, label: 'THE DEFENSE' }]
+    ]
+  };
+
+  (function registerFamilies() {
+    for (var i = 1; i <= 10; i++) {
+      (function (n) {
+        var id = pad2(n);
+        layouts['ch' + id] = function () { chapterLayout(n); };
+        layouts['a' + id] = function () { chainLayout(CHAINS[id], 'a'); };
+        layouts['d' + id] = function () { chainLayout(CHAINS[id], 'd'); };
+      })(i);
+    }
+    layouts.method = function () { chainLayout(METHOD_CHAIN, 'a'); };
+    layouts.recap1 = function () { recapLayout(1, 5); };
+    layouts.recap2 = function () { recapLayout(6, 10); };
+  })();
+
+  function isFamilyScene(name) {
+    return !!name && (board.kind === 'chapter' || board.kind === 'recap' || board.kind === 'chain');
+  }
+
+  // ---------- per-frame motion for the three families ----------
+  function familyTargets(t, te) {
+    if (board.kind === 'chapter') {
+      var lad = board.lad;
+      var runU = fract(te / board.cycle);
+      var reach = clamp01(win(runU, 0.05, 0.55) < 0 ? (runU > 0.55 ? 1 : 0) : easeInOut(win(runU, 0.05, 0.55)));
+      board.reach = reach;
+      board.arrive = runU > 0.55 ? clamp01(1 - (runU - 0.55) / 0.30) : 0;
+      P.forEach(function (p) {
+        if (p.mode === 'num') {
+          var asm = clamp01((te - p.off * 420) / 1250);
+          var e = easeInOut(asm);
+          p.tx = p.hx + p.ox * (1 - e) + Math.sin(t * 0.0006 * p.speed + p.phase) * 1.6 * e;
+          p.ty = p.hy + p.oy * (1 - e) + Math.cos(t * 0.0005 + p.phase) * 1.3 * e;
+          p.alpha = p.baseAlpha * e * (0.75 + 0.25 * Math.sin(t * 0.0013 + p.phase));
+        } else if (p.mode === 'tick') {
+          var nd = lad.nodes[p.ni];
+          p.tx = p.hx + Math.sin(t * 0.0009 + p.phase) * 1.2;
+          p.ty = p.hy + Math.cos(t * 0.0008 + p.phase) * 1.2;
+          p.alpha = p.baseAlpha * (nd.on
+            ? (0.7 + 0.3 * Math.sin(t * 0.0016 + p.phase)) * (1 + board.arrive * 0.6)
+            : (0.55 + 0.45 * Math.sin(t * 0.0008 + p.phase)));
+        } else if (p.mode === 'run') {
+          var head = reach * (board.rank - 1) / 9;
+          var s = clamp01(head - p.off * 0.09);
+          p.tx = lad.x0 + (lad.x1 - lad.x0) * s;
+          p.ty = lad.y + Math.sin(t * 0.002 + p.phase) * 1.5;
+          p.alpha = p.baseAlpha * (reach > 0 && reach < 1 ? 1 : 0.15) *
+            (0.6 + 0.4 * Math.sin(t * 0.003 + p.phase));
+        } else {
+          dustTarget(p, t);
+        }
+      });
+      return;
+    }
+
+    if (board.kind === 'recap') {
+      var lv = board.lad;
+      var sweep = fract(te / board.cycle);
+      board.sweep = sweep;
+      P.forEach(function (p) {
+        if (p.mode === 'tick') {
+          var nd2 = lv.nodes[p.ni];
+          var near = 1 - Math.min(1, Math.abs(sweep - (p.ni / 9)) * 5);
+          p.tx = p.hx + Math.sin(t * 0.0009 + p.phase) * 1.2;
+          p.ty = p.hy + Math.cos(t * 0.0008 + p.phase) * 1.2;
+          p.alpha = p.baseAlpha * (0.6 + 0.4 * Math.sin(t * 0.0012 + p.phase)) *
+            (nd2.on ? 1 + near * 0.8 : 0.7);
+        } else if (p.mode === 'run') {
+          var s2 = clamp01(sweep - p.off * 0.07);
+          p.tx = lv.x + Math.sin(t * 0.002 + p.phase) * 1.5;
+          p.ty = lv.y0 + (lv.y1 - lv.y0) * s2;
+          p.alpha = p.baseAlpha * (0.5 + 0.5 * Math.sin(t * 0.003 + p.phase));
+        } else {
+          dustTarget(p, t);
+        }
+      });
+      return;
+    }
+
+    // ---- the chain, attack or defense ----
+    var ch = board.ch, cfg = board.cfg;
+    var SPREAD = 0.34;                       // how far the pack stretches along the chain
+    var prog = fract(te / board.cycle);
+    var u = win(prog, board.tw0, board.tw1);
+    var curve = u < 0 ? (prog < board.tw0 ? 0 : 1) : curveEval(cfg.sCurve, u);
+    // the leader runs past the end so the tail still arrives
+    var lead = curve * (1 + SPREAD);
+    var pack = clamp01(lead - SPREAD * 0.5);  // where the body of the light is
+    var live = u >= 0;
+    board.lead = lead; board.head = pack; board.live = live;
+    board.hit = (board.mode === 'a' && !board.calm)
+      ? clamp01((pack - 0.88) / 0.12) * (live || prog > board.tw1 ? 1 : 0) *
+        (prog > board.tw1 ? clamp01(1 - (prog - board.tw1) / 0.16) : 1)
+      : 0;
+    board.gateAct = board.gates.map(function (g) {
+      var d = pack - g.s;
+      if (d < -0.04 || d > 0.24) return 0;
+      return bell(clamp01((d + 0.04) / 0.28));
+    });
+    P.forEach(function (p) {
+      if (p.mode === 'pl') {
+        var raw = lead - p.off * SPREAD;
+        var s3 = clamp01(raw);
+        var fade = 1;
+        if (board.mode === 'd' && board.gates.length) {
+          var gs = board.gates[p.die].s;
+          if (s3 >= gs) {
+            s3 = gs;
+            fade = clamp01(1 - (raw - gs) / 0.13);
+          }
+        }
+        if (!live && lead <= 0) { fade = 0; s3 = 0; }
+        var pos = routePos(ch, p.route, s3);
+        p.tx = pos[0] + p.jx + Math.sin(t * 0.003 * p.speed + p.phase) * 1.6;
+        p.ty = pos[1] + p.jy + Math.cos(t * 0.0026 * p.speed + p.phase) * 1.6;
+        var edge = Math.min(1, s3 * 9);
+        var swell = cfg.swell ? 1 + s3 * 1.1 : 1;
+        p.alpha = p.baseAlpha * edge * fade * swell *
+          (0.7 + 0.3 * Math.sin(t * 0.004 + p.phase));
+        p.sizeMul = (cfg.swell ? 0.3 + s3 * 0.4 : p.sizeMul);
+      } else if (p.mode === 'nbrain') {
+        var d2 = Math.abs(pack - p.host.si / ch.segs) * ch.segs;
+        brainTarget(p, t, clamp01(1 - d2) * 0.8);
+      } else if (p.mode === 'nfill') {
+        var d3 = Math.abs(pack - p.host.si / ch.segs) * ch.segs;
+        var warm = clamp01(1 - d3);
+        p.tx = p.hx + Math.sin(t * 0.0012 + p.phase) * (0.8 + warm * 2.2);
+        p.ty = p.hy + Math.cos(t * 0.001 + p.phase) * (0.6 + warm * 1.8);
+        p.alpha = p.baseAlpha * (0.45 + 0.55 * Math.sin(t * 0.001 + p.phase)) * (1 + warm);
+      } else if (p.mode === 'gate') {
+        var act = board.gateAct[p.gi] || 0;
+        p.tx = p.hx + Math.sin(t * 0.0015 + p.phase) * (0.6 + act * 2.5);
+        p.ty = p.hy + Math.cos(t * 0.0013 + p.phase) * 1.2;
+        p.alpha = p.baseAlpha * (0.35 + 0.65 * act) *
+          (0.65 + 0.35 * Math.sin(t * 0.0018 + p.phase));
+      } else {
+        dustTarget(p, t);
+      }
+    });
+  }
+
+  // ---------- structural line work for the three families ----------
+  // labels in these scenes sit near the edges: keep them on screen
+  function famLabel(text, x, y, a, color) {
+    if (!text || a <= 0.02) return;
+    ctx.font = '11px "JetBrains Mono", Menlo, monospace';
+    var half = ctx.measureText(text).width / 2 + text.length + 8;
+    labelText(text, Math.max(half + 6, Math.min(W - half - 6, x)), y, a, color);
+  }
+
+  function drawTickMark(nd, on, a, axis, big) {
+    var len = (on ? 15 : 8) * (big ? 1.25 : 1);
+    ctx.strokeStyle = on
+      ? 'rgba(255,77,28,' + (0.75 * a) + ')'
+      : 'rgba(200,200,215,' + (0.22 * a) + ')';
+    ctx.lineWidth = on ? 1.6 : 1;
+    ctx.beginPath();
+    if (axis === 'h') { ctx.moveTo(nd.x, nd.y - len); ctx.lineTo(nd.x, nd.y + len); }
+    else { ctx.moveTo(nd.x - len, nd.y); ctx.lineTo(nd.x + len, nd.y); }
+    ctx.stroke();
+  }
+
+  function familyStructure(t) {
+    var sf = sceneFade;
+    var i, k;
+
+    if (board.kind === 'chapter') {
+      var lad = board.lad;
+      ctx.strokeStyle = 'rgba(200,200,215,' + (0.14 * sf) + ')';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(lad.x0, lad.y); ctx.lineTo(lad.x1, lad.y); ctx.stroke();
+      for (i = 0; i < 10; i++) {
+        var nd = lad.nodes[i];
+        drawTickMark(nd, nd.on, sf, 'h', true);
+        if (nd.on) {
+          drawGlow(nd.x, nd.y, MN * 0.075, (0.10 + board.arrive * 0.12) * sf, false);
+          famLabel('LLM' + pad2(i + 1), nd.x, nd.y + 32, 0.85 * sf, '255,138,102');
+        } else if (!isMobile) {
+          famLabel(pad2(i + 1), nd.x, nd.y + 30, 0.24 * sf);
+        }
+      }
+      drawGlow(board.cx, board.cy, MN * 0.34, 0.055 * sf, false);
+      return;
+    }
+
+    if (board.kind === 'recap') {
+      var lv = board.lad;
+      ctx.strokeStyle = 'rgba(200,200,215,' + (0.12 * sf) + ')';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(lv.x, lv.y0); ctx.lineTo(lv.x, lv.y1); ctx.stroke();
+      for (i = 0; i < 10; i++) {
+        var nv = lv.nodes[i];
+        drawTickMark(nv, nv.on, sf, 'v', false);
+        famLabel('LLM' + pad2(i + 1), nv.x + (isMobile ? 0 : 46), nv.y + (isMobile ? -16 : 4),
+          (nv.on ? 0.8 : 0.22) * sf, nv.on ? '255,138,102' : '200,200,215');
+        if (nv.on) drawGlow(nv.x, nv.y, MN * 0.045, 0.07 * sf, false);
+      }
+      return;
+    }
+
+    // ---- chain ----
+    var ch = board.ch, head = board.head || 0;
+    // nothing downstream of the last wall ever warms up
+    if (board.mode === 'd' && board.gates.length) {
+      head = Math.min(head, board.gates[board.gates.length - 1].s);
+    }
+    for (i = 0; i < ch.paths.length; i++) {
+      for (var a = 0; a < ch.paths[i].length; a++) {
+        for (var b = 0; b < ch.paths[i][a].length; b++) {
+          strokePath(ch.paths[i][a][b], 'rgba(200,200,215,' + (0.10 * sf) + ')', 1);
+        }
+      }
+    }
+    for (i = 0; i < ch.stages.length; i++) {
+      var warm = clamp01(1 - Math.abs(head - i / ch.segs) * ch.segs);
+      var last = (i === ch.stages.length - 1);
+      var hot = last ? Math.max(warm * 0.5, board.hit) : warm * 0.6;
+      for (k = 0; k < ch.stages[i].length; k++) {
+        var n2 = ch.stages[i][k];
+        drawChainNode(n2, sf, hot);
+        famLabel(n2.label, n2.px,
+          n2.up ? n2.py - (n2.shape === 'orb' ? n2.pw / 2 : n2.ph / 2) - 13
+                : n2.py + (n2.shape === 'orb' ? n2.pw / 2 : n2.ph / 2) + 20,
+          (0.42 + 0.45 * Math.max(warm, last ? board.hit : 0)) * sf,
+          (last && board.hit > 0.2) ? '255,138,102' : '200,200,215');
+        if (last && board.hit > 0.02) {
+          drawGlow(n2.px, n2.py, MN * 0.10, 0.16 * board.hit * sf, false);
+        }
+      }
+    }
+    for (i = 0; i < board.gates.length; i++) {
+      var g = board.gates[i], ga = board.gateAct[i] || 0;
+      var hs = g.span / 2;
+      ctx.strokeStyle = 'rgba(245,166,35,' + ((0.24 + 0.5 * ga) * sf) + ')';
+      ctx.lineWidth = ga > 0.05 ? 2 : 1.2;
+      ctx.beginPath();
+      if (g.vertical) { ctx.moveTo(g.x, g.y - hs); ctx.lineTo(g.x, g.y + hs); }
+      else { ctx.moveTo(g.x - hs, g.y); ctx.lineTo(g.x + hs, g.y); }
+      ctx.stroke();
+      ctx.strokeStyle = 'rgba(245,166,35,' + ((0.16 + 0.3 * ga) * sf) + ')';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      if (g.vertical) {
+        ctx.moveTo(g.x - 5, g.y - hs); ctx.lineTo(g.x + 5, g.y - hs);
+        ctx.moveTo(g.x - 5, g.y + hs); ctx.lineTo(g.x + 5, g.y + hs);
+      } else {
+        ctx.moveTo(g.x - hs, g.y - 5); ctx.lineTo(g.x - hs, g.y + 5);
+        ctx.moveTo(g.x + hs, g.y - 5); ctx.lineTo(g.x + hs, g.y + 5);
+      }
+      ctx.stroke();
+      if (ga > 0.02) drawGlow(g.x, g.y, MN * 0.07, 0.13 * ga * sf, true);
+      famLabel(g.label, g.x,
+        g.vertical ? g.y - hs - 26 - g.tier * 20 : g.y - 16,
+        (0.4 + 0.5 * ga) * sf, '245,166,35');
+    }
+  }
+
+  function drawChainNode(n2, a, hot) {
+    if (a <= 0.01) return;
+    var col = hot > 0.04
+      ? 'rgba(255,138,102,' + ((0.26 + 0.42 * hot) * a) + ')'
+      : 'rgba(200,200,215,' + (0.30 * a) + ')';
+    ctx.strokeStyle = col; ctx.lineWidth = 1;
+    var x = n2.px, y = n2.py, w = n2.pw, h = n2.ph;
+    if (n2.shape === 'orb') {
+      ctx.beginPath(); ctx.arc(x, y, w / 2, 0, Math.PI * 2); ctx.stroke();
+    } else if (n2.shape === 'person') {
+      drawPerson(x, y, 1.05, a);
+    } else if (n2.shape === 'store') {
+      ctx.beginPath(); ctx.roundRect(x - w / 2, y - h / 2, w, h, 5); ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(x - w / 2, y - h / 6); ctx.lineTo(x + w / 2, y - h / 6);
+      ctx.moveTo(x - w / 2, y + h / 6); ctx.lineTo(x + w / 2, y + h / 6);
+      ctx.stroke();
+    } else if (n2.shape === 'panel') {
+      ctx.beginPath(); ctx.roundRect(x - w / 2, y - h / 2, w, h, 5); ctx.stroke();
+      ctx.fillStyle = 'rgba(245,166,35,' + (0.05 * a) + ')';
+      ctx.fillRect(x - w / 2, y - h / 2, w / 2, h);
+    } else if (n2.shape === 'field') {
+      ctx.setLineDash([2, 6]);
+      ctx.beginPath(); ctx.roundRect(x - w / 2, y - h / 2, w, h, 10); ctx.stroke();
+      ctx.setLineDash([]);
+    } else if (n2.shape === 'meter') {
+      ctx.beginPath(); ctx.roundRect(x - w / 2, y - h / 2, w, h, 4); ctx.stroke();
+      var fillH = h * clamp01(hot);
+      ctx.fillStyle = 'rgba(255,77,28,' + (0.20 * a) + ')';
+      ctx.fillRect(x - w / 2, y + h / 2 - fillH, w, fillH);
+    } else {
+      ctx.beginPath(); ctx.roundRect(x - w / 2, y - h / 2, w, h, 5); ctx.stroke();
+    }
+  }
+
   function layoutScene(name) {
     board = {};
     P.forEach(function (p) { p.sprite = p.baseSprite; });
@@ -1148,6 +1773,8 @@
     }
 
     var te = t - sceneT0;
+
+    if (isFamilyScene(sceneName)) { familyTargets(t, te); return; }
 
     if (sceneName === 'title' || sceneName === 'outro') {
       P.forEach(function (p) {
@@ -1256,7 +1883,7 @@
         }
       });
 
-    } else if (sceneName === 'inj1') {
+    } else if (sceneName === 'r01') {
       var bi = board;
       var prog3 = fract(te / bi.cycle);
       var xU = win(prog3, 0.20, 0.48);      // pale tokens ride the doc flow
@@ -1301,48 +1928,7 @@
         }
       });
 
-    } else if (sceneName === 'inj2') {
-      var bj = board;
-      var prog4 = fract(te / bj.cycle);
-      var ph = Math.floor(prog4 * 3);          // 0 rag, 1 image, 2 memory
-      var pu = fract(prog4 * 3);
-      board.ph = ph;
-      var carryU = win(pu, 0.15, 0.55);
-      var flickU = win(pu, 0.6, 0.85);
-      board.flick = flickU >= 0 ? bell(flickU) : 0;
-      P.forEach(function (p) {
-        if (p.mode === 'brain') {
-          brainTarget(p, t, board.flick * 0.9);
-        } else if (p.mode === 'cfill') {
-          p.tx = p.hx + Math.sin(t * 0.0012 + p.phase) * 0.8;
-          p.ty = p.hy + Math.cos(t * 0.001 + p.phase) * 0.6;
-          p.alpha = p.baseAlpha * (0.5 + 0.5 * Math.sin(t * 0.001 + p.phase));
-        } else if (p.mode === 'vec') {
-          var pth2 = [bj.pR, bj.pI, bj.pM][p.vi];
-          if (p.vi !== ph || carryU < 0) {
-            p.tx = pth2.p0[0]; p.ty = pth2.p0[1]; p.alpha = 0;
-          } else {
-            var s7 = clamp01(carryU + p.off * (1 - carryU));
-            var pos7 = bezier(pth2, easeInOut(s7));
-            p.tx = pos7[0]; p.ty = pos7[1];
-            p.alpha = p.baseAlpha * bell(carryU);
-          }
-        } else if (p.mode === 'sleep') {
-          p.tx = p.hx + Math.sin(t * 0.0011 + p.phase) * 1;
-          p.ty = p.hy + Math.cos(t * 0.0009 + p.phase) * 0.8;
-          // the memory write persists between "sessions"
-          p.alpha = p.baseAlpha * (ph === 2 ? 0.95 : 0.45) *
-            (0.6 + 0.4 * Math.sin(t * 0.0015 + p.phase));
-        } else if (p.mode === 'sfill') {
-          p.tx = p.hx + Math.sin(t * 0.0011 + p.phase) * 0.8;
-          p.ty = p.hy + Math.cos(t * 0.0009 + p.phase) * 0.6;
-          p.alpha = p.baseAlpha * (0.5 + 0.5 * Math.sin(t * 0.001 + p.phase));
-        } else {
-          dustTarget(p, t);
-        }
-      });
-
-    } else if (sceneName === 'leak') {
+    } else if (sceneName === 'r02') {
       var bl = board;
       var prog5 = fract(te / bl.cycle);
       var pipe = Math.floor(prog5 * 5);
@@ -1375,7 +1961,7 @@
         }
       });
 
-    } else if (sceneName === 'agency1') {
+    } else if (sceneName === 'r03') {
       var bg2 = board;
       var prog6 = fract(te / bg2.cycle);
       var inU = win(prog6, 0.05, 0.22);
@@ -1418,50 +2004,7 @@
         }
       });
 
-    } else if (sceneName === 'agency2') {
-      var bh = board;
-      var prog7 = fract(te / bh.cycle);
-      var trigU = win(prog7, 0.05, 0.30);
-      var actU2 = win(prog7, 0.35, 0.55);
-      var holdU = win(prog7, 0.55, 0.75);
-      var okU = win(prog7, 0.75, 0.92);
-      board.trigI = Math.floor(te / bh.cycle) % 3;
-      board.holdU = holdU; board.okU = okU;
-      var deploy = bh.tools[2];
-      P.forEach(function (p) {
-        if (p.mode === 'brain') {
-          brainTarget(p, t, trigU >= 0 ? bell(trigU) * 0.5 : 0.08);
-        } else if (p.mode === 'tool') {
-          p.tx = p.hx + Math.sin(t * 0.0009 + p.phase) * 1.2;
-          p.ty = p.hy + Math.cos(t * 0.0008 + p.phase) * 1;
-          p.alpha = p.baseAlpha * (0.6 + 0.4 * Math.sin(t * 0.0012 + p.phase));
-        } else if (p.mode === 'trig') {
-          if (p.gi !== board.trigI || trigU < 0) {
-            p.tx = W * (isMobile ? 0.06 : 0.52); p.ty = H * (0.2 + p.gi * 0.2); p.alpha = 0;
-          } else {
-            var s12 = clamp01(trigU + p.off * (1 - trigU));
-            var sy = H * (0.2 + p.gi * 0.2);
-            var stop3 = 0.82;    // absorbed just short of the agent
-            p.tx = W * (isMobile ? 0.06 : 0.52) + (bh.agent.x - bh.agent.r * 1.6 - W * (isMobile ? 0.06 : 0.52)) * easeInOut(s12) * stop3;
-            p.ty = sy + (bh.agent.y - sy) * easeInOut(s12) * stop3;
-            var kill3 = s12 > 0.85 ? 1 - (s12 - 0.85) / 0.15 : 1;
-            p.alpha = p.baseAlpha * bell(trigU) * kill3;
-          }
-        } else if (p.mode === 'act') {
-          var u3 = actU2 >= 0 ? actU2 * 0.6 : (holdU >= 0 ? 0.6 : (okU >= 0 ? 0.6 + easeInOut(okU) * 0.4 : -1));
-          if (u3 < 0) {
-            p.tx = bh.agent.x; p.ty = bh.agent.y; p.alpha = 0;
-          } else {
-            p.tx = bh.agent.x + (bh.human.x - bh.agent.x) * clamp01(u3 + p.off * 0.1);
-            p.ty = bh.agent.y + (bh.human.y - bh.agent.y) * clamp01(u3 + p.off * 0.1);
-            p.alpha = p.baseAlpha * 0.85;
-          }
-        } else {
-          dustTarget(p, t);
-        }
-      });
-
-    } else if (sceneName === 'supply') {
+    } else if (sceneName === 'r04') {
       var bs = board;
       var prog8 = fract(te / bs.cycle);
       board.gateOn = fract(te / (bs.cycle * 2)) > 0.5;   // second lap: gate active
@@ -1491,7 +2034,7 @@
         }
       });
 
-    } else if (sceneName === 'poison') {
+    } else if (sceneName === 'r05') {
       var bp = board;
       var prog9 = fract(te / bp.cycle);
       var trigU2 = win(prog9, 0.42, 0.56);
@@ -1541,7 +2084,7 @@
         }
       });
 
-    } else if (sceneName === 'burn') {
+    } else if (sceneName === 'r06') {
       var bb = board;
       var prog10 = fract(te / bb.cycle);
       var sparkU = win(prog10, 0.04, 0.16);
@@ -1575,7 +2118,7 @@
         }
       });
 
-    } else if (sceneName === 'misinfo') {
+    } else if (sceneName === 'r07') {
       var bmi = board;
       var prog11 = fract(te / bmi.cycle);
       // pass one: ungrounded and confident, straight through, damage
@@ -1634,7 +2177,7 @@
         }
       });
 
-    } else if (sceneName === 'hidden') {
+    } else if (sceneName === 'r08') {
       var bhd = board;
       var prog12 = fract(te / bhd.cycle);
       var probeU = win(prog12, 0.05, 0.30);
@@ -1683,7 +2226,7 @@
         }
       });
 
-    } else if (sceneName === 'vector') {
+    } else if (sceneName === 'r09') {
       var bv = board;
       var az = t * 0.00013;
       board.az = az;
@@ -1735,7 +2278,7 @@
         }
       });
 
-    } else if (sceneName === 'output') {
+    } else if (sceneName === 'r10') {
       var bo = board;
       var prog13 = fract(te / bo.cycle);
       var oi = Math.floor(prog13 * 3);
@@ -1941,6 +2484,8 @@
     var sf = sceneFade;
     if (sf <= 0.05) return;
 
+    if (isFamilyScene(sceneName)) { familyStructure(t); return; }
+
     if (sceneName === 'title') {
       if (logoPhase === 'off') drawLinksSet(1);
 
@@ -2012,7 +2557,7 @@
           (isRen ? 0.65 : 0.5) * sf, isRen ? '245,166,35' : '200,200,215');
       }
 
-    } else if (sceneName === 'inj1') {
+    } else if (sceneName === 'r01') {
       var bi2 = board;
       drawLinksSet(1);
       drawBoxNode(bi2.srcS, sf, 0);
@@ -2047,30 +2592,7 @@
         drawGlow(bi2.act.x, bi2.act.y, 34, 0.16 * sf, false);
       }
 
-    } else if (sceneName === 'inj2') {
-      var bj2 = board;
-      drawBoxNode(bj2.store, sf, board.ph === 0 ? 0.5 : 0);
-      // the image: a tiny landscape, honest pixels
-      var im = bj2.img;
-      drawBoxNode(im, sf, board.ph === 1 ? 0.5 : 0);
-      ctx.strokeStyle = 'rgba(200,200,215,' + (0.3 * sf) + ')';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(im.x - im.w * 0.3, im.y + im.h * 0.2);
-      ctx.lineTo(im.x - im.w * 0.08, im.y - im.h * 0.15);
-      ctx.lineTo(im.x + im.w * 0.1, im.y + im.h * 0.08);
-      ctx.lineTo(im.x + im.w * 0.28, im.y - im.h * 0.2);
-      ctx.stroke();
-      drawBoxNode(bj2.mem, sf, board.ph === 2 ? 0.5 : 0);
-      drawBoxNode(bj2.cxp, sf, board.flick * 0.5);
-      [bj2.pR, bj2.pI, bj2.pM].forEach(function (pth, i5) {
-        strokePath(pth, 'rgba(200,200,215,' + ((board.ph === i5 ? 0.22 : 0.07) * sf) + ')', 1);
-      });
-      strokePath(bj2.pC, 'rgba(200,200,215,' + (0.12 * sf) + ')', 1);
-      var capTxt = ['THROUGH WHAT IT RETRIEVES', 'PIXELS TO YOU · TOKENS TO IT', 'WRITTEN ONCE · READ EVERY SESSION'][board.ph];
-      labelText(capTxt, bj2.cxp.x, H * 0.085, 0.7 * sf, '175,195,240');
-
-    } else if (sceneName === 'leak') {
+    } else if (sceneName === 'r02') {
       var bl2 = board;
       drawLinksSet(1);
       bl2.outs.forEach(function (o, i6) {
@@ -2092,7 +2614,7 @@
       labelText(board.gateOn ? 'REDACTION ON EVERY PIPE' : 'THE ONES NOBODY READS',
         bl2.model.x, H * 0.085, 0.7 * sf, board.gateOn ? '245,166,35' : '255,138,102');
 
-    } else if (sceneName === 'agency1') {
+    } else if (sceneName === 'r03') {
       var bg3 = board;
       drawLinksSet(1);
       // granted: the big ring; needed: the small one
@@ -2124,29 +2646,7 @@
         if (hot > 0.05) drawGlow(tl.x, tl.y, MN * 0.05, 0.12 * hot * sf, false);
       });
 
-    } else if (sceneName === 'agency2') {
-      var bh2 = board;
-      drawLinksSet(1);
-      ctx.strokeStyle = 'rgba(245,166,35,' + (0.35 * sf) + ')';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.ellipse(bh2.agent.x, bh2.agent.y, MN * 0.185, MN * 0.15, 0, 0, Math.PI * 2);
-      ctx.stroke();
-      bh2.tools.forEach(function (tl, i8) {
-        ctx.strokeStyle = 'rgba(245,166,35,' + (0.45 * sf) + ')';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.arc(tl.x, tl.y, MN * 0.026, 0, Math.PI * 2);
-        ctx.stroke();
-        labelText(tl.text, tl.x, tl.y + MN * 0.026 + 14, 0.55 * sf, '245,166,35');
-      });
-      drawPerson(bh2.human.x, bh2.human.y, 1, sf);
-      if (board.okU >= 0 && board.okU > 0.5) {
-        drawGlow(bh2.human.x, bh2.human.y - 8, 36, 0.12 * sf, true);
-      }
-      labelText(bh2.trig[board.trigI], W * (isMobile ? 0.2 : 0.565), H * 0.13, 0.55 * sf, '175,195,240');
-
-    } else if (sceneName === 'supply') {
+    } else if (sceneName === 'r04') {
       var bs2 = board;
       drawBoxNode(bs2.hub, sf, 0);
       drawBoxNode(bs2.pipe, sf, 0);
@@ -2162,7 +2662,7 @@
       labelText(board.gateOn ? 'CHECKED' : 'UNCHECKED', bs2.gate.x, bs2.gate.y + bs2.gate.h * 0.85 + 10,
         0.55 * sf, board.gateOn ? '245,166,35' : '175,195,240');
 
-    } else if (sceneName === 'poison') {
+    } else if (sceneName === 'r05') {
       var bp2 = board;
       drawLinksSet(1);
       // the funnel walls
@@ -2190,7 +2690,7 @@
         drawGlow(bp2.model.x, bp2.model.y, bp2.model.r * 2.2, 0.12 * board.wake * sf, false);
       }
 
-    } else if (sceneName === 'burn') {
+    } else if (sceneName === 'r06') {
       var bb2 = board;
       drawLinksSet(1);
       drawPerson(bb2.atk.x, bb2.atk.y, 0.85, sf);
@@ -2226,7 +2726,7 @@
       labelText('THE BREAKER', bx2[0], bx2[1] + 22,
         (board.tripped ? 0.7 : 0.4) * sf, board.tripped ? '245,166,35' : '200,200,215');
 
-    } else if (sceneName === 'misinfo') {
+    } else if (sceneName === 'r07') {
       var bmi2 = board;
       drawLinksSet(1);
       strokePath(bmi2.pC, 'rgba(200,200,215,' + (0.1 * sf) + ')', 1);
@@ -2246,7 +2746,7 @@
         ctx.stroke();
       }
 
-    } else if (sceneName === 'hidden') {
+    } else if (sceneName === 'r08') {
       var bhd2 = board;
       var pn = bhd2.panel;
       drawBoxNode(pn, sf, 0);
@@ -2275,7 +2775,7 @@
       labelText(board.vaultOn ? 'NOTHING LEFT WORTH STEALING' : 'PROBE BY PROBE',
         pn.x, H * 0.085, 0.7 * sf, board.vaultOn ? '245,166,35' : '175,195,240');
 
-    } else if (sceneName === 'vector') {
+    } else if (sceneName === 'r09') {
       var bv2 = board;
       // axes of the space
       var o = proj(bv2.sp, [0, 0, 0], board.az);
@@ -2302,7 +2802,7 @@
       labelText(bv2.caps[board.phaseI], bv2.sp.cx, bv2.sp.cy + bv2.sp.scale * 1.02 + 24,
         0.75 * sf, '255,138,102');
 
-    } else if (sceneName === 'output') {
+    } else if (sceneName === 'r10') {
       var bo2 = board;
       drawLinksSet(1);
       strokePath(bo2.pG, 'rgba(200,200,215,' + (0.1 * sf) + ')', 1);
@@ -2488,6 +2988,14 @@
       };
     }
   };
+
+  // the rank numerals are rasterised from a webfont: redo them once it lands
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () {
+      textCache = {};
+      if (sceneName && board.kind === 'chapter') layoutScene(sceneName);
+    });
+  }
 
   // ---------- Resize ----------
   function resize() {

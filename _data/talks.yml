@@ -5,24 +5,24 @@
   url: /talks/owasp-llm-top10/
   date: 2026-08-24
   deck_lang: en
-  slides: 20
+  slides: 51
   eyebrow:
-    sv: "Augusti 2026 · på engelska · 20 bilder"
-    en: "August 2026 · in English · 20 slides"
+    sv: "Augusti 2026 · på engelska · 51 bilder"
+    en: "August 2026 · in English · 51 slides"
   title:
     sv: "OWASP LLM Top 10"
     en: "The OWASP LLM Top 10"
   blurb:
     sv: >-
-      Alla tio riskerna i 2026 års OWASP Top 10 för LLM-applikationer,
-      förklarade och animerade en i taget, med evidensberättelsen bakom
-      den nya ordningen. Anpassad från OWASP under CC BY-SA 4.0. Tjugo
-      partikelanimerade bilder.
+      Alla tio riskerna i 2026 års OWASP Top 10 för LLM-applikationer får
+      ett eget kapitel: vad risken är, hur en angripare utnyttjar den och
+      hur du stänger den. Anpassad från OWASP under CC BY-SA 4.0.
+      Femtioen animerade bilder.
     en: >-
-      All ten risks of the 2026 OWASP Top 10 for LLM Applications,
-      explained and animated one by one, with the evidence story behind
-      the new order. Adapted from OWASP under CC BY-SA 4.0. Twenty
-      particle-animated slides.
+      All ten risks of the 2026 OWASP Top 10 for LLM Applications, one
+      chapter each: what the risk is, how an attacker works it, and how
+      you shut it down. Adapted from OWASP under CC BY-SA 4.0. Fifty-one
+      animated slides.
   cta:
     sv: "Se föredraget"
     en: "Watch the talk"
