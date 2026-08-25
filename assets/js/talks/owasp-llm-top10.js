@@ -3280,7 +3280,40 @@
   // ---------- Scene switching (scroll driven) ----------
   var sections = Array.prototype.slice.call(document.querySelectorAll('[data-scene]'));
 
+  // ---------- Persistent risk header ----------
+  // Every slide that talks about one risk keeps its name on screen, so
+  // nobody has to wonder which of the ten is on stage. The framing
+  // slides (stage, evidence, recaps) carry no data-risk, so it hides.
+  var riskByScene = {};
+  sections.forEach(function (sec) {
+    var r = sec.getAttribute('data-risk');
+    if (r) riskByScene[sec.getAttribute('data-scene')] = r;
+  });
+  var riskHeader = document.createElement('p');
+  riskHeader.className = 'deck-risk';
+  riskHeader.setAttribute('aria-hidden', 'true');
+  riskHeader.style.cssText = [
+    'position:fixed', 'top:var(--space-6,26px)', 'left:50%',
+    'transform:translateX(-50%)', 'z-index:2', 'margin:0',
+    'font-family:var(--font-mono,"JetBrains Mono",monospace)',
+    'font-size:var(--text-2xs,12px)', 'letter-spacing:0.2em',
+    'text-transform:uppercase', 'white-space:nowrap',
+    'color:var(--text-secondary,#9a9aa4)', 'pointer-events:none',
+    'opacity:0', 'transition:opacity 420ms ease'
+  ].join(';');
+  document.body.appendChild(riskHeader);
+  function updateRiskHeader(name) {
+    var label = riskByScene[name];
+    if (!label) { riskHeader.style.opacity = '0'; return; }
+    var parts = label.split(' · ');
+    riskHeader.innerHTML = '<span style="color:var(--ember-500,#ff4d1c)">' +
+      parts[0] + '</span>&nbsp;&middot;&nbsp;<span style="color:var(--ink-100,#e9e9ee)">' +
+      (parts[1] || '') + '</span>';
+    riskHeader.style.opacity = '1';
+  }
+
   function setScene(name) {
+    updateRiskHeader(name);
     if (name === sceneName) return;
     sceneName = name;
     sceneFade = 0;
@@ -3370,6 +3403,7 @@
   if (first) {
     sceneName = first.getAttribute('data-scene');
     layoutScene(sceneName);
+    updateRiskHeader(sceneName);
   }
   P.forEach(function (p) {
     p.x = W / 2 + rand(-80, 80);
