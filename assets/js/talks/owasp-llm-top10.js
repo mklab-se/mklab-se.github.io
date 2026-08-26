@@ -3379,115 +3379,59 @@
   layouts.r02 = function () { chapterLayout(2); };
 
   // ---------- d02 : the same week, done differently ----------
-  layouts.d02 = function () {
-    links = [];
-    var sb = stageBox();
-    var sw = sb.x1 - sb.x0;
-    var desk = deskSetup(sb, { u: 0.10, v: 0.600, figH: 0.26 });
-    var lena = desk.fig, laptop = desk.laptop;
-    var edgeX = sb.x0 + sw * 0.46;
-    var gate = makeProp('gate', edgeX, H * 0.500, MN * 0.02, MN * 0.16, 'THE MANIFEST');
-    var policy = makeProp('doc', sb.x0 + sw * 0.26, H * 0.245, MN * 0.10, MN * 0.10,
-      'WHAT MAY BE POINTED AT AN AI', { labelAbove: true });
-    var tenant = makeProp('box', sb.x0 + sw * 0.80, H * 0.360, MN * 0.175, MN * 0.085,
-      'YOUR TENANT · RETENTION OFF');
-    var check = makeProp('gate', sb.x0 + sw * 0.26, H * 0.790, MN * 0.02, MN * 0.13,
-      'WHICH ACCOUNT?');
-    var seats = makeProp('browser', sb.x0 + sw * 0.50, H * 0.790, MN * 0.145, MN * 0.095,
-      'SEATS IN USE', { labelAbove: true });
-    var flows = [
-      makePath(laptop.x + laptop.w * 0.44, laptop.y - laptop.h * 0.30,
-               gate.x - MN * 0.02, H * 0.500, 0.06),
-      makePath(gate.x + MN * 0.02, H * 0.490,
-               tenant.x - tenant.w * 0.5, tenant.y + tenant.h * 0.3, -0.12),
-      makePath(check.x + MN * 0.02, H * 0.790, seats.x - seats.w * 0.5, seats.y, 0.05)
-    ];
-
-    board = {
-      kind: 'story',
-      lena: lena, laptop: laptop, deskY: desk.deskY, edgeX: edgeX, gate: gate,
-      policy: policy, tenant: tenant, check: check, seats: seats, flows: flows,
-      beats: [
-        { hold: 9000, card: { place: 'high', side: 'right', title: 'ABOUT TO LEAVE', lines: [
-          ['40 files · 1.2 MB', 'n'],
-          ['to: a named vendor, EU tenant', 'g'],
-          ['agreement: yes · retention: off', 'g'],
-          ['salaries.xlsx', 'e'],
-          ['[ send ]   [ remove ]   [ cancel ]', 'd'] ],
-          at: { px: gate.x, py: gate.y, pw: gate.w, ph: gate.h } } },
-        { hold: 8000, card: { place: 'low', side: 'right', title: 'SHE TAKES IT OUT', lines: [
-          ['39 files leave', 'g'],
-          ['salaries.xlsx stays here', 'g'] ],
-          at: { px: tenant.x, py: tenant.y, pw: tenant.w, ph: tenant.h } } },
-        { hold: 8600, card: { place: 'high', side: 'left', title: 'AND NOT HER CALL ALONE', lines: [
-          ['the salary folder is on no list', 'g'],
-          ['the assistant declines, and says why', 'g'],
-          ['she is annoyed for ten seconds', 'd'] ],
-          at: { px: policy.x, py: policy.y, pw: policy.w, ph: policy.h } } },
-        { hold: 9000, card: { place: 'low', side: 'right', title: 'AND FOR JOHAN', lines: [
-          ['account: johan.p@company.se', 'g'],
-          ['tenant: matched. plan: covered.', 'g'],
-          ['seats in use: 42 of 60', 'g'],
+  // No vendor hands you a manifest. The only gate that exists is the one
+  // in front of the keyboard, and it closes before anything moves.
+  layouts.d02 = story({
+    fig: { u: 0.12, v: 0.560, h: 0.29, label: 'LENA' },
+    boundary: { u: 0.70, label: 'YOUR LAPTOP ENDS HERE', show: 1 },
+    props: [
+      { id: 'folder', kind: 'folder', u: 0.30, v: 0.09, w: 0.130, h: 0.105,
+        label: 'THE SALARY FOLDER', above: true },
+      { id: 'ask', kind: 'gate', u: 0.56, v: 0.11, w: 0.02, h: 0.155,
+        label: 'WOULD I HAND THIS TO THEM?', show: 1 },
+      { id: 'vendor', kind: 'cloud', u: 0.90, v: 0.13, w: 0.165, h: 0.115,
+        label: 'THE VENDOR', above: true, show: 1, fill: 'cold' },
+      { id: 'policy', kind: 'doc', u: 0.46, v: 0.46, w: 0.095, h: 0.105,
+        label: 'APPROVED FOR WHAT?', above: true, show: 2 },
+      { id: 'check', kind: 'gate', u: 0.76, v: 0.48, w: 0.02, h: 0.145,
+        label: 'SERVICE? ACCOUNT?', above: true, show: 3 }
+    ],
+    flows: [
+      { from: 'folder', to: 'ask', show: 1, bend: 0.06, color: 'ember', stop: 0.58 },
+      { from: 'laptop', to: 'ask', show: 1, bend: -0.16, color: 'candle' },
+      { from: 'ask', to: 'vendor', show: 1, bend: 0.06, color: 'candle' },
+      { from: 'laptop', to: 'policy', show: 2, bend: 0.10, color: 'candle' },
+      { from: 'laptop', to: 'check', show: 3, bend: 0.12, color: 'candle' },
+      { from: 'check', to: 'vendor', show: 3, bend: -0.10, color: 'candle' }
+    ],
+    beats: [
+      { hold: 9000, card: { place: 'low', side: 'right', at: 'fig',
+        title: 'WHAT NO VENDOR SHOWS YOU', lines: [
+          ['no screen lists the forty files', 'e'],
+          ['nothing says "this will be sent"', 'e'],
+          ['no dialog. no warning. no manifest.', 'e'],
+          ['you are the one who has to know', 'd'] ] } },
+      { hold: 9400, card: { place: 'low', side: 'right', at: 'ask',
+        title: 'SO SHE ASKS BEFORE SHE ACTS', lines: [
+          ['would I hand this to that company?', 'g'],
+          ['salary reviews: no', 'g'],
+          ['then they do not go', 'g'],
+          ['and no agreement changes that', 'd'] ] } },
+      { hold: 9000, card: { place: 'low', side: 'right', at: 'policy',
+        title: 'AND WHAT TO ASK FOR AT WORK', lines: [
+          ['which services are approved', 'g'],
+          ['for which kinds of data', 'g'],
+          ['written down where I can find it', 'g'],
+          ['before I need it, not after', 'd'] ] } },
+      { hold: 9400, card: { place: 'low', side: 'right', at: 'check',
+        title: 'AND FOR JOHAN, THE OTHER HALF', lines: [
+          ['an agreement can make it a yes', 'n'],
+          ['but only for the service it covers', 'g'],
+          ['and only in the account it covers', 'g'],
           ['an approved product is not', 'd'],
-          ['an approved account', 'd'] ],
-          at: { px: check.x, py: check.y, pw: check.w, ph: check.h } } }
-      ],
-      labels: []
-    };
-
-    storyPopulate([
-      { name: 'fig', share: 0.22, apply: function (p, k, n) {
-          figureHome(p, lena, k, n);
-          p.baseAlpha = rand(0.34, 0.68); p.sizeMul = rand(0.26, 0.46); p.fast = false;
-        } },
-      { name: 'run', share: 0.24, apply: function (p, k) { runnerHome(p, k, 3); } }
-    ]);
-
-    board.tick = function (t, te, bs) {
-      var manifest = beatAt(bs, 0);
-      var pulled = beatAt(bs, 1);
-      var policyOn = beatAt(bs, 2);
-      var account = beatAt(bs, 3);
-      board.manifest = manifest; board.pulled = pulled;
-      board.policyOn = policyOn; board.account = account;
-      var lanes = [manifest, pulled, account];
-      P.forEach(function (p) {
-        if (p.grp === 'fig') {
-          figureTarget(p, t, 0.04);
-        } else if (p.grp === 'run') {
-          var pth = board.flows[p.fi];
-          var sp = fract(p.off + te / 2600);
-          // nothing crosses the manifest until she has read it
-          if (p.fi === 0) sp = Math.min(sp, 0.36 + 0.64 * pulled);
-          var pos = bezier(pth, sp);
-          p.tx = pos[0]; p.ty = pos[1];
-          p.sprite = candleS;
-          p.alpha = p.baseAlpha * bell(fract(p.off + te / 2600)) * lanes[p.fi] * 0.9;
-        } else {
-          dustTarget(p, t);
-        }
-      });
-    };
-
-    board.paint = function (t, sf, bs) {
-      var b = board;
-      drawDesk(b.deskY, b.lena.x - b.lena.size * 0.34, sf * 0.8);
-      drawProp(b.laptop, sf, 0);
-      drawBoundary(b.edgeX, H * 0.22, H * 0.78, sf * 0.7, null);
-      b.flows.forEach(function (f, i) {
-        var on = [b.manifest, b.pulled, b.account][i];
-        strokePath(f, 'rgba(245,166,35,' + (0.11 * sf * on) + ')', 1);
-      });
-      drawProp(b.gate, sf * b.manifest, b.manifest);
-      drawProp(b.tenant, sf * b.pulled, 0);
-      drawProp(b.policy, sf * b.policyOn, 0);
-      if (b.account > 0.02) {
-        drawProp(b.check, sf * b.account, b.account);
-        drawProp(b.seats, sf * b.account, 0);
-      }
-      labelText('LENA', b.lena.x, b.lena.y + b.lena.size * 0.62, 0.5 * sf);
-    };
-  };
+          ['an approved account', 'd'] ] } }
+    ]
+  });
 
   /* ---------- LLM03 : Sofia's night ---------- */
   layouts.s03 = story({
@@ -3765,7 +3709,7 @@
       { id: 'bot', kind: 'orb', u: 0.44, v: 0.16, w: 0.120, h: 0.120,
         label: 'THE SUPPORT ASSISTANT', above: true, fill: 'brain', hot: 2 },
       { id: 'closed', kind: 'docs', u: 0.74, v: 0.16, w: 0.125, h: 0.105,
-        label: 'EVERY ONE: A HAPPY CUSTOMER', above: true, hot: 1 },
+        label: 'MARKED: GOOD ANSWER', above: true, hot: 1 },
       { id: 'train', kind: 'box', u: 0.78, v: 0.46, w: 0.140, h: 0.082,
         label: 'TRAINING', hot: 1 },
       { id: 'chart', kind: 'browser', u: 0.14, v: 0.08, w: 0.155, h: 0.100,
@@ -3803,7 +3747,7 @@
   layouts.d05 = story({
     fig: { u: 0.12, v: 0.560, h: 0.29, label: 'NINA' },
     figures: [
-      { id: 'reviewer', pose: 'person', u: 0.46, v: 0.86, h: 0.20,
+      { id: 'reviewer', pose: 'person', u: 0.30, v: 0.86, h: 0.20,
         label: 'READ BY A PERSON', show: 1 }
     ],
     props: [
@@ -3884,12 +3828,12 @@
   layouts.a06 = story({
     fig: { u: 0.12, v: 0.560, h: 0.29, label: 'MARCUS · GONE HOME' },
     props: [
-      { id: 'issue', kind: 'doc', u: 0.38, v: 0.10, w: 0.100, h: 0.105,
-        label: 'ONE ISSUE, FRIDAY 16:40', above: true, hot: 1 },
-      { id: 'agent', kind: 'orb', u: 0.62, v: 0.14, w: 0.125, h: 0.125,
-        label: 'READ · OPEN · SUMMARIZE · RETRY', above: true, fill: 'brain', hot: 2 },
+      { id: 'issue', kind: 'doc', u: 0.30, v: 0.10, w: 0.100, h: 0.105,
+        label: 'ONE ISSUE, FRIDAY', above: true, hot: 1 },
+      { id: 'agent', kind: 'orb', u: 0.66, v: 0.14, w: 0.125, h: 0.125,
+        label: 'READ · OPEN · RETRY', above: true, fill: 'brain', hot: 2 },
       { id: 'code', kind: 'store', u: 0.62, v: 0.46, w: 0.115, h: 0.105,
-        label: 'MORE CONTEXT, EVERY ROUND', hot: 2 },
+        label: 'MORE, EVERY ROUND', hot: 2 },
       { id: 'meter', kind: 'meter', u: 0.92, v: 0.30, w: 0.055, h: 0.26,
         label: 'THE METER', hot: 2, glow: 'ember' }
     ],
@@ -4011,7 +3955,7 @@
       { id: 'decision', kind: 'box', u: 0.80, v: 0.46, w: 0.150, h: 0.082,
         label: 'A DATE MOVES', show: 2, hot: 2 },
       { id: 'legal', kind: 'doc', u: 0.40, v: 0.48, w: 0.095, h: 0.105,
-        label: 'LEGAL READS IT, SIX WEEKS ON', show: 3, hot: 3, glow: 'ember' }
+        label: 'LEGAL, SIX WEEKS ON', above: true, show: 3, hot: 3, glow: 'ember' }
     ],
     flows: [
       { from: 'answer', to: 'deck', show: 2, bend: 0.05 },
@@ -4171,32 +4115,36 @@
       { id: 'bot', kind: 'orb', u: 0.70, v: 0.14, w: 0.115, h: 0.115,
         label: 'THE SALES ASSISTANT', above: true, fill: 'brain' },
       { id: 'gate', kind: 'gate', u: 0.70, v: 0.46, w: 0.02, h: 0.140,
-        label: 'WHO IS ASKING?', show: 1 },
+        label: 'WHO IS ASKING?', show: 2 },
       { id: 'svc', kind: 'store', u: 0.92, v: 0.46, w: 0.120, h: 0.110,
-        label: 'PRICING SERVICE · HOLDS THE KEY', show: 1 }
+        label: 'A SYSTEM THAT CHECKS', show: 2 }
     ],
     flows: [
       { from: 'box', to: 'bot', show: 0, bend: 0.06, color: 'candle' },
-      { from: 'bot', to: 'gate', show: 1, bend: 0.06, color: 'candle' },
-      { from: 'gate', to: 'svc', show: 1, bend: 0.05, color: 'candle' }
+      { from: 'bot', to: 'gate', show: 2, bend: 0.06, color: 'candle' },
+      { from: 'gate', to: 'svc', show: 2, bend: 0.05, color: 'candle' }
     ],
     beats: [
-      { hold: 8600, card: { place: 'low', side: 'right', at: 'gate',
-        title: 'THE LADDER IS NOT IN THERE', lines: [
-          ['it is a call the assistant makes', 'g'],
-          ['the answer depends on who asks', 'g'],
-          ['checked in code, past the model', 'g'] ] } },
-      { hold: 8200, card: { place: 'low', side: 'right', at: 'svc',
-        title: 'AND NEITHER IS THE KEY', lines: [
-          ['the key belongs to the service', 'g'],
-          ['not to the conversation', 'g'] ] } },
-      { hold: 9000, card: { place: 'low', side: 'right', at: 'box',
+      { hold: 9400, card: { place: 'low', side: 'right', at: 'box',
+        title: 'WHAT HE TAKES OUT', lines: [
+          ['the discount ladder', 'e'],
+          ['the outage script', 'e'],
+          ['the competitor notes', 'e'],
+          ['BLING-PROD-2, and the API address', 'e'],
+          ['none of it needed to be there', 'd'] ] } },
+      { hold: 8800, card: { place: 'low', side: 'right', at: 'box',
         title: 'WHAT IS LEFT TO LEAK', lines: [
           ['be brief. be warm.', 'g'],
           ['stay on the product.', 'g'],
-          ['hand over to a human when asked.', 'g'],
-          ['write it as though it will be', 'd'],
-          ['published, because one day one is', 'd'] ] } },
+          ['hand over to a person when asked.', 'g'],
+          ['if you would not want it read out', 'd'],
+          ['loud, it is not prompt material', 'd'] ] } },
+      { hold: 9400, card: { place: 'low', side: 'right', at: 'gate',
+        title: 'SO WHERE DO THE DISCOUNTS LIVE?', lines: [
+          ['behind something that checks', 'g'],
+          ['who is asking, before it answers', 'g'],
+          ['that is a thing to go and ask for', 'g'],
+          ['not a thing to fake in a text box', 'd'] ] } },
       { hold: 8400, card: { place: 'low', side: 'right', at: 'bot',
         title: 'THEY ASK FOR GERMAN AGAIN', lines: [
           ['and get it', 'n'],
@@ -4286,21 +4234,27 @@
       { id: 'q', kind: 'doc', u: 0.32, v: 0.10, w: 0.095, h: 0.100,
         label: 'THE SAME QUESTION', above: true },
       { id: 'perm', kind: 'gate', u: 0.48, v: 0.14, w: 0.02, h: 0.140,
-        label: 'FILTER, INSIDE THE QUERY', show: 0 },
+        label: 'FILTER, INSIDE THE QUERY', show: 1 },
       { id: 'index', kind: 'store', u: 0.68, v: 0.14, w: 0.160, h: 0.145,
         label: 'ONLY WHAT SHE MAY SEE', above: true, fill: 'box' },
       { id: 'sep', kind: 'store', u: 0.92, v: 0.44, w: 0.130, h: 0.120,
-        label: 'SENSITIVE CLIENTS: THEIR OWN', show: 1 },
+        label: 'SENSITIVE CLIENTS: THEIR OWN', show: 2 },
       { id: 'report', kind: 'browser', u: 0.54, v: 0.56, w: 0.155, h: 0.115,
-        label: 'WHAT WINS TOO OFTEN', above: true, show: 3 }
+        label: 'WHAT WINS TOO OFTEN', above: true, show: 4 }
     ],
     flows: [
-      { from: 'q', to: 'perm', show: 0, bend: 0.05, color: 'candle' },
-      { from: 'perm', to: 'index', show: 0, bend: 0.05, color: 'candle' },
-      { from: 'index', to: 'sep', show: 1, bend: 0.10, color: 'candle' },
-      { from: 'index', to: 'report', show: 3, bend: 0.16, color: 'candle' }
+      { from: 'q', to: 'perm', show: 1, bend: 0.05, color: 'candle' },
+      { from: 'perm', to: 'index', show: 1, bend: 0.05, color: 'candle' },
+      { from: 'index', to: 'sep', show: 2, bend: 0.10, color: 'candle' },
+      { from: 'index', to: 'report', show: 4, bend: 0.16, color: 'candle' }
     ],
     beats: [
+      { hold: 9400, card: { place: 'low', side: 'right', at: 'fig',
+        title: 'THE PART THAT IS HERS', lines: [
+          ['"is the permission check part of', 'g'],
+          ['the search, or applied afterwards?"', 'g'],
+          ['if nobody can answer that,', 'd'],
+          ['she has learned what she needed', 'd'] ] } },
       { hold: 8600, card: { place: 'low', side: 'right', at: 'perm',
         title: 'THE FILTER MOVES', lines: [
           ['tenant and document permissions', 'g'],
@@ -4366,7 +4320,8 @@
       { id: 'dash', kind: 'browser', u: 0.80, v: 0.14, w: 0.170, h: 0.140,
         label: 'THE DASHBOARD RENDERS IT', above: true, hot: 2 },
       { id: 'out', kind: 'cloud', u: 0.92, v: 0.52, w: 0.170, h: 0.120,
-        label: 'A SERVER ON THE INTERNET', hot: 2, fill: 'cold', glow: 'ember' }
+        label: 'A SERVER ON THE INTERNET', above: true, hot: 2, fill: 'cold',
+        glow: 'ember' }
     ],
     flows: [
       { from: 'doc', to: 'model', show: 0, bend: 0.06, color: 'ember' },
@@ -4402,19 +4357,16 @@
       { id: 'model', kind: 'orb', u: 0.36, v: 0.14, w: 0.115, h: 0.115,
         label: 'THE MODEL', above: true, fill: 'brain' },
       { id: 'schema', kind: 'gate', u: 0.54, v: 0.14, w: 0.02, h: 0.140,
-        label: 'VALIDATED AGAINST A SCHEMA', show: 0 },
+        label: 'VALIDATED BY SCHEMA', show: 0 },
       { id: 'render', kind: 'browser', u: 0.78, v: 0.14, w: 0.170, h: 0.135,
         label: 'TEXT · HEADINGS · LISTS · TABLES', above: true, show: 1 },
       { id: 'csp', kind: 'gate', u: 0.94, v: 0.44, w: 0.02, h: 0.150,
-        label: 'CONTENT SECURITY POLICY', show: 2 },
-      { id: 'sql', kind: 'db', u: 0.52, v: 0.50, w: 0.130, h: 0.165,
-        label: 'PREPARED STATEMENT', above: true, show: 3 }
+        label: 'CONTENT SECURITY POLICY', above: true, show: 2 }
     ],
     flows: [
       { from: 'model', to: 'schema', show: 0, bend: 0.05, color: 'candle' },
       { from: 'schema', to: 'render', show: 1, bend: 0.05, color: 'candle' },
-      { from: 'render', to: 'csp', show: 2, bend: 0.08, color: 'candle' },
-      { from: 'model', to: 'sql', show: 3, bend: 0.14, color: 'candle' }
+      { from: 'render', to: 'csp', show: 2, bend: 0.08, color: 'candle' }
     ],
     beats: [
       { hold: 8600, card: { place: 'low', side: 'right', at: 'render',
@@ -4431,7 +4383,7 @@
           ['validate before anything renders', 'g'],
           ['a field that should not be there', 'g'],
           ['is logged, not displayed', 'd'] ] } },
-      { hold: 8800, card: { place: 'low', side: 'right', at: 'sql',
+      { hold: 8800, card: { place: 'low', side: 'right', at: 'model',
         title: 'AND IT DOES NOT WRITE SQL', lines: [
           ['it fills in typed parameters', 'g'],
           ['of a query a person wrote', 'g'],

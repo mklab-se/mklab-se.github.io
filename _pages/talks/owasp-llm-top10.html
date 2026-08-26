@@ -30,8 +30,15 @@ canvas: /assets/js/talks/owasp-llm-top10.js
         is half hidden, tools, a vector store, a training pipeline, and a
         meter counting the cost. Note the shape of the loop.
         <strong>The model never acts. It asks, and the app decides whether
-        to do it.</strong> Learn this stage once. For the next ten stories,
-        watch where each one lands.</p>
+        to do it.</strong></p>
+        <p class="lead">You do not have to build one of these to be exposed to
+        what follows. Most of the ten people in this talk built nothing: they
+        used something somebody handed them, and typed into it. So every fix
+        here comes in two parts: <strong>what that person could have decided
+        on their own</strong>, and, where the repair is not theirs to make,
+        <strong>what to go and raise with the company</strong>. Noticing and
+        saying so is a control. It is often the only one you have, and it is
+        the one that gets the other nine built.</p>
       </div>
     </section>
 
@@ -113,19 +120,20 @@ canvas: /assets/js/talks/owasp-llm-top10.js
 
     <section class="slide" data-scene="d01" data-risk="LLM01 · Prompt injection">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM01</span> · the same Monday, done differently</p>
-        <h2>Three things stand between the ticket and that inbox.</h2>
-        <p class="lead">Ticket 4471 still arrives and the AI assistant still
-        reads it. What is different is that everything from outside the
-        company is <strong>labelled as content</strong> and kept out of the
-        instruction slot, so it reads the sentence about the customer list
-        the way a person reads it: as a strange thing a customer wrote.</p>
-        <p class="lead">The mail tool cannot send outside the domain of the
-        customer on the ticket, and that rule is a few lines in the app rather
-        than a sentence in the prompt, so no amount of persuasion moves it.
-        Anything leaving the thread keeps <strong>a human in the loop</strong>.
-        What Anders finds on Monday morning is not a leak. It is one item
-        waiting for him to approve or reject, and he rejects it.</p>
+        <p class="eyebrow"><span class="num">LLM01</span> · done differently</p>
+        <h2>Anders never had to write a line of code.</h2>
+        <p class="lead">Two of the three things that would have saved him were
+        his to decide. <strong>An assistant that reads what strangers write
+        does not also get to send mail to strangers</strong>: the tool it
+        holds should reach the customer on the ticket and nobody else. And
+        anything leaving the company keeps <strong>a human in the
+        loop</strong>, which costs him four seconds a week.</p>
+        <p class="lead">What he finds on Monday is not a leak. It is one item
+        waiting for approve or reject, and he rejects it. The third fix is not
+        his: it belongs to whoever built the thing.</p>
+        <p class="deck-raise"><b>The sentence to say</b>Is content from
+        outside the company labelled, and kept out of the instruction
+        slot?</p>
       </div>
     </section>
 
@@ -199,19 +207,22 @@ canvas: /assets/js/talks/owasp-llm-top10.js
 
     <section class="slide" data-scene="d02" data-risk="LLM02 · Sensitive information disclosure">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM02</span> · the same week, done differently</p>
-        <h2>Show what is about to leave, and to whom.</h2>
-        <p class="lead">Before anything moves, Lena is shown it: 40 files, 1.2
-        MB, to a named vendor, in the tenant her company pays for, retention
-        switched off. That list has salaries.xlsx in it, in plain sight, and
-        she takes it out. Better still, the company has already decided which
-        folders may be pointed at an AI assistant at all, and the salary
-        folder is not one of them.</p>
-        <p class="lead">Johan's tool checks which account it is signed in as
-        before it touches a company repository, and refuses when that account
-        is not in the company tenant. <strong>An approved product is not an
-        approved account.</strong> On the server side, permissions are
-        enforced at retrieval, per document and per tenant.</p>
+        <p class="eyebrow"><span class="num">LLM02</span> · done differently</p>
+        <h2>Nobody is going to show you what leaves.</h2>
+        <p class="lead">There is no such screen. Microsoft will not show Lena
+        the forty files and GitHub will not tell Johan which account he is on.
+        <strong>The knowing is the control</strong>, and the whole reason to
+        sit through an hour like this one: once you know that pointing an AI
+        agent at a file means sending that file, the decision moves to before
+        you act.</p>
+        <p class="lead">So Lena asks first. <strong>Would I hand this to the
+        company behind this service?</strong> Salary reviews: no. Then they do
+        not go. An agreement can make the answer yes, but only for the service
+        it covers and only in the account it covers, which is Johan's half.
+        <strong>An approved product is not an approved account.</strong></p>
+        <p class="deck-raise"><b>The sentence to say</b>Which AI services are
+        approved here, for which kinds of data, and where is that written
+        down?</p>
       </div>
     </section>
 
@@ -264,7 +275,7 @@ canvas: /assets/js/talks/owasp-llm-top10.js
 
     <section class="slide" data-scene="d03" data-risk="LLM03 · Excessive agency">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM03</span> · the same night, done differently</p>
+        <p class="eyebrow"><span class="num">LLM03</span> · done differently</p>
         <h2>Shrink the hand, not the model.</h2>
         <p class="lead">The cleanup gets its own database user. It can delete
         rows in one table, only where the test flag is set, and read nothing
@@ -273,9 +284,11 @@ canvas: /assets/js/talks/owasp-llm-top10.js
         reads over coffee.</p>
         <p class="lead">The tool it holds is not "run SQL" but "delete test
         account by id", one at a time, with a ceiling of fifty a night and
-        anything above that waiting for a person. Every action is checked in
-        Sofia's own authorization code rather than left to the model's sense
-        of what looks reasonable. Nothing about the model got better.</p>
+        anything above that waiting for a person. Nothing about the model got
+        better.</p>
+        <p class="deck-raise"><b>The sentence to say</b>The credentials we
+        hand these jobs can already do everything. That was fine until we
+        pointed a model at them.</p>
       </div>
     </section>
 
@@ -324,19 +337,21 @@ canvas: /assets/js/talks/owasp-llm-top10.js
 
     <section class="slide" data-scene="d04" data-risk="LLM04 · Supply chain">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM04</span> · the same six weeks, done differently</p>
+        <p class="eyebrow"><span class="num">LLM04</span> · done differently</p>
         <h2>Know what you loaded, and who signed it.</h2>
-        <p class="lead">The connector comes from an internal allowlist, pinned
-        to an exact version by its hash, and it does not update itself. When
-        1.4 is released, <strong>one person looks at what changed between 1.3
-        and 1.4 before anybody gets it</strong>. That takes twenty minutes and
-        happens once for the whole company.</p>
-        <p class="lead">The token it holds can read Jira issues and nothing
-        else, and it expires. Models are pulled from a mirror, checked against
-        a signature, in a format that cannot execute on load, and written down
-        in the same inventory as the packages, licence included, so that "what
-        are we actually running" has an answer that is not somebody's
-        memory.</p>
+        <p class="lead">Erik's own three, none of which need anybody's
+        permission. <strong>Know who maintains what you install</strong>
+        before you hand it a token. <strong>Turn auto-update off</strong> for
+        anything that holds one, because a tool that can change under you is a
+        tool you have not finished reviewing. And give it the narrowest token
+        that works, with an expiry.</p>
+        <p class="lead">The rest is the company's: an allowlist, versions
+        pinned by hash, models pulled from a mirror with the signature checked
+        and in a format that cannot execute on load, all of it in the same
+        inventory as the packages.</p>
+        <p class="deck-raise"><b>The sentence to say</b>Could one person read
+        what changed before an update reaches all of us? Twenty minutes, once,
+        for everyone.</p>
       </div>
     </section>
 
@@ -388,20 +403,20 @@ canvas: /assets/js/talks/owasp-llm-top10.js
 
     <section class="slide" data-scene="d05" data-risk="LLM05 · Data and model poisoning">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM05</span> · the same quarter, done differently</p>
+        <p class="eyebrow"><span class="num">LLM05</span> · done differently</p>
         <h2>Quarantine the lesson. Keep the decision in code.</h2>
-        <p class="lead">Feedback does not go straight into training. It goes
-        into quarantine, and a sample is read by a person first. The refund
-        conversations stand out in that sample, because a human reading twenty
-        of them in a row notices what a "resolved" flag cannot.</p>
+        <p class="lead">Feedback does not go straight into training. It waits,
+        and a sample is read by a person first. The refund conversations stand
+        out in that sample, because a human reading twenty in a row notices
+        what a "resolved" flag cannot.</p>
         <p class="lead">More to the point, <strong>whether a refund is
         approved was never the model's decision</strong>. It is a rule in
         ordinary code that requires an order number, and the assistant's job
-        is to be pleasant about asking for one. Every dataset and model has a
-        recorded origin and version so a bad month can be rolled back rather
-        than argued about, and before each release somebody whose job is to
-        break it runs a set of refund phrasings against the new model and
-        compares.</p>
+        is to be pleasant about asking for one. There is nothing there to
+        teach.</p>
+        <p class="deck-raise"><b>The sentence to say</b>Which of our
+        conversations become training data, and who reads them before they
+        do?</p>
       </div>
     </section>
 
@@ -452,18 +467,20 @@ canvas: /assets/js/talks/owasp-llm-top10.js
 
     <section class="slide" data-scene="d06" data-risk="LLM06 · Unbounded consumption">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM06</span> · the same Friday, done differently</p>
+        <p class="eyebrow"><span class="num">LLM06</span> · done differently</p>
         <h2>Cap the work, not the requests.</h2>
-        <p class="lead">The run has hard limits on the things that actually
-        cost: how much text may go in, how much may come out, how many times
-        the agent may loop, how many tool calls it may make and how long it
-        may take. The key it uses has <strong>a spending cap that stops rather
-        than warns</strong>.</p>
-        <p class="lead">At the third round the agent stops and posts a comment
-        saying the issue was too large to process. That is a mildly annoying
-        Friday instead of a weekend of spending. Marcus reads it on Monday and
-        adds a check that trims pasted logs before they reach the agent, which
-        takes an afternoon.</p>
+        <p class="lead">The run has hard limits on what actually costs: how
+        much text may go in, how much may come out, how many times the agent
+        may loop, how many tool calls it may make and how long it may take.
+        The key it uses has <strong>a cap that stops rather than
+        warns</strong>.</p>
+        <p class="lead">At the third round the agent gives up and posts a
+        comment saying the issue was too large. A mildly annoying Friday
+        instead of a weekend of spending. Marcus adds a trim on pasted logs on
+        Monday, which takes an afternoon.</p>
+        <p class="deck-raise"><b>The sentence to say</b>We need a limit that
+        stops. An alert at 02:00 on a Saturday is a record of the money, not a
+        brake on it.</p>
       </div>
     </section>
 
@@ -514,20 +531,20 @@ canvas: /assets/js/talks/owasp-llm-top10.js
 
     <section class="slide" data-scene="d07" data-risk="LLM07 · Misinformation">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM07</span> · the same half day, done differently</p>
+        <p class="eyebrow"><span class="num">LLM07</span> · done differently</p>
         <h2>Make it show its work.</h2>
         <p class="lead">She gives the AI assistant the regulation instead of
         relying on what it remembers, and asks for each consequence to
         <strong>quote the passage it rests on</strong>, with one explicit
         instruction: where there is no passage, say so.</p>
         <p class="lead">Two of the five come back marked as unsupported. That
-        is not a failure, that is the one thing that helps. She spends her
-        remaining hour on exactly those two rather than spreading the same
-        doubt evenly across all five, and the deck reaches the steering group
-        with the verified points separated from the assumptions. For the
-        decision itself the rule needs no judgment about how confident the
-        text sounded: anything that moves a date or a budget gets its source
-        read by a person first.</p>
+        is not a failure, that is the one thing that helps. Her last hour goes
+        on exactly those two rather than spreading the same doubt evenly
+        across all five. All of it hers to do on a Wednesday, without asking
+        anybody.</p>
+        <p class="deck-raise"><b>The sentence to say</b>Anything that moves a
+        date or a budget gets its source read by a person. Can that be how we
+        work, not how I work?</p>
       </div>
     </section>
 
@@ -581,17 +598,21 @@ canvas: /assets/js/talks/owasp-llm-top10.js
 
     <section class="slide" data-scene="d08" data-risk="LLM08 · Hidden context exposure">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM08</span> · the same procurement, done differently</p>
-        <h2>Write it as though it will be published.</h2>
-        <p class="lead">The discount ladder is not in the instructions at all.
-        It is a lookup the sales assistant makes, and what comes back depends
-        on who is asking, checked in ordinary code on the other side of that call.
-        There is no API key in there either, because <strong>the key belongs
-        to the service, not to the conversation</strong>.</p>
-        <p class="lead">What is left in the setup text is the tone of voice,
-        the reminder to be brief and the note about staying on topic. The
-        customer still gets it translated into German. What they learn is that
-        the assistant is polite and prefers short answers.</p>
+        <p class="eyebrow"><span class="num">LLM08</span> · done differently</p>
+        <h2>Write it as though it will be read out loud.</h2>
+        <p class="lead">Daniel cannot put a wall inside that window and no
+        tool is going to give him one. What he can decide is what never goes
+        in. Out come the discount ladder, the outage script, the competitor
+        notes, the billing service name and the API address.
+        <strong>If you would not want it read out loud, in any language, it
+        does not belong in a prompt.</strong></p>
+        <p class="lead">The discounts still have to come from somewhere, and
+        that is the useful discovery. <strong>A prompt is not a place to keep
+        anything that depends on who is asking.</strong> What is left in his
+        setup text is tone, brevity, and when to hand over to a person.</p>
+        <p class="deck-raise"><b>The sentence to say</b>This needs to come
+        from something that checks who is asking. I should not be pasting the
+        table into a prompt.</p>
       </div>
     </section>
 
@@ -620,11 +641,10 @@ canvas: /assets/js/talks/owasp-llm-top10.js
         building. The answer comes back quoting it.</p>
         <p class="lead"><strong>The permission check never had a chance</strong>,
         because the leak happened during the search and not during the
-        display. Similar is not the same thing as allowed. It is not the same
-        thing as relevant either: an internal page that helpfully lists every
-        question the team asks is now similar to almost everything, so it
-        arrives in almost every answer, and nine months later it is out of
-        date and still winning.</p>
+        display. Similar is not the same thing as allowed, and it is not the
+        same thing as relevant either: an internal page that lists every
+        question the team asks is now near everything, so it arrives in almost
+        every answer, out of date and still winning nine months later.</p>
       </div>
     </section>
 
@@ -643,19 +663,20 @@ canvas: /assets/js/talks/owasp-llm-top10.js
 
     <section class="slide" data-scene="d09" data-risk="LLM09 · Vector and embedding weaknesses">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM09</span> · the same question, done differently</p>
-        <h2>Filter inside the query, not after it.</h2>
-        <p class="lead">The permission filter is part of the search, so the
-        other client's paragraph is <strong>never a candidate</strong> and no
-        code downstream has to be clever about it. For the most sensitive
-        clients the index is separate outright, which costs a little more and
-        removes the question.</p>
-        <p class="lead">Every chunk carries where it came from, recorded and
-        validated at ingestion rather than trusted later. Raw similarity
-        scores are not shown, because they are a measuring instrument for
-        probing the index. And a plain report lists the chunks that win
-        retrieval far more often than the rest, which is how the stale page
-        gets found in week three instead of month nine.</p>
+        <p class="eyebrow"><span class="num">LLM09</span> · done differently</p>
+        <h2>Ask where the permission check happens.</h2>
+        <p class="lead">This is the one Ida cannot fix herself, so the useful
+        thing she owns is a question, and an instinct: an answer that quotes
+        something she does not recognise is <strong>a finding to report, not a
+        curiosity to enjoy</strong>.</p>
+        <p class="lead">For the team that owns the search, the filter moves
+        <strong>inside the query</strong>, so the other client's paragraph is
+        never a candidate at all. Sensitive clients get their own index. Every
+        chunk carries where it came from. And one plain report lists the
+        chunks that win retrieval far too often.</p>
+        <p class="deck-raise"><b>The sentence to say</b>Is the permission
+        check part of the search, or applied to the results afterwards? If
+        nobody knows, that is the answer.</p>
       </div>
     </section>
 
@@ -706,18 +727,20 @@ canvas: /assets/js/talks/owasp-llm-top10.js
 
     <section class="slide" data-scene="d10" data-risk="LLM10 · Improper output handling">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM10</span> · the same dashboard, done differently</p>
+        <p class="eyebrow"><span class="num">LLM10</span> · done differently</p>
         <h2>Encode for the destination.</h2>
         <p class="lead">The renderer accepts a strict subset of markdown:
         text, headings, lists, tables. No images from arbitrary addresses and
         no links that fetch on their own. A content security policy means the
-        browser would <strong>refuse that outbound request even if the markup
-        got through</strong>, which is the second lock on the same door.</p>
-        <p class="lead">The answer is validated against a schema in ordinary
-        code before anything renders it. And the model does not write SQL: it
-        fills in the parameters of a query a person wrote, the parameters are
-        typed, and the query runs as a prepared statement. Somebody still has
-        to know SQL. That person did it once.</p>
+        browser <strong>refuses that request even if the markup got
+        through</strong>, which is the second lock on the same door.</p>
+        <p class="lead">The answer is validated against a schema before
+        anything renders it. And the model does not write SQL: it fills in the
+        typed parameters of a query a person wrote. Somebody still has to know
+        SQL. That person did it once.</p>
+        <p class="deck-raise"><b>The sentence to say</b>Does anything
+        downstream treat the model's output as untrusted input? A blank look
+        is an answer.</p>
       </div>
     </section>
 
@@ -769,16 +792,19 @@ canvas: /assets/js/talks/owasp-llm-top10.js
         <h2>Four things every one of those ten had in common.</h2>
         <p class="lead"><strong>In seven of them nobody attacked
         anybody.</strong> <strong>Nothing alerted:</strong> every story ends
-        with someone finding out late, from finance, from legal, from a
+        with somebody finding out late, from finance, from legal, from a
         customer, never from a monitor. <strong>Everyone did something
-        reasonable</strong> by the standards they were working under, which is
-        why you recognized yourself in at least three.</p>
+        reasonable</strong>, which is why you recognized yourself in at least
+        three.</p>
         <p class="lead">And in nine of the ten fixes, <strong>the model is
         unchanged</strong>. What changed was a permission, an account, a
         limit, a label, a schema, a rendering rule, or a person in the loop.
-        The 2026 edition opens with the same advice: stop trying to build a
-        model that cannot be fooled, and build the system around it so that
-        when it is fooled, and it will be, nothing important breaks.</p>
+        In half of them the first fix was not code at all: it was somebody
+        knowing, before they started, what happens when you point one of these
+        at your files. <strong>That knowing is the control.</strong> The 2026
+        edition supplies the rest: stop trying to build a model that cannot be
+        fooled, and build the system around it so that when it is fooled, and
+        it will be, nothing important breaks.</p>
       </div>
     </section>
 

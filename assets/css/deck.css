@@ -122,6 +122,29 @@ body.mk-idle { cursor: none; }
 /* a story runs to two paragraphs; they must not read as one block */
 .lead + .lead { margin-top: var(--space-5); }
 
+/* Every defense slide ends with the sentence to say when the fix is not
+   yours to make. Same shape every time, so the audience learns to look
+   for it: this is the part you can act on tomorrow without permission. */
+.deck-raise {
+  margin-top: var(--space-5);
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--candle-500, #f5a623);
+  max-width: 52ch;
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: var(--leading-relaxed);
+  color: var(--ink-100);
+}
+.deck-raise b {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-3xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--candle-500, #f5a623);
+  margin-bottom: var(--space-2);
+}
+
 .title-sub {
   margin-top: var(--space-8);
 }

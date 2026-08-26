@@ -752,3 +752,43 @@ three stories only.
 beat, and reports any two things that land on top of each other. It found 98
 overlaps on the first pass; the deck ships at zero. Copy overflow is checked the
 same way at 1280x720, 1440x810 and 1600x900.
+
+---
+
+## Correction, same day: the defenses were aimed at the wrong people
+
+Kristofer read the LLM02 fix, "Show what is about to leave, and to whom", and asked the
+right question: what does that actually mean? Microsoft does not show Lena a manifest.
+GitHub does not tell Johan which account he is on. The slide was describing a screen that
+does not exist, so it gave her nothing to do.
+
+The root cause was bigger than one slide. **This talk is for people who use AI agents and
+write prompts, not for people who build them**, and four of the ten defenses had drifted
+into advice only a builder could act on:
+
+| | Persona | What the defense told them to do | Could they? |
+|---|---|---|---|
+| d02 | Lena, Johan | read the manifest before sending | no such screen exists |
+| d08 | Daniel, sales ops | make it a lookup checked in code | he has a text box |
+| d09 | Ida, consultant | filter inside the vector query | not her system |
+| d04 | Erik, developer | run a company-wide allowlist | not his decision |
+
+Every defense slide now has the same three parts, and the shape is the point:
+
+1. **What that person could have decided on their own**, always first, always something they
+   actually control.
+2. **What the repair looks like** where it belongs to whoever built the thing, named plainly
+   so the audience knows what they are asking for.
+3. **The sentence to say.** One line, set off with a candle hairline, phrased as words you
+   can use out loud at work tomorrow. When you cannot fix it yourself, noticing and saying so
+   is the control, and it is often the only one you have.
+
+The stage slide sets this up before the first story, and the posture slide closes on it: in
+half the stories the first fix was not code at all, it was somebody knowing, before they
+started, what happens when you point one of these at your files.
+
+Two rules that came out of this and generalise to every teaching deck:
+
+- Write the fix for the person in the story, not for the person who could theoretically fix
+  it. If those are different people, say so on the slide; that gap is the useful content.
+- A control the audience cannot reach is not advice, it is decoration.
