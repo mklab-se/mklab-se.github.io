@@ -2,6 +2,12 @@
    MKLab tech talk deck: presentation chrome.
    Keyboard navigation, slide counter, progress hairline,
    fullscreen, blackout, idle cursor hiding. No dependencies.
+
+   Beats: a talk's canvas may split a slide into steps. If it
+   exposes nextBeat/prevBeat, the forward key spends a beat before
+   it spends a slide, so the picture moves when the presenter is
+   ready rather than when a timer says so. Decks with no beats
+   behave exactly as they always did.
    ============================================================ */
 (function () {
   'use strict';
@@ -44,6 +50,38 @@
     slides[i].scrollIntoView({ behavior: 'smooth' });
   }
 
+  // ---------- beats: the canvas may hold the slide for a step ----------
+  var beatsEl = document.createElement('div');
+  beatsEl.className = 'deck-beats';
+  beatsEl.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(beatsEl);
+
+  function renderBeats(i, n) {
+    if (!n || n < 2) { beatsEl.innerHTML = ''; return; }
+    var html = '';
+    for (var k = 0; k < n; k++) {
+      html += '<i class="' + (k <= i ? 'on' : '') + '"></i>';
+    }
+    beatsEl.innerHTML = html;
+  }
+  var beatHook = setInterval(function () {
+    if (window.mkCanvas && typeof window.mkCanvas.onBeat === 'function') {
+      clearInterval(beatHook);
+      window.mkCanvas.onBeat(renderBeats);
+    }
+  }, 200);
+
+  function advance() {
+    var c = window.mkCanvas;
+    if (c && typeof c.nextBeat === 'function' && c.nextBeat()) return;
+    go(current + 1);
+  }
+  function retreat() {
+    var c = window.mkCanvas;
+    if (c && typeof c.prevBeat === 'function' && c.prevBeat()) return;
+    go(current - 1);
+  }
+
   // blackout: "." fades to black (hide the screen before presenting),
   // "." again fades back to exactly where you were
   var blackout = document.createElement('div');
@@ -78,11 +116,11 @@
       case 'ArrowDown':
       case 'PageDown':
       case ' ':
-        e.preventDefault(); go(current + 1); break;
+        e.preventDefault(); advance(); break;
       case 'ArrowLeft':
       case 'ArrowUp':
       case 'PageUp':
-        e.preventDefault(); go(current - 1); break;
+        e.preventDefault(); retreat(); break;
       case 'Home':
         e.preventDefault(); go(0); break;
       case 'End':

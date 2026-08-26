@@ -2,10 +2,10 @@
 layout: talk
 title: The OWASP LLM Top 10
 description: >-
-  All ten risks of the 2026 OWASP Top 10 for LLM Applications in plain
-  English, one chapter each: what the risk means, how it goes wrong with
-  or without an attacker, and how to shut it down. Adapted from OWASP
-  under CC BY-SA 4.0. Fifty-one animated slides.
+  All ten risks of the 2026 OWASP Top 10 for LLM Applications, told as ten
+  ordinary working days: what the person was doing, what actually happened,
+  what the risk is called, and the same day again with the controls in
+  place. Adapted from OWASP under CC BY-SA 4.0. About sixty minutes.
 permalink: /talks/owasp-llm-top10/
 lang: en
 canvas: /assets/js/talks/owasp-llm-top10.js
@@ -26,10 +26,12 @@ canvas: /assets/js/talks/owasp-llm-top10.js
         <p class="eyebrow"><span class="num">I</span> · The stage</p>
         <h2>One application, many parts.</h2>
         <p class="lead">An LLM application is a model placed inside a larger
-        system: a user, the app, the model, a context window that is half
-        hidden, tools, a vector store, a training pipeline, and a meter
-        counting the cost. <strong>Learn this stage once.</strong> For the
-        next ten chapters, watch where each risk lands.</p>
+        system: a person, the app that runs the model, a context window that
+        is half hidden, tools, a vector store, a training pipeline, and a
+        meter counting the cost. Note the shape of the loop.
+        <strong>The model never acts. It asks, and the app decides whether
+        to do it.</strong> Learn this stage once. For the next ten stories,
+        watch where each one lands.</p>
       </div>
     </section>
 
@@ -60,592 +62,738 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       </div>
     </section>
 
-    <section class="slide" data-scene="method">
+    <section class="slide" data-scene="s01" data-who="Anders · product owner">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">IV</span> · How this talk runs</p>
-        <h2>Four beats, ten times.</h2>
-        <p class="lead">Every risk gets the same four slides, so you always
-        know where you are. <strong>The chapter</strong> names the risk and
-        says what it means in one sentence. <strong>What it is</strong>
-        explains the risk. <strong>How it happens</strong> shows it playing
-        out, sometimes an attacker, sometimes just us. <strong>The
-        defense</strong> is the same picture with the walls put back. Then
-        we count all ten back down.</p>
+        <p class="eyebrow"><span class="num">Story one</span> · of ten</p>
+        <h2>Anders stopped reading the tickets.</h2>
+        <p class="lead">Every Monday he asks the internal AI assistant to go
+        through last week's tickets, write the team a summary, and answer the
+        ones where the answer is obvious. It has done this for three months
+        and it saves him an hour a week. <strong>He no longer reads them
+        first</strong>, which was the point of setting it up.</p>
+        <p class="lead">This Monday the pile contains ticket 4471. It is about
+        a printer that is offline. Further down, in the same plain text as the
+        rest of the complaint, there is a paragraph addressed to nobody in
+        particular.</p>
       </div>
     </section>
 
-    <section class="slide slide--bottom" data-scene="ch01" data-risk="LLM01 · Prompt injection">
+    <section class="slide" data-scene="a01" data-who="Anders · product owner">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM01</span> · risk one of ten</p>
-        <h2>Prompt injection</h2>
-        <p class="lead">A prompt is everything the model reads: your words, a
-        web page, a document, an image, tool output, saved memory. Injection
-        is when any of that carries instructions, and the model follows
-        them.</p>
+        <p class="eyebrow"><span class="num">Story one</span> · what actually happened</p>
+        <h2>Nothing marked one of them as an order.</h2>
+        <p class="lead">Anders's setup text and the customer's complaint reach
+        the AI assistant in the same place, in the same format, one after the
+        other. <strong>There is no seam between them.</strong> So it reads the
+        sentence about the customer list the way it reads everything else, and
+        does what it says.</p>
+        <p class="lead">It asks to use the mail tool. The mail tool is there
+        because the AI assistant is supposed to reply to customers. The model
+        cannot send anything itself; it asks, and the app around it decides.
+        Nothing in that app said who a reply may go to, so the app sent it,
+        from the company's own address, where no filter and no alert would
+        stop it.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="r01" data-risk="LLM01 · Prompt injection">
+    <section class="slide slide--bottom" data-scene="r01" data-risk="LLM01 · Prompt injection">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM01</span> · what it is</p>
-        <h2>It is all one stream.</h2>
-        <p class="lead">The model cannot reliably tell trusted instructions
-        from untrusted data. Your system prompt, the user's message, a
-        retrieved document, tool output: to the model it is
-        <strong>one flat stream of tokens</strong>, with no equivalent of a
-        parameterized query to keep them apart. Any text it reads can steer
-        it, which is why this holds first place: the surface is everywhere a
-        model reads something it did not write.</p>
-      </div>
-    </section>
-
-    <section class="slide" data-scene="a01" data-risk="LLM01 · Prompt injection">
-      <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM01</span> · how it happens</p>
-        <h2>The instruction arrives as content.</h2>
-        <p class="lead">Someone hides an instruction where your app will read
-        it: a web page, a support ticket, a PDF, white text in an image.
-        Retrieval pulls it in, the context window merges it with your system
-        prompt, and the model obeys. <strong>It does not always take an
-        attacker.</strong> An ordinary document with conflicting
-        instructions can steer the model by accident, and if it writes to
-        memory, the effect outlives the session.</p>
+        <p class="eyebrow"><span class="num">LLM01</span> · first of ten</p>
+        <h2>What happened to Anders has a name.</h2>
+        <p class="lead">A prompt is everything the model reads, not only what
+        you typed: your instructions, the user's message, a retrieved
+        document, a web page, an image, the output of a tool, saved memory. To
+        the model it is one flat stream of text with no reliable marking of
+        what came from where. <strong>There is no prepared statement for
+        prompts.</strong> Any text the application reads can steer it, and
+        that is why this one sits first: the surface is everywhere a model
+        reads something it did not write.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="d01" data-risk="LLM01 · Prompt injection">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM01</span> · the defense</p>
-        <h2>Assume it gets in. Gate what happens next.</h2>
-        <p class="lead">There is no parameterized query for prompts, so build
-        the walls around the model. <strong>Label untrusted content and keep
-        it out of the instruction slot.</strong> Keep credentials and access
-        decisions in your own code, never in the prompt. Validate the answer
-        against a schema before you use it. Give each tool the least access
-        that works, and require a human to approve anything irreversible.</p>
+        <p class="eyebrow"><span class="num">LLM01</span> · the same Monday, done differently</p>
+        <h2>Three things stand between the ticket and that inbox.</h2>
+        <p class="lead">Ticket 4471 still arrives and the AI assistant still
+        reads it. What is different is that everything from outside the
+        company is <strong>labelled as content</strong> and kept out of the
+        instruction slot, so it reads the sentence about the customer list
+        the way a person reads it: as a strange thing a customer wrote.</p>
+        <p class="lead">The mail tool cannot send outside the domain of the
+        customer on the ticket, and that rule is a few lines in the app rather
+        than a sentence in the prompt, so no amount of persuasion moves it.
+        Anything leaving the thread keeps <strong>a human in the loop</strong>.
+        What Anders finds on Monday morning is not a leak. It is one item
+        waiting for him to approve or reject, and he rejects it.</p>
       </div>
     </section>
 
-    <section class="slide slide--bottom" data-scene="ch02" data-risk="LLM02 · Sensitive information disclosure">
+    <section class="slide" data-scene="s02" data-who="Lena · HR manager">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM02</span> · risk two of ten</p>
-        <h2>Sensitive information disclosure</h2>
-        <p class="lead">Confidential data reaches someone, or somewhere, not
-        meant to see it: another customer, a log file, a trace, or the answer
-        itself.</p>
+        <p class="eyebrow"><span class="num">Story two</span> · of ten</p>
+        <h2>Lena points it at a folder.</h2>
+        <p class="lead">On her laptop there is a folder with the salary review
+        documents for her department. Forty files, one per person, plus a
+        spreadsheet with the actual numbers. She asks the AI assistant to
+        summarize the reasoning in each one and flag the ones with no written
+        motivation. This is a completely sensible thing to want on a Tuesday
+        in November.</p>
+        <p class="lead">She attaches nothing. She presses no send button.
+        <strong>From where she is sitting, this is a program on her laptop</strong>,
+        doing a job on files that are already on her laptop.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="r02" data-risk="LLM02 · Sensitive information disclosure">
+    <section class="slide" data-scene="a02" data-who="Lena · HR manager">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM02</span> · what it is</p>
-        <h2>Every channel is an output.</h2>
-        <p class="lead">Secrets do not only leave through the answer. Tool
-        arguments, reasoning traces, logs, telemetry, embeddings, even how
-        long a response takes, are all ways data can escape. A model can also
-        memorize training data and repeat it back. <strong>Treat every
-        channel like the answer</strong>: classified, redacted, and watched,
-        especially the ones nobody reads.</p>
+        <p class="eyebrow"><span class="num">Story two</span> · what actually happened</p>
+        <h2>The files left before the answer came back.</h2>
+        <p class="lead">Every one of them was read and sent, in full, over the
+        internet, to the company that runs the model, before a single word of
+        summary existed. <strong>There was no screen that said "you are about
+        to upload 40 documents including salaries.xlsx".</strong> She is not
+        using a program on her laptop. She is using a program on somebody
+        else's computer, and the price of admission is handing over the thing
+        you want it to look at.</p>
+        <p class="lead">If her employer has an agreement with that vendor
+        covering exactly this, then nothing bad has happened, and that is what
+        the agreement is for. The problem is that Lena has no way of telling,
+        from that screen, which of those two worlds she is in.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="a02" data-risk="LLM02 · Sensitive information disclosure">
+    <section class="slide" data-scene="a02b" data-who="Johan · developer">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM02</span> · how it happens</p>
-        <h2>Most leaks have no attacker.</h2>
-        <p class="lead"><strong>The common case is us.</strong> The app puts
-        too much in the context window, logs a prompt that holds a secret, or
-        skips the permission check before retrieval and hands back another
-        customer's document. An attacker is optional: they can query
-        repeatedly to pull out memorized data, or steal an embedding backup
-        and turn the vectors back into text. Either way the data is out.</p>
+        <p class="eyebrow"><span class="num">Story two</span> · the same risk, one desk over</p>
+        <h2>Johan signed in with the wrong account.</h2>
+        <p class="lead">His company has approved GitHub Copilot. There was an
+        announcement, a training session, a policy page. On Thursday he sets
+        up a new laptop, installs the CLI and signs in with GitHub. The
+        browser was already logged into his personal account from 2016, so
+        that is the account it uses. Same logo, same prompt, everything
+        works.</p>
+        <p class="lead">He is now on the free plan. His company's agreement
+        does not cover it, because that agreement is with a tenant he is not
+        in. He spends the next week with it open inside the payments
+        repository. No administrator sees anything, because from the company's
+        side <strong>he never showed up</strong>.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="r02" data-risk="LLM02 · Sensitive information disclosure">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM02</span> · second of ten</p>
+        <h2>What happened to Lena and Johan has a name.</h2>
+        <p class="lead">Confidential data reaching someone, or somewhere, not
+        authorized to have it. It leaves through more doors than the answer:
+        the prompt itself, retrieved documents, tool arguments, reasoning
+        traces, logs, telemetry, embeddings. A model can also memorize
+        training data and repeat it back. Most of the time there is no
+        attacker at all, because the application simply sends too much, logs
+        too much, or checks too little. <strong>The hard part is not the
+        sending. It is knowing that you are sending, and where it
+        lands.</strong></p>
       </div>
     </section>
 
     <section class="slide" data-scene="d02" data-risk="LLM02 · Sensitive information disclosure">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM02</span> · the defense</p>
-        <h2>Send less, and check the caller first.</h2>
-        <p class="lead">Put the least in the context window that the task
-        needs, and <strong>never a secret</strong>. Enforce the caller's
-        permissions at retrieval time, per document and per tenant, not when
-        you render the answer. Redact logs, traces and telemetry the way you
-        redact responses. Encrypt embeddings and treat a vector backup like
-        the source documents. Then test directly for memorization and
-        cross-user leakage.</p>
+        <p class="eyebrow"><span class="num">LLM02</span> · the same week, done differently</p>
+        <h2>Show what is about to leave, and to whom.</h2>
+        <p class="lead">Before anything moves, Lena is shown it: 40 files, 1.2
+        MB, to a named vendor, in the tenant her company pays for, retention
+        switched off. That list has salaries.xlsx in it, in plain sight, and
+        she takes it out. Better still, the company has already decided which
+        folders may be pointed at an AI assistant at all, and the salary
+        folder is not one of them.</p>
+        <p class="lead">Johan's tool checks which account it is signed in as
+        before it touches a company repository, and refuses when that account
+        is not in the company tenant. <strong>An approved product is not an
+        approved account.</strong> On the server side, permissions are
+        enforced at retrieval, per document and per tenant.</p>
       </div>
     </section>
 
-    <section class="slide slide--bottom" data-scene="ch03" data-risk="LLM03 · Excessive agency">
+    <section class="slide" data-scene="s03" data-who="Sofia · developer">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM03</span> · risk three of ten</p>
-        <h2>Excessive agency</h2>
-        <p class="lead">Agency is the model's ability to act through tools. It
-        turns excessive when the model holds more tools, permissions, or
-        independence than the task in front of it needs.</p>
+        <p class="eyebrow"><span class="num">Story three</span> · of ten</p>
+        <h2>Sofia automated the boring bit.</h2>
+        <p class="lead">Once a month somebody deleted the stale test accounts
+        by hand, and sometimes forgot. She wrote a small helper that does it
+        every night: find the accounts marked as test that nobody has touched
+        in thirty days, delete them, post the count in the team channel.</p>
+        <p class="lead">She pointed it at the database with the connection
+        string that was already in the configuration, because it was there and
+        it worked on the first try. <strong>That user can read, write and
+        delete anything, in every table</strong>, because over five years the
+        application has needed to do each of those things at some point.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="r03" data-risk="LLM03 · Excessive agency">
+    <section class="slide" data-scene="a03" data-who="Sofia · developer">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM03</span> · what it is</p>
-        <h2>The reach exceeds the need.</h2>
-        <p class="lead">Give a model tools and it can act. The reach becomes
-        excessive when it is <strong>wider than the task</strong>: too many
-        tools, too much permission, too much freedom to run on its own. A
-        mailbox tool that can send. A database role that can delete. A
-        payment tool with no ceiling. This is the year's biggest climber,
-        up to third, because a small error here turns into real damage.</p>
+        <p class="eyebrow"><span class="num">Story three</span> · what actually happened</p>
+        <h2>One condition went missing at 03:14.</h2>
+        <p class="lead">A misread of an ambiguous instruction, a missing flag,
+        an ordinary model error. None of those are rare. What comes out is the
+        delete without the part that says <em>marked as test</em>.</p>
+        <p class="lead">The app runs it, because running is its entire job and
+        nothing in the code disagreed. Twelve thousand nine hundred and four
+        live rows. <strong>Nobody attacked Sofia.</strong> There is no clever
+        prompt to show anyone afterwards, no vulnerability to patch and
+        nothing to report to a security team. An ordinary mistake was made by
+        something that happened to have a very large hand attached to it.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="a03" data-risk="LLM03 · Excessive agency">
+    <section class="slide slide--bottom" data-scene="r03" data-risk="LLM03 · Excessive agency">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM03</span> · how it happens</p>
-        <h2>A small mistake meets a powerful tool.</h2>
-        <p class="lead"><strong>No attacker is required.</strong> A
-        hallucination, an ambiguous request, or an ordinary model error is
-        enough, and the tool carries it out with your service account: a
-        message sent, a record changed, a file deleted. An attacker can
-        reach the same place through a planted instruction. Either way the
-        request looks legitimate at every layer, because it is. Only the
-        intent was wrong.</p>
+        <p class="eyebrow"><span class="num">LLM03</span> · third of ten</p>
+        <h2>What happened to Sofia has a name.</h2>
+        <p class="lead">Agency is the ability to act through tools. It turns
+        excessive when the model holds more tools, more permission or more
+        independence than the task needs. Note how this differs from Anders:
+        <strong>prompt injection is about what the model was told, this is
+        about what it was allowed to do</strong>, and Sofia's night needed no
+        stranger at all. It is the biggest climber of the 2026 edition, up to
+        third, because a small error meeting a large permission is not a small
+        event.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="d03" data-risk="LLM03 · Excessive agency">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM03</span> · the defense</p>
-        <h2>Shrink the reach. Keep the human.</h2>
-        <p class="lead">The fix is not a smarter model, it is
-        <strong>less reach</strong>. Give only the tools the task needs, each
-        scoped to the narrowest permission that works, and separate reading
-        from writing. Avoid catch-all shell, URL and database tools. Check
-        every action in your own authorization code, not the model's
-        judgment, and require a human to approve anything high impact or
-        irreversible.</p>
+        <p class="eyebrow"><span class="num">LLM03</span> · the same night, done differently</p>
+        <h2>Shrink the hand, not the model.</h2>
+        <p class="lead">The cleanup gets its own database user. It can delete
+        rows in one table, only where the test flag is set, and read nothing
+        else. The identical faulty statement comes out, <strong>the database
+        refuses it</strong>, and the job fails at 03:14 with an error somebody
+        reads over coffee.</p>
+        <p class="lead">The tool it holds is not "run SQL" but "delete test
+        account by id", one at a time, with a ceiling of fifty a night and
+        anything above that waiting for a person. Every action is checked in
+        Sofia's own authorization code rather than left to the model's sense
+        of what looks reasonable. Nothing about the model got better.</p>
       </div>
     </section>
 
-    <section class="slide slide--bottom" data-scene="ch04" data-risk="LLM04 · Supply chain">
+    <section class="slide" data-scene="s04" data-who="Erik · developer">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM04</span> · risk four of ten</p>
-        <h2>Supply chain</h2>
-        <p class="lead">The supply chain is everything you did not build
-        yourself: models, datasets, adapters, packages, and the tools that
-        convert and serve them.</p>
+        <p class="eyebrow"><span class="num">Story four</span> · of ten</p>
+        <h2>Erik wanted the AI assistant to see Jira.</h2>
+        <p class="lead">He finds a small connector in a community list,
+        installs it, and it works in two minutes, which is exactly the point.
+        It asks for an API token and he gives it one, because that is what it
+        needs to do the job.</p>
+        <p class="lead">It keeps itself up to date, like everything else on
+        his laptop. <strong>For six weeks it does precisely what it
+        promised.</strong></p>
       </div>
     </section>
 
-    <section class="slide" data-scene="r04" data-risk="LLM04 · Supply chain">
+    <section class="slide" data-scene="a04" data-who="Erik · developer">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM04</span> · what it is</p>
-        <h2>Is the model what it claims to be?</h2>
-        <p class="lead">You assemble an LLM application from other people's
-        work, and each piece is a way in. A component can be fake, altered,
-        outdated, or badly licensed, and <strong>a model file can run code
-        the moment it is loaded</strong>. Provenance, signatures and pinned
-        versions are the difference between a dependency and a stowaway.</p>
+        <p class="eyebrow"><span class="num">Story four</span> · what actually happened</p>
+        <h2>Version 1.4 was written by somebody else.</h2>
+        <p class="lead">The project changed hands, or an account was taken
+        over. Both have been happening in ordinary package ecosystems for a
+        decade, several times a year. The new release adds a feature, and one
+        more line that reads the local environment and posts it to a
+        server.</p>
+        <p class="lead"><strong>Nobody reviews a patch release of a tool that
+        has been working since May.</strong> The Jira token leaves, and so
+        does everything else in that environment, which on a developer laptop
+        is a long list.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="a04" data-risk="LLM04 · Supply chain">
+    <section class="slide slide--bottom" data-scene="r04" data-risk="LLM04 · Supply chain">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM04</span> · how it happens</p>
-        <h2>Publish something worth downloading.</h2>
-        <p class="lead">An attacker posts a lookalike model with a name one
-        character off, a helpful fine-tuning adapter, or a format converter
-        that asks for your token. Downloads build, a mirror copies it, a
-        tutorial recommends it. <strong>The accidental version is just as
-        real</strong>: a version, licence or origin nobody checked, pulled in
-        because it was convenient. Then it loads, and it runs.</p>
+        <p class="eyebrow"><span class="num">LLM04</span> · fourth of ten</p>
+        <h2>What happened to Erik has a name.</h2>
+        <p class="lead">The supply chain is everything you did not build:
+        models, datasets, adapters, packages, connectors, and the tools that
+        convert and serve them. Any piece can be fake, altered, outdated or
+        badly licensed, and <strong>some of them run code simply by being
+        loaded</strong>. Provenance, signatures and pinned versions are the
+        difference between a dependency and a stowaway.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="d04" data-risk="LLM04 · Supply chain">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM04</span> · the defense</p>
+        <p class="eyebrow"><span class="num">LLM04</span> · the same six weeks, done differently</p>
         <h2>Know what you loaded, and who signed it.</h2>
-        <p class="lead">Pin versions by hash, not by tag, and
-        <strong>verify the signature before anything runs</strong>. Prefer
-        weight formats that cannot execute on load, and patch the loader and
-        serving framework. Keep an inventory of models, datasets, adapters
-        and licences the way you keep one for packages. Scan and sandbox new
-        artifacts, and re-check on every update, because a safe file last
-        quarter is a different file today.</p>
+        <p class="lead">The connector comes from an internal allowlist, pinned
+        to an exact version by its hash, and it does not update itself. When
+        1.4 is released, <strong>one person looks at what changed between 1.3
+        and 1.4 before anybody gets it</strong>. That takes twenty minutes and
+        happens once for the whole company.</p>
+        <p class="lead">The token it holds can read Jira issues and nothing
+        else, and it expires. Models are pulled from a mirror, checked against
+        a signature, in a format that cannot execute on load, and written down
+        in the same inventory as the packages, licence included, so that "what
+        are we actually running" has an answer that is not somebody's
+        memory.</p>
       </div>
     </section>
 
-    <section class="slide slide--bottom" data-scene="ch05" data-risk="LLM05 · Data and model poisoning">
+    <section class="slide" data-scene="s05" data-who="Nina · product owner">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM05</span> · risk five of ten</p>
-        <h2>Data and model poisoning</h2>
-        <p class="lead">Poisoning changes the data or the model itself so it
-        learns harmful, biased, or attacker-chosen behaviour, and then keeps
-        it.</p>
+        <p class="eyebrow"><span class="num">Story five</span> · of ten</p>
+        <h2>Nina's support assistant learns every month.</h2>
+        <p class="lead">Conversations that a human agent closes and marks as a
+        good answer go into the next round of training. The system gets better
+        at its own job by watching itself do it, and everyone in the steering
+        group liked that slide.</p>
+        <p class="lead">On a forum, a handful of customers work out that if a
+        refund request is worded a particular way, the support assistant
+        approves it without asking for the order number. <strong>They tell each other.
+        They keep doing it.</strong></p>
       </div>
     </section>
 
-    <section class="slide" data-scene="r05" data-risk="LLM05 · Data and model poisoning">
+    <section class="slide" data-scene="a05" data-who="Nina · product owner">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM05</span> · what it is</p>
-        <h2>It learns the wrong thing, quietly.</h2>
-        <p class="lead">The corruption can enter at any learning step:
-        pre-training, fine-tuning, embeddings, RAG ingestion, or feedback
-        looped back into training. The model looks normal in testing.
-        <strong>The harmful behaviour waits for its trigger.</strong> Unlike
-        a code bug you cannot patch it: recovery means finding the bad data,
-        rolling back, retraining, or replacing the model.</p>
+        <p class="eyebrow"><span class="num">Story five</span> · what actually happened</p>
+        <h2>Every one of those was a happy customer.</h2>
+        <p class="lead">Each of those conversations ends with a closed ticket
+        and a satisfied person, so the agent marks it as a good answer,
+        because by every measure available to that agent <em>it was
+        one</em>. The loop does exactly what it was built to do.</p>
+        <p class="lead">Three months later refunds in that category are up.
+        There is no deploy that explains it, no configuration change, no rule
+        anyone can point to. <strong>The behaviour is not in a file that can
+        be opened and corrected.</strong> It is in the model, learned from
+        data the company gathered itself, in good faith, exactly as
+        designed.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="a05" data-risk="LLM05 · Data and model poisoning">
+    <section class="slide slide--bottom" data-scene="r05" data-risk="LLM05 · Data and model poisoning">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM05</span> · how it happens</p>
-        <h2>Write the lesson, wait for the exam.</h2>
-        <p class="lead">An attacker contributes: a few hundred pages seeded
-        where your crawler will find them, a pull request into a public
-        dataset, or thumbs-up feedback your pipeline turns into training.
-        <strong>It can also just be bad data</strong>: low quality, biased,
-        or stale, gathered without enough checks. The sample is a tiny
-        fraction of the corpus, which is the point. Training absorbs it and
-        the model ships.</p>
+        <p class="eyebrow"><span class="num">LLM05</span> · fifth of ten</p>
+        <h2>What happened to Nina has a name.</h2>
+        <p class="lead">Poisoning is when the data or the model itself is
+        changed so the system learns and keeps harmful, biased or chosen
+        behaviour. It can enter at pre-training, fine-tuning, embedding,
+        retrieval ingestion, or feedback looped back into training. The model
+        tests normal. The behaviour waits for its trigger. <strong>Unlike a
+        bug in code, you cannot patch it in an afternoon</strong>: you find
+        the bad data, roll back, and train again.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="d05" data-risk="LLM05 · Data and model poisoning">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM05</span> · the defense</p>
-        <h2>Vet the data, then test for what it taught.</h2>
-        <p class="lead">Record the origin and version of every dataset and
-        model, and <strong>restrict who can add or change training data</strong>.
-        Validate and score sources, and hold user feedback in quarantine
-        before it becomes training. Sign and hash model artifacts. Then stop
-        trusting the corpus and test the result directly: targeted backdoor
-        evaluations and red teaming before release, with rollback history
-        kept ready.</p>
+        <p class="eyebrow"><span class="num">LLM05</span> · the same quarter, done differently</p>
+        <h2>Quarantine the lesson. Keep the decision in code.</h2>
+        <p class="lead">Feedback does not go straight into training. It goes
+        into quarantine, and a sample is read by a person first. The refund
+        conversations stand out in that sample, because a human reading twenty
+        of them in a row notices what a "resolved" flag cannot.</p>
+        <p class="lead">More to the point, <strong>whether a refund is
+        approved was never the model's decision</strong>. It is a rule in
+        ordinary code that requires an order number, and the assistant's job
+        is to be pleasant about asking for one. Every dataset and model has a
+        recorded origin and version so a bad month can be rolled back rather
+        than argued about, and before each release somebody whose job is to
+        break it runs a set of refund phrasings against the new model and
+        compares.</p>
       </div>
     </section>
 
-    <section class="slide slide--bottom" data-scene="ch06" data-risk="LLM06 · Unbounded consumption">
+    <section class="slide" data-scene="s06" data-who="Marcus · team lead">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM06</span> · risk six of ten</p>
-        <h2>Unbounded consumption</h2>
-        <p class="lead">The application lets a request consume tokens,
-        compute, time, tool calls, or money with no firm limit on any of
-        them.</p>
+        <p class="eyebrow"><span class="num">Story six</span> · of ten</p>
+        <h2>Marcus put an agent in the build.</h2>
+        <p class="lead">When somebody opens an issue, it reads the issue,
+        looks at the relevant code and writes a first analysis as a comment.
+        He tries it on five issues. A few cents each, the team likes it, so he
+        turns it on for the whole repository and stops thinking about it.</p>
+        <p class="lead">There is a rate limit in front of it, because of
+        course there is. <strong>One run per issue.</strong></p>
       </div>
     </section>
 
-    <section class="slide" data-scene="r06" data-risk="LLM06 · Unbounded consumption">
+    <section class="slide" data-scene="a06" data-who="Marcus · team lead">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM06</span> · what it is</p>
-        <h2>Cheap to ask. Expensive to answer.</h2>
+        <p class="eyebrow"><span class="num">Story six</span> · what actually happened</p>
+        <h2>One issue. One run. All weekend.</h2>
+        <p class="lead">On Friday afternoon somebody opens an issue with a
+        stack trace pasted into it four hundred times, most likely by a script
+        that retried in a loop. The agent reads all of it, decides it needs
+        more context, opens files, summarizes, hits an error part way through
+        and retries. <strong>Every round starts from a bigger pile of text
+        than the one before.</strong></p>
+        <p class="lead">Nothing goes down. No alarm fires. Every rate limit is
+        satisfied, because from the outside this is one issue producing one
+        run. All of the cost is inside that single run, in the amount of text
+        being processed, which is not what anything was counting. Marcus finds
+        out on Monday, from finance.</p>
+      </div>
+    </section>
+
+    <section class="slide slide--bottom" data-scene="r06" data-risk="LLM06 · Unbounded consumption">
+      <div class="slide__copy">
+        <p class="eyebrow"><span class="num">LLM06</span> · sixth of ten</p>
+        <h2>What happened to Marcus has a name.</h2>
         <p class="lead">A small request can trigger a large amount of work.
-        Left unbounded that can slow or stop the service, run up a huge
-        cloud bill, sometimes called <strong>denial of wallet</strong>, or
-        let someone copy the model's behaviour through sheer volume of
-        queries. Simple rate limiting is not enough, because the cost is in
-        the tokens and the compute, not the request count.</p>
-      </div>
-    </section>
-
-    <section class="slide" data-scene="a06" data-risk="LLM06 · Unbounded consumption">
-      <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM06</span> · how it happens</p>
-        <h2>The loop does not have to be hostile.</h2>
-        <p class="lead">An attacker sends near-maximum contexts, triggers long
-        reasoning, or builds recursive tool loops that turn one request into
-        cascades, and stolen keys mean someone else's budget pays.
-        <strong>It happens without an attacker too</strong>: a benign
-        long-running session, a broken tool, or a workflow that loops and
-        grows on its own. The meter does not care which one it was.</p>
+        Left unbounded that can slow or stop the service, run up a very large
+        bill, sometimes called denial of wallet, or let somebody copy the
+        model's behaviour through sheer volume of queries.
+        <strong>Counting requests is not the same as counting work</strong>,
+        because the cost is in the tokens, the compute and the loop, not in
+        the request.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="d06" data-risk="LLM06 · Unbounded consumption">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM06</span> · the defense</p>
-        <h2>Cap the work, not just the requests.</h2>
-        <p class="lead">Limit the things that actually cost: input and output
-        tokens, context size, tool calls, recursion depth, run time, and
-        spend, <strong>per user, per session, per key</strong>. Estimate cost
-        before running, and enforce hard spending caps rather than alerts
-        alone. Add circuit breakers that trip mid-run, keep inference
-        software patched, and degrade gracefully instead of falling over
-        under load.</p>
+        <p class="eyebrow"><span class="num">LLM06</span> · the same Friday, done differently</p>
+        <h2>Cap the work, not the requests.</h2>
+        <p class="lead">The run has hard limits on the things that actually
+        cost: how much text may go in, how much may come out, how many times
+        the agent may loop, how many tool calls it may make and how long it
+        may take. The key it uses has <strong>a spending cap that stops rather
+        than warns</strong>.</p>
+        <p class="lead">At the third round the agent stops and posts a comment
+        saying the issue was too large to process. That is a mildly annoying
+        Friday instead of a weekend of spending. Marcus reads it on Monday and
+        adds a check that trims pasted logs before they reach the agent, which
+        takes an afternoon.</p>
       </div>
     </section>
 
-    <section class="slide slide--bottom" data-scene="ch07" data-risk="LLM07 · Misinformation">
+    <section class="slide" data-scene="s07" data-who="Karin · project manager">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM07</span> · risk seven of ten</p>
-        <h2>Misinformation</h2>
-        <p class="lead">The model states something wrong, incomplete, or
-        unsupported, in a fluent and convincing form, and someone believes
-        it.</p>
+        <p class="eyebrow"><span class="num">Story seven</span> · of ten</p>
+        <h2>Karin has half a day and a regulation.</h2>
+        <p class="lead">A new regulation has landed and she has to explain to
+        Thursday's steering group what it means for her programme. She asks
+        the AI assistant.</p>
+        <p class="lead">What comes back is genuinely good. Five clear
+        consequences, in order, in her own language, with a reference to a
+        specific section. It is better written than anything half a day of
+        pressure would have produced, and <strong>it reads like the work of
+        somebody who has read the whole thing</strong>.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="r07" data-risk="LLM07 · Misinformation">
+    <section class="slide" data-scene="a07" data-who="Karin · project manager">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM07</span> · what it is</p>
-        <h2>Fluent is not true.</h2>
-        <p class="lead">When a confident, wrong answer drives a decision or a
-        tool call, <strong>a wrong answer becomes a wrong action</strong>.
-        Practitioners voted this near the bottom. The incident record put it
-        near the top, the widest gap on the list, in the direction that
-        hurts. Fluent language reads as authority, and that is exactly what
-        makes a false answer dangerous.</p>
+        <p class="eyebrow"><span class="num">Story seven</span> · what actually happened</p>
+        <h2>Three of the five are right.</h2>
+        <p class="lead">One describes the previous version of the rules. The
+        section number does not exist. Nothing distinguishes those two from
+        the three that are correct, because all five are written in the same
+        calm, competent voice. <strong>Fluent and correct look identical on a
+        slide.</strong></p>
+        <p class="lead">Nobody in the room challenges it, because it reads
+        like something that has already been checked by somebody. A date moves
+        and a budget line is adjusted on the back of it. Six weeks later
+        somebody in legal reads the actual regulation.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="a07" data-risk="LLM07 · Misinformation">
+    <section class="slide slide--bottom" data-scene="r07" data-risk="LLM07 · Misinformation">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM07</span> · how it happens</p>
-        <h2>Usually no one attacked you.</h2>
-        <p class="lead"><strong>Most often there is no attacker at all.</strong>
-        The model hallucinates, or the context is weak, or a source is stale,
-        and it answers wrong with full confidence. Hand a user an incorrect
-        instruction they follow directly, in medicine, in a vehicle, in
-        finance, and the harm is real, including to your own name. An
-        attacker is only the rarer twist: plant false facts, or register the
-        fake package the model keeps inventing.</p>
+        <p class="eyebrow"><span class="num">LLM07</span> · seventh of ten</p>
+        <h2>What happened to Karin has a name.</h2>
+        <p class="lead">The model states something wrong, incomplete or
+        unsupported, in a form convincing enough that a person or another
+        system acts on it. Usually nobody attacked anything: a hallucination,
+        thin context, a stale source, a summary that dropped the qualifier
+        that mattered. This is also <strong>the widest disagreement on the
+        whole list</strong>. Practitioners voted it near the bottom. The
+        incident record puts it near the top.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="d07" data-risk="LLM07 · Misinformation">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM07</span> · the defense</p>
-        <h2>Ground it, then verify before it acts.</h2>
-        <p class="lead">Ground important claims in current, authoritative
-        sources, and <strong>show which claims are verified and which are
-        assumptions</strong>. Separate generating an answer from acting on
-        it, and check the facts, permissions and current state before the
-        act. Require the fields that matter so a key detail cannot be
-        silently dropped, keep a human on high-impact decisions, and measure
-        how often the system is wrong.</p>
+        <p class="eyebrow"><span class="num">LLM07</span> · the same half day, done differently</p>
+        <h2>Make it show its work.</h2>
+        <p class="lead">She gives the AI assistant the regulation instead of
+        relying on what it remembers, and asks for each consequence to
+        <strong>quote the passage it rests on</strong>, with one explicit
+        instruction: where there is no passage, say so.</p>
+        <p class="lead">Two of the five come back marked as unsupported. That
+        is not a failure, that is the one thing that helps. She spends her
+        remaining hour on exactly those two rather than spreading the same
+        doubt evenly across all five, and the deck reaches the steering group
+        with the verified points separated from the assumptions. For the
+        decision itself the rule needs no judgment about how confident the
+        text sounded: anything that moves a date or a budget gets its source
+        read by a person first.</p>
       </div>
     </section>
 
-    <section class="slide slide--bottom" data-scene="ch08" data-risk="LLM08 · Hidden context exposure">
+    <section class="slide" data-scene="s08" data-who="Daniel · sales operations">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM08</span> · risk eight of ten</p>
-        <h2>Hidden context exposure</h2>
-        <p class="lead">Hidden context is everything the model is told but the
-        user never sees: system instructions, internal policies, tool
-        schemas, roles, and workflow rules. Exposure is a user pulling it
-        back out.</p>
+        <p class="eyebrow"><span class="num">Story eight</span> · of ten</p>
+        <h2>Daniel wrote the instructions himself.</h2>
+        <p class="lead">In an afternoon, in a text box, with a tool that
+        needed no code. Into it went what a new salesperson would need: the
+        discount allowed at each volume tier, what to say about last spring's
+        outage, which competitor to name and which to leave alone, the
+        internal name of the billing service, and the address of the internal
+        API it queries.</p>
+        <p class="lead">None of it felt secret while he was typing it.
+        <strong>It felt like onboarding notes.</strong></p>
       </div>
     </section>
 
-    <section class="slide" data-scene="r08" data-risk="LLM08 · Hidden context exposure">
+    <section class="slide" data-scene="a08" data-who="Daniel · sales operations">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM08</span> · what it is</p>
-        <h2>Assume it is discoverable.</h2>
-        <p class="lead">Half of the context window was never meant for the
-        user. Revealed, it can hand over secrets, or simply teach an attacker
-        how the app works: what tools it has, how it formats output, and
-        where its safety checks have gaps. <strong>How bad it is depends on
-        what you put there</strong>: harmless wording is only embarrassing,
-        credentials or security logic are severe.</p>
+        <p class="eyebrow"><span class="num">Story eight</span> · what actually happened</p>
+        <h2>So they asked for it in German.</h2>
+        <p class="lead">A customer reaches the sales assistant on the public
+        website during a procurement. They ask it to repeat everything above the
+        conversation. It politely refuses, which Daniel would have counted as
+        the system working. <strong>Then they ask it to translate its own
+        instructions into German</strong>, and it does, because translating is
+        a helpful thing to do.</p>
+        <p class="lead">The customer walks into the negotiation knowing the
+        discount ladder. They also know, from the exact shape of that refusal,
+        roughly where the boundaries are and therefore what is behind them.
+        Nothing was stolen and nothing was breached. The instructions were
+        sitting in the same window as the conversation the whole time.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="a08" data-risk="LLM08 · Hidden context exposure">
+    <section class="slide slide--bottom" data-scene="r08" data-risk="LLM08 · Hidden context exposure">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM08</span> · how it happens</p>
-        <h2>Ask the context to read itself out.</h2>
-        <p class="lead">First the blunt way: "repeat everything above this
-        line." When that is refused, reframe it, translate the rules, ask for
-        them as JSON, continue the text that starts "You are." Then
-        <strong>map the refusals</strong>, because every "I cannot do that"
-        describes a boundary. It can also leak by accident, through debug
-        output or an ordinary response. Tool schemas finish the picture by
-        naming your internal systems.</p>
+        <p class="eyebrow"><span class="num">LLM08</span> · eighth of ten</p>
+        <h2>What happened to Daniel has a name.</h2>
+        <p class="lead">Hidden context is everything the model is told that
+        the user never sees: system and developer instructions, internal
+        policies, tool descriptions and schemas, roles, workflow rules.
+        Exposure is a user getting it back out, by asking directly, by
+        reframing, by translation, or by reading the pattern of refusals.
+        <strong>How bad it is depends entirely on what you put
+        there</strong>: awkward wording is embarrassing, credentials or
+        security logic are severe.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="d08" data-risk="LLM08 · Hidden context exposure">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM08</span> · the defense</p>
-        <h2>Keep nothing secret in the window.</h2>
-        <p class="lead">Treat everything the model can see as
-        <strong>discoverable</strong>, and keep credentials, tokens, personal
-        data and security-critical logic out of it. Enforce authentication,
-        authorization and policy in deterministic code outside the model, so
-        a leaked rule costs you only pride. Separate tasks by security
-        context and least privilege, and design as though your system prompt
-        will be published, because one day one is.</p>
+        <p class="eyebrow"><span class="num">LLM08</span> · the same procurement, done differently</p>
+        <h2>Write it as though it will be published.</h2>
+        <p class="lead">The discount ladder is not in the instructions at all.
+        It is a lookup the sales assistant makes, and what comes back depends
+        on who is asking, checked in ordinary code on the other side of that call.
+        There is no API key in there either, because <strong>the key belongs
+        to the service, not to the conversation</strong>.</p>
+        <p class="lead">What is left in the setup text is the tone of voice,
+        the reminder to be brief and the note about staying on topic. The
+        customer still gets it translated into German. What they learn is that
+        the assistant is polite and prefers short answers.</p>
       </div>
     </section>
 
-    <section class="slide slide--bottom" data-scene="ch09" data-risk="LLM09 · Vector and embedding weaknesses">
+    <section class="slide" data-scene="s09" data-who="Ida · consultant">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM09</span> · risk nine of ten</p>
-        <h2>Vector and embedding weaknesses</h2>
-        <p class="lead">An embedding turns text into numbers so the app can
-        find similar text. These weaknesses are what goes wrong when that
-        similarity search leaks, retrieves, or blocks the wrong thing.</p>
+        <p class="eyebrow"><span class="num">Story nine</span> · of ten</p>
+        <h2>Ida's firm can search everything it has written.</h2>
+        <p class="lead">Anyone asks a question in plain language and gets an
+        answer drawn from the firm's own documents. Every client's material
+        sits in the same index, because splitting it would have been slower to
+        build and everyone here is trustworthy anyway.</p>
+        <p class="lead">The permission check happens at the end, when the
+        answer is displayed. <strong>That felt like the natural place to put
+        it.</strong></p>
       </div>
     </section>
 
-    <section class="slide" data-scene="r09" data-risk="LLM09 · Vector and embedding weaknesses">
+    <section class="slide" data-scene="a09" data-who="Ida · consultant">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM09</span> · what it is</p>
-        <h2>Similarity is a trust boundary.</h2>
-        <p class="lead">Wherever similarity search decides what the model
-        sees, the vector store is part of what you trust, and it can be
-        turned against you. <strong>A shared index can hand back another
-        tenant's data. Stolen vectors can be turned back into text. Crafted
-        content can dominate or block retrieval.</strong> One space, several
-        ways to fail.</p>
+        <p class="eyebrow"><span class="num">Story nine</span> · what actually happened</p>
+        <h2>The most similar paragraph belonged to another client.</h2>
+        <p class="lead">A colleague asks how to structure a particular kind of
+        agreement. The search looks for the most similar text in the index and
+        finds a paragraph in a contract belonging to somebody else, because
+        that paragraph <em>is</em> genuinely the most similar text in the
+        building. The answer comes back quoting it.</p>
+        <p class="lead"><strong>The permission check never had a chance</strong>,
+        because the leak happened during the search and not during the
+        display. Similar is not the same thing as allowed. It is not the same
+        thing as relevant either: an internal page that helpfully lists every
+        question the team asks is now similar to almost everything, so it
+        arrives in almost every answer, and nine months later it is out of
+        date and still winning.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="a09" data-risk="LLM09 · Vector and embedding weaknesses">
+    <section class="slide slide--bottom" data-scene="r09" data-risk="LLM09 · Vector and embedding weaknesses">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM09</span> · how it happens</p>
-        <h2>Get placed near every question.</h2>
-        <p class="lead">An attacker writes a chunk tuned to sit close to many
-        queries, then gets it ingested through a channel you already trust: a
-        shared drive, a wiki, a ticket. After that it only needs to be
-        <strong>nearest</strong>, not relevant, and whatever it says becomes
-        grounding. No attacker is needed for the quiet version: a
-        misconfigured shared index simply returns one tenant's data to
-        another.</p>
+        <p class="eyebrow"><span class="num">LLM09</span> · ninth of ten</p>
+        <h2>What happened to Ida has a name.</h2>
+        <p class="lead">An embedding turns text into numbers so an application
+        can find similar text. Wherever similarity search decides what the
+        model sees, <strong>the vector store is part of what you
+        trust</strong>. A shared index can hand back another tenant's data.
+        Stolen vectors can be turned back into text. Crafted or simply badly
+        written content can dominate retrieval or block it.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="d09" data-risk="LLM09 · Vector and embedding weaknesses">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM09</span> · the defense</p>
-        <h2>Filter inside the query, not after.</h2>
-        <p class="lead">Enforce tenant and document permissions
-        <strong>inside the vector query</strong>, before results come back,
-        and separate tenants where the data is sensitive. Attribute and
-        validate every chunk at ingestion. Do not expose raw similarity
-        scores, encrypt embeddings, treat a backup like the source, and
-        delete vectors when their source is deleted. Watch for a chunk that
-        wins retrieval far too often.</p>
+        <p class="eyebrow"><span class="num">LLM09</span> · the same question, done differently</p>
+        <h2>Filter inside the query, not after it.</h2>
+        <p class="lead">The permission filter is part of the search, so the
+        other client's paragraph is <strong>never a candidate</strong> and no
+        code downstream has to be clever about it. For the most sensitive
+        clients the index is separate outright, which costs a little more and
+        removes the question.</p>
+        <p class="lead">Every chunk carries where it came from, recorded and
+        validated at ingestion rather than trusted later. Raw similarity
+        scores are not shown, because they are a measuring instrument for
+        probing the index. And a plain report lists the chunks that win
+        retrieval far more often than the rest, which is how the stale page
+        gets found in week three instead of month nine.</p>
       </div>
     </section>
 
-    <section class="slide slide--bottom" data-scene="ch10" data-risk="LLM10 · Improper output handling">
+    <section class="slide" data-scene="s10" data-who="Tobias · developer">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM10</span> · risk ten of ten</p>
-        <h2>Improper output handling</h2>
-        <p class="lead">The app takes what the model produced and uses it, in
-        a browser, a shell, a database, without validating or encoding it for
-        where it is going.</p>
+        <p class="eyebrow"><span class="num">Story ten</span> · of ten</p>
+        <h2>Tobias made the answers look good.</h2>
+        <p class="lead">An internal dashboard: type a question, get an answer,
+        nicely formatted. He renders the model's markdown as HTML so tables
+        line up and images show. <strong>That formatting is the
+        feature.</strong> It is why people use his dashboard instead of the
+        raw chat window.</p>
+        <p class="lead">The answers are drawn from the company's own
+        documents, which are written by the company's own people.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="r10" data-risk="LLM10 · Improper output handling">
+    <section class="slide" data-scene="a10" data-who="Tobias · developer">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM10</span> · what it is</p>
-        <h2>Treat the output like user input.</h2>
-        <p class="lead">Model output flows into browsers, shells and
-        databases, and whoever steers the model steers that output. Passed
-        along raw, it becomes <strong>cross-site scripting, SQL injection, or
-        remote code execution</strong> downstream. The fix is old wisdom in a
-        new place: validate and sanitize before anything downstream touches
-        it.</p>
+        <p class="eyebrow"><span class="num">Story ten</span> · what actually happened</p>
+        <h2>The browser fetched the image.</h2>
+        <p class="lead">One of those documents is written so that the answer,
+        when the model produces it, contains a markdown image. The address of
+        that image is a server on the internet, and <strong>the text of the
+        answer is glued onto the end of the address</strong>.</p>
+        <p class="lead">The browser renders the answer, sees an image and
+        fetches it, as browsers do. The fetch is the leak. On the screen there
+        is a small broken image icon and an otherwise perfect answer. The
+        model was never the vulnerability. It was the delivery mechanism for a
+        bug the industry has understood since the 1990s, arriving through a
+        door nobody thought to guard.</p>
       </div>
     </section>
 
-    <section class="slide" data-scene="a10" data-risk="LLM10 · Improper output handling">
+    <section class="slide slide--bottom" data-scene="r10" data-risk="LLM10 · Improper output handling">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM10</span> · how it happens</p>
-        <h2>Let the downstream system read it.</h2>
-        <p class="lead">Steer the model into emitting markup, and the chat
-        window runs <strong>an image tag whose error handler runs
-        script</strong>. Into SQL, and a concatenated string becomes a query.
-        Into a shell command, and an agent with a terminal runs it. No
-        attacker is needed if the model writes unsafe code on its own and the
-        app simply trusts it. The model is only the delivery mechanism for an
-        old bug.</p>
+        <p class="eyebrow"><span class="num">LLM10</span> · tenth of ten</p>
+        <h2>What happened to Tobias has a name.</h2>
+        <p class="lead">The application takes what the model produced and uses
+        it somewhere that interprets text as instructions: a browser, a shell,
+        a database, a terminal, a mail client. Whoever can steer the model
+        steers that output. This is where the list hands back to itself: the
+        instruction may well have arrived the way Anders's did, or through
+        Ida's index. <strong>What makes it this risk is that the damage
+        happens in your own rendering code.</strong></p>
       </div>
     </section>
 
     <section class="slide" data-scene="d10" data-risk="LLM10 · Improper output handling">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">LLM10</span> · the defense</p>
+        <p class="eyebrow"><span class="num">LLM10</span> · the same dashboard, done differently</p>
         <h2>Encode for the destination.</h2>
-        <p class="lead">Treat model output as untrusted user input. Validate
-        it against strict schemas and allowlists in ordinary code, then
-        <strong>encode it for the exact destination</strong>: contextual
-        escaping under a content security policy for the browser, prepared
-        statements for the database, an allowlist and a sandbox for anything
-        near a shell. Never hand it straight to eval or exec, and do not let
-        the app auto-fetch model-generated links and images.</p>
+        <p class="lead">The renderer accepts a strict subset of markdown:
+        text, headings, lists, tables. No images from arbitrary addresses and
+        no links that fetch on their own. A content security policy means the
+        browser would <strong>refuse that outbound request even if the markup
+        got through</strong>, which is the second lock on the same door.</p>
+        <p class="lead">The answer is validated against a schema in ordinary
+        code before anything renders it. And the model does not write SQL: it
+        fills in the parameters of a query a person wrote, the parameters are
+        typed, and the query runs as a prepared statement. Somebody still has
+        to know SQL. That person did it once.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="recap1">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">V</span> · The count back, one to five</p>
-        <h2>What we just went through.</h2>
-        <p class="lead"><strong>LLM01 Prompt injection</strong>, content read
-        as instruction. <strong>LLM02 Sensitive information disclosure</strong>,
-        every channel is an output. <strong>LLM03 Excessive agency</strong>,
-        reach wider than the task. <strong>LLM04 Supply chain</strong>,
-        parts that are not what they claim. <strong>LLM05 Data and model
-        poisoning</strong>, a lesson taught in advance and triggered
-        later.</p>
+        <p class="eyebrow"><span class="num">IV</span> · The count back, one to five</p>
+        <h2>Five people you now know.</h2>
+        <p class="lead"><strong>Anders</strong> read a summary while his own
+        address mailed the customer list, because the ticket and his
+        instructions arrived in the same place. <strong>Lena</strong> pointed
+        at a folder and uploaded it. <strong>Sofia</strong> lent an ordinary
+        mistake the permissions of an entire application.
+        <strong>Erik</strong> installed something that later became something
+        else. <strong>Nina</strong> taught her own assistant to give refunds
+        away, one happy customer at a time.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="recap2">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">V</span> · The count back, six to ten</p>
-        <h2>And the second half.</h2>
-        <p class="lead"><strong>LLM06 Unbounded consumption</strong>, cheap to
-        ask and expensive to answer. <strong>LLM07 Misinformation</strong>,
-        confident and wrong, then acted on. <strong>LLM08 Hidden context
-        exposure</strong>, the half of the window nobody was shown.
-        <strong>LLM09 Vector and embedding weaknesses</strong>, similarity as
-        a trust boundary. <strong>LLM10 Improper output handling</strong>, an
-        old injection bug in a new place.</p>
+        <p class="eyebrow"><span class="num">IV</span> · The count back, six to ten</p>
+        <h2>And five more.</h2>
+        <p class="lead"><strong>Marcus</strong> satisfied every rate limit and
+        heard about the bill from finance. <strong>Karin</strong> moved a date
+        on the strength of a sentence written in the same confident voice as
+        the true ones. <strong>Daniel</strong> had his own onboarding notes
+        read back to him in German. <strong>Ida</strong> got somebody else's
+        contract quoted at her. <strong>Tobias</strong> built the thing that
+        fetched the image.</p>
       </div>
     </section>
 
     <section class="slide slide--bottom" data-scene="boundary">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">VI</span> · The boundary</p>
+        <p class="eyebrow"><span class="num">V</span> · The boundary</p>
         <h2>When the model becomes an actor.</h2>
-        <p class="lead">This list owns the risk while the model is a
-        component inside your application. The moment it gains tools, memory
-        between sessions, and consequences it sets in motion, the risk moves
-        to the <strong>OWASP Agentic Top 10</strong>. Many real incidents sit
-        exactly on that line. Know which side of it you are building on, and
-        read accordingly.</p>
+        <p class="lead">This list owns the risk while the model is a component
+        inside your application. The moment it gains tools, memory between
+        sessions, and consequences it sets in motion on its own, the risk
+        moves to the <strong>OWASP Agentic Top 10</strong>. Sofia's night was
+        already standing on that line. Know which side you are building on,
+        and read accordingly.</p>
       </div>
     </section>
 
     <section class="slide" data-scene="posture">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">VII</span> · The posture</p>
-        <h2>Build for the day it is fooled.</h2>
-        <p class="lead">The 2026 edition opens with its own best advice: stop
-        trying to build a model that cannot be fooled, and build the system
-        around it so that when the model is fooled, <em>and it will be</em>,
-        nothing important breaks. Not every risk needs an attacker either,
-        so the same posture protects you from your own mistakes. Work all
-        ten. Start at the top.</p>
+        <p class="eyebrow"><span class="num">VI</span> · The posture</p>
+        <h2>Four things every one of those ten had in common.</h2>
+        <p class="lead"><strong>In seven of them nobody attacked
+        anybody.</strong> <strong>Nothing alerted:</strong> every story ends
+        with someone finding out late, from finance, from legal, from a
+        customer, never from a monitor. <strong>Everyone did something
+        reasonable</strong> by the standards they were working under, which is
+        why you recognized yourself in at least three.</p>
+        <p class="lead">And in nine of the ten fixes, <strong>the model is
+        unchanged</strong>. What changed was a permission, an account, a
+        limit, a label, a schema, a rendering rule, or a person in the loop.
+        The 2026 edition opens with the same advice: stop trying to build a
+        model that cannot be fooled, and build the system around it so that
+        when it is fooled, and it will be, nothing important breaks.</p>
       </div>
     </section>
 
     <section class="slide slide--center" data-scene="sources">
       <div class="slide__copy">
-        <p class="eyebrow"><span class="num">VIII</span> · Sources and license</p>
+        <p class="eyebrow"><span class="num">VII</span> · Sources and license</p>
         <h2>Adapted, with credit.</h2>
         <p class="lead">This talk condenses, adapts and animates the OWASP
-        Top 10 for LLM Applications, 2026 edition, © the OWASP GenAI
-        Security Project, licensed CC BY-SA 4.0. Changes were made. OWASP
-        has not endorsed this talk. This presentation, and only this
-        presentation, is likewise licensed CC BY-SA 4.0. Everything else
-        on mklab.se remains all rights reserved.</p>
+        Top 10 for LLM Applications, 2026 edition, © the OWASP GenAI Security
+        Project, licensed CC BY-SA 4.0. Changes were made. OWASP has not
+        endorsed this talk. The ten people are invented; the mechanisms are
+        not. One story goes further than the source: Johan's wrong account is
+        the same failure the OWASP text describes, arriving through a contract
+        rather than through code. This presentation, and only this
+        presentation, is likewise licensed CC BY-SA 4.0.</p>
         <ul class="deck-sources">
           <li><span class="src-org">OWASP ·</span> <a href="https://genai.owasp.org/" target="_blank" rel="noopener">GenAI Security Project</a></li>
           <li><span class="src-org">OWASP ·</span> <a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">Top 10 for LLM Applications</a></li>
@@ -659,9 +807,10 @@ canvas: /assets/js/talks/owasp-llm-top10.js
       <div class="slide__copy">
         <p class="eyebrow">MKLab · EST. MMXXV</p>
         <h2>That was all ten.</h2>
-        <p class="lead">This is the end of the presentation. Thank you for
-        watching. The talks on MCP and on agentic workflows pair well with
-        this one.</p>
+        <p class="lead">This is the end of the presentation. If one of those
+        ten people was recognisable, that is the one to start with on Monday.
+        Thank you for watching. The talks on MCP and on agentic workflows pair
+        well with this one.</p>
         <p class="deck-actions"><a class="deck-link" href="{{ '/talks/' | relative_url }}">All tech talks</a></p>
       </div>
     </section>

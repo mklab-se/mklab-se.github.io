@@ -119,6 +119,8 @@ body.mk-idle { cursor: none; }
   color: var(--ember-300);
 }
 .slide--center .lead { margin-inline: auto; }
+/* a story runs to two paragraphs; they must not read as one block */
+.lead + .lead { margin-top: var(--space-5); }
 
 .title-sub {
   margin-top: var(--space-8);
@@ -158,6 +160,25 @@ body.mk-intro-running .slide.is-active .slide__copy > * {
   color: var(--text-secondary);
 }
 .deck-counter .cur { color: var(--ink-100); }
+
+/* beat ticks: how many steps this slide still has in it */
+.deck-beats {
+  position: fixed;
+  right: var(--space-8);
+  bottom: calc(var(--space-6) + 20px);
+  z-index: 2;
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+}
+.deck-beats i {
+  display: block;
+  width: 10px;
+  height: 1px;
+  background: var(--ink-600, #4a4a52);
+  transition: background var(--dur-slow) var(--ease-out);
+}
+.deck-beats i.on { background: var(--ember-500); }
 
 .deck-progress {
   position: fixed;

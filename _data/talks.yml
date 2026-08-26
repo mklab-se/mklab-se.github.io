@@ -5,10 +5,11 @@
   url: /talks/quiz/
   date: 2026-08-25
   deck_lang: sv+en
+  minutes: 45
   protected: true
   eyebrow:
-    sv: "Augusti 2026 · svenska och engelska · 28 kategorier"
-    en: "August 2026 · Swedish and English · 28 categories"
+    sv: "Augusti 2026 · svenska och engelska · cirka 45 minuter"
+    en: "August 2026 · Swedish and English · about 45 minutes"
   title:
     sv: "MKLab Quiz"
     en: "MKLab Quiz"
@@ -31,10 +32,10 @@
   url: /talks/owasp-agentic-top10/
   date: 2026-08-24
   deck_lang: en
-  slides: 17
+  minutes: 20
   eyebrow:
-    sv: "Augusti 2026 · på engelska · 17 bilder"
-    en: "August 2026 · in English · 17 slides"
+    sv: "Augusti 2026 · på engelska · cirka 20 minuter"
+    en: "August 2026 · in English · about 20 minutes"
   title:
     sv: "OWASP Agentic Top 10"
     en: "The OWASP Agentic Top 10"
@@ -43,12 +44,12 @@
       Vad som händer när modellen börjar agera: alla tio riskerna i 2026
       års OWASP Top 10 för agentiska applikationer, animerade en i taget,
       från ”goal hijack” till ”rogue agents”. Anpassad från OWASP under
-      CC BY-SA 4.0. Sjutton partikelanimerade bilder.
+      CC BY-SA 4.0.
     en: >-
       What happens when the model starts acting: all ten risks of the
       2026 OWASP Top 10 for Agentic Applications, animated one by one,
       from goal hijack to rogue agents. Adapted from OWASP under
-      CC BY-SA 4.0. Seventeen particle-animated slides.
+      CC BY-SA 4.0.
   cta:
     sv: "Se föredraget"
     en: "Watch the talk"
@@ -57,24 +58,26 @@
   url: /talks/owasp-llm-top10/
   date: 2026-08-24
   deck_lang: en
-  slides: 51
+  minutes: 60
   eyebrow:
-    sv: "Augusti 2026 · på engelska · 51 bilder"
-    en: "August 2026 · in English · 51 slides"
+    sv: "Augusti 2026 · på engelska · cirka 60 minuter"
+    en: "August 2026 · in English · about 60 minutes"
   title:
     sv: "OWASP LLM Top 10"
     en: "The OWASP LLM Top 10"
   blurb:
     sv: >-
-      Alla tio riskerna i 2026 års OWASP Top 10 för LLM-applikationer får
-      ett eget kapitel: vad risken är, hur en angripare utnyttjar den och
-      hur du stänger den. Anpassad från OWASP under CC BY-SA 4.0.
-      Femtioen animerade bilder.
+      Tio risker, berättade som tio arbetsdagar. Anders slutade läsa
+      ärendena. Lena pekade ut en mapp. Sofia automatiserade det tråkiga.
+      Varje historia får sitt namn först efteråt, och sedan samma dag en
+      gång till, med skydden på plats. I sju av tio fall fanns ingen
+      angripare alls. Anpassad från OWASP under CC BY-SA 4.0.
     en: >-
-      All ten risks of the 2026 OWASP Top 10 for LLM Applications, one
-      chapter each: what the risk is, how an attacker works it, and how
-      you shut it down. Adapted from OWASP under CC BY-SA 4.0. Fifty-one
-      animated slides.
+      Ten risks, told as ten working days. Anders stopped reading the
+      tickets. Lena pointed at a folder. Sofia automated the boring bit.
+      Each story gets its name only afterwards, and then the same day
+      again with the controls in place. In seven of the ten, nobody
+      attacked anybody. Adapted from OWASP under CC BY-SA 4.0.
   cta:
     sv: "Se föredraget"
     en: "Watch the talk"
@@ -84,11 +87,11 @@
   url_en: /en/talks/ai-decision-makers/
   date: 2026-08-24
   deck_lang: both
-  slides: 12
+  minutes: 20
   protected: true
   eyebrow:
-    sv: "Augusti 2026 · svenska och engelska · 12 bilder"
-    en: "August 2026 · Swedish and English · 12 slides"
+    sv: "Augusti 2026 · svenska och engelska · cirka 20 minuter"
+    en: "August 2026 · Swedish and English · about 20 minutes"
   title:
     sv: "AI för beslutsfattare"
     en: "AI for decision makers"
@@ -111,10 +114,10 @@
   url: /talks/agentic-workflows/
   date: 2026-08-24
   deck_lang: en
-  slides: 13
+  minutes: 15
   eyebrow:
-    sv: "Augusti 2026 · på engelska · 13 bilder"
-    en: "August 2026 · in English · 13 slides"
+    sv: "Augusti 2026 · på engelska · cirka 15 minuter"
+    en: "August 2026 · in English · about 15 minutes"
   title:
     sv: "Agenter i ditt repo"
     en: "Agents in your repository"
@@ -123,14 +126,12 @@
       GitHub Agentic Workflows lägger en agent i GitHub Actions: väckt av
       issues, scheman och pull requests, styrd av instruktioner i en
       markdownfil, inhägnad av safe outputs. Vad hela teamet kan
-      automatisera, och varför det lönar sig att vara tidig. Tretton
-      partikelanimerade bilder.
+      automatisera, och varför det lönar sig att vara tidig.
     en: >-
       GitHub Agentic Workflows put an agent inside GitHub Actions: woken
       by issues, schedules and pull requests, guided by instructions in
       a markdown file, fenced in by safe outputs. What the whole team
-      can automate, and why being early pays off. Thirteen
-      particle-animated slides.
+      can automate, and why being early pays off.
   cta:
     sv: "Se föredraget"
     en: "Watch the talk"
@@ -139,10 +140,10 @@
   url: /talks/mcp/
   date: 2026-08-24
   deck_lang: en
-  slides: 11
+  minutes: 15
   eyebrow:
-    sv: "Augusti 2026 · på engelska · 11 bilder"
-    en: "August 2026 · in English · 11 slides"
+    sv: "Augusti 2026 · på engelska · cirka 15 minuter"
+    en: "August 2026 · in English · about 15 minutes"
   title:
     sv: "Förstå MCP"
     en: "Understanding MCP"
@@ -152,12 +153,11 @@
       harnesset gör, hur orkestreringsloopen fungerar, lokala kontra
       fjärranslutna MCP-servrar, och när en skill med skript är det
       smartare valet.
-      Elva partikelanimerade bilder.
     en: >-
       A vendor-neutral tour of the Model Context Protocol: what the
       harness does, how the orchestration loop runs, local versus
       remote MCP servers, and when a skill with scripts is the leaner
-      choice. Eleven particle-animated slides.
+      choice.
   cta:
     sv: "Se föredraget"
     en: "Watch the talk"
@@ -166,10 +166,10 @@
   url: /talks/copilot-customization/
   date: 2026-08-24
   deck_lang: en
-  slides: 12
+  minutes: 15
   eyebrow:
-    sv: "Augusti 2026 · på engelska · 12 bilder"
-    en: "August 2026 · in English · 12 slides"
+    sv: "Augusti 2026 · på engelska · cirka 15 minuter"
+    en: "August 2026 · in English · about 15 minutes"
   title:
     sv: "Fyra sätt att lära din Copilot"
     en: "Four ways to teach your Copilot"
@@ -178,12 +178,11 @@
       Maja har precis fått GitHub Copilot och möter fyra sätt att
       anpassa den: prompt files, instructions, custom agents och
       skills. Vad de är, när de ska användas och varför en skill ofta
-      räcker, i tolv partikelanimerade bilder.
+      räcker.
     en: >-
       Maja just got GitHub Copilot and meets four ways to customize
       it: prompt files, instructions, custom agents and skills. What
-      each one is, when to use it, and why a skill is often enough,
-      in twelve particle-animated slides.
+      each one is, when to use it, and why a skill is often enough.
   cta:
     sv: "Se föredraget"
     en: "Watch the talk"
@@ -192,10 +191,10 @@
   url: /talks/agentic-rag/
   date: 2026-08-19
   deck_lang: en
-  slides: 13
+  minutes: 15
   eyebrow:
-    sv: "Augusti 2026 · på engelska · 13 bilder"
-    en: "August 2026 · in English · 13 slides"
+    sv: "Augusti 2026 · på engelska · cirka 15 minuter"
+    en: "August 2026 · in English · about 15 minutes"
   title:
     sv: "Agentisk RAG"
     en: "Agentic RAG"
@@ -203,13 +202,11 @@
     sv: >-
       Chattboten Norm lär sig slå upp saker. Från nyfödd till agent:
       minne, embeddings, vektorsökning, verktyg, och vad som krävs
-      för att köra alltihop lokalt, i tretton partikelanimerade
-      bilder.
+      för att köra alltihop lokalt.
     en: >-
       Norm the chat bot learns to look things up. From newborn to
       agent: memory, embeddings, vector search, tools, and what it
-      takes to run it all locally, in thirteen particle-animated
-      slides.
+      takes to run it all locally.
   cta:
     sv: "Se föredraget"
     en: "Watch the talk"
