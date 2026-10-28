@@ -1,0 +1,32 @@
+<footer class="mk-footer">
+  <div class="mk-shell">
+    <div class="mk-footer__inner">
+      <div class="mk-footer__brand">
+        <img class="mk-footer__logo" src="/assets/images/logos/mklab-white.svg" alt="MKLab" />
+        <p>{{ t.footer_tagline | safe }}</p>
+      </div>
+      <div class="mk-footer__cols">
+        <div>
+          <div class="mk-footer__heading">{{ t.footer_nav_heading | safe }}</div>
+          {% for item in t.nav %}
+          <a href="{{ item.href }}">{{ item.label | safe }}</a>
+          {% endfor %}
+        </div>
+        <div>
+          <div class="mk-footer__heading">{{ t.footer_contact_heading | safe }}</div>
+          <a href="mailto:{{ config.extra.email }}">{{ config.extra.email }}</a>
+          <a href="https://www.linkedin.com/in/kristofer-liljeblad/">LinkedIn</a>
+        </div>
+        <div>
+          <div class="mk-footer__heading">{{ t.footer_more_heading | safe }}</div>
+          <a href="{{ t.footer_photo_href }}">{{ t.footer_photo_label | safe }}</a>
+          <a href="{{ t.footer_tbanan_href }}">{{ t.footer_tbanan_label | safe }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="mk-footer__base">
+      <img class="mk-footer__skyline" src="/assets/images/brand/stockholm-skyline.svg" alt="" />
+      <span class="mk-footer__fineprint">© <span data-current-year>{{ now() | date(format="%Y") }}</span> {{ t.footer_fineprint | safe }}</span>
+    </div>
+  </div>
+</footer>

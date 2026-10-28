@@ -1,0 +1,34 @@
+base_url = "https://mklab.se"
+title = "MKLab AB"
+description = "MKLab leder AI- och molntransformation med senior erfarenhet. Strategi med ledningen, leverans med teamen."
+default_language = "sv"
+
+compile_sass = false
+build_search_index = false
+generate_feeds = false
+
+# Kept in the repo, never published.
+ignored_content = ["*.DS_Store"]
+ignored_static = ["*.DS_Store"]
+
+[extra]
+name = "Kristofer Liljeblad"
+email = "kristofer@mklab.se"
+meta_image = "/assets/images/logos/MKLab-1024.png"
+
+# One entry per file in data/quiz/. Templates cannot list a directory,
+# so a new category needs its id added here as well.
+quiz_categories = [
+  "acronym-soup", "agentic-ai", "agile-beyond-scrum", "ai-models", "ai-on-film",
+  "ai-regulation", "ai-security", "apis-integration", "azure", "cloud-fundamentals",
+  "company-origins", "data-analytics", "databases", "devops-cicd", "famous-outages",
+  "git", "github-copilot", "internet-plumbing", "microsoft-foundry", "observability",
+  "program-project-management", "prompt-engineering", "rag-vector-search", "scrum",
+  "software-architecture", "swedish-tech", "tech-history", "tech-leadership",
+]
+
+# Stands in for page front matter on 404.html, which has no page.
+[extra.not_found]
+title = "Page not found"
+path = "/404.html"
+extra = { lang = "en" }

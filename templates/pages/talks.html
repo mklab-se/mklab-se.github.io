@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<main id="main">
+
+  <section class="mk-chapter" id="talks" data-scene="speak">
+    <div class="mk-shell">
+      <div class="mk-chapter__opener">
+        <div class="reveal">
+          <span class="mk-eyebrow">MKLab · Tech Talks</span>
+          <h1 class="mk-chapter__title">Korta<br />tech talks.</h1>
+          <p class="mk-chapter__lead">Varje föredrag här är en liten bit av vad en
+          riktig session med MKLab ger. Använd dem för att förstå ett ämne på egen
+          hand, som inspiration inför att ni bokar en session, eller som minnesstöd
+          efter ett föredrag ni redan sett live.</p>
+        </div>
+      </div>
+      <div class="mk-chapter__body">
+
+        <div class="mk-talks">
+          {% for talk in load_data(path="data/talks.yml") %}
+          <a class="mk-card mk-card--interactive mk-talk-card reveal" href="{{ talk.url }}">
+            <span class="mk-meta">{{ talk.eyebrow.sv | safe }}{% if talk.protected %} · lösenordsskyddat{% endif %}</span>
+            <h3>{{ talk.title.sv | safe }}</h3>
+            <p>{{ talk.blurb.sv | safe }}</p>
+            <span class="mk-talk-card__cta">{{ talk.cta.sv | safe }} &rarr;</span>
+          </a>
+          {% endfor %}
+          <div class="mk-card mk-talk-card mk-talk-card--soon reveal">
+            <span class="mk-meta">Fler föredrag är på väg</span>
+          </div>
+        </div>
+
+        <div class="mk-split" style="margin-top: var(--space-24);">
+          <article class="mk-card reveal">
+            <h2>Vill ni gå djupare?</h2>
+            <p>Varje tech talk här är den korta versionen av något vi gärna berättar
+            mer om. Vi håller fördjupade sessioner hos er: samma ämnen, men anpassade
+            efter er verksamhet, era system och era frågor.</p>
+            <ul class="mk-list">
+              <li>Föredrag för hela organisationen</li>
+              <li>Workshops med era team</li>
+              <li>Genomgångar med ledning och arkitekter</li>
+            </ul>
+          </article>
+          <aside class="mk-card reveal">
+            <h2>Boka en session</h2>
+            <p>Berätta vilket ämne som är aktuellt hos er, så återkommer vi med
+            upplägg och pris.</p>
+            <div class="mk-hero__actions" style="margin-top: var(--space-6);">
+              <a class="mk-btn mk-btn--primary" href="mailto:{{ config.extra.email }}?subject=Tech%20talk">{{ config.extra.email }}</a>
+            </div>
+          </aside>
+        </div>
+        <p class="mk-footnote reveal" style="margin-top: var(--space-8);"><a href="/">Till MKLabs startsida</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+{% endblock content %}

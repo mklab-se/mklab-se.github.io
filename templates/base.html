@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{%- if page %}{% set p = page %}{% elif section %}{% set p = section %}{% else %}{% set p = config.extra.not_found %}{% endif %}
+{%- set lang = p.extra.lang | default(value='sv') %}
+{%- set url = config.base_url ~ p.path %}
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% if p.extra.homepage %}{{ p.title }}{% elif p.title %}{{ p.title }} · {{ config.title }}{% else %}{{ config.title }}{% endif %}</title>
+  <meta name="description" content="{{ p.description | default(value=config.description) }}" />
+  <link rel="canonical" href="{{ url }}" />
+  {% if p.extra.alt_lang_path %}
+  {% if lang == 'sv' %}{% set other_lang = 'en' %}{% else %}{% set other_lang = 'sv' %}{% endif %}
+  {% set alt_url = config.base_url ~ p.extra.alt_lang_path %}
+  <link rel="alternate" hreflang="{{ lang }}" href="{{ url }}" />
+  <link rel="alternate" hreflang="{{ other_lang }}" href="{{ alt_url }}" />
+  {% if lang == 'sv' %}
+  <link rel="alternate" hreflang="x-default" href="{{ url }}" />
+  {% else %}
+  <link rel="alternate" hreflang="x-default" href="{{ alt_url }}" />
+  {% endif %}
+  {% endif %}
+  {% set og_image = p.extra.meta_image | default(value=config.extra.meta_image) %}
+  <meta property="og:image" content="{{ config.base_url ~ og_image }}" />
+  <meta name="twitter:image" content="{{ config.base_url ~ og_image }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <script src="/assets/js/canvas.js" defer></script>
+  <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+  {% include "partials/head-custom.html" %}
+  {% if p.extra.head_extra %}{{ p.extra.head_extra | safe }}{% endif %}
+</head>
+<body class="{{ p.extra.body_class | default(value='') }}">
+  <canvas id="mk-canvas" class="mk-canvas" aria-hidden="true"
+    data-logo-src="/assets/images/logos/MKLab-0512-white.png"></canvas>
+  {% set t = load_data(path="data/i18n.yml")[lang] %}
+  <a class="mk-skip" href="#main">{{ t.skip_link }}</a>
+  {% if not p.extra.hide_header %}
+    {% include "partials/site-header.html" %}
+  {% endif %}
+
+  {% block content %}{% endblock content %}
+
+  {% if not p.extra.hide_footer %}
+    {% include "partials/site-footer.html" %}
+  {% endif %}
+
+  <script>
+    document.querySelectorAll('[data-current-year]').forEach(function (el) {
+      el.textContent = new Date().getFullYear();
+    });
+
+    var revealElements = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealElements.forEach(function (el) { observer.observe(el); });
+    } else {
+      revealElements.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  </script>
+</body>
+</html>
