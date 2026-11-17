@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
+<script>
+  // The agentic-rag repository was renamed to Voltrieve: send any other old docs link to the new site.
+  if (location.pathname.startsWith("/agentic-rag/")) {
+    location.replace("/voltrieve/" + location.pathname.slice("/agentic-rag/".length) + location.search + location.hash);
+  }
+</script>
 <main id="main">
   <section class="mk-chapter" data-scene="constellation">
     <div class="mk-shell">
